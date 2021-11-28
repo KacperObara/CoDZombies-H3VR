@@ -174,5 +174,11 @@ namespace MeatKit
             PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Standalone, "");
             AssetDatabase.Refresh();
         }
+
+        [MenuItem("MeatKit/External Library Panel", priority = 4)]
+        public static void ShowExternalLibraryPanel()
+        {
+            ExternalLibraryPanel.Create();
+        }
     }
 }
