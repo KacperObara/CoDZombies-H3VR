@@ -1,0 +1,13 @@
+[
+    {
+        "Name": "Example Library",
+        "Description": "Example library for MeatKit",
+        "Authors": [
+            "John Doe",
+            "Your mom!!!"
+        ],
+        "DownloadURL": "https://example.com/download",
+        "ProjectURL": "https://example.com/project",
+        "Size": 5.45
+    }
+]
