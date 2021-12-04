@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Name: M1918BAR
+  m_EditorClassIdentifier: 
+  Description: 
+  DefaultSpawners:
+  - 4d31393138424152
+  - 4d6167617a696e654d31393138424152
+  UpgradedWeapon: {fileID: 11400000, guid: b24e749535983434c9b315cc3a425573, type: 2}
+  UpgradedAmmo: 
+  LimitedAmmoMagazineCount: 3
+  AmmoBuyCost: 700

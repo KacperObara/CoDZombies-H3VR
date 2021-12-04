@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9314f7db8ba7445bd12b5d5b35a28d, type: 3}
+  m_Name: Sosigaccesory_ww2_combatcap_grey
+  m_EditorClassIdentifier:
+  m_anvilPrefab:
+    Guid: 55a45851d04927b4393d1ba1254ef8e5
+    Bundle: assets_resources_objectids__sosig
+    AssetName: Sosigaccesory_ww2_combatcap_grey
+  m_export: 1
+  ItemID: Sosigaccesory_ww2_combatcap_grey
+  DisplayName: Sosigaccesory_ww2_combatcap_grey
+  Category: 0
+  SpawnedFromId:
+  Mass: 0
+  MagazineCapacity: 0
+  RequiresPicatinnySight: 0
+  TagEra: 0
+  TagSet: 0
+  TagFirearmSize: 0
+  TagFirearmAction: 0
+  TagFirearmRoundPower: 0
+  TagFirearmCountryOfOrigin: 0
+  TagFirearmFirstYear: 0
+  TagFirearmFiringModes:
+  TagFirearmFeedOption:
+  TagFirearmMounts:
+  TagAttachmentMount: 0
+  TagAttachmentFeature: 0
+  TagMeleeStyle: 0
+  TagMeleeHandedness: 0
+  TagPowerupType: 0
+  TagThrownType: 0
+  TagThrownDamageType: 0
+  CompatibleMagazines: []
+  CompatibleClips: []
+  CompatibleSpeedLoaders: []
+  CompatibleSingleRounds: []
+  BespokeAttachments: []
+  RequiredSecondaryPieces: []
+  MinCapacityRelated: -1
+  MaxCapacityRelated: -1
+  CreditCost: 0
+  OSple: 1

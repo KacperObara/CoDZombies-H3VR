@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Name: TripleRegret
+  m_EditorClassIdentifier: 
+  Description: 5765626c65795265766f6c7665722075706772616465
+  DefaultSpawners:
+  - 547269706c65526567726574
+  - 3530424d474361727472696467654150
+  UpgradedWeapon: {fileID: 0}
+  UpgradedAmmo: 
+  LimitedAmmoMagazineCount: 6
+  AmmoBuyCost: 0

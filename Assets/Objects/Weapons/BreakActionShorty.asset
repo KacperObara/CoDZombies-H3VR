@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Name: BreakActionShorty
+  m_EditorClassIdentifier: 
+  Description: 
+  DefaultSpawners:
+  - 427265616b416374696f6e53686f727479
+  - 313247617567655368656c6c4e6f344275636b73686f74
+  UpgradedWeapon: {fileID: 11400000, guid: 9a96058ace3c7a940a3aa927aa6ec11b, type: 2}
+  UpgradedAmmo: 
+  LimitedAmmoMagazineCount: 12
+  AmmoBuyCost: 0

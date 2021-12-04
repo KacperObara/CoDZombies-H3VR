@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9314f7db8ba7445bd12b5d5b35a28d, type: 3}
+  m_Name: zosigbaton
+  m_EditorClassIdentifier: 
+  m_anvilPrefab:
+    Guid: 
+    Bundle: 
+    AssetName: 4173736574732f436f6d706c65746564426f756e746965732f536f7369675a6f6d626965732f776561706f6e732f4261746f6e2f7a6261746f6e2e707265666162
+  m_export: 0
+  ItemID: 736f6d626965736f7369676261746f6e2e617270
+  DisplayName: 
+  Category: 0
+  SpawnedFromId: 736f6d626965736f7369676261746f6e2e617270
+  Mass: 0
+  MagazineCapacity: 0
+  RequiresPicatinnySight: 0
+  TagEra: 0
+  TagSet: 0
+  TagFirearmSize: 0
+  TagFirearmAction: 0
+  TagFirearmRoundPower: 0
+  TagFirearmCountryOfOrigin: 0
+  TagFirearmFirstYear: 0
+  TagFirearmFiringModes: 
+  TagFirearmFeedOption: 
+  TagFirearmMounts: 
+  TagAttachmentMount: 0
+  TagAttachmentFeature: 0
+  TagMeleeStyle: 0
+  TagMeleeHandedness: 0
+  TagPowerupType: 0
+  TagThrownType: 0
+  TagThrownDamageType: 0
+  CompatibleMagazines: []
+  CompatibleClips: []
+  CompatibleSpeedLoaders: []
+  CompatibleSingleRounds: []
+  BespokeAttachments: []
+  RequiredSecondaryPieces: []
+  MinCapacityRelated: 0
+  MaxCapacityRelated: 0
+  CreditCost: 0
+  OSple: 0
