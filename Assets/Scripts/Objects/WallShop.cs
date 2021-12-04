@@ -1,4 +1,4 @@
-using System;
+using FistVR;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Objects.Weapons;
@@ -65,9 +65,9 @@ namespace CustomScripts.Objects
                         {
                             if (i == ammoSpawnerId)
                                 continue;
-
-                            ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                            ItemSpawners[i].Spawn();
+                            //TODO: New itemspawner doesnt have ObjectId field
+                            // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                            ItemSpawners[i].SpawnItem();
                         }
                     }
 
@@ -76,14 +76,16 @@ namespace CustomScripts.Objects
                         // spawning weapons in unlimited
                         for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                         {
-                            ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                            ItemSpawners[i].Spawn();
+                            //TODO: See above
+                            // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                            ItemSpawners[i].SpawnItem();
                         }
                     }
                     else
                     {
+                        //TODO: See above
                         // Spawning ammo
-                        ItemSpawners[ammoSpawnerId].ObjectId = Weapon.DefaultSpawners[ammoSpawnerId];
+                        // ItemSpawners[ammoSpawnerId].ObjectId = Weapon.DefaultSpawners[ammoSpawnerId];
                         StartCoroutine(DelayedAmmoSpawn());
                         // for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
                         // {
@@ -100,8 +102,9 @@ namespace CustomScripts.Objects
                     // spawning weapons in unlimited
                     for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                     {
-                        ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                        ItemSpawners[i].Spawn();
+                        //TODO: See above
+                        // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                        ItemSpawners[i].SpawnItem();
                     }
                 }
 
@@ -115,7 +118,7 @@ namespace CustomScripts.Objects
         {
             for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
             {
-                ItemSpawners[ammoSpawnerId].Spawn();
+                ItemSpawners[ammoSpawnerId].SpawnItem();
                 yield return new WaitForSeconds(0.05f);
             }
         }

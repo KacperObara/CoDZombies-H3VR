@@ -12,8 +12,9 @@ namespace CustomScripts.Powerups.Perks
 
         public void ApplyModifier()
         {
-            Spawner.ObjectId = ObjectID;
-            Spawner.Spawn();
+            //TODO: New itemspawner doesnt have ObjectId field
+            // Spawner.ObjectId = ObjectID;
+            Spawner.SpawnItem();
 
             AudioManager.Instance.DrinkSound.Play();
 

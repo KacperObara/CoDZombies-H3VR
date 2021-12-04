@@ -3,7 +3,7 @@
     {
         "**/.DS_Store":true,
         "**/.git":true,
-        "**/.gitignore":true,
+        // "**/.gitignore":true,
         "**/.gitmodules":true,
         "**/*.booproj":true,
         "**/*.pidb":true,
@@ -11,7 +11,7 @@
         "**/*.user":true,
         "**/*.userprefs":true,
         "**/*.unityproj":true,
-        "**/*.dll":true,
+        // "**/*.dll":true,
         "**/*.exe":true,
         "**/*.pdf":true,
         "**/*.mid":true,

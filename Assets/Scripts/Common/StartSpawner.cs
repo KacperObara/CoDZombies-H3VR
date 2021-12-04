@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using WurstMod.MappingComponents.Generic;
+using FistVR;
 
 namespace CustomScripts
 {
@@ -9,15 +9,16 @@ namespace CustomScripts
         public ItemSpawner WeaponSpawner;
         public ItemSpawner AmmoSpawner;
 
+        //TODO: I just changed Spawn() to SpawnItem() which is wrong and bad 
         public void Spawn()
         {
-            WeaponSpawner.Spawn();
-            AmmoSpawner.Spawn();
+            WeaponSpawner.SpawnItem();
+            AmmoSpawner.SpawnItem();
 
             if (GameSettings.LimitedAmmo)
             {
-                AmmoSpawner.Spawn();
-                AmmoSpawner.Spawn();
+                AmmoSpawner.SpawnItem();
+                AmmoSpawner.SpawnItem();
             }
         }
     }

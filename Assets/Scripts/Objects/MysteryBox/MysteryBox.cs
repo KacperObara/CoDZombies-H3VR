@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Objects.Weapons;
 using UnityEngine;
-using UnityEngine.Serialization;
+using FistVR;
 using Random = UnityEngine.Random;
 
 namespace CustomScripts
@@ -54,29 +54,30 @@ namespace CustomScripts
             }
             else
             {
-                if (GameSettings.LimitedAmmo)
-                {
-                    int random = Random.Range(0, LimitedAmmoLootId.Count);
+                //TODO: This entire part right here needs to be fixed to work with the new itemspawner
+                // if (GameSettings.LimitedAmmo)
+                // {
+                //     int random = Random.Range(0, LimitedAmmoLootId.Count);
 
-                    WeaponSpawner.ObjectId = LimitedAmmoLootId[random].DefaultSpawners[0];
-                    WeaponSpawner.Spawn();
+                //     WeaponSpawner.ObjectId = LimitedAmmoLootId[random].DefaultSpawners[0];
+                //     WeaponSpawner.Spawn();
 
-                    AmmoSpawner.ObjectId = LimitedAmmoLootId[random].DefaultSpawners[1];
-                    for (int i = 0; i < LimitedAmmoLootId[random].LimitedAmmoMagazineCount; i++)
-                    {
-                        AmmoSpawner.Spawn();
-                    }
-                }
-                else
-                {
-                    int random = Random.Range(0, LootId.Count);
+                //     AmmoSpawner.ObjectId = LimitedAmmoLootId[random].DefaultSpawners[1];
+                //     for (int i = 0; i < LimitedAmmoLootId[random].LimitedAmmoMagazineCount; i++)
+                //     {
+                //         AmmoSpawner.Spawn();
+                //     }
+                // }
+                // else
+                // {
+                //     int random = Random.Range(0, LootId.Count);
 
-                    WeaponSpawner.ObjectId = LootId[random].DefaultSpawners[0];
-                    AmmoSpawner.ObjectId = LootId[random].DefaultSpawners[1];
+                //     WeaponSpawner.ObjectId = LootId[random].DefaultSpawners[0];
+                //     AmmoSpawner.ObjectId = LootId[random].DefaultSpawners[1];
 
-                    WeaponSpawner.Spawn();
-                    AmmoSpawner.Spawn();
-                }
+                //     WeaponSpawner.Spawn();
+                //     AmmoSpawner.Spawn();
+                // }
 
                 InUse = false;
 

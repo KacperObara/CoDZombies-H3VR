@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Atlas;
 
 namespace CustomScripts
 {
@@ -27,7 +28,7 @@ namespace CustomScripts
         [HideInInspector] public Transform PlayerHead;
         [SerializeField] private Transform DebugPlayerHead;
 
-        public CustomScene CustomScene;
+        public CustomSceneInfo CustomScene;
         public Transform Respawn;
 
         private void Start()

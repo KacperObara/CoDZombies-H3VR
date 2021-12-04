@@ -22,9 +22,9 @@ namespace CustomScripts.Managers
         public override void Awake()
         {
             base.Awake();
-
             GM.CurrentSceneSettings.SosigKillEvent += OnSosigDied;
-            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
+            //TODO: apparently ProcessDamage_Damage_SosigLink doesnt exist anymore???
+            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
         }
 
         public void SpawnZombie(float delay)
@@ -141,14 +141,16 @@ namespace CustomScripts.Managers
         private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, FistVR.Sosig self, Damage d,
             SosigLink link)
         {
-            orig.Invoke(self, d, link);
+            //TODO: fix Reference to type 'Sosig' claims it is defined in this assembly, but it is not defined in source or any added modules
+            // orig.Invoke(self, d, link);
             self.GetComponent<ZosigZombieController>().OnGetHit(d);
         }
 
         private void OnDestroy()
         {
             GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
-            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
+            //TODO: See TODO at top of file
+            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
             //On.FistVR.Sosig.SosigDies -= OnSosigDied;
         }
     }

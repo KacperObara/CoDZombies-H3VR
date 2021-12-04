@@ -59,16 +59,18 @@ namespace CustomScripts.Powerups
 
             for (int i = 0; i < weapon.UpgradedWeapon.DefaultSpawners.Count; i++)
             {
-                Spawners[i].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[i];
-                Spawners[i].Spawn();
+                //TODO: New itemspawner doesnt have ObjectId field
+                // Spawners[i].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[i];
+                Spawners[i].SpawnItem();
             }
 
             if (GameSettings.LimitedAmmo)
             {
                 for (int i = 0; i < weapon.UpgradedWeapon.LimitedAmmoMagazineCount - 1; i++)
                 {
-                    Spawners[1].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[1];
-                    Spawners[1].Spawn();
+                    //TODO: New itemspawner doesnt have ObjectId field
+                    // Spawners[1].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[1];
+                    Spawners[1].SpawnItem();
                 }
             }
 

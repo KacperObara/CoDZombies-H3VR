@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace CustomScripts.Gamemode.GMDebug
 {
-    public class CustomSosigSpawner : ComponentProxy
+    public class CustomSosigSpawner : MonoBehaviour //TODO: Adapt this for Atlas
     {
         [Tooltip("A list of Sosig types to spawn from")]
         //public Enums.P_SosigEnemyID[] SosigTypes;
@@ -132,16 +132,6 @@ namespace CustomScripts.Gamemode.GMDebug
                 counter++;
             }
         }
-
-#if UNITY_EDITOR
-        public override void OnExport(ExportErrors err)
-        {
-            if (SosigTypes.Length == 0) err.AddError("Sosig Spawner has no types to spawn!", this);
-            if (SpawnDelay < 0) err.AddError("Sosig Spawner cannot have a spawn delay of less than zero", this);
-            if (SpawnInterval < 0) err.AddError("Sosig Spawner cannot have a spawn interval of less than zero", this);
-            if (SpawnCount < 0) err.AddError("Sosig Spawner cannot have a spawn count of less than zero", this);
-        }
-#endif
 
         // private void OnDrawGizmos()
         // {

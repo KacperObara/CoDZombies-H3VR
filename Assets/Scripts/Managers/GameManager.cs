@@ -113,7 +113,7 @@ namespace CustomScripts
             if (GameEnded)
                 return;
 
-            GameReferences.Instance.CustomScene.KillPlayer();
+            GM.CurrentPlayerBody.KillPlayer(false);
         }
 
         public void EndGame()

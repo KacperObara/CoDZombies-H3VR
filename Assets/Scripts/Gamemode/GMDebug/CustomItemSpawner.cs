@@ -4,17 +4,11 @@ using UnityEngine;
 
 namespace CustomScripts.Gamemode.GMDebug
 {
-    public class CustomItemSpawner : ComponentProxy
+    public class CustomItemSpawner : MonoBehaviour
     {
         public string ObjectId;
-        public bool SpawnOnLoad;
 
         public GameObject SpawnedObject;
-
-        public override void InitializeComponent()
-        {
-            if (SpawnOnLoad) Spawn();
-        }
 
         private void OnDrawGizmos()
         {
@@ -26,10 +20,9 @@ namespace CustomScripts.Gamemode.GMDebug
         public void Spawn()
         {
             FVRObject obj = IM.OD[ObjectId];
-           GameObject callback = obj.GetGameObject();
+            GameObject callback = obj.GetGameObject();
 
-           GameObject go = Instantiate(callback, transform.position, transform.rotation,
-               ObjectReferences.CustomScene.transform);
+            GameObject go = Instantiate(callback, transform.position, transform.rotation, transform); //TODO: Replace with real pos
            go.SetActive(true);
 
            SpawnedObject = go;
