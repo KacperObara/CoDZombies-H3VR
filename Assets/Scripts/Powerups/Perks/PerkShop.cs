@@ -1,6 +1,4 @@
-using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class PerkShop : MonoBehaviour
@@ -10,16 +8,16 @@ namespace CustomScripts
         public GameObject Bottle;
         public Transform SpawnPoint;
 
-        private bool alreadyUsed = false;
+        private bool _alreadyUsed;
 
         public void TryBuying()
         {
-            if (alreadyUsed)
+            if (_alreadyUsed)
                 return;
 
             if (GameManager.Instance.TryRemovePoints(Cost))
             {
-                alreadyUsed = true;
+                _alreadyUsed = true;
 
                 Bottle.transform.position = SpawnPoint.position;
 

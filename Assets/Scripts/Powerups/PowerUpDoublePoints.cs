@@ -1,19 +1,16 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using CustomScripts.Player;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class PowerUpDoublePoints : PowerUp
     {
         public MeshRenderer Renderer;
-        private Animator animator;
+        private Animator _animator;
 
         private void Awake()
         {
-            animator = transform.GetComponent<Animator>();
+            _animator = transform.GetComponent<Animator>();
         }
 
         public override void Spawn(Vector3 pos)
@@ -23,7 +20,8 @@ namespace CustomScripts
                 Debug.LogWarning("X2PowerUp spawn failed! renderer == null Tell Kodeman");
                 return;
             }
-            if (animator == null)
+
+            if (_animator == null)
             {
                 Debug.LogWarning("X2PowerUp spawn failed! animator == null Tell Kodeman");
                 return;
@@ -31,7 +29,7 @@ namespace CustomScripts
 
             transform.position = pos;
             Renderer.enabled = true;
-            animator.Play("Rotating");
+            _animator.Play("Rotating");
             StartCoroutine(DespawnDelay());
         }
 

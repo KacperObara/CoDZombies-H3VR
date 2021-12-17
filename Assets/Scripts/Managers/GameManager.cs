@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using CustomScripts.Objects;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts
 {
     public class GameManager : MonoBehaviourSingleton<GameManager>
@@ -33,12 +30,12 @@ namespace CustomScripts
 
             PlayerData.Instance.MoneyModifier.ToString();
 
-            amount = (int) newAmount;
+            amount = (int)newAmount;
 
             Points += amount;
             TotalPoints += amount;
 
-            OnPointsChanged?.Invoke();
+            OnPointsChanged.Invoke();
         }
 
         public bool TryRemovePoints(int amount)
@@ -46,7 +43,7 @@ namespace CustomScripts
             if (Points >= amount)
             {
                 Points -= amount;
-                OnPointsChanged?.Invoke();
+                OnPointsChanged.Invoke();
                 return true;
             }
 
@@ -72,8 +69,8 @@ namespace CustomScripts
         //
         //     RoundManager.Instance.ZombiesLeft--;
         //
-        //     RoundManager.OnZombiesLeftChanged?.Invoke();
-        //     RoundManager.OnZombieKilled?.Invoke(controller.gameObject);
+        //     RoundManager.OnZombiesLeftChanged.Invoke();
+        //     RoundManager.OnZombieKilled.Invoke(controller.gameObject);
         //
         //
         //     if (ExistingZombies.Count <= 0)
@@ -96,8 +93,8 @@ namespace CustomScripts
 
         public void StartGame()
         {
-            CustomZombieController.playertouches = 0;
-            CustomZombieController.isBeingHit = false;
+            CustomZombieController.Playertouches = 0;
+            CustomZombieController.IsBeingHit = false;
 
             GM.CurrentMovementManager.TeleportToPoint(GameStart.Instance.transform.position, false);
 

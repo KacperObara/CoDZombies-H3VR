@@ -1,17 +1,16 @@
 using System.Collections;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts.Powerups
 {
     public class PowerUpMaxAmmo : PowerUp
     {
-        private Animator animator;
         public MeshRenderer Renderer;
+        private Animator _animator;
 
         private void Awake()
         {
-            animator = transform.GetComponent<Animator>();
+            _animator = transform.GetComponent<Animator>();
         }
 
         public override void Spawn(Vector3 pos)
@@ -22,7 +21,7 @@ namespace CustomScripts.Powerups
                 return;
             }
 
-            if (animator == null)
+            if (_animator == null)
             {
                 Debug.LogWarning("MaxAmmoPowerUp spawn failed! animator == null Tell Kodeman");
                 return;
@@ -30,7 +29,7 @@ namespace CustomScripts.Powerups
 
             transform.position = pos;
             Renderer.enabled = true;
-            animator.Play("Rotating");
+            _animator.Play("Rotating");
             StartCoroutine(DespawnDelay());
         }
 

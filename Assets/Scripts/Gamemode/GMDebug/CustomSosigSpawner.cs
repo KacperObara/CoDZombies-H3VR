@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Linq;
 using FistVR;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
+using UnityEngine.Serialization;
 namespace CustomScripts.Gamemode.GMDebug
 {
     public class CustomSosigSpawner : MonoBehaviour //TODO: Adapt this for Atlas
@@ -27,8 +25,8 @@ namespace CustomScripts.Gamemode.GMDebug
         [Header("Spawn Options")] [Tooltip("Whether to spawn the Sosig activated or not")]
         public bool SpawnActivated;
 
-        [Tooltip("Sets the Sosig's IFF (Team). Values 5 and above get randomized")]
-        public int IFF;
+        [FormerlySerializedAs("IFF")] [Tooltip("Sets the Sosig's IFF (Team). Values 5 and above get randomized")]
+        public int Iff;
 
         [Tooltip("Spawns the Sosig with full ammo")]
         public bool SpawnWithFullAmmo;
@@ -46,10 +44,10 @@ namespace CustomScripts.Gamemode.GMDebug
 
         [Tooltip("Set this a transform to make the Sosigs spawn with it's position and rotation as it's target.")]
         public Transform SosigTransformTarget;
+        private IEnumerator _coroutine;
 
         // This needs to be a ScriptableObject because otherwise Unity throws a fit
         private ScriptableObject[] _enemyTemplates;
-        private IEnumerator _coroutine;
 
         private void Awake()
         {

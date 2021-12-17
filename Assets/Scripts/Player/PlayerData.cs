@@ -1,7 +1,4 @@
-using System;
 using FistVR;
-using UnityEngine;
-
 namespace CustomScripts.Player
 {
     public class PlayerData : MonoBehaviourSingleton<PlayerData>
@@ -19,6 +16,11 @@ namespace CustomScripts.Player
         public bool DoubleTapPerkActivated = false;
         public bool SpeedColaPerkActivated = false;
 
+        private float _fastest = float.MinValue;
+        private float _slowest = float.MaxValue;
+
+        private float _timer;
+
         public override void Awake()
         {
             base.Awake();
@@ -27,20 +29,15 @@ namespace CustomScripts.Player
             RoundManager.OnRoundChanged += OnRoundAdvance;
         }
 
-        private void OnRoundAdvance()
-        {
-            GM.CurrentPlayerBody.HealPercent(1f);
-        }
-
         private void OnDestroy()
         {
             RoundManager.OnRoundChanged -= OnRoundAdvance;
         }
 
-        private float timer;
-
-        private float Fastest = float.MinValue;
-        private float Slowest = float.MaxValue;
+        private void OnRoundAdvance()
+        {
+            GM.CurrentPlayerBody.HealPercent(1f);
+        }
 
         // public FVRPlayerBody Player => GM.CurrentPlayerBody;
         // public FVRMovementManager MovementManager => GM.CurrentMovementManager;

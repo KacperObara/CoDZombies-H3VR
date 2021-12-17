@@ -1,30 +1,33 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts.Zombie
 {
     public class Ragdoll : MonoBehaviour
     {
-        private Rigidbody[] rbs;
-        private Animator animator;
-        private CustomZombieController controller;
+        private Animator _animator;
+        private CustomZombieController _controller;
+        private Rigidbody[] _rbs;
 
         private void Awake()
         {
-            controller = GetComponent<CustomZombieController>();
-            rbs = GetComponentsInChildren<Rigidbody>();
-            animator = GetComponent<Animator>();
+            _controller = GetComponent<CustomZombieController>();
+            _rbs = GetComponentsInChildren<Rigidbody>();
+            _animator = GetComponent<Animator>();
 
-            controller.OnZombieDied += ActivateRagdoll;
-            controller.OnZombieInitialize += DeactivateRagdoll;
+            _controller.OnZombieDied += ActivateRagdoll;
+            _controller.OnZombieInitialize += DeactivateRagdoll;
+        }
+
+        private void OnDestroy()
+        {
+            _controller.OnZombieDied -= ActivateRagdoll;
+            _controller.OnZombieInitialize -= DeactivateRagdoll;
         }
 
         private void DeactivateRagdoll()
         {
-            animator.enabled = true;
-            foreach (var rb in rbs)
+            _animator.enabled = true;
+            foreach (Rigidbody rb in _rbs)
             {
                 rb.isKinematic = true;
             }
@@ -37,8 +40,8 @@ namespace CustomScripts.Zombie
 
         private void EnableRagdoll()
         {
-            animator.enabled = false;
-            foreach (var rb in rbs)
+            _animator.enabled = false;
+            foreach (Rigidbody rb in _rbs)
             {
                 rb.isKinematic = false;
             }
@@ -49,7 +52,7 @@ namespace CustomScripts.Zombie
         private IEnumerator DampenFall()
         {
             yield return new WaitForSeconds(.1f);
-            foreach (var rb in rbs)
+            foreach (Rigidbody rb in _rbs)
             {
                 rb.velocity = Vector3.zero;
                 rb.ResetInertiaTensor();
@@ -60,12 +63,6 @@ namespace CustomScripts.Zombie
         {
             yield return new WaitForSeconds(delay);
             EnableRagdoll();
-        }
-
-        private void OnDestroy()
-        {
-            controller.OnZombieDied -= ActivateRagdoll;
-            controller.OnZombieInitialize -= DeactivateRagdoll;
         }
     }
 }

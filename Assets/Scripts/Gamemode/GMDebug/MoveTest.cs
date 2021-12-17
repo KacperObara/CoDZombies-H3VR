@@ -1,25 +1,24 @@
-using System;
 using UnityEngine;
-
+using UnityEngine.Serialization;
 namespace CustomScripts.Gamemode.GMDebug
 {
     public class MoveTest : MonoBehaviour
     {
-        public bool isMoving = false;
+        [FormerlySerializedAs("isMoving")] public bool IsMoving;
         public float Speed;
-
-        public void StartMoving()
-        {
-            isMoving = true;
-        }
 
         private void Update()
         {
-            if (isMoving)
+            if (IsMoving)
             {
                 transform.position += Vector3.forward * (Speed * Time.deltaTime);
                 GameReferences.Instance.Player.transform.position += Vector3.forward * (Speed * Time.deltaTime);
             }
+        }
+
+        public void StartMoving()
+        {
+            IsMoving = true;
         }
     }
 }

@@ -1,20 +1,18 @@
-using System;
 using UnityEngine;
-
 namespace CustomScripts.Zombie
 {
     public class ZosigTrigger : MonoBehaviour
     {
-        private ZosigZombieController zosigController;
-
-        public void Initialize(ZosigZombieController controller)
-        {
-            zosigController = controller;
-        }
+        private ZosigZombieController _zosigController;
 
         private void OnTriggerEnter(Collider other)
         {
-            zosigController.OnTriggerEntered(other);
+            _zosigController.OnTriggerEntered(other);
+        }
+
+        public void Initialize(ZosigZombieController controller)
+        {
+            _zosigController = controller;
         }
     }
 }

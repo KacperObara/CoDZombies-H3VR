@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts.Managers
 {
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
@@ -25,6 +22,14 @@ namespace CustomScripts.Managers
             GM.CurrentSceneSettings.SosigKillEvent += OnSosigDied;
             //TODO: apparently ProcessDamage_Damage_SosigLink doesnt exist anymore???
             // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
+        }
+
+        private void OnDestroy()
+        {
+            GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
+            //TODO: See TODO at top of file
+            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
+            //On.FistVR.Sosig.SosigDies -= OnSosigDied;
         }
 
         public void SpawnZombie(float delay)
@@ -77,8 +82,8 @@ namespace CustomScripts.Managers
 
             RoundManager.Instance.ZombiesLeft--;
 
-            RoundManager.OnZombiesLeftChanged?.Invoke();
-            RoundManager.OnZombieKilled?.Invoke(controller.gameObject);
+            RoundManager.OnZombiesLeftChanged.Invoke();
+            RoundManager.OnZombieKilled.Invoke(controller.gameObject);
 
 
             if (RoundManager.Instance.ZombiesLeft <= 0) //if (ExistingZombies.Count <= 0)
@@ -138,20 +143,12 @@ namespace CustomScripts.Managers
             sosig.GetComponent<ZosigZombieController>().OnKill();
         }
 
-        private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, FistVR.Sosig self, Damage d,
+        private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
             SosigLink link)
         {
             //TODO: fix Reference to type 'Sosig' claims it is defined in this assembly, but it is not defined in source or any added modules
             // orig.Invoke(self, d, link);
             self.GetComponent<ZosigZombieController>().OnGetHit(d);
-        }
-
-        private void OnDestroy()
-        {
-            GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
-            //TODO: See TODO at top of file
-            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
-            //On.FistVR.Sosig.SosigDies -= OnSosigDied;
         }
     }
 }

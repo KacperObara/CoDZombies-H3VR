@@ -1,13 +1,8 @@
-using System;
 using FistVR;
-using UnityEngine;
-
 namespace CustomScripts
 {
     public class GameSettings : MonoBehaviourSingleton<GameSettings>
     {
-        public static event Delegates.VoidDelegate OnSettingsChanged;
-
         public static bool MoreEnemies;
         public static bool FasterEnemies;
         public static bool WeakerEnemies;
@@ -29,48 +24,49 @@ namespace CustomScripts
             UseZosigs = false;
             ItemSpawnerSpawned = false;
         }
+        public static event Delegates.VoidDelegate OnSettingsChanged;
 
         public void ToggleMoreEnemies()
         {
-            MoreEnemies.Switch();
-            OnSettingsChanged?.Invoke();
+            MoreEnemies = !MoreEnemies;
+            OnSettingsChanged.Invoke();
         }
 
         public void ToggleFasterEnemies()
         {
-            FasterEnemies.Switch();
-            OnSettingsChanged?.Invoke();
+            FasterEnemies = !FasterEnemies;
+            OnSettingsChanged.Invoke();
         }
 
         public void ToggleWeakerEnemies()
         {
-            WeakerEnemies.Switch();
-            OnSettingsChanged?.Invoke();
+            WeakerEnemies = !WeakerEnemies;
+            OnSettingsChanged.Invoke();
         }
 
         public void ToggleBackgroundMusic()
         {
-            BackgroundMusic.Switch();
-            OnSettingsChanged?.Invoke();
+            BackgroundMusic = !BackgroundMusic;
+            OnSettingsChanged.Invoke();
         }
 
         public void ToggleUseZosigs()
         {
-            UseZosigs.Switch();
-            OnSettingsChanged?.Invoke();
+            UseZosigs = !UseZosigs;
+            OnSettingsChanged.Invoke();
         }
 
         public void ToggleLimitedAmmo()
         {
-            LimitedAmmo.Switch();
+            LimitedAmmo = !LimitedAmmo;
             GM.CurrentSceneSettings.IsSpawnLockingEnabled = !LimitedAmmo;
-            OnSettingsChanged?.Invoke();
+            OnSettingsChanged.Invoke();
         }
 
         public void SpawnSpawner()
         {
             ItemSpawnerSpawned = true;
-            OnSettingsChanged?.Invoke();
+            OnSettingsChanged.Invoke();
         }
     }
 }

@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using CustomScripts.Managers;
-using FistVR;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
-
 namespace CustomScripts
 {
     public class RoundManager : MonoBehaviourSingleton<RoundManager>
@@ -28,30 +25,53 @@ namespace CustomScripts
 
         public int ZombieStartCount = 2;
 
-        [Tooltip("How much zombies are added per round")]
-        private int ZombieRoundCountIncrement; // Make public and expand
-
         public int ZombieFastWalkRound = 4;
         public int ZombieRunRound = 6;
-
-        public int ZombieHP => ZombieStartHp + (RoundNumber * ZombieRoundHpIncrement); // 3 4 5 6 7...
-        public int WeakerZombieHP => ZombieStartHp + (RoundNumber / 2); // 2 3 3 4 4 5 5...
-        public bool IsFastWalking => RoundNumber >= ZombieFastWalkRound;
-        public bool IsRunning => RoundNumber >= ZombieRunRound;
+        private readonly int _zombieLimit = 20;
 
 
-        private GameManager gameManager;
-        private int zombieLimit = 20;
+        private GameManager _gameManager;
+
+        [Tooltip("How much zombies are added per round")]
+        private int _zombieRoundCountIncrement; // Make public and expand
+
+        public int ZombieHp
+        {
+            get
+            {
+                return ZombieStartHp + RoundNumber * ZombieRoundHpIncrement;
+                // 3 4 5 6 7...
+            }
+        }
+
+        public int WeakerZombieHp
+        {
+            get
+            {
+                return ZombieStartHp + RoundNumber / 2;
+                // 2 3 3 4 4 5 5...
+            }
+        }
+
+        public bool IsFastWalking
+        {
+            get { return RoundNumber >= ZombieFastWalkRound; }
+        }
+
+        public bool IsRunning
+        {
+            get { return RoundNumber >= ZombieRunRound; }
+        }
 
         private void Start()
         {
-            gameManager = GameManager.Instance;
+            _gameManager = GameManager.Instance;
         }
 
         public void StartGame()
         {
             StartButton.SetActive(false);
-            GameReferences.Instance.Respawn.position = gameManager.RespawnWaypoint.position;
+            GameReferences.Instance.Respawn.position = _gameManager.RespawnWaypoint.position;
 
             GameManager.Instance.FirstShop.IsFree = true;
             GameManager.Instance.FirstShop.TryBuying();
@@ -64,7 +84,7 @@ namespace CustomScripts
 
             AdvanceRound();
 
-            OnGameStarted?.Invoke();
+            OnGameStarted.Invoke();
 
             // if (GameSettings.UseZosigs)
             // {
@@ -81,15 +101,15 @@ namespace CustomScripts
             RoundNumber++;
 
             if (GameSettings.MoreEnemies)
-                ZombieRoundCountIncrement = 2;
+                _zombieRoundCountIncrement = 2;
             else
-                ZombieRoundCountIncrement = 1;
+                _zombieRoundCountIncrement = 1;
 
             ZombieManager.Instance.CleanZombies();
 
-            int zombiesToSpawn = ZombieStartCount + (RoundNumber * ZombieRoundCountIncrement);
-            if (zombiesToSpawn > zombieLimit)
-                zombiesToSpawn = zombieLimit;
+            var zombiesToSpawn = ZombieStartCount + RoundNumber * _zombieRoundCountIncrement;
+            if (zombiesToSpawn > _zombieLimit)
+                zombiesToSpawn = _zombieLimit;
 
             for (int i = 0; i < zombiesToSpawn; i++)
             {
@@ -100,8 +120,8 @@ namespace CustomScripts
 
             AudioManager.Instance.RoundStartSound.PlayDelayed(1);
 
-            OnZombiesLeftChanged?.Invoke();
-            OnRoundChanged?.Invoke();
+            OnZombiesLeftChanged.Invoke();
+            OnRoundChanged.Invoke();
         }
 
         public void EndRound()

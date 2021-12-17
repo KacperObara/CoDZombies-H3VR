@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace CustomScripts
 {
     /// <summary>
@@ -21,7 +18,7 @@ namespace CustomScripts
 
         public int Cost;
 
-        private bool alreadyUsed = false;
+        private bool _alreadyUsed;
 
         private void OnValidate()
         {
@@ -33,24 +30,24 @@ namespace CustomScripts
 
         public void Buy()
         {
-            if (alreadyUsed)
+            if (_alreadyUsed)
                 return;
 
             if (!GameManager.Instance.TryRemovePoints(Cost))
                 return;
 
-            alreadyUsed = true;
+            _alreadyUsed = true;
 
-            foreach (Transform zombieSP in UnlockableZombieSpawnPoints)
+            foreach (Transform zombieSp in UnlockableZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZombieSpawnPoints.Contains(zombieSP))
-                    ZombieManager.Instance.ZombieSpawnPoints.Add(zombieSP);
+                if (!ZombieManager.Instance.ZombieSpawnPoints.Contains(zombieSp))
+                    ZombieManager.Instance.ZombieSpawnPoints.Add(zombieSp);
             }
 
-            foreach (CustomSosigSpawner zosigSP in UnlockableZosigSpawnPoints)
+            foreach (CustomSosigSpawner zosigSp in UnlockableZosigSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZosigsSpawnPoints.Contains(zosigSP))
-                    ZombieManager.Instance.ZosigsSpawnPoints.Add(zosigSP);
+                if (!ZombieManager.Instance.ZosigsSpawnPoints.Contains(zosigSp))
+                    ZombieManager.Instance.ZosigsSpawnPoints.Add(zosigSp);
             }
 
             AudioManager.Instance.BuySound.Play();

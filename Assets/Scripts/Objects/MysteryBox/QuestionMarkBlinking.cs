@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-
 namespace CustomScripts
 {
     // My spider sense tells me, there is a easier way to do this
@@ -10,39 +8,39 @@ namespace CustomScripts
         public Renderer QuestionMark1;
         public Renderer QuestionMark2;
 
-        private float time = 0f;
-        private bool emit = false;
+        private float _emissionValue;
+        private int _emissionWeight;
+        private bool _emit;
 
-        private float emissionValue;
-        private int emissionWeight;
+        private float _time;
 
         private void Awake()
         {
-            emissionWeight = Shader.PropertyToID("_EmissionWeight");
+            _emissionWeight = Shader.PropertyToID("_EmissionWeight");
         }
 
         void Update()
         {
-            if (emit)
+            if (_emit)
             {
-                if (time >= 1.5f)
+                if (_time >= 1.5f)
                 {
-                    emit = false;
+                    _emit = false;
                     StartCoroutine(SmoothEmissionChange(0, 1, 1));
-                    time = 0f;
+                    _time = 0f;
                 }
             }
             else
             {
-                if (time >= 3.0f)
+                if (_time >= 3.0f)
                 {
-                    emit = true;
+                    _emit = true;
                     StartCoroutine(SmoothEmissionChange(1, 0, 1));
-                    time = 0f;
+                    _time = 0f;
                 }
             }
 
-            time += Time.deltaTime;
+            _time += Time.deltaTime;
         }
 
         private IEnumerator SmoothEmissionChange(float startValue, float endValue, float duration)
@@ -50,17 +48,17 @@ namespace CustomScripts
             float elapsed = 0.0f;
             while (elapsed < duration)
             {
-                emissionValue = Mathf.Lerp(startValue, endValue, elapsed / duration);
+                _emissionValue = Mathf.Lerp(startValue, endValue, elapsed / duration);
                 elapsed += Time.deltaTime;
 
-                QuestionMark1.sharedMaterial.SetFloat(emissionWeight, emissionValue);
-                QuestionMark2.sharedMaterial.SetFloat(emissionWeight, emissionValue);
+                QuestionMark1.sharedMaterial.SetFloat(_emissionWeight, _emissionValue);
+                QuestionMark2.sharedMaterial.SetFloat(_emissionWeight, _emissionValue);
                 yield return null;
             }
 
-            emissionValue = endValue;
-            QuestionMark1.sharedMaterial.SetFloat(emissionWeight, emissionValue);
-            QuestionMark2.sharedMaterial.SetFloat(emissionWeight, emissionValue);
+            _emissionValue = endValue;
+            QuestionMark1.sharedMaterial.SetFloat(_emissionWeight, _emissionValue);
+            QuestionMark2.sharedMaterial.SetFloat(_emissionWeight, _emissionValue);
         }
     }
 }

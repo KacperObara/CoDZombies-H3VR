@@ -1,14 +1,14 @@
-using FistVR;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Objects.Weapons;
+using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace CustomScripts.Objects
 {
     public class WallShop : MonoBehaviour
     {
+        private const int AMMO_SPAWNER_ID = 1;
         public bool ExistsInLimitedAmmo = true;
         public bool ExistsInSpawnlock = true;
 
@@ -22,24 +22,27 @@ namespace CustomScripts.Objects
 
         public WeaponData Weapon;
 
-        private const int ammoSpawnerId = 1;
-
-        private bool alreadyBoughtOnce;
-
         public bool SameRebuy = false;
 
         [HideInInspector] public bool IsFree;
 
-        private void OnValidate()
-        {
-            NameText.text = Name;
-            CostText.text = Cost.ToString();
-        }
+        private bool _alreadyBoughtOnce;
 
         private void Awake()
         {
             RoundManager.OnGameStarted -= OnRoundStarted;
             RoundManager.OnGameStarted += OnRoundStarted;
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnGameStarted -= OnRoundStarted;
+        }
+
+        private void OnValidate()
+        {
+            NameText.text = Name;
+            CostText.text = Cost.ToString();
         }
 
         private void OnRoundStarted()
@@ -59,11 +62,11 @@ namespace CustomScripts.Objects
                 if (GameSettings.LimitedAmmo && !SameRebuy)
                 {
                     // Spawning weapons
-                    if (!alreadyBoughtOnce)
+                    if (!_alreadyBoughtOnce)
                     {
                         for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                         {
-                            if (i == ammoSpawnerId)
+                            if (i == AMMO_SPAWNER_ID)
                                 continue;
                             //TODO: New itemspawner doesnt have ObjectId field
                             // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
@@ -108,8 +111,8 @@ namespace CustomScripts.Objects
                     }
                 }
 
-                if (!alreadyBoughtOnce)
-                    alreadyBoughtOnce = true;
+                if (!_alreadyBoughtOnce)
+                    _alreadyBoughtOnce = true;
                 AudioManager.Instance.BuySound.Play();
             }
         }
@@ -118,14 +121,9 @@ namespace CustomScripts.Objects
         {
             for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
             {
-                ItemSpawners[ammoSpawnerId].SpawnItem();
+                ItemSpawners[AMMO_SPAWNER_ID].SpawnItem();
                 yield return new WaitForSeconds(0.05f);
             }
-        }
-
-        private void OnDestroy()
-        {
-            RoundManager.OnGameStarted -= OnRoundStarted;
         }
     }
 }

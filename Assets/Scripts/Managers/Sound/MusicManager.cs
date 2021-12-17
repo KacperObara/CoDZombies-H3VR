@@ -1,23 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace CustomScripts.Managers.Sound
 {
     public class MusicManager : MonoBehaviourSingleton<MusicManager>
     {
-        private AudioSource activeAudio;
         //public AudioSource TMPMusic;
 
         //public List<MusicGroup> MusicGroups = new List<MusicGroup>();
         public List<AudioSource> MusicTracks;
+        private AudioSource _activeAudio;
         ////public List<AudioClip> MusicTracks;
 
         //private int currentGroup = 0;
-        private int currentTrack = 0;
+        private int _currentTrack;
 
-        private Coroutine musicEndCoroutine;
+        private Coroutine _musicEndCoroutine;
 
         public override void Awake()
         {
@@ -33,6 +31,29 @@ namespace CustomScripts.Managers.Sound
             {
                 GameSettings.Instance.ToggleBackgroundMusic();
             }
+        }
+
+        // public void ChangeMusicGroup(int newMusicGroup)
+        // {
+        //     if (newMusicGroup >= MusicGroups.Count)
+        //     {
+        //         Debug.LogWarning("No music group with that ID!");
+        //         return;
+        //     }
+        //
+        //     currentGroup = newMusicGroup;
+        // }
+
+
+        // [Serializable]
+        // public class MusicGroup
+        // {
+        //     public List<AudioSource> MusicTracks = new List<AudioSource>();
+        // }
+
+        private void OnDestroy()
+        {
+            GameSettings.OnSettingsChanged -= ToggleMusic;
         }
 
         private void ToggleMusic()
@@ -69,51 +90,28 @@ namespace CustomScripts.Managers.Sound
 
             //activeAudio = musicGroup.MusicTracks[currentTrack % musicGroup.MusicTracks.Count];
             ////activeAudio.clip = MusicTracks[currentTrack];
-            activeAudio = MusicTracks[currentTrack % MusicTracks.Count];
-            float musicLength = activeAudio.clip.length;
-            activeAudio.Play();
-            musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
+            _activeAudio = MusicTracks[_currentTrack % MusicTracks.Count];
+            var musicLength = _activeAudio.clip.length;
+            _activeAudio.Play();
+            _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
         }
 
         public void StopMusic()
         {
-            if (activeAudio)
-                activeAudio.Stop();
+            if (_activeAudio)
+                _activeAudio.Stop();
 
-            if (musicEndCoroutine != null)
-                StopCoroutine(musicEndCoroutine);
+            if (_musicEndCoroutine != null)
+                StopCoroutine(_musicEndCoroutine);
         }
 
         private IEnumerator OnMusicEnd(float endTime)
         {
             yield return new WaitForSeconds(endTime);
 
-            activeAudio.Stop();
-            ++currentTrack;
+            _activeAudio.Stop();
+            ++_currentTrack;
             PlayNextTrack();
-        }
-
-        // public void ChangeMusicGroup(int newMusicGroup)
-        // {
-        //     if (newMusicGroup >= MusicGroups.Count)
-        //     {
-        //         Debug.LogWarning("No music group with that ID!");
-        //         return;
-        //     }
-        //
-        //     currentGroup = newMusicGroup;
-        // }
-
-
-        // [Serializable]
-        // public class MusicGroup
-        // {
-        //     public List<AudioSource> MusicTracks = new List<AudioSource>();
-        // }
-
-        private void OnDestroy()
-        {
-            GameSettings.OnSettingsChanged -= ToggleMusic;
         }
     }
 }

@@ -3,23 +3,22 @@ using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts.Powerups
 {
     public class PowerUpDeathMachine : PowerUp
     {
         public MeshRenderer Renderer;
-        private Animator animator;
 
         public CustomItemSpawner MinigunSpawner;
         public CustomItemSpawner MagazineSpawner;
+        private Animator _animator;
+        private FVRPhysicalObject _magazineObject;
 
-        private FVRPhysicalObject MinigunObject;
-        private FVRPhysicalObject MagazineObject;
+        private FVRPhysicalObject _minigunObject;
 
         private void Awake()
         {
-            animator = transform.GetComponent<Animator>();
+            _animator = transform.GetComponent<Animator>();
         }
 
         public override void Spawn(Vector3 pos)
@@ -30,7 +29,7 @@ namespace CustomScripts.Powerups
                 return;
             }
 
-            if (animator == null)
+            if (_animator == null)
             {
                 Debug.LogWarning("DeathMachine spawn failed! animator == null Tell Kodeman");
                 return;
@@ -38,7 +37,7 @@ namespace CustomScripts.Powerups
 
             transform.position = pos;
             Renderer.enabled = true;
-            animator.Play("Rotating");
+            _animator.Play("Rotating");
             StartCoroutine(DespawnDelay());
         }
 
@@ -47,17 +46,17 @@ namespace CustomScripts.Powerups
             MinigunSpawner.Spawn();
             MagazineSpawner.Spawn();
 
-            MinigunObject = MinigunSpawner.SpawnedObject.GetComponent<FVRPhysicalObject>();
-            MinigunObject.SpawnLockable = false;
-            MinigunObject.UsesGravity = false;
+            _minigunObject = MinigunSpawner.SpawnedObject.GetComponent<FVRPhysicalObject>();
+            _minigunObject.SpawnLockable = false;
+            _minigunObject.UsesGravity = false;
 
-            MinigunObject.RootRigidbody.isKinematic = true;
+            _minigunObject.RootRigidbody.isKinematic = true;
 
-            MagazineObject = MagazineSpawner.SpawnedObject.GetComponent<FVRPhysicalObject>();
-            MagazineObject.SpawnLockable = false;
-            MagazineObject.UsesGravity = false;
+            _magazineObject = MagazineSpawner.SpawnedObject.GetComponent<FVRPhysicalObject>();
+            _magazineObject.SpawnLockable = false;
+            _magazineObject.UsesGravity = false;
 
-            MagazineObject.RootRigidbody.isKinematic = true;
+            _magazineObject.RootRigidbody.isKinematic = true;
 
             PlayerData.Instance.DeathMachinePowerUpIndicator.Activate(30f);
 
@@ -73,13 +72,13 @@ namespace CustomScripts.Powerups
             yield return new WaitForSeconds(time);
             AudioManager.Instance.PowerUpDoublePointsEndSound.Play();
 
-            MinigunObject.ForceBreakInteraction();
-            MinigunObject.IsPickUpLocked = true;
-            Destroy(MinigunObject.gameObject);
+            _minigunObject.ForceBreakInteraction();
+            _minigunObject.IsPickUpLocked = true;
+            Destroy(_minigunObject.gameObject);
 
-            MagazineObject.ForceBreakInteraction();
-            MagazineObject.IsPickUpLocked = true;
-            Destroy(MagazineObject.gameObject);
+            _magazineObject.ForceBreakInteraction();
+            _magazineObject.IsPickUpLocked = true;
+            Destroy(_magazineObject.gameObject);
         }
 
         private void Despawn()

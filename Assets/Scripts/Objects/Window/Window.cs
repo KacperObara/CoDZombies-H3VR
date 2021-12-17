@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class WindowPlank : MonoBehaviour
@@ -19,17 +16,29 @@ namespace CustomScripts
 
         public List<WindowPlank> PlankSlots;
 
-        public int PlanksRemain { get; set; } // Overcomplicated a little
-        public bool IsOpen => PlanksRemain == 0;
-
         public List<Plank> AllPlanks;
 
-        private AudioSource TearPlankAudio;
+        private AudioSource _tearPlankAudio;
+
+        public int PlanksRemain { get; set; } // Overcomplicated a little
+
+        public bool IsOpen
+        {
+            get { return PlanksRemain == 0; }
+        }
 
         private void Start()
         {
-            TearPlankAudio = GetComponent<AudioSource>();
+            _tearPlankAudio = GetComponent<AudioSource>();
             RepairAll(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<Plank>())
+            {
+                OnPlankTouch(other.GetComponent<Plank>());
+            }
         }
 
         public void RepairAll(bool playSound = false)
@@ -89,16 +98,8 @@ namespace CustomScripts
 
             windowPlank.Plank = null;
 
-            TearPlankAudio.Play();
+            _tearPlankAudio.Play();
             PlanksRemain--;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponent<Plank>())
-            {
-                OnPlankTouch(other.GetComponent<Plank>());
-            }
         }
     }
 }

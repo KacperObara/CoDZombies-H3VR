@@ -1,76 +1,101 @@
-using System;
 using System.Collections;
 using CustomScripts.Managers;
 using CustomScripts.Player;
+using FistVR;
 using UnityEngine;
-using UnityEngine.AI;
-using Damage = FistVR.Damage;
-using Sosig = FistVR.Sosig;
-using SosigLink = FistVR.SosigLink;
-
 namespace CustomScripts.Zombie
 {
     public class ZosigZombieController : ZombieController
     {
-        private float agentUpdateTimer;
-        private const float agentUpdateInterval = 1f;
+        private const float AGENT_UPDATE_INTERVAL = 1f;
+        private float _agentUpdateTimer;
 
-        private Sosig sosig;
+        private float _cachedSpeed;
 
-        private int hitsGivingMoney = 6;
+        private int _hitsGivingMoney = 6;
+        private bool _isAttackingWindow;
 
-        private bool isDead = false;
-        private bool isAttackingWindow = false;
+        private bool _isDead;
 
-        private float cachedSpeed;
+        private Sosig _sosig;
+
+        private void Update()
+        {
+            if (_sosig == null)
+                return;
+
+            _agentUpdateTimer += Time.deltaTime;
+            if (_agentUpdateTimer >= AGENT_UPDATE_INTERVAL)
+            {
+                _agentUpdateTimer -= AGENT_UPDATE_INTERVAL;
+
+                _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
+                //sosig.BrainUpdate_Assault();
+                _sosig.UpdateGuardPoint(Target.position);
+                _sosig.UpdateAssaultPoint(Target.position);
+
+                // Quick hack if sosigs try to follow you but on the wrong floor
+                if (_sosig.Agent.destination.y + 3f < Target.position.y)
+                {
+                    _sosig.UpdateAssaultPoint(Target.position + Vector3.up);
+                }
+
+                if (_sosig.Agent.destination.y > Target.position.y + 3f)
+                {
+                    _sosig.UpdateAssaultPoint(Target.position + Vector3.down);
+                }
+
+                _sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
+            }
+        }
 
         public override void Initialize(Transform newTarget)
         {
             Target = newTarget;
 
-            sosig = GetComponent<Sosig>();
+            _sosig = GetComponent<Sosig>();
 
-            sosig.CoreRB.gameObject.AddComponent<ZosigTrigger>().Initialize(this);
+            _sosig.CoreRB.gameObject.AddComponent<ZosigTrigger>().Initialize(this);
 
-            sosig.Speed_Run = 2f;
+            _sosig.Speed_Run = 2f;
             if (RoundManager.Instance.IsFastWalking)
             {
-                sosig.Speed_Run = 3f;
+                _sosig.Speed_Run = 3f;
             }
 
             if (RoundManager.Instance.IsRunning)
             {
-                sosig.Speed_Run = 4f;
+                _sosig.Speed_Run = 4f;
             }
 
             if (GameSettings.FasterEnemies)
             {
-                sosig.Speed_Run += 1.5f;
+                _sosig.Speed_Run += 1.5f;
             }
 
 
-            sosig.Mustard = 100 + (20 * RoundManager.Instance.RoundNumber);
+            _sosig.Mustard = 100 + 20 * RoundManager.Instance.RoundNumber;
 
-            foreach (var link in sosig.Links)
+            foreach (SosigLink link in _sosig.Links)
             {
                 link.SetIntegrity(100 + (15 * RoundManager.Instance.RoundNumber));
             }
 
             if (GameSettings.WeakerEnemies)
             {
-                sosig.Mustard = 70 + (15 * RoundManager.Instance.RoundNumber);
+                _sosig.Mustard = 70 + 15 * RoundManager.Instance.RoundNumber;
 
-                foreach (var link in sosig.Links)
+                foreach (SosigLink link in _sosig.Links)
                 {
                     link.SetIntegrity(80 + (10 * RoundManager.Instance.RoundNumber));
                 }
             }
 
-            sosig.DamMult_Melee = 0;
+            _sosig.DamMult_Melee = 0;
 
-            sosig.Speed_Walk = sosig.Speed_Run;
-            sosig.Speed_Turning = sosig.Speed_Run;
-            sosig.Speed_Sneak = sosig.Speed_Run;
+            _sosig.Speed_Walk = _sosig.Speed_Run;
+            _sosig.Speed_Turning = _sosig.Speed_Run;
+            _sosig.Speed_Sneak = _sosig.Speed_Run;
 
             //sosig.GetHeldMeleeWeapon().O.IsPickUpLocked = true;
             CheckPerks();
@@ -81,42 +106,12 @@ namespace CustomScripts.Zombie
             if (PlayerData.Instance.DeadShotPerkActivated)
             {
                 //sosig.DamMult_Projectile = 1.25f;
-                sosig.Links[0].DamMult = 1.15f;
+                _sosig.Links[0].DamMult = 1.15f;
             }
 
             if (PlayerData.Instance.DoubleTapPerkActivated)
             {
-                sosig.DamMult_Projectile = 1.25f;
-            }
-        }
-
-        private void Update()
-        {
-            if (sosig == null)
-                return;
-
-            agentUpdateTimer += Time.deltaTime;
-            if (agentUpdateTimer >= agentUpdateInterval)
-            {
-                agentUpdateTimer -= agentUpdateInterval;
-
-                sosig.FallbackOrder = Sosig.SosigOrder.Assault;
-                //sosig.BrainUpdate_Assault();
-                sosig.UpdateGuardPoint(Target.position);
-                sosig.UpdateAssaultPoint(Target.position);
-
-                // Quick hack if sosigs try to follow you but on the wrong floor
-                if (sosig.Agent.destination.y + 3f < Target.position.y)
-                {
-                    sosig.UpdateAssaultPoint(Target.position + Vector3.up);
-                }
-
-                if (sosig.Agent.destination.y > Target.position.y + 3f)
-                {
-                    sosig.UpdateAssaultPoint(Target.position + Vector3.down);
-                }
-
-                sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
+                _sosig.DamMult_Projectile = 1.25f;
             }
         }
 
@@ -125,7 +120,7 @@ namespace CustomScripts.Zombie
             if (!ZombieManager.Instance.ExistingZombies.Contains(this))
                 return;
 
-            isDead = true;
+            _isDead = true;
 
             GameManager.Instance.AddPoints(100);
 
@@ -141,13 +136,13 @@ namespace CustomScripts.Zombie
 
             if (PlayerData.Instance.InstaKill)
             {
-                sosig.KillSosig();
+                _sosig.KillSosig();
             }
 
-            if (hitsGivingMoney <= 0)
+            if (_hitsGivingMoney <= 0)
                 return;
 
-            hitsGivingMoney--;
+            _hitsGivingMoney--;
 
             GameManager.Instance.AddPoints(10);
         }
@@ -155,8 +150,8 @@ namespace CustomScripts.Zombie
         public override void OnHit(float damage, bool headHit)
         {
             //nuke
-            sosig.Links[0].LinkExplodes(Damage.DamageClass.Projectile);
-            sosig.KillSosig();
+            _sosig.Links[0].LinkExplodes(Damage.DamageClass.Projectile);
+            _sosig.KillSosig();
         }
 
         public override void OnHitPlayer()
@@ -170,10 +165,10 @@ namespace CustomScripts.Zombie
 
         public void OnTriggerEntered(Collider other)
         {
-            if (isDead)
+            if (_isDead)
                 return;
 
-            if (isAttackingWindow)
+            if (_isAttackingWindow)
                 return;
 
             if (other.GetComponent<WindowTrigger>())
@@ -185,10 +180,10 @@ namespace CustomScripts.Zombie
                     return;
                 }
 
-                isAttackingWindow = true;
+                _isAttackingWindow = true;
 
-                cachedSpeed = sosig.Speed_Run;
-                sosig.Speed_Run = 0;
+                _cachedSpeed = _sosig.Speed_Run;
+                _sosig.Speed_Run = 0;
 
                 LastInteractedWindow = window;
                 OnTouchingWindow();
@@ -212,22 +207,22 @@ namespace CustomScripts.Zombie
 
         private IEnumerator TearPlankDelayed()
         {
-            while (!LastInteractedWindow.IsOpen && !isDead)
+            while (!LastInteractedWindow.IsOpen && !_isDead)
             {
                 yield return new WaitForSeconds(2.5f);
 
-                if (!isDead && sosig.BodyState == Sosig.SosigBodyState.InControl)
+                if (!_isDead && _sosig.BodyState == Sosig.SosigBodyState.InControl)
                     OnHitWindow();
             }
 
-            isAttackingWindow = false;
-            sosig.Speed_Run = cachedSpeed;
+            _isAttackingWindow = false;
+            _sosig.Speed_Run = _cachedSpeed;
         }
 
         private IEnumerator DelayedDespawn()
         {
             yield return new WaitForSeconds(5);
-            sosig.DeSpawnSosig();
+            _sosig.DeSpawnSosig();
         }
     }
 }

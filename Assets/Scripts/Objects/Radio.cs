@@ -1,43 +1,40 @@
-using System;
 using System.Collections;
 using CustomScripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts.Objects
 {
     public class Radio : MonoBehaviour, IFVRDamageable
     {
-        private bool isThrottled = false;
+        private AudioSource _audio;
+        private bool _isThrottled;
 
-        private AudioSource audio;
-
-        private Coroutine musicEndCoroutine;
+        private Coroutine _musicEndCoroutine;
 
         private void Awake()
         {
-            audio = GetComponent<AudioSource>();
+            _audio = GetComponent<AudioSource>();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (audio.isPlaying)
+                if (_audio.isPlaying)
                 {
-                    audio.Stop();
+                    _audio.Stop();
                     MusicManager.Instance.PlayNextTrack();
 
-                    float musicLength = audio.clip.length;
-                    musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
+                    var musicLength = _audio.clip.length;
+                    _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
                 }
                 else
                 {
-                    audio.Play();
+                    _audio.Play();
                     MusicManager.Instance.StopMusic();
 
-                    if (musicEndCoroutine != null)
-                        StopCoroutine(musicEndCoroutine);
+                    if (_musicEndCoroutine != null)
+                        StopCoroutine(_musicEndCoroutine);
                 }
             }
         }
@@ -47,26 +44,26 @@ namespace CustomScripts.Objects
             if (dam.Class == FistVR.Damage.DamageClass.Explosive)
                 return;
 
-            if (isThrottled)
+            if (_isThrottled)
                 return;
 
-            if (!audio)
+            if (!_audio)
                 return;
 
-            if (audio.isPlaying)
+            if (_audio.isPlaying)
             {
-                audio.Stop();
+                _audio.Stop();
                 MusicManager.Instance.PlayNextTrack();
 
-                float musicLength = audio.clip.length;
-                musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
+                var musicLength = _audio.clip.length;
+                _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
             }
             else
             {
-                audio.Play();
+                _audio.Play();
                 MusicManager.Instance.StopMusic();
-                if (musicEndCoroutine != null)
-                    StopCoroutine(musicEndCoroutine);
+                if (_musicEndCoroutine != null)
+                    StopCoroutine(_musicEndCoroutine);
             }
 
             StartCoroutine(Throttle());
@@ -74,15 +71,15 @@ namespace CustomScripts.Objects
 
         private IEnumerator Throttle()
         {
-            isThrottled = true;
+            _isThrottled = true;
             yield return new WaitForSeconds(.5f);
-            isThrottled = false;
+            _isThrottled = false;
         }
 
         private IEnumerator OnMusicEnd(float endTimer)
         {
             yield return new WaitForSeconds(endTimer);
-            audio.Stop();
+            _audio.Stop();
             MusicManager.Instance.PlayNextTrack();
         }
     }

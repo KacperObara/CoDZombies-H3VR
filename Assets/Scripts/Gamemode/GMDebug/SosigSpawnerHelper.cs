@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using CustomScripts.Managers;
 using FistVR;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using Object = UnityEngine.Object;
-
 namespace CustomScripts.Gamemode.GMDebug
 {
     public static class SosigSpawnerHelper
@@ -54,10 +50,10 @@ namespace CustomScripts.Gamemode.GMDebug
                     sosig.Inventory.FillAmmoWithType(w2.AmmoType);
             }
 
-            var sosigIFF = spawnOptions.IFF;
-            if (sosigIFF >= 5)
-                sosigIFF = Random.Range(6, 10000);
-            sosig.E.IFFCode = sosigIFF;
+            var sosigIff = spawnOptions.Iff;
+            if (sosigIff >= 5)
+                sosigIff = Random.Range(6, 10000);
+            sosig.E.IFFCode = sosigIff;
             sosig.CurrentOrder = Sosig.SosigOrder.Disabled;
             switch (spawnOptions.SpawnState)
             {
@@ -88,9 +84,13 @@ namespace CustomScripts.Gamemode.GMDebug
             sosig.SetCurrentOrder(sosig.FallbackOrder);
         }
 
-        private static SosigWeapon SpawnWeapon(List<FVRObject> o) => Object
-            .Instantiate(o[Random.Range(0, o.Count)].GetGameObject(), new Vector3(0.0f, 30f, 0.0f), Quaternion.identity)
-            .GetComponent<SosigWeapon>();
+        private static SosigWeapon SpawnWeapon(List<FVRObject> o)
+        {
+            return Object.Instantiate(o[Random.Range(0, o.Count)].GetGameObject(),
+                    new Vector3(0.0f, 30f, 0.0f),
+                    Quaternion.identity)
+                .GetComponent<SosigWeapon>();
+        }
 
         private static Sosig SpawnSosigAndConfigureSosig(GameObject prefab, Vector3 pos, Quaternion rot,
             SosigConfigTemplate t,
@@ -136,7 +136,7 @@ namespace CustomScripts.Gamemode.GMDebug
         public struct SpawnOptions
         {
             public bool SpawnActivated;
-            public int IFF;
+            public int Iff;
             public bool SpawnWithFullAmmo;
             public int EquipmentMode;
             public int SpawnState;

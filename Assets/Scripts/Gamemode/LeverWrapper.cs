@@ -1,16 +1,13 @@
-using System;
 using System.Collections;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
-
 namespace CustomScripts
 {
     /// <summary>
     /// Possible performance impact, lever checks and sets values every update loop.
     /// I don't know how to use observer pattern for this case, since there are no events to hook to
-    /// (TrapLever has MessageTargets but how to use it?)
+    /// (TrapLever has MessageTargets but how to use i)
     /// (FVRLever might be a better lever script, but it throws FVRUpdate null errors)
     ///
     /// Edit:
@@ -23,28 +20,28 @@ namespace CustomScripts
         public UnityEvent LeverOnEvent;
         public UnityEvent LeverOffEvent;
 
-        private TrapLever lever;
+        private bool _isDelayDone;
 
-        private bool isDelayDone = false;
+        private bool _isDown;
 
-        private bool startedHoldingThisFrame;
-        private bool stoppedHoldingThisFrame;
+        private TrapLever _lever;
 
-        private bool isDown = false;
+        private bool _startedHoldingThisFrame;
+        private bool _stoppedHoldingThisFrame;
 
         private void Start()
         {
-            lever = GetComponent<TrapLever>();
+            _lever = GetComponent<TrapLever>();
         }
 
         private void Update()
         {
-            if (!lever.IsHeld)
+            if (!_lever.IsHeld)
             {
-                startedHoldingThisFrame = false;
-                isDelayDone = false;
+                _startedHoldingThisFrame = false;
+                _isDelayDone = false;
 
-                if (stoppedHoldingThisFrame)
+                if (_stoppedHoldingThisFrame)
                 {
                     StartCoroutine(DelayedCheck2());
                 }
@@ -52,33 +49,41 @@ namespace CustomScripts
                 return;
             }
 
-            if (!startedHoldingThisFrame)
+            if (!_startedHoldingThisFrame)
             {
-                startedHoldingThisFrame = true;
-                stoppedHoldingThisFrame = false;
+                _startedHoldingThisFrame = true;
+                _stoppedHoldingThisFrame = false;
                 StartCoroutine(DelayedCheck());
             }
 
-            if (isDelayDone)
+            if (_isDelayDone)
             {
-                if (!isDown && lever.ValvePos < .1f)
+                if (!_isDown && _lever.ValvePos < .1f)
                 {
-                    isDown = true;
-                    lever.ForceBreakInteraction();
-                    LeverToggleEvent?.Invoke();
-                    LeverOnEvent?.Invoke();
+                    _isDown = true;
+                    _lever.ForceBreakInteraction();
+
+                    LeverToggleEvent.Invoke();
+                    LeverOnEvent.Invoke();
                 }
 
-                else if (isDown && lever.ValvePos > .9f)
+                else if (_isDown && _lever.ValvePos > .9f)
                 {
-                    isDown = false;
-                    lever.ForceBreakInteraction();
-                    LeverToggleEvent?.Invoke();
-                    LeverOffEvent?.Invoke();
+                    _isDown = false;
+                    _lever.ForceBreakInteraction();
+                    LeverToggleEvent.Invoke();
+                    LeverOffEvent.Invoke();
                 }
 
-                stoppedHoldingThisFrame = true;
+                _stoppedHoldingThisFrame = true;
             }
+        }
+
+        private void OnDestroy()
+        {
+            LeverToggleEvent.RemoveAllListeners();
+            LeverOnEvent.RemoveAllListeners();
+            LeverOffEvent.RemoveAllListeners();
         }
 
         // Lever up position is 0, lever down position is 1,
@@ -88,36 +93,29 @@ namespace CustomScripts
         private IEnumerator DelayedCheck()
         {
             yield return new WaitForSeconds(.1f);
-            isDelayDone = true;
+            _isDelayDone = true;
         }
 
         private IEnumerator DelayedCheck2()
         {
             yield return new WaitForSeconds(.1f);
 
-            stoppedHoldingThisFrame = false;
+            _stoppedHoldingThisFrame = false;
 
-            if (isDown && lever.ValvePos < .1f)
+            if (_isDown && _lever.ValvePos < .1f)
             {
-                isDown = false;
-                lever.ForceBreakInteraction();
-                LeverToggleEvent?.Invoke();
-                LeverOffEvent?.Invoke();
+                _isDown = false;
+                _lever.ForceBreakInteraction();
+                LeverToggleEvent.Invoke();
+                LeverOffEvent.Invoke();
             }
-            else if (!isDown && lever.ValvePos > .9f)
+            else if (!_isDown && _lever.ValvePos > .9f)
             {
-                isDown = true;
-                lever.ForceBreakInteraction();
-                LeverToggleEvent?.Invoke();
-                LeverOnEvent?.Invoke();
+                _isDown = true;
+                _lever.ForceBreakInteraction();
+                LeverToggleEvent.Invoke();
+                LeverOnEvent.Invoke();
             }
-        }
-
-        private void OnDestroy()
-        {
-            LeverToggleEvent.RemoveAllListeners();
-            LeverOnEvent.RemoveAllListeners();
-            LeverOffEvent.RemoveAllListeners();
         }
     }
 }

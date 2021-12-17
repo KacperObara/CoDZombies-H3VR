@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Objects.Weapons;
-using UnityEngine;
 using FistVR;
-using Random = UnityEngine.Random;
-
+using UnityEngine;
 namespace CustomScripts
 {
     public class MysteryBox : MonoBehaviour
@@ -22,11 +19,11 @@ namespace CustomScripts
 
         [HideInInspector] public bool InUse = false;
 
-        private MysteryBoxMover mysteryBoxMover;
+        private MysteryBoxMover _mysteryBoxMover;
 
         private void Awake()
         {
-            mysteryBoxMover = GetComponent<MysteryBoxMover>();
+            _mysteryBoxMover = GetComponent<MysteryBoxMover>();
         }
 
         public void SpawnWeapon()
@@ -47,9 +44,9 @@ namespace CustomScripts
         {
             yield return new WaitForSeconds(5.5f);
 
-            if (mysteryBoxMover.TryTeleport())
+            if (_mysteryBoxMover.TryTeleport())
             {
-                mysteryBoxMover.StartTeleportAnim();
+                _mysteryBoxMover.StartTeleportAnim();
                 GameManager.Instance.AddPoints(950);
             }
             else
@@ -81,7 +78,7 @@ namespace CustomScripts
 
                 InUse = false;
 
-                mysteryBoxMover.CurrentRoll++;
+                _mysteryBoxMover.CurrentRoll++;
             }
         }
     }

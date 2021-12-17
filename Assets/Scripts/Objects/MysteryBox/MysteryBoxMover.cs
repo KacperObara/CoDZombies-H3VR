@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts
 {
     public class MysteryBoxMover : MonoBehaviour
@@ -18,16 +14,16 @@ namespace CustomScripts
 
         [HideInInspector] public Transform CurrentPos;
         [HideInInspector] public int CurrentRoll = 0;
+        private Animator _animator;
 
-        private MysteryBox mysteryBox;
-        private Animator animator;
-        private Transform parent;
+        private MysteryBox _mysteryBox;
+        private Transform _parent;
 
         private void Awake()
         {
-            parent = transform.parent;
-            animator = parent.GetComponent<Animator>();
-            mysteryBox = GetComponent<MysteryBox>();
+            _parent = transform.parent;
+            _animator = _parent.GetComponent<Animator>();
+            _mysteryBox = GetComponent<MysteryBox>();
         }
 
         private void Start()
@@ -47,11 +43,11 @@ namespace CustomScripts
             CurrentPos = newPos;
             SpawnPoints.Remove(newPos); // Exclude current transform from randomization
 
-            parent.transform.position = newPos.position;
-            parent.transform.rotation = newPos.rotation;
+            _parent.transform.position = newPos.position;
+            _parent.transform.rotation = newPos.rotation;
 
             CurrentRoll = 0;
-            mysteryBox.InUse = false;
+            _mysteryBox.InUse = false;
         }
 
         public bool TryTeleport()
@@ -66,7 +62,7 @@ namespace CustomScripts
         {
             ByeByeSound.Play();
 
-            animator.Play("Teleport");
+            _animator.Play("Teleport");
             StartCoroutine(DelayedTeleport());
         }
 

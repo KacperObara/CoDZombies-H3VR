@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Powerups;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts
 {
     public class PowerUpManager : MonoBehaviourSingleton<PowerUpManager>
@@ -17,7 +15,7 @@ namespace CustomScripts
         public PowerUpMaxAmmo MaxAmmo;
 
         public List<PowerUp> PowerUps;
-        private List<int> randomIndexes = new List<int>();
+        private readonly List<int> _randomIndexes = new List<int>();
 
 
         public override void Awake()
@@ -28,6 +26,11 @@ namespace CustomScripts
             RoundManager.OnZombieKilled += RollForPowerUp;
 
             ShuffleIndexes();
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnZombieKilled -= RollForPowerUp;
         }
 
         public void RollForPowerUp(GameObject spawnPos)
@@ -49,27 +52,27 @@ namespace CustomScripts
             chance = Random.Range(0, 200);
             if (chance < ChanceForPowerUp)
             {
-                if (randomIndexes.Count == 0)
+                if (_randomIndexes.Count == 0)
                     ShuffleIndexes();
 
                 StartCoroutine(PowerUpMaxAmmoCooldown());
-                SpawnPowerUp(PowerUps[randomIndexes[0]], spawnPos.transform.position);
+                SpawnPowerUp(PowerUps[_randomIndexes[0]], spawnPos.transform.position);
 
-                randomIndexes.RemoveAt(0);
+                _randomIndexes.RemoveAt(0);
                 return;
             }
         }
 
         private void ShuffleIndexes()
         {
-            randomIndexes.Clear();
+            _randomIndexes.Clear();
 
             for (int i = 0; i < PowerUps.Count; i++)
             {
-                randomIndexes.Add(i);
+                _randomIndexes.Add(i);
             }
 
-            randomIndexes.Shuffle();
+            _randomIndexes.Shuffle();
         }
 
         public void SpawnPowerUp(PowerUp powerUp, Vector3 pos)
@@ -96,11 +99,6 @@ namespace CustomScripts
             IsMaxAmmoCooldown = true;
             yield return new WaitForSeconds(30f);
             IsMaxAmmoCooldown = false;
-        }
-
-        private void OnDestroy()
-        {
-            RoundManager.OnZombieKilled -= RollForPowerUp;
         }
     }
 }

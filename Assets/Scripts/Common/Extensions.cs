@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-
 namespace CustomScripts
 {
     public static class Extensions
     {
-        public static void Switch(ref this bool boolean) => boolean = !boolean;
-
         // Own implementation of shuffle, because Unity cannot load IListExtensions for some reason
         public static void Shuffle<T>(this IList<T> list)
         {

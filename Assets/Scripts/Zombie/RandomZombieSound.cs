@@ -1,8 +1,5 @@
-using System;
 using CustomScripts.Zombie;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 namespace CustomScripts
 {
     public class RandomZombieSound : MonoBehaviour
@@ -11,7 +8,7 @@ namespace CustomScripts
 
         public void Initialize()
         {
-            Invoke(nameof(PlayRandomSound), Random.Range(4f, 6f));
+            Invoke("PlayRandomSound", Random.Range(4f, 6f));
         }
 
         void PlayRandomSound()
@@ -41,7 +38,7 @@ namespace CustomScripts
 
             soundPoolable.AudioSource.Play();
 
-            Invoke(nameof(PlayRandomSound), Random.Range(4f, 6f)); // TODO possible stack overflow? / Expensive method
+            Invoke("PlayRandomSound", Random.Range(4f, 6f)); // TODO possible stack overflow? / Expensive method
         }
     }
 }
