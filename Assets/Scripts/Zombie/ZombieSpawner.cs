@@ -1,5 +1,5 @@
+#if H3VR_IMPORTED
 using UnityEngine;
-
 namespace CustomScripts.Zombie
 {
     public class ZombieSpawner : MonoBehaviour
@@ -8,3 +8,4 @@ namespace CustomScripts.Zombie
         public Window WindowWaypoint;
     }
 }
+#endif

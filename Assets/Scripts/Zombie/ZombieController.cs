@@ -1,5 +1,5 @@
+#if H3VR_IMPORTED
 using UnityEngine;
-
 namespace CustomScripts.Zombie
 {
     public abstract class ZombieController : MonoBehaviour
@@ -15,3 +15,4 @@ namespace CustomScripts.Zombie
         public abstract void ChangeTarget(Transform newTarget);
     }
 }
+#endif

@@ -1,7 +1,5 @@
-using System;
+#if H3VR_IMPORTED
 using UnityEngine;
-using UnityEngine.AI;
-
 namespace CustomScripts.Zombie
 {
     public class ZombieMovement : MonoBehaviour
@@ -25,3 +23,4 @@ namespace CustomScripts.Zombie
         // }
     }
 }
+#endif

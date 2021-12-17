@@ -1,6 +1,5 @@
-using System;
+#if H3VR_IMPORTED
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class GameStart : MonoBehaviourSingleton<GameStart>
@@ -12,3 +11,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

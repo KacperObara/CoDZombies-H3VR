@@ -1,9 +1,6 @@
-using System;
-using FistVR;
+#if H3VR_IMPORTED
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-
 namespace CustomScripts
 {
     public class GameSettingsPanel : MonoBehaviour
@@ -46,3 +43,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

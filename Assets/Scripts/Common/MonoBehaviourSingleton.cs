@@ -1,5 +1,6 @@
-using UnityEngine;
+#if H3VR_IMPORTED
 
+using UnityEngine;
 namespace CustomScripts
 {
     public class MonoBehaviourSingleton<T> : MonoBehaviour
@@ -20,3 +21,5 @@ namespace CustomScripts
         }
     }
 }
+
+#endif

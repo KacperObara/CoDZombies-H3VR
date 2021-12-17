@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using FistVR;
 namespace CustomScripts
 {
@@ -70,3 +71,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

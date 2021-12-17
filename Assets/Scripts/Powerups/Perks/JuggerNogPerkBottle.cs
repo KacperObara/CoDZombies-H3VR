@@ -1,9 +1,9 @@
+#if H3VR_IMPORTED
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
-    public class JuggerNogPerkBottle: MonoBehaviour, IModifier
+    public class JuggerNogPerkBottle : MonoBehaviour, IModifier
     {
         public float NewHealth = 10000;
 
@@ -26,3 +26,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

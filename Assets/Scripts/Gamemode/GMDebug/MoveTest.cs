@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using UnityEngine;
 using UnityEngine.Serialization;
 namespace CustomScripts.Gamemode.GMDebug
@@ -22,3 +23,4 @@ namespace CustomScripts.Gamemode.GMDebug
         }
     }
 }
+#endif

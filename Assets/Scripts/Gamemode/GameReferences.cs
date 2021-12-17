@@ -1,19 +1,11 @@
+#if H3VR_IMPORTED
 using System.Collections.Generic;
-using UnityEngine;
 using Atlas;
-
+using UnityEngine;
 namespace CustomScripts
 {
     public class GameReferences : MonoBehaviourSingleton<GameReferences>
     {
-        public override void Awake()
-        {
-            base.Awake();
-
-            Player = DebugPlayer;
-            PlayerHead = DebugPlayerHead;
-        }
-
         public Material CanBuyMat;
         public Material CannotBuyMat;
 
@@ -27,14 +19,20 @@ namespace CustomScripts
 
         [HideInInspector] public Transform PlayerHead;
         [SerializeField] private Transform DebugPlayerHead;
+        public Transform Respawn;
 
         public CustomSceneInfo CustomScene;
-        public Transform Respawn;
+        public override void Awake()
+        {
+            base.Awake();
+
+            Player = DebugPlayer;
+            PlayerHead = DebugPlayerHead;
+        }
 
         private void Start()
         {
 #if !UNITY_EDITOR // TODO define directives don't work for me for some reason
-
             if (FistVR.GM.CurrentPlayerBody != null)
                 Player = FistVR.GM.CurrentPlayerBody.transform;
 
@@ -49,3 +47,5 @@ namespace CustomScripts
         }
     }
 }
+
+#endif

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+#if H3VR_IMPORTED
 namespace CustomScripts
 {
     public class PowerUpIndicator : MonoBehaviour
@@ -34,3 +35,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

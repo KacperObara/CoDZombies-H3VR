@@ -1,7 +1,7 @@
+#if H3VR_IMPORTED
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace CustomScripts.Gamemode.GMDebug
 {
     /// <summary>
@@ -17,17 +17,6 @@ namespace CustomScripts.Gamemode.GMDebug
         public float LowestDam;
         public float HighestDam;
 
-        public void ResetData()
-        {
-            DamageSum = 0;
-            LowestDam = float.MaxValue;
-            HighestDam = float.MinValue;
-
-            Text.text = "Kinetic: " + 0;
-            LowestText.text = "Lowest: " + 0;
-            HighestText.text = "Highest: " + 0;
-        }
-
         public void Damage(Damage dam)
         {
             DamageSum += dam.Dam_TotalKinetic;
@@ -42,5 +31,17 @@ namespace CustomScripts.Gamemode.GMDebug
             LowestText.text = "Lowest: " + LowestDam;
             HighestText.text = "Highest: " + HighestDam;
         }
+
+        public void ResetData()
+        {
+            DamageSum = 0;
+            LowestDam = float.MaxValue;
+            HighestDam = float.MinValue;
+
+            Text.text = "Kinetic: " + 0;
+            LowestText.text = "Lowest: " + 0;
+            HighestText.text = "Highest: " + 0;
+        }
     }
 }
+#endif

@@ -1,7 +1,7 @@
-using System.Collections;
+#if H3VR_IMPORTED
+
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts.Gamemode.GMDebug
 {
     public class CustomItemSpawner : MonoBehaviour
@@ -23,9 +23,11 @@ namespace CustomScripts.Gamemode.GMDebug
             GameObject callback = obj.GetGameObject();
 
             GameObject go = Instantiate(callback, transform.position, transform.rotation, transform); //TODO: Replace with real pos
-           go.SetActive(true);
+            go.SetActive(true);
 
-           SpawnedObject = go;
+            SpawnedObject = go;
         }
     }
 }
+
+#endif

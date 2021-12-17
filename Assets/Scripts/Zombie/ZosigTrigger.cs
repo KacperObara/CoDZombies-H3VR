@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using UnityEngine;
 namespace CustomScripts.Zombie
 {
@@ -16,3 +17,4 @@ namespace CustomScripts.Zombie
         }
     }
 }
+#endif

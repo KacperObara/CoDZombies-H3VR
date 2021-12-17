@@ -1,7 +1,7 @@
-using System;
-using UnityEngine;
-using FistVR;
+#if H3VR_IMPORTED
 
+using FistVR;
+using UnityEngine;
 namespace CustomScripts
 {
     public class StartSpawner : MonoBehaviour
@@ -23,3 +23,5 @@ namespace CustomScripts
         }
     }
 }
+
+#endif

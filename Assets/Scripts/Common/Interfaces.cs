@@ -1,5 +1,6 @@
-using UnityEngine;
+#if H3VR_IMPORTED
 
+using UnityEngine;
 namespace CustomScripts
 {
     public interface IModifier
@@ -19,3 +20,5 @@ namespace CustomScripts
         public abstract void Spawn(Vector3 pos);
     }
 }
+
+#endif

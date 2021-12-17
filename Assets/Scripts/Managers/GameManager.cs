@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System;
 using System.Collections;
 using CustomScripts.Objects;
@@ -130,3 +131,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

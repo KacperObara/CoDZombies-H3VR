@@ -1,6 +1,6 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class SoundPoolableObject : MonoBehaviour
@@ -22,3 +22,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

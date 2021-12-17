@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 using System;
 using System.Collections.Generic;
 namespace CustomScripts
@@ -20,3 +22,5 @@ namespace CustomScripts
         }
     }
 }
+
+#endif

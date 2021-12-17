@@ -1,5 +1,6 @@
-using UnityEngine;
+#if H3VR_IMPORTED
 
+using UnityEngine;
 namespace CustomScripts
 {
     public class WindowTrigger : MonoBehaviour
@@ -7,3 +8,4 @@ namespace CustomScripts
         public Window Window;
     }
 }
+#endif

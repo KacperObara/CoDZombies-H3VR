@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using FistVR;
 using UnityEngine;
@@ -78,3 +79,4 @@ namespace CustomScripts.Powerups
         }
     }
 }
+#endif

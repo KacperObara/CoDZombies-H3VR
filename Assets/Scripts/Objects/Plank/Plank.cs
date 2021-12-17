@@ -1,9 +1,8 @@
-using System;
+#if H3VR_IMPORTED
+
 using System.Collections;
-using System.Collections.Generic;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class Plank : MonoBehaviour
@@ -51,3 +50,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

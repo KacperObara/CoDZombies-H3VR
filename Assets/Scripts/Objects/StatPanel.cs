@@ -1,6 +1,6 @@
+#if H3VR_IMPORTED
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace CustomScripts
 {
     public class StatPanel : MonoBehaviour
@@ -24,6 +24,13 @@ namespace CustomScripts
             UpdatePointsText();
         }
 
+        private void OnDestroy()
+        {
+            GameManager.OnPointsChanged -= UpdatePointsText;
+            RoundManager.OnRoundChanged -= UpdateRoundText;
+            RoundManager.OnZombiesLeftChanged -= UpdateLeftText;
+        }
+
         private void UpdateRoundText()
         {
             RoundText.text = "Round:\n" + RoundManager.Instance.RoundNumber;
@@ -38,12 +45,6 @@ namespace CustomScripts
         {
             LeftText.text = "Left:\n" + RoundManager.Instance.ZombiesLeft;
         }
-
-        private void OnDestroy()
-        {
-            GameManager.OnPointsChanged -= UpdatePointsText;
-            RoundManager.OnRoundChanged -= UpdateRoundText;
-            RoundManager.OnZombiesLeftChanged -= UpdateLeftText;
-        }
     }
 }
+#endif

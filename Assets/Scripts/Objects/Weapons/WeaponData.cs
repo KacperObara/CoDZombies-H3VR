@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 using System.Collections.Generic;
 using UnityEngine;
 namespace CustomScripts.Objects.Weapons
@@ -23,3 +25,4 @@ namespace CustomScripts.Objects.Weapons
         }
     }
 }
+#endif

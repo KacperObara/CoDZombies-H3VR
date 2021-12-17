@@ -1,6 +1,6 @@
-using System;
-using UnityEngine;
+#if H3VR_IMPORTED
 
+using UnityEngine;
 namespace CustomScripts
 {
     // Drop plank if player leaves from window
@@ -17,3 +17,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

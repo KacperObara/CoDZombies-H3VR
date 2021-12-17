@@ -1,6 +1,6 @@
+#if H3VR_IMPORTED
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace CustomScripts
 {
     /// <summary>
@@ -10,6 +10,7 @@ namespace CustomScripts
     /// </summary>
     public class SoundPool : MonoBehaviour
     {
+        public List<SoundPoolableObject> FreeAudio;
         public static SoundPool Instance { get; private set; }
 
         private void Awake()
@@ -17,8 +18,6 @@ namespace CustomScripts
             if (Instance == null)
                 Instance = this;
         }
-
-        public List<SoundPoolableObject> FreeAudio;
 
         public SoundPoolableObject Spawn()
         {
@@ -36,3 +35,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

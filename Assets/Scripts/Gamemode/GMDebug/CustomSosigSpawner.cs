@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using FistVR;
 using UnityEngine;
@@ -137,3 +138,5 @@ namespace CustomScripts.Gamemode.GMDebug
         // }
     }
 }
+
+#endif

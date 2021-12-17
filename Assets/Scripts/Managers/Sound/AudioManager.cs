@@ -1,7 +1,6 @@
+#if H3VR_IMPORTED
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace CustomScripts
 {
     public class AudioManager : MonoBehaviourSingleton<AudioManager>
@@ -37,3 +36,4 @@ namespace CustomScripts
         public AudioSource PackAPunchUpgradeSound;
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using CustomScripts.Player;
 using UnityEngine;
@@ -72,3 +73,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

@@ -1,6 +1,6 @@
+#if H3VR_IMPORTED
 using CustomScripts.Player;
 using UnityEngine;
-
 namespace CustomScripts.Powerups.Perks
 {
     public class SpeedColaPerkBottle : MonoBehaviour, IModifier
@@ -14,3 +14,4 @@ namespace CustomScripts.Powerups.Perks
         }
     }
 }
+#endif

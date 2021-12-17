@@ -1,9 +1,8 @@
+#if H3VR_IMPORTED
 using CustomScripts.Managers;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
-using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class DoubleTapPerkBottle : MonoBehaviour, IModifier
@@ -27,3 +26,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

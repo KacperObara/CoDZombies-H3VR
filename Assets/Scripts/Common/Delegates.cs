@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 namespace CustomScripts
 {
     public static class Delegates
@@ -5,3 +7,5 @@ namespace CustomScripts
         public delegate void VoidDelegate();
     }
 }
+
+#endif

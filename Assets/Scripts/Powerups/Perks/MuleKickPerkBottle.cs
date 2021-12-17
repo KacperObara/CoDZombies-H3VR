@@ -1,6 +1,6 @@
+#if H3VR_IMPORTED
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts.Powerups.Perks
 {
     public class MuleKickPerkBottle : MonoBehaviour, IModifier
@@ -27,3 +27,4 @@ namespace CustomScripts.Powerups.Perks
         }
     }
 }
+#endif

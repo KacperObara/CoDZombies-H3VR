@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 using UnityEngine;
 namespace CustomScripts.Player
 {
@@ -9,3 +11,4 @@ namespace CustomScripts.Player
         }
     }
 }
+#endif

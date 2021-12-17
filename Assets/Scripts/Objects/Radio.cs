@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 using System.Collections;
 using CustomScripts.Managers.Sound;
 using FistVR;
@@ -84,3 +86,4 @@ namespace CustomScripts.Objects
         }
     }
 }
+#endif

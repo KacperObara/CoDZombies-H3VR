@@ -1,3 +1,5 @@
+#if H3VR_IMPORTED
+
 using System.Collections.Generic;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Managers;
@@ -55,3 +57,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

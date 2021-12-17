@@ -1,7 +1,7 @@
+#if H3VR_IMPORTED
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class ZombieBodyPart : MonoBehaviour, IFVRDamageable
@@ -53,3 +53,4 @@ namespace CustomScripts
         }
     }
 }
+#endif

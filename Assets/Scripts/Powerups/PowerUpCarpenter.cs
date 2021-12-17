@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using UnityEngine;
 namespace CustomScripts.Powerups
@@ -74,3 +75,4 @@ namespace CustomScripts.Powerups
         }
     }
 }
+#endif

@@ -1,6 +1,7 @@
+#if H3VR_IMPORTED
+
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace CustomScripts
 {
     public class EndPanel : MonoBehaviour
@@ -15,3 +16,5 @@ namespace CustomScripts
         }
     }
 }
+
+#endif

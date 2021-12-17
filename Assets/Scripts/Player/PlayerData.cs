@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using FistVR;
 namespace CustomScripts.Player
 {
@@ -74,3 +75,4 @@ namespace CustomScripts.Player
         //}
     }
 }
+#endif

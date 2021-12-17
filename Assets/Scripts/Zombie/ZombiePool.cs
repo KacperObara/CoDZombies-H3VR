@@ -1,10 +1,8 @@
-using System;
+#if H3VR_IMPORTED
 using System.Collections.Generic;
 using CustomScripts.Managers;
 using CustomScripts.Zombie;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace CustomScripts
 {
     public class ZombiePool : MonoBehaviourSingleton<ZombiePool>
@@ -19,6 +17,11 @@ namespace CustomScripts
 
             RoundManager.OnGameStarted -= OnGameStart;
             RoundManager.OnGameStarted += OnGameStart;
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnGameStarted -= OnGameStart;
         }
 
         private void OnGameStart()
@@ -45,10 +48,6 @@ namespace CustomScripts
             AvailableZombies.Add(customZombie);
             customZombie.transform.position = DespawnedWaypoint.position;
         }
-
-        private void OnDestroy()
-        {
-            RoundManager.OnGameStarted -= OnGameStart;
-        }
     }
 }
+#endif

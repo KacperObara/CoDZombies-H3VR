@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Player;
@@ -102,3 +103,4 @@ namespace CustomScripts.Powerups
         }
     }
 }
+#endif

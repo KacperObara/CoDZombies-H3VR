@@ -1,8 +1,8 @@
+#if H3VR_IMPORTED
 using CustomScripts.Managers;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
 using UnityEngine;
-
 namespace CustomScripts
 {
     public class DeadShotPerkBottle : MonoBehaviour, IModifier
@@ -32,3 +32,4 @@ namespace CustomScripts
         }
     }
 }
+#endif
