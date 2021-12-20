@@ -16,7 +16,8 @@ namespace MeatKit
         private static bool ShowErrorIfH3VRNotImported()
         {
 #if (H3VR_IMPORTED == false)
-            EditorUtility.DisplayDialog("Cannot continue.", "You don't have the H3 scripts imported. Please do that before trying to export anything.", "Ok");
+            EditorUtility.DisplayDialog("Cannot continue.",
+                "You don't have the H3 scripts imported. Please do that before trying to export anything.", "Ok");
             return true;
 #endif
             return false;
@@ -51,6 +52,7 @@ namespace MeatKit
                 Debug.Log("Nothing to re-import.");
                 return;
             }
+
             ImportSingleAssembly(_lastImportedAsselbly, ManagedDirectory);
             Debug.Log("Re-imported " + _lastImportedAsselbly);
         }
@@ -159,7 +161,7 @@ namespace MeatKit
             Texture2D icon = settings.Icon;
             if (settings.Icon.width != 256 || settings.Icon.height != 256) icon = icon.ScaleTexture(256, 256);
             File.WriteAllBytes(BundleOutputPath + "icon.png", icon.EncodeToPNG());
-            
+
             // Copy the readme
             File.Copy(AssetDatabase.GetAssetPath(settings.ReadMe), BundleOutputPath + "README.md");
         }
@@ -174,11 +176,12 @@ namespace MeatKit
             PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Standalone, "");
             AssetDatabase.Refresh();
         }
-
+#if H3VR_IMPORTED
         [MenuItem("MeatKit/External Library Panel", priority = 4)]
         public static void ShowExternalLibraryPanel()
         {
             ExternalLibraryPanel.Create();
         }
+#endif
     }
 }

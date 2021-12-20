@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 3c8d004a530821a4bb3553ab2cb73568
+timeCreated: 1636531032
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: Light
+    100004: mc_mtl_p7_zm_vending_three_gun_coil
+    100006: mc_mtl_p7_zm_vending_three_gun_decal
+    100008: mc_mtl_p7_zm_vending_three_gun_dust_1
+    100010: mc_mtl_p7_zm_vending_three_gun_dust_2
+    100012: mc_mtl_p7_zm_vending_three_gun_glass
+    100014: mc_mtl_p7_zm_vending_three_gun_metal_01_bld
+    100016: mc_mtl_p7_zm_vending_three_gun_metal_01_green_bld
+    100018: mc_mtl_p7_zm_vending_three_gun_metal_01_yellow_bld
+    100020: mc_mtl_p7_zm_vending_three_gun_metal_02_bld
+    100022: mc_mtl_p7_zm_vending_three_gun_metal_02_green_bld
+    100024: mc_mtl_p7_zm_vending_three_gun_metal_02_intake_bld
+    100026: mc_mtl_p7_zm_vending_three_gun_metal_02_red_bld
+    100028: mc_mtl_p7_zm_vending_three_gun_metal_02_yellow_bld
+    100030: mc_mtl_p7_zm_vending_three_gun_metal_03_bld
+    100032: mc_mtl_p7_zm_vending_three_gun_metal_04_bld
+    100034: mc_mtl_p7_zm_vending_three_gun_metal_05_bld
+    100036: mc_mtl_p7_zm_vending_three_gun_metal_intake_03
+    100038: mc_mtl_p7_zm_vending_three_gun_plastic
+    100040: //RootNode
+    400000: Camera
+    400002: Light
+    400004: mc_mtl_p7_zm_vending_three_gun_coil
+    400006: mc_mtl_p7_zm_vending_three_gun_decal
+    400008: mc_mtl_p7_zm_vending_three_gun_dust_1
+    400010: mc_mtl_p7_zm_vending_three_gun_dust_2
+    400012: mc_mtl_p7_zm_vending_three_gun_glass
+    400014: mc_mtl_p7_zm_vending_three_gun_metal_01_bld
+    400016: mc_mtl_p7_zm_vending_three_gun_metal_01_green_bld
+    400018: mc_mtl_p7_zm_vending_three_gun_metal_01_yellow_bld
+    400020: mc_mtl_p7_zm_vending_three_gun_metal_02_bld
+    400022: mc_mtl_p7_zm_vending_three_gun_metal_02_green_bld
+    400024: mc_mtl_p7_zm_vending_three_gun_metal_02_intake_bld
+    400026: mc_mtl_p7_zm_vending_three_gun_metal_02_red_bld
+    400028: mc_mtl_p7_zm_vending_three_gun_metal_02_yellow_bld
+    400030: mc_mtl_p7_zm_vending_three_gun_metal_03_bld
+    400032: mc_mtl_p7_zm_vending_three_gun_metal_04_bld
+    400034: mc_mtl_p7_zm_vending_three_gun_metal_05_bld
+    400036: mc_mtl_p7_zm_vending_three_gun_metal_intake_03
+    400038: mc_mtl_p7_zm_vending_three_gun_plastic
+    400040: //RootNode
+    2300000: mc_mtl_p7_zm_vending_three_gun_coil
+    2300002: mc_mtl_p7_zm_vending_three_gun_decal
+    2300004: mc_mtl_p7_zm_vending_three_gun_dust_1
+    2300006: mc_mtl_p7_zm_vending_three_gun_dust_2
+    2300008: mc_mtl_p7_zm_vending_three_gun_glass
+    2300010: mc_mtl_p7_zm_vending_three_gun_metal_01_bld
+    2300012: mc_mtl_p7_zm_vending_three_gun_metal_01_green_bld
+    2300014: mc_mtl_p7_zm_vending_three_gun_metal_01_yellow_bld
+    2300016: mc_mtl_p7_zm_vending_three_gun_metal_02_bld
+    2300018: mc_mtl_p7_zm_vending_three_gun_metal_02_green_bld
+    2300020: mc_mtl_p7_zm_vending_three_gun_metal_02_intake_bld
+    2300022: mc_mtl_p7_zm_vending_three_gun_metal_02_red_bld
+    2300024: mc_mtl_p7_zm_vending_three_gun_metal_02_yellow_bld
+    2300026: mc_mtl_p7_zm_vending_three_gun_metal_03_bld
+    2300028: mc_mtl_p7_zm_vending_three_gun_metal_04_bld
+    2300030: mc_mtl_p7_zm_vending_three_gun_metal_05_bld
+    2300032: mc_mtl_p7_zm_vending_three_gun_metal_intake_03
+    2300034: mc_mtl_p7_zm_vending_three_gun_plastic
+    3300000: mc_mtl_p7_zm_vending_three_gun_coil
+    3300002: mc_mtl_p7_zm_vending_three_gun_decal
+    3300004: mc_mtl_p7_zm_vending_three_gun_dust_1
+    3300006: mc_mtl_p7_zm_vending_three_gun_dust_2
+    3300008: mc_mtl_p7_zm_vending_three_gun_glass
+    3300010: mc_mtl_p7_zm_vending_three_gun_metal_01_bld
+    3300012: mc_mtl_p7_zm_vending_three_gun_metal_01_green_bld
+    3300014: mc_mtl_p7_zm_vending_three_gun_metal_01_yellow_bld
+    3300016: mc_mtl_p7_zm_vending_three_gun_metal_02_bld
+    3300018: mc_mtl_p7_zm_vending_three_gun_metal_02_green_bld
+    3300020: mc_mtl_p7_zm_vending_three_gun_metal_02_intake_bld
+    3300022: mc_mtl_p7_zm_vending_three_gun_metal_02_red_bld
+    3300024: mc_mtl_p7_zm_vending_three_gun_metal_02_yellow_bld
+    3300026: mc_mtl_p7_zm_vending_three_gun_metal_03_bld
+    3300028: mc_mtl_p7_zm_vending_three_gun_metal_04_bld
+    3300030: mc_mtl_p7_zm_vending_three_gun_metal_05_bld
+    3300032: mc_mtl_p7_zm_vending_three_gun_metal_intake_03
+    3300034: mc_mtl_p7_zm_vending_three_gun_plastic
+    4300000: mc_mtl_p7_zm_vending_three_gun_coil
+    4300002: mc_mtl_p7_zm_vending_three_gun_decal
+    4300004: mc_mtl_p7_zm_vending_three_gun_dust_1
+    4300006: mc_mtl_p7_zm_vending_three_gun_dust_2
+    4300008: mc_mtl_p7_zm_vending_three_gun_glass
+    4300010: mc_mtl_p7_zm_vending_three_gun_metal_01_bld
+    4300012: mc_mtl_p7_zm_vending_three_gun_metal_01_green_bld
+    4300014: mc_mtl_p7_zm_vending_three_gun_metal_01_yellow_bld
+    4300016: mc_mtl_p7_zm_vending_three_gun_metal_02_bld
+    4300018: mc_mtl_p7_zm_vending_three_gun_metal_02_green_bld
+    4300020: mc_mtl_p7_zm_vending_three_gun_metal_02_intake_bld
+    4300022: mc_mtl_p7_zm_vending_three_gun_metal_02_red_bld
+    4300024: mc_mtl_p7_zm_vending_three_gun_metal_02_yellow_bld
+    4300026: mc_mtl_p7_zm_vending_three_gun_metal_03_bld
+    4300028: mc_mtl_p7_zm_vending_three_gun_metal_04_bld
+    4300030: mc_mtl_p7_zm_vending_three_gun_metal_05_bld
+    4300032: mc_mtl_p7_zm_vending_three_gun_metal_intake_03
+    4300034: mc_mtl_p7_zm_vending_three_gun_plastic
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using UnityEngine;
 using UnityEditor;
 using Valve.Newtonsoft.Json;
@@ -29,3 +30,4 @@ namespace MeatKit
         }
     }
 }
+#endif

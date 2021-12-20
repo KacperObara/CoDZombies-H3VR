@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4905028540094970}
   - component: {fileID: 82171226895771700}
-  - component: {fileID: 114678004196053912}
+  - component: {fileID: 114399579231498160}
   m_Layer: 0
   m_Name: SoundPoolableObject
   m_TagString: Untagged
@@ -139,7 +139,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114678004196053912
+--- !u!114 &114399579231498160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599517891318560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2115575464, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 67b1e25e765e24fcd92af8c4cb334f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 82171226895771700}

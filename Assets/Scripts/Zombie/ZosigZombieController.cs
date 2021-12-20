@@ -1,3 +1,4 @@
+#if H3VR_IMPORTED
 using System.Collections;
 using CustomScripts.Managers;
 using CustomScripts.Player;
@@ -226,3 +227,4 @@ namespace CustomScripts.Zombie
         }
     }
 }
+#endif

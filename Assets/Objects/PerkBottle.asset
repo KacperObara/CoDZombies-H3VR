@@ -8,45 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53742a4f84165db4cbcf7b645b7bda2c, type: 3}
+  m_Script: {fileID: 2102236588, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
   m_Name: PerkBottle
   m_EditorClassIdentifier: 
-  m_anvilPrefab:
-    Guid: 
-    Bundle: 
-    AssetName: 
-  m_export: 0
-  ItemID: 5065726b426f74746c65
-  DisplayName: 
-  Category: 41
-  SpawnedFromId: 
-  Mass: 0
-  MagazineCapacity: 0
-  RequiresPicatinnySight: 0
-  TagEra: 0
-  TagSet: 0
-  TagFirearmSize: 0
-  TagFirearmAction: 0
-  TagFirearmRoundPower: 0
-  TagFirearmCountryOfOrigin: 0
-  TagFirearmFirstYear: 0
-  TagFirearmFiringModes: 
-  TagFirearmFeedOption: 
-  TagFirearmMounts: 
-  TagAttachmentMount: 0
-  TagAttachmentFeature: 0
-  TagMeleeStyle: 0
-  TagMeleeHandedness: 0
-  TagPowerupType: 0
-  TagThrownType: 0
-  TagThrownDamageType: 0
-  CompatibleMagazines: []
-  CompatibleClips: []
-  CompatibleSpeedLoaders: []
-  CompatibleSingleRounds: []
-  BespokeAttachments: []
-  RequiredSecondaryPieces: []
-  MinCapacityRelated: 0
-  MaxCapacityRelated: 0
-  CreditCost: 0
-  OSple: 0
