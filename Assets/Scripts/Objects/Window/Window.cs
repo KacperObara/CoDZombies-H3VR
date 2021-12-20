@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomScripts.Player;
 using FistVR;
+using Objects.Window;
 using UnityEngine;
+
 namespace CustomScripts
 {
-    public class WindowPlank : MonoBehaviour
-    {
-        public Plank Plank;
-    }
-
     public class Window : MonoBehaviour
     {
         public Transform ZombieWaypoint;

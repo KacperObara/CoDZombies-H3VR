@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: 81534fa5c00553840b60af64fb7f9b3d
+timeCreated: 1633445613
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: Light
+    100004: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch
+    100006: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch_sign
+    100008: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_bottom_back
+    100010: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_detail
+    100012: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_left
+    100014: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_right
+    100016: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_front_side
+    100018: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_leather_scrol
+    100020: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_logo
+    100022: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_roller
+    100024: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_side_inside
+    100026: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top
+    100028: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top_main
+    100030: //RootNode
+    400000: Camera
+    400002: Light
+    400004: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch
+    400006: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch_sign
+    400008: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_bottom_back
+    400010: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_detail
+    400012: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_left
+    400014: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_right
+    400016: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_front_side
+    400018: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_leather_scrol
+    400020: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_logo
+    400022: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_roller
+    400024: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_side_inside
+    400026: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top
+    400028: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top_main
+    400030: //RootNode
+    2300000: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch
+    2300002: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch_sign
+    2300004: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_bottom_back
+    2300006: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_detail
+    2300008: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_left
+    2300010: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_right
+    2300012: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_front_side
+    2300014: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_leather_scrol
+    2300016: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_logo
+    2300018: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_roller
+    2300020: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_side_inside
+    2300022: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top
+    2300024: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top_main
+    3300000: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch
+    3300002: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch_sign
+    3300004: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_bottom_back
+    3300006: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_detail
+    3300008: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_left
+    3300010: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_right
+    3300012: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_front_side
+    3300014: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_leather_scrol
+    3300016: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_logo
+    3300018: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_roller
+    3300020: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_side_inside
+    3300022: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top
+    3300024: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top_main
+    4300000: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top_main
+    4300002: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_top
+    4300004: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_side_inside
+    4300006: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_roller
+    4300008: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_logo
+    4300010: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_front_side
+    4300012: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_right
+    4300014: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_frame_left
+    4300016: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_detail
+    4300018: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_bottom_back
+    4300020: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch_sign
+    4300022: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_packapunch
+    4300024: mc_mtl_p7_packapunch_mc_mtl_p7_zm_vending_pap_leather_scrol
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
