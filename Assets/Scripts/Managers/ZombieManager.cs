@@ -5,6 +5,7 @@ using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
+
 namespace CustomScripts.Managers
 {
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
@@ -21,16 +22,16 @@ namespace CustomScripts.Managers
         {
             base.Awake();
             GM.CurrentSceneSettings.SosigKillEvent += OnSosigDied;
-            //TODO: apparently ProcessDamage_Damage_SosigLink doesnt exist anymore???
-            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
+            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
         }
 
         private void OnDestroy()
         {
             GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
-            //TODO: See TODO at top of file
-            // On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
-            //On.FistVR.Sosig.SosigDies -= OnSosigDied;
+            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
+            // On.FistVR.Sosig.SosigDies -= OnSosigDied;
+            
+            // On.FistVR.Sosig.SosigDies -= 
         }
 
         public void SpawnZombie(float delay)
@@ -96,7 +97,7 @@ namespace CustomScripts.Managers
         }
 
 
-        // Special method to deal with weird bug
+
         public void CleanZombies()
         {
             for (int i = ExistingZombies.Count - 1; i >= 0; i--)
@@ -144,13 +145,14 @@ namespace CustomScripts.Managers
             sosig.GetComponent<ZosigZombieController>().OnKill();
         }
 
+// #if !UNITY_EDITOR_LINUX //MMHook dont work on Unity-Linux 
         private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
             SosigLink link)
         {
-            //TODO: fix Reference to type 'Sosig' claims it is defined in this assembly, but it is not defined in source or any added modules
-            // orig.Invoke(self, d, link);
+            orig.Invoke(self, d, link);
             self.GetComponent<ZosigZombieController>().OnGetHit(d);
         }
+// #endif
     }
 }
 #endif

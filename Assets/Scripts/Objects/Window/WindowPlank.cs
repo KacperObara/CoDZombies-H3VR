@@ -1,7 +1,6 @@
-﻿using CustomScripts;
 using UnityEngine;
 
-namespace Objects.Window
+namespace CustomScripts.Objects.Windows
 {
     public class WindowPlank : MonoBehaviour
     {

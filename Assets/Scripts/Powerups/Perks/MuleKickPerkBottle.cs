@@ -1,20 +1,20 @@
 #if H3VR_IMPORTED
+using Atlas.MappingComponents.Sandbox;
 using FistVR;
 using UnityEngine;
 namespace CustomScripts.Powerups.Perks
 {
     public class MuleKickPerkBottle : MonoBehaviour, IModifier
     {
-        public ItemSpawner Spawner;
+        public ObjectSpawnPoint Spawner;
         public string ObjectID;
 
         public GameObject Model;
 
         public void ApplyModifier()
         {
-            //TODO: New itemspawner doesnt have ObjectId field
-            // Spawner.ObjectId = ObjectID;
-            Spawner.SpawnItem();
+            Spawner.ObjectId = ObjectID;
+            Spawner.Spawn();
 
             AudioManager.Instance.DrinkSound.Play();
 

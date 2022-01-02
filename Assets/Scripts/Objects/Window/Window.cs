@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomScripts.Player;
 using FistVR;
-using Objects.Window;
+using CustomScripts.Objects.Windows;
 using UnityEngine;
 
 namespace CustomScripts

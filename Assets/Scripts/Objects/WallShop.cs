@@ -1,10 +1,13 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using System.Collections.Generic;
+using Atlas.MappingComponents.Sandbox;
 using CustomScripts.Objects.Weapons;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 namespace CustomScripts.Objects
 {
     public class WallShop : MonoBehaviour
@@ -19,7 +22,7 @@ namespace CustomScripts.Objects
         public Text NameText;
         public Text CostText;
 
-        public List<ItemSpawner> ItemSpawners;
+        public List<ObjectSpawnPoint> ItemSpawners;
 
         public WeaponData Weapon;
 
@@ -69,9 +72,9 @@ namespace CustomScripts.Objects
                         {
                             if (i == AMMO_SPAWNER_ID)
                                 continue;
-                            //TODO: New itemspawner doesnt have ObjectId field
-                            // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                            ItemSpawners[i].SpawnItem();
+                            
+                            ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                            ItemSpawners[i].Spawn();
                         }
                     }
 
@@ -80,21 +83,19 @@ namespace CustomScripts.Objects
                         // spawning weapons in unlimited
                         for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                         {
-                            //TODO: See above
-                            // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                            ItemSpawners[i].SpawnItem();
+                            ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                            ItemSpawners[i].Spawn();
                         }
                     }
                     else
                     {
-                        //TODO: See above
                         // Spawning ammo
-                        // ItemSpawners[ammoSpawnerId].ObjectId = Weapon.DefaultSpawners[ammoSpawnerId];
+                        ItemSpawners[AMMO_SPAWNER_ID].ObjectId = Weapon.DefaultSpawners[AMMO_SPAWNER_ID];
                         StartCoroutine(DelayedAmmoSpawn());
-                        // for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
-                        // {
-                        //     ItemSpawners[ammoSpawnerId].Spawn();
-                        // }
+                        for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
+                        {
+                            ItemSpawners[AMMO_SPAWNER_ID].Spawn();
+                        } 
                     }
 
                     // Updating text
@@ -106,9 +107,8 @@ namespace CustomScripts.Objects
                     // spawning weapons in unlimited
                     for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                     {
-                        //TODO: See above
-                        // ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
-                        ItemSpawners[i].SpawnItem();
+                        ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
+                        ItemSpawners[i].Spawn();
                     }
                 }
 
@@ -122,7 +122,7 @@ namespace CustomScripts.Objects
         {
             for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
             {
-                ItemSpawners[AMMO_SPAWNER_ID].SpawnItem();
+                ItemSpawners[AMMO_SPAWNER_ID].Spawn();
                 yield return new WaitForSeconds(0.05f);
             }
         }

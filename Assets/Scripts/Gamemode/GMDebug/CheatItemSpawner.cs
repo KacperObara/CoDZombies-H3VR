@@ -25,7 +25,7 @@ namespace CustomScripts.Gamemode.GMDebug
             // spawner.transform.position = transform.position;
             // spawner.transform.localEulerAngles = transform.localEulerAngles;
             // spawner.SetActive(true);
-            Destroy(this);
+            // Destroy(this);
 
         }
     }

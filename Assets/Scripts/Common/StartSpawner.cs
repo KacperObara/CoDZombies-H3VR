@@ -9,7 +9,7 @@ namespace CustomScripts
         public ItemSpawner WeaponSpawner;
         public ItemSpawner AmmoSpawner;
 
-        //TODO: I just changed Spawn() to SpawnItem() which is wrong and bad 
+
         public void Spawn()
         {
             WeaponSpawner.SpawnItem();
