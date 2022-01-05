@@ -29,9 +29,6 @@ namespace CustomScripts.Managers
         {
             GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
-            // On.FistVR.Sosig.SosigDies -= OnSosigDied;
-            
-            // On.FistVR.Sosig.SosigDies -= 
         }
 
         public void SpawnZombie(float delay)
@@ -95,7 +92,6 @@ namespace CustomScripts.Managers
                 CleanZombies();
             }
         }
-
 
 
         public void CleanZombies()
