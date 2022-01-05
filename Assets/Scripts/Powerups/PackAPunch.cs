@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Objects.Weapons;
 using FistVR;
 using UnityEngine;
+
 namespace CustomScripts.Powerups
 {
     public class PackAPunch : MonoBehaviour
@@ -12,7 +14,7 @@ namespace CustomScripts.Powerups
         public int Cost;
 
         public List<WeaponData> WeaponsData;
-        public List<ItemSpawner> Spawners;
+        public List<CustomItemSpawner> Spawners;
 
         [HideInInspector] public bool InUse = false;
 
@@ -58,18 +60,16 @@ namespace CustomScripts.Powerups
 
             for (int i = 0; i < weapon.UpgradedWeapon.DefaultSpawners.Count; i++)
             {
-                //TODO: New itemspawner doesnt have ObjectId field
-                // Spawners[i].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[i];
-                Spawners[i].SpawnItem();
+                Spawners[i].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[i];
+                Spawners[i].Spawn();
             }
 
             if (GameSettings.LimitedAmmo)
             {
                 for (int i = 0; i < weapon.UpgradedWeapon.LimitedAmmoMagazineCount - 1; i++)
                 {
-                    //TODO: New itemspawner doesnt have ObjectId field
-                    // Spawners[1].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[1];
-                    Spawners[1].SpawnItem();
+                    Spawners[1].ObjectId = weapon.UpgradedWeapon.DefaultSpawners[1];
+                    Spawners[1].Spawn();
                 }
             }
 
