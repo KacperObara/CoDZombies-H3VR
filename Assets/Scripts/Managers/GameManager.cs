@@ -6,6 +6,7 @@ using CustomScripts.Player;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
+
 namespace CustomScripts
 {
     public class GameManager : MonoBehaviourSingleton<GameManager>
@@ -31,12 +32,13 @@ namespace CustomScripts
 
             PlayerData.Instance.MoneyModifier.ToString();
 
-            amount = (int)newAmount;
+            amount = (int) newAmount;
 
             Points += amount;
             TotalPoints += amount;
 
-            OnPointsChanged.Invoke();
+            if (OnPointsChanged != null)
+                OnPointsChanged.Invoke();
         }
 
         public bool TryRemovePoints(int amount)
@@ -44,7 +46,9 @@ namespace CustomScripts
             if (Points >= amount)
             {
                 Points -= amount;
-                OnPointsChanged.Invoke();
+
+                if (OnPointsChanged != null)
+                    OnPointsChanged.Invoke();
                 return true;
             }
 

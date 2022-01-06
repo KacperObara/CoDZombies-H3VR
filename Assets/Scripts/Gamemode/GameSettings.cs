@@ -1,5 +1,6 @@
 #if H3VR_IMPORTED
 using FistVR;
+
 namespace CustomScripts
 {
     public class GameSettings : MonoBehaviourSingleton<GameSettings>
@@ -25,49 +26,57 @@ namespace CustomScripts
             UseZosigs = false;
             ItemSpawnerSpawned = false;
         }
+
         public static event Delegates.VoidDelegate OnSettingsChanged;
 
         public void ToggleMoreEnemies()
         {
             MoreEnemies = !MoreEnemies;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void ToggleFasterEnemies()
         {
             FasterEnemies = !FasterEnemies;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void ToggleWeakerEnemies()
         {
             WeakerEnemies = !WeakerEnemies;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void ToggleBackgroundMusic()
         {
             BackgroundMusic = !BackgroundMusic;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void ToggleUseZosigs()
         {
             UseZosigs = !UseZosigs;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void ToggleLimitedAmmo()
         {
             LimitedAmmo = !LimitedAmmo;
             GM.CurrentSceneSettings.IsSpawnLockingEnabled = !LimitedAmmo;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
 
         public void SpawnSpawner()
         {
             ItemSpawnerSpawned = true;
-            OnSettingsChanged.Invoke();
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
         }
     }
 }

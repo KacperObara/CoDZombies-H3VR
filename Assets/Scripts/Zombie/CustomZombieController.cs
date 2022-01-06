@@ -7,6 +7,7 @@ using FistVR;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+
 namespace CustomScripts.Zombie
 {
     public enum State
@@ -44,6 +45,11 @@ namespace CustomScripts.Zombie
         private RandomZombieSound _soundPlayer;
         public Action<float> OnZombieDied;
         public Action OnZombieInitialize;
+
+        private void Awake()
+        {
+            State = State.Dead;
+        }
 
         private void Start()
         {
@@ -150,7 +156,9 @@ namespace CustomScripts.Zombie
             _agent.enabled = true;
 
             _soundPlayer.Initialize();
-            OnZombieInitialize.Invoke();
+
+            if (OnZombieInitialize != null)
+                OnZombieInitialize.Invoke();
         }
 
         public override void OnHit(float damage, bool headHit = false)
@@ -167,7 +175,7 @@ namespace CustomScripts.Zombie
 
             float newDamage = damage * PlayerData.Instance.DamageModifier;
 
-            damage = (int)newDamage;
+            damage = (int) newDamage;
 
             AudioManager.Instance.ZombieHitSound.Play();
             GameManager.Instance.AddPoints(PointsOnHit);
@@ -184,13 +192,16 @@ namespace CustomScripts.Zombie
                 switch (random)
                 {
                     case 0:
-                        OnZombieDied.Invoke(1.8f);
+                        if (OnZombieDied != null)
+                            OnZombieDied.Invoke(1.8f);
                         break;
                     case 1:
-                        OnZombieDied.Invoke(2.4f);
+                        if (OnZombieDied != null)
+                            OnZombieDied.Invoke(2.4f);
                         break;
                     case 2:
-                        OnZombieDied.Invoke(1.25f);
+                        if (OnZombieDied != null)
+                            OnZombieDied.Invoke(1.25f);
                         break;
                 }
 

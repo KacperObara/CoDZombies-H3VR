@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Atlas;
 using UnityEngine;
+
 namespace CustomScripts
 {
     public class GameReferences : MonoBehaviourSingleton<GameReferences>
@@ -22,6 +23,7 @@ namespace CustomScripts
         public Transform Respawn;
 
         public CustomSceneInfo CustomScene;
+
         public override void Awake()
         {
             base.Awake();
@@ -32,13 +34,18 @@ namespace CustomScripts
 
         private void Start()
         {
-#if !UNITY_EDITOR 
+#if !UNITY_EDITOR
             if (FistVR.GM.CurrentPlayerBody != null)
                 Player = FistVR.GM.CurrentPlayerBody.transform;
 
             if (FistVR.GM.CurrentPlayerBody != null)
                 PlayerHead = FistVR.GM.CurrentPlayerBody.Head.transform;
 #endif
+            if (FistVR.GM.CurrentPlayerBody != null)
+            {
+                Debug.Log("WTF");
+                Debug.Log(Player.name);
+            }
         }
 
         public bool IsPlayerClose(Transform pos, float dist)

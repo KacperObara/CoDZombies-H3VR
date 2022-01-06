@@ -3642,7 +3642,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1363691239}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -3651,7 +3651,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1843720148}
 --- !u!65 &18428732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7736,22 +7736,22 @@ Prefab:
         type: 2}
       propertyPath: RefVector
       value: 
-      objectReference: {fileID: 736578656}
+      objectReference: {fileID: 540041553}
     - target: {fileID: 114324791537832318, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
         type: 2}
       propertyPath: Lever
       value: 
-      objectReference: {fileID: 1496793562}
+      objectReference: {fileID: 815908305}
     - target: {fileID: 114680293266797934, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
         type: 2}
       propertyPath: RefVector
       value: 
-      objectReference: {fileID: 736578656}
+      objectReference: {fileID: 1201895549}
     - target: {fileID: 114680293266797934, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
         type: 2}
       propertyPath: Lever
       value: 
-      objectReference: {fileID: 1496793562}
+      objectReference: {fileID: 1816944250}
     - target: {fileID: 114969371329401926, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
         type: 2}
       propertyPath: UnlockableZombieSpawnPoints.Array.data[0]
@@ -9596,12 +9596,12 @@ Prefab:
         type: 2}
       propertyPath: RefVector
       value: 
-      objectReference: {fileID: 736578656}
+      objectReference: {fileID: 1268613751}
     - target: {fileID: 114780647368855660, guid: 5412beb0160c99f44911b20e527c12b6,
         type: 2}
       propertyPath: Lever
       value: 
-      objectReference: {fileID: 1496793562}
+      objectReference: {fileID: 854284516}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5412beb0160c99f44911b20e527c12b6, type: 2}
   m_IsPrefabParent: 0
@@ -14157,7 +14157,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 2038106270}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -14166,7 +14166,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1166920502}
 --- !u!4 &254410442
 Transform:
   m_ObjectHideFlags: 0
@@ -15905,7 +15905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca35e3f34d1a40d5b5010bdaafbfc10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointsText: {fileID: 0}
+  PointsText: {fileID: 392384290}
 --- !u!1 &308766197
 GameObject:
   m_ObjectHideFlags: 0
@@ -24913,7 +24913,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -224771825
+  randomSeed: -971585836
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -34321,6 +34321,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: b45e969b204ecc542b007463215bff51, type: 2}
+--- !u!4 &540041553 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4742861473418778, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
+    type: 2}
+  m_PrefabInternal: {fileID: 106915017}
 --- !u!1 &543053336
 GameObject:
   m_ObjectHideFlags: 0
@@ -39920,7 +39925,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 471744484}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -39929,7 +39934,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 876946010}
 --- !u!65 &657010480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42228,7 +42233,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1119414759}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -42237,7 +42242,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1750077183}
 --- !u!4 &714998636
 Transform:
   m_ObjectHideFlags: 0
@@ -51518,7 +51523,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 606288603}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -51527,7 +51532,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 246184241}
 --- !u!4 &790523390
 Transform:
   m_ObjectHideFlags: 0
@@ -52099,6 +52104,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &815908305 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4620370680549284, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
+    type: 2}
+  m_PrefabInternal: {fileID: 106915017}
 --- !u!1 &816130546
 GameObject:
   m_ObjectHideFlags: 0
@@ -53680,6 +53690,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010196047, y: 0.009862772, z: 0.04158932}
   m_Center: {x: -0.00718637, y: 0.004931386, z: 0.02079466}
+--- !u!4 &854284516 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4433885392323206, guid: 5412beb0160c99f44911b20e527c12b6,
+    type: 2}
+  m_PrefabInternal: {fileID: 153061672}
 --- !u!1 &856807724
 GameObject:
   m_ObjectHideFlags: 0
@@ -53785,7 +53800,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 4821075}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -53794,7 +53809,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 528884411}
 --- !u!65 &856807728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59666,7 +59681,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 2034559269}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -59675,7 +59690,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 713205191}
 --- !u!65 &914082799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60400,7 +60415,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1690343023}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -60409,7 +60424,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 2013395969}
 --- !u!114 &946297673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60480,7 +60495,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1846999984}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -60489,7 +60504,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1710961753}
 --- !u!4 &946297684
 Transform:
   m_ObjectHideFlags: 0
@@ -67080,6 +67095,88 @@ Transform:
   m_Father: {fileID: 1038051297}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -180.00002}
+--- !u!1 &1030788280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1030788281}
+  - component: {fileID: 1030788284}
+  - component: {fileID: 1030788283}
+  - component: {fileID: 1030788282}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030788281
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030788280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -41.291, y: 2.65, z: 63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1366618069}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1030788282
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030788280}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1030788283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030788280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1030788284
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030788280}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1033688959
 GameObject:
   m_ObjectHideFlags: 0
@@ -73459,6 +73556,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &1201895549 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4201368937510286, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
+    type: 2}
+  m_PrefabInternal: {fileID: 106915017}
 --- !u!1 &1203371964
 GameObject:
   m_ObjectHideFlags: 0
@@ -75954,6 +76056,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268507140}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1268613751 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4457971974382776, guid: 5412beb0160c99f44911b20e527c12b6,
+    type: 2}
+  m_PrefabInternal: {fileID: 153061672}
 --- !u!1 &1271349007
 GameObject:
   m_ObjectHideFlags: 0
@@ -79743,7 +79850,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1181748867}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -79752,7 +79859,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 83436632}
 --- !u!4 &1351656798
 Transform:
   m_ObjectHideFlags: 0
@@ -80605,6 +80712,7 @@ Transform:
   - {fileID: 1757268473}
   - {fileID: 2024167264}
   - {fileID: 1149548227}
+  - {fileID: 1030788281}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80705,7 +80813,7 @@ MonoBehaviour:
   DebugPlayer: {fileID: 1156122831}
   PlayerHead: {fileID: 0}
   DebugPlayerHead: {fileID: 550319910}
-  Respawn: {fileID: 0}
+  Respawn: {fileID: 93298388}
 --- !u!114 &1366618073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80757,11 +80865,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChanceForAmmo: 5
-  ChanceForPowerUp: 10
+  ChanceForPowerUp: 12
   IsPowerUpCooldown: 0
   IsMaxAmmoCooldown: 0
-  MaxAmmo: {fileID: 0}
-  PowerUps: []
+  MaxAmmo: {fileID: 349701687}
+  PowerUps:
+  - {fileID: 537257492}
+  - {fileID: 1420037779}
+  - {fileID: 881859810}
+  - {fileID: 728859841}
+  - {fileID: 73568305}
 --- !u!114 &1366618076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80786,28 +80899,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllZombies:
   - {fileID: 1965549866}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1155539497}
+  - {fileID: 572278888}
+  - {fileID: 101201249}
+  - {fileID: 1078905338}
+  - {fileID: 138269928}
+  - {fileID: 1872323895}
+  - {fileID: 1461855324}
+  - {fileID: 2122762160}
+  - {fileID: 259852257}
+  - {fileID: 906088517}
+  - {fileID: 868440535}
+  - {fileID: 1913676631}
+  - {fileID: 669242570}
+  - {fileID: 906389560}
+  - {fileID: 1764034278}
+  - {fileID: 940422518}
+  - {fileID: 260300514}
+  - {fileID: 1094961147}
+  - {fileID: 1821879774}
   ExistingZombies: []
-  ZombieSpawnPoints: []
-  ZosigsSpawnPoints: []
+  ZombieSpawnPoints:
+  - {fileID: 530621876}
+  - {fileID: 1681848484}
+  - {fileID: 537286340}
+  - {fileID: 899127181}
+  ZosigsSpawnPoints:
+  - {fileID: 88984174}
+  - {fileID: 497911486}
+  - {fileID: 215374999}
+  - {fileID: 1268424812}
   ZombieTarget: {fileID: 0}
 --- !u!1 &1367499680
 GameObject:
@@ -81769,7 +81890,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 111101657}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -81778,7 +81899,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 507833714}
 --- !u!65 &1388522623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90933,7 +91054,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1927803694}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -90942,7 +91063,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 2051833630}
 --- !u!23 &1625164577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96912,6 +97033,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4905028540094970, guid: 06b7f7aa2eda446498186f3608f4392b,
     type: 2}
   m_PrefabInternal: {fileID: 1816679254}
+--- !u!4 &1816944250 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4341482647804596, guid: 7b91159bdfdb0d04f93e0c83ac8b6fe7,
+    type: 2}
+  m_PrefabInternal: {fileID: 106915017}
 --- !u!1 &1817045293
 GameObject:
   m_ObjectHideFlags: 0
@@ -98514,7 +98640,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 2110304271}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -98523,7 +98649,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1097810087}
 --- !u!4 &1852454899
 Transform:
   m_ObjectHideFlags: 0
@@ -100528,7 +100654,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1824977452}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -100537,7 +100663,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 1119875808}
 --- !u!4 &1908059977
 Transform:
   m_ObjectHideFlags: 0
@@ -106026,7 +106152,7 @@ MonoBehaviour:
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
   MaxRot: 45
-  RefVector: {fileID: 736578656}
+  RefVector: {fileID: 1875797376}
   ValvePos: 0
   MessageTargets: []
   AudEvent_Release:
@@ -106035,7 +106161,7 @@ MonoBehaviour:
     VolumeRange: {x: 0, y: 0}
     PitchRange: {x: 0, y: 0}
     ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 1496793562}
+  Lever: {fileID: 978626393}
 --- !u!65 &1962407945
 BoxCollider:
   m_ObjectHideFlags: 0

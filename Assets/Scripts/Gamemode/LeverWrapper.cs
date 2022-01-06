@@ -3,6 +3,7 @@ using System.Collections;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace CustomScripts
 {
     /// <summary>
@@ -64,16 +65,21 @@ namespace CustomScripts
                     _isDown = true;
                     _lever.ForceBreakInteraction();
 
-                    LeverToggleEvent.Invoke();
-                    LeverOnEvent.Invoke();
+                    if (LeverToggleEvent != null)
+                        LeverToggleEvent.Invoke();
+                    if (LeverOnEvent != null)
+                        LeverOnEvent.Invoke();
                 }
 
                 else if (_isDown && _lever.ValvePos > .9f)
                 {
                     _isDown = false;
                     _lever.ForceBreakInteraction();
-                    LeverToggleEvent.Invoke();
-                    LeverOffEvent.Invoke();
+
+                    if (LeverToggleEvent != null)
+                        LeverToggleEvent.Invoke();
+                    if (LeverOffEvent != null)
+                        LeverOffEvent.Invoke();
                 }
 
                 _stoppedHoldingThisFrame = true;
@@ -107,15 +113,20 @@ namespace CustomScripts
             {
                 _isDown = false;
                 _lever.ForceBreakInteraction();
-                LeverToggleEvent.Invoke();
-                LeverOffEvent.Invoke();
+                if (LeverToggleEvent != null)
+                    LeverToggleEvent.Invoke();
+                if (LeverOffEvent != null)
+                    LeverOffEvent.Invoke();
             }
             else if (!_isDown && _lever.ValvePos > .9f)
             {
                 _isDown = true;
                 _lever.ForceBreakInteraction();
-                LeverToggleEvent.Invoke();
-                LeverOnEvent.Invoke();
+
+                if (LeverToggleEvent != null)
+                    LeverToggleEvent.Invoke();
+                if (LeverOnEvent != null)
+                    LeverOnEvent.Invoke();
             }
         }
     }

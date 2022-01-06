@@ -4,6 +4,7 @@ using System.Collections;
 using CustomScripts.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 namespace CustomScripts
 {
     public class RoundManager : MonoBehaviourSingleton<RoundManager>
@@ -79,19 +80,10 @@ namespace CustomScripts
 
             RoundNumber = 0;
 
-            if (Random.Range(0, 30) == 0)
-                Debug.Log("Are you sure your front doors are locked?");
-
-
             AdvanceRound();
 
-            OnGameStarted.Invoke();
-
-            // if (GameSettings.UseZosigs)
-            // {
-            //     GM.CurrentPlayerBody.SetHealthThreshold(1000f);
-            //     GM.CurrentPlayerBody.ResetHealth();
-            // }
+            if (OnGameStarted != null)
+                OnGameStarted.Invoke();
         }
 
         public void AdvanceRound()
@@ -121,8 +113,10 @@ namespace CustomScripts
 
             AudioManager.Instance.RoundStartSound.PlayDelayed(1);
 
-            OnZombiesLeftChanged.Invoke();
-            OnRoundChanged.Invoke();
+            if (OnZombiesLeftChanged != null)
+                OnZombiesLeftChanged.Invoke();
+            if (OnRoundChanged != null)
+                OnRoundChanged.Invoke();
         }
 
         public void EndRound()

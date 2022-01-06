@@ -60,7 +60,7 @@ namespace CustomScripts.Objects
 
         public void TryBuying()
         {
-            if (GameManager.Instance.TryRemovePoints(Cost) || IsFree)
+            if (IsFree || GameManager.Instance.TryRemovePoints(Cost))
             {
                 IsFree = false;
                 if (GameSettings.LimitedAmmo && !SameRebuy)
@@ -72,7 +72,7 @@ namespace CustomScripts.Objects
                         {
                             if (i == AMMO_SPAWNER_ID)
                                 continue;
-                            
+
                             ItemSpawners[i].ObjectId = Weapon.DefaultSpawners[i];
                             ItemSpawners[i].Spawn();
                         }
@@ -95,7 +95,7 @@ namespace CustomScripts.Objects
                         for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
                         {
                             ItemSpawners[AMMO_SPAWNER_ID].Spawn();
-                        } 
+                        }
                     }
 
                     // Updating text

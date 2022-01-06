@@ -81,8 +81,10 @@ namespace CustomScripts.Managers
 
             RoundManager.Instance.ZombiesLeft--;
 
-            RoundManager.OnZombiesLeftChanged.Invoke();
-            RoundManager.OnZombieKilled.Invoke(controller.gameObject);
+            if (RoundManager.OnZombiesLeftChanged != null)
+                RoundManager.OnZombiesLeftChanged.Invoke();
+            if (RoundManager.OnZombieKilled != null)
+                RoundManager.OnZombieKilled.Invoke(controller.gameObject);
 
 
             if (RoundManager.Instance.ZombiesLeft <= 0) //if (ExistingZombies.Count <= 0)

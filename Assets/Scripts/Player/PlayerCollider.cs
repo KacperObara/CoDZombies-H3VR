@@ -2,6 +2,7 @@
 
 using CustomScripts.Zombie;
 using UnityEngine;
+
 namespace CustomScripts
 {
     public class PlayerCollider : MonoBehaviour
@@ -25,12 +26,14 @@ namespace CustomScripts
 
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<CustomZombieController>().OnPlayerTouch();
+            if (other.GetComponent<CustomZombieController>())
+                other.GetComponent<CustomZombieController>().OnPlayerTouch();
         }
 
         private void OnTriggerExit(Collider other)
         {
-            other.GetComponent<CustomZombieController>().OnPlayerStopTouch();
+            if (other.GetComponent<CustomZombieController>())
+                other.GetComponent<CustomZombieController>().OnPlayerStopTouch();
         }
     }
 }

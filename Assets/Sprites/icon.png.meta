@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: a2d7546b1ad543a44959bec057178f12
-timeCreated: 1636472472
-licenseType: Free
+guid: 0148ce2cb3a59434fb095ed1aa374ee0
+timeCreated: 1641501366
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 4
@@ -64,5 +64,5 @@ TextureImporter:
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: zosig_weapons_by_arpy
+  assetBundleName: 
   assetBundleVariant: 

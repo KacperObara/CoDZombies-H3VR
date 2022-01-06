@@ -3,6 +3,7 @@ using System.Collections;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 namespace CustomScripts.Gamemode.GMDebug
 {
     public class CustomSosigSpawner : MonoBehaviour //TODO: Adapt this for Atlas
@@ -45,6 +46,7 @@ namespace CustomScripts.Gamemode.GMDebug
 
         [Tooltip("Set this a transform to make the Sosigs spawn with it's position and rotation as it's target.")]
         public Transform SosigTransformTarget;
+
         private IEnumerator _coroutine;
 
         // This needs to be a ScriptableObject because otherwise Unity throws a fit
@@ -97,7 +99,7 @@ namespace CustomScripts.Gamemode.GMDebug
                 new SosigSpawnerHelper.SpawnOptions //template SosigEnemyTemplate
                 {
                     SpawnActivated = SpawnActivated,
-                    IFF = IFF,
+                    Iff = Iff,
                     SpawnWithFullAmmo = SpawnWithFullAmmo,
                     EquipmentMode = EquipmentMode,
                     SpawnState = SpawnState,
