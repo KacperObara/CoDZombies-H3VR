@@ -8,13 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M4A1Classic
   m_EditorClassIdentifier: 
-  Description: 4d3143617262696e652075706772616465
+  Description: M1Carbine upgrade
   DefaultSpawners:
-  - 4d344131436c6173736963
-  - 4d6167617a696e655374616e6167313030726e64
+  - M4A1Classic
+  - MagazineStanag100rnd
+  - ScopeHAMComboScope4x24
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 2

@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: MP40
   m_EditorClassIdentifier: 
   Description: 
   DefaultSpawners:
-  - 4d503430
-  - 4d6167617a696e654d503430
+  - MP40
+  - MagazineMP40
   UpgradedWeapon: {fileID: 11400000, guid: 6708086abdde6474cbe30d5d7f3f6160, type: 2}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4

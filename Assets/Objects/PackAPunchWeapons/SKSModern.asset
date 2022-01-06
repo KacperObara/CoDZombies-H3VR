@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: SKSModern
   m_EditorClassIdentifier: 
-  Description: 4d6f73696e39315f33302075706772616465
+  Description: Mosin91_30 upgrade
   DefaultSpawners:
-  - 534b534d6f6465726e
-  - 4d6167617a696e65534b534d6f6465726e3230726e64
-  - 546163746963616c4c6173657231
-  - 5265666c65784c434f
+  - SKSModern
+  - MagazineSKSModern20rnd
+  - TacticalLaser1
+  - ReflexLCO
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 5

@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: ThompsonM1928
   m_EditorClassIdentifier: 
-  Description: 54686f6d70736f6e4d3141312075706772616465
+  Description: ThompsonM1A1 upgrade
   DefaultSpawners:
-  - 54686f6d70736f6e4d31393238
-  - 4d6167617a696e6554686f6d70736f6e4472756d313030
+  - ThompsonM1928
+  - MagazineThompsonDrum100
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 2

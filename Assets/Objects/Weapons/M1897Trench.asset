@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1897Trench
   m_EditorClassIdentifier: 
   Description: 
   DefaultSpawners:
-  - 4d313839375472656e6368
-  - 313247617567655368656c6c30304275636b73686f74
+  - M1897Trench
+  - 12GaugeShell00Buckshot
   UpgradedWeapon: {fileID: 11400000, guid: 9e8d5fa6dd2c61342a86b1d894fc1d0d, type: 2}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 18

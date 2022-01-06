@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: KWG1
   m_EditorClassIdentifier: 
-  Description: 427265616b416374696f6e53686f7274792075706772616465
+  Description: BreakActionShorty upgrade
   DefaultSpawners:
-  - 4b574731
-  - 4d6167617a696e654b5747
+  - KWG1
+  - MagazineKWG
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 12

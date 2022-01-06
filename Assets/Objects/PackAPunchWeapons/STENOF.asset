@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: STENOF
   m_EditorClassIdentifier: 
-  Description: 5374656e4d6b322075706772616465
+  Description: StenMk2 upgrade
   DefaultSpawners:
-  - 5354454e4f46
-  - 4d6167617a696e655354454e4f464472756d
+  - STENOF
+  - MagazineSTENOFDrum
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 3

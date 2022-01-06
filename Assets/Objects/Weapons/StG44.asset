@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: StG44
   m_EditorClassIdentifier: 
   Description: 
   DefaultSpawners:
-  - 5374473434
-  - 4d6167617a696e655374473434
+  - StG44
+  - MagazineStG44
   UpgradedWeapon: {fileID: 11400000, guid: df18338f664770f4395ef0d019c19c21, type: 2}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 2

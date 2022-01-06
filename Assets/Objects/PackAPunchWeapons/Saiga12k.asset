@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: Saiga12k
   m_EditorClassIdentifier: 
-  Description: 4d313839375472656e63682075706772616465
+  Description: M1897Trench upgrade
   DefaultSpawners:
-  - 536169676131326b
-  - 4d6167617a696e65536169676131326b3132726e64
+  - Saiga12k
+  - MagazineSaiga12k12rnd
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 18

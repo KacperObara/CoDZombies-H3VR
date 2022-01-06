@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: G3A3
   m_EditorClassIdentifier: 
-  Description: 4b39386b2075706772616465
+  Description: K98k upgrade
   DefaultSpawners:
-  - 47334133
-  - 4d6167617a696e6547334472756d
+  - G3A3
+  - MagazineG3Drum
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 3

@@ -8,16 +8,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1911Dillinger
   m_EditorClassIdentifier: 
-  Description: 4d313931312075706772616465
+  Description: M1911 upgrade
   DefaultSpawners:
-  - 4d3139313144696c6c696e676572
-  - 4d6167617a696e654d3139313144696c6c696e676572
-  - 53746f636b426572676d616e6e4e6f35
-  - 4d3139313144696c6c696e676572
-  - 53746f636b426572676d616e6e4e6f35
+  - M1911Dillinger
+  - MagazineM1911Dillinger
+  - StockBergmannNo5
+  - M1911Dillinger
+  - StockBergmannNo5
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4

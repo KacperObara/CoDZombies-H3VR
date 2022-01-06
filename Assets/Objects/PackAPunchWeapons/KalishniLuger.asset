@@ -8,14 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: KalishniLuger
   m_EditorClassIdentifier: 
-  Description: 4c756765725030382075706772616465
+  Description: LugerP08 upgrade
   DefaultSpawners:
-  - 4b616c6973686e694c75676572
-  - 4d6167617a696e655030384c756765724472756d
-  - 5265666c65784b6f627261
+  - KalishniLuger
+  - MagazineP08LugerDrum
+  - ReflexKobra
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4

@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -78965571, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: C4Detonator
   m_EditorClassIdentifier: 
-  Description: 537469656c68616e646772616e6174652075706772616465
+  Description: Stielhandgranate upgrade
   DefaultSpawners:
-  - 43344465746f6e61746f72
-  - 4334
+  - C4Detonator
+  - C4
   UpgradedWeapon: {fileID: 0}
   UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4
