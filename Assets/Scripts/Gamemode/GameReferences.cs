@@ -1,6 +1,8 @@
 #if H3VR_IMPORTED
+using System.Collections;
 using System.Collections.Generic;
 using Atlas;
+using Atlas.MappingComponents.Sandbox;
 using UnityEngine;
 
 namespace CustomScripts
@@ -32,20 +34,31 @@ namespace CustomScripts
             PlayerHead = DebugPlayerHead;
         }
 
-        private void Start()
-        {
-#if !UNITY_EDITOR
-            if (FistVR.GM.CurrentPlayerBody != null)
-                Player = FistVR.GM.CurrentPlayerBody.transform;
+//         private void Start()
+//         {
+// //#if !UNITY_EDITOR
+//             if (FistVR.GM.CurrentPlayerBody != null)
+//                 Player = FistVR.GM.CurrentPlayerBody.transform;
+//
+//             if (FistVR.GM.CurrentPlayerBody != null)
+//                 PlayerHead = FistVR.GM.CurrentPlayerBody.Head.transform;
+// //#endif
+//             if (FistVR.GM.CurrentPlayerBody != null)
+//             {
+//                 Debug.Log("WTF");
+//                 Debug.Log(Player.name);
+//             }
+//             
+//             
+//         }
 
-            if (FistVR.GM.CurrentPlayerBody != null)
-                PlayerHead = FistVR.GM.CurrentPlayerBody.Head.transform;
-#endif
-            if (FistVR.GM.CurrentPlayerBody != null)
-            {
-                Debug.Log("WTF");
-                Debug.Log(Player.name);
-            }
+        private IEnumerator Start()
+        {
+            while (FistVR.GM.CurrentPlayerBody == null)
+                yield return null;
+
+            Player = FistVR.GM.CurrentPlayerBody.transform;
+            PlayerHead = FistVR.GM.CurrentPlayerBody.Head.transform;
         }
 
         public bool IsPlayerClose(Transform pos, float dist)

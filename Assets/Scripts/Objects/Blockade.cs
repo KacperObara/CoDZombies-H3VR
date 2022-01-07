@@ -1,10 +1,12 @@
 #if H3VR_IMPORTED
 
 using System.Collections.Generic;
+using Atlas.MappingComponents.Sandbox;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace CustomScripts
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace CustomScripts
     public class Blockade : MonoBehaviour
     {
         public List<Transform> UnlockableZombieSpawnPoints;
-        public List<CustomSosigSpawner> UnlockableZosigSpawnPoints;
+        public List<CustomSosigSpawnPoint> UnlockableZosigSpawnPoints;
 
         public List<Text> CostTexts;
 
@@ -46,7 +48,7 @@ namespace CustomScripts
                     ZombieManager.Instance.ZombieSpawnPoints.Add(zombieSp);
             }
 
-            foreach (CustomSosigSpawner zosigSp in UnlockableZosigSpawnPoints)
+            foreach (CustomSosigSpawnPoint zosigSp in UnlockableZosigSpawnPoints)
             {
                 if (!ZombieManager.Instance.ZosigsSpawnPoints.Contains(zosigSp))
                     ZombieManager.Instance.ZosigsSpawnPoints.Add(zosigSp);

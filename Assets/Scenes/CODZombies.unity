@@ -4678,7 +4678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectId: K98k
-  SpawnOnStart: 1
+  SpawnOnStart: 0
 --- !u!1 &37895076
 GameObject:
   m_ObjectHideFlags: 0
@@ -6705,8 +6705,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 88984173}
-  - component: {fileID: 88984174}
   - component: {fileID: 88984175}
+  - component: {fileID: 88984174}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -6735,22 +6735,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 88984172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &88984175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8010,7 +8001,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291460000}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &112648841
 MonoBehaviour:
@@ -9188,7 +9179,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 427806117}
   - {fileID: 1158721578}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 0d087165281c46446bf80ca613944b76, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!1 &138161560
@@ -10749,8 +10740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 195882418}
   - component: {fileID: 195882420}
-  - component: {fileID: 195882419}
   - component: {fileID: 195882421}
+  - component: {fileID: 195882419}
   m_Layer: 0
   m_Name: PlayerSmallCollider
   m_TagString: Untagged
@@ -10779,7 +10770,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 195882417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b84800fdb62411cb459f4c4c459cd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 35f09eb6db6d941749de999f19a2e797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &195882420
@@ -11767,8 +11758,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 215374998}
-  - component: {fileID: 215374999}
   - component: {fileID: 215375000}
+  - component: {fileID: 215374999}
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
@@ -11797,22 +11788,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 215374997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &215375000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12822,7 +12804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectId: 792x57mmStripperClip
-  SpawnOnStart: 1
+  SpawnOnStart: 0
 --- !u!1 &234695228 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100656, guid: afe5485c6ef323748aed3967d1cef0f7, type: 3}
@@ -32521,8 +32503,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 497911485}
-  - component: {fileID: 497911486}
   - component: {fileID: 497911487}
+  - component: {fileID: 497911486}
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
@@ -32551,22 +32533,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 497911484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &497911487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34945,8 +34918,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 553447155}
-  - component: {fileID: 553447156}
   - component: {fileID: 553447157}
+  - component: {fileID: 553447156}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable (1)
   m_TagString: Untagged
@@ -34975,22 +34948,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 553447154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &553447157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35361,8 +35325,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 559958376}
-  - component: {fileID: 559958378}
   - component: {fileID: 559958377}
+  - component: {fileID: 559958378}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable (4)
   m_TagString: Untagged
@@ -35381,7 +35345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1948529696}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &559958377
 MonoBehaviour:
@@ -35403,22 +35367,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 559958375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!1 &562641048
 GameObject:
   m_ObjectHideFlags: 0
@@ -39654,7 +39609,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 1809810076}
   - {fileID: 2085242007}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!65 &642759360
@@ -52386,8 +52341,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 817478288}
-  - component: {fileID: 817478289}
   - component: {fileID: 817478290}
+  - component: {fileID: 817478289}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable (3)
   m_TagString: Untagged
@@ -52406,7 +52361,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1948529696}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &817478289
 MonoBehaviour:
@@ -52416,22 +52371,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 817478287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &817478290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53456,8 +53402,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 842792467}
-  - component: {fileID: 842792469}
   - component: {fileID: 842792468}
+  - component: {fileID: 842792469}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable (5)
   m_TagString: Untagged
@@ -53498,22 +53444,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 842792466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!4 &846318638
 Transform:
   m_ObjectHideFlags: 0
@@ -58060,7 +57997,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 354641482}
   - {fileID: 461873481}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 9bbbd9f491755c54591db534374ead33, type: 2}
   SameRebuy: 1
   IsFree: 0
 --- !u!65 &887061412
@@ -58145,7 +58082,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291460000}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &887994319
 MonoBehaviour:
@@ -60439,12 +60376,12 @@ MonoBehaviour:
   LeverToggleEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 1597813677}
+        m_MethodName: TryBuying
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -60845,7 +60782,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 435890746}
   - {fileID: 469354880}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: e96a62cc0edaf1841a7e6abfdc20ca89, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!23 &950838672
@@ -67112,7 +67049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1030788281
 Transform:
   m_ObjectHideFlags: 0
@@ -75897,8 +75834,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1268424811}
-  - component: {fileID: 1268424812}
   - component: {fileID: 1268424813}
+  - component: {fileID: 1268424812}
   m_Layer: 0
   m_Name: SpawnPoint (3)
   m_TagString: Untagged
@@ -75927,22 +75864,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268424810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &1268424813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76942,9 +76870,9 @@ Transform:
   - {fileID: 899127181}
   - {fileID: 1423845735}
   - {fileID: 1682149892}
-  - {fileID: 1622493498}
   - {fileID: 887994318}
   - {fileID: 112648840}
+  - {fileID: 1622493498}
   - {fileID: 211059031}
   m_Father: {fileID: 1366618069}
   m_RootOrder: 15
@@ -77957,7 +77885,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 258265417}
   - {fileID: 204465657}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: f8c5931c5f2821741ac8d60bfdde7540, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!1 &1310945823
@@ -83394,7 +83322,7 @@ Transform:
   - {fileID: 1858210736}
   - {fileID: 696960998}
   m_Father: {fileID: 1545790066}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1422105346
 Prefab:
@@ -85838,7 +85766,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 927098619}
   - {fileID: 709968221}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 3930d5ba0ccaf37488210ab38d4c3232, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!65 &1475188214
@@ -88549,8 +88477,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1550059868}
-  - {fileID: 1911983234}
   - {fileID: 1421653392}
+  - {fileID: 1911983234}
   - {fileID: 427928402}
   m_Father: {fileID: 1366618069}
   m_RootOrder: 17
@@ -90693,8 +90621,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1614620151}
-  - component: {fileID: 1614620152}
   - component: {fileID: 1614620153}
+  - component: {fileID: 1614620152}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable
   m_TagString: Untagged
@@ -90723,22 +90651,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1614620150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &1614620153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90860,7 +90779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291460000}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622493499
 MonoBehaviour:
@@ -100931,7 +100850,7 @@ Transform:
   - {fileID: 1133628054}
   - {fileID: 2088649405}
   m_Father: {fileID: 1545790066}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1912068218
 GameObject:
@@ -105853,9 +105772,9 @@ Transform:
   - {fileID: 1268424811}
   - {fileID: 1614620151}
   - {fileID: 553447155}
-  - {fileID: 559958376}
   - {fileID: 1971612856}
   - {fileID: 817478288}
+  - {fileID: 559958376}
   - {fileID: 842792467}
   m_Father: {fileID: 1366618069}
   m_RootOrder: 14
@@ -106485,8 +106404,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1971612856}
-  - component: {fileID: 1971612857}
   - component: {fileID: 1971612858}
+  - component: {fileID: 1971612857}
   m_Layer: 0
   m_Name: SpawnPoint Unlockable (2)
   m_TagString: Untagged
@@ -106505,7 +106424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1948529696}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1971612857
 MonoBehaviour:
@@ -106515,22 +106434,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971612855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676a162d29c304477bfcd46f4ab346b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 571c3f94d024d8740ad8731d2ba02617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
-  SpawnDelay: 0
-  SpawnInterval: 0
-  SpawnCount: 1
-  Active: 0
-  SpawnActivated: 1
-  Iff: 1
-  SpawnWithFullAmmo: 0
-  EquipmentMode: 0
-  SpawnState: 0
-  SosigTargetPosition: {x: 0, y: 0, z: 0}
-  SosigTargetRotation: {x: 0, y: 0, z: 0}
-  SosigTransformTarget: {fileID: 1465902223}
+  SpawnOnStart: 0
+  IFF: 1
+  SpawnState: 7
 --- !u!114 &1971612858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109093,7 +109003,7 @@ MonoBehaviour:
   ItemSpawners:
   - {fileID: 796154725}
   - {fileID: 1987268726}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 45b126c1e5af83d45820dac9773325b5, type: 2}
   SameRebuy: 0
   IsFree: 0
 --- !u!65 &2033739151

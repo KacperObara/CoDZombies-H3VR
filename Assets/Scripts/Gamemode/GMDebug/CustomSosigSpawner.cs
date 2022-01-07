@@ -91,7 +91,7 @@ namespace CustomScripts.Gamemode.GMDebug
         /// </summary>
         public void Spawn()
         {
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
             // Pick a random template and spawn the Sosig
 
             //var template = _enemyTemplates[Random.Range(0, _enemyTemplates.Length)] as SosigEnemyTemplate;
@@ -107,7 +107,7 @@ namespace CustomScripts.Gamemode.GMDebug
                     SosigTargetRotation =
                         SosigTransformTarget ? SosigTransformTarget.rotation.eulerAngles : SosigTargetRotation
                 }, transform.position, transform.forward);
-#endif
+//#endif
         }
 
         /// <summary>

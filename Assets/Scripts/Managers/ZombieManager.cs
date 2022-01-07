@@ -1,6 +1,7 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using System.Collections.Generic;
+using Atlas.MappingComponents.Sandbox;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Zombie;
 using FistVR;
@@ -14,7 +15,7 @@ namespace CustomScripts.Managers
         [HideInInspector] public List<ZombieController> ExistingZombies;
 
         public List<Transform> ZombieSpawnPoints;
-        public List<CustomSosigSpawner> ZosigsSpawnPoints;
+        public List<CustomSosigSpawnPoint> ZosigsSpawnPoints;
 
         public Transform ZombieTarget;
 
@@ -61,15 +62,16 @@ namespace CustomScripts.Managers
 
         public void SpawnZosig()
         {
-            CustomSosigSpawner spawner =
+            CustomSosigSpawnPoint spawner =
                 ZosigsSpawnPoints[Random.Range(0, ZosigsSpawnPoints.Count)];
 
             Window targetWindow = spawner.GetComponent<ZombieSpawner>().WindowWaypoint;
             if (targetWindow != null)
                 ZombieTarget = targetWindow.ZombieWaypoint;
 
-            spawner.SpawnCount = 1;
-            spawner.SetActive(true);
+            spawner.Spawn();
+            // spawner.SpawnCount = 1;
+            // spawner.SetActive(true);
         }
 
         public void OnZombieDied(ZombieController controller)

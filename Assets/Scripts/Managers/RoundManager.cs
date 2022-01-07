@@ -125,7 +125,6 @@ namespace CustomScripts
             StartCoroutine(DelayedAdvanceRound());
         }
 
-
         private IEnumerator DelayedAdvanceRound()
         {
             if (GameSettings.LimitedAmmo)
