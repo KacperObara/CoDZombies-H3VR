@@ -150,22 +150,16 @@ namespace CustomScripts.Zombie
             }
         }
 
+        // Theoretically they should be stunned when hitting window too, but little complicated and gives almost no benefit to the player
         public IEnumerator Stun()
         {
-            if (State != State.Dead)
+            if (State == State.Chase)
             {
                 _animator.CrossFade("Stunned", .25f, 0, 0);
 
                 yield return new WaitForSeconds(2f);
 
-                if (State == State.AttackWindow)
-                {
-                    _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
-                }
-                else
-                {
-                    StartMovementAnimation();
-                }
+                StartMovementAnimation();
             }
         }
 
@@ -188,27 +182,28 @@ namespace CustomScripts.Zombie
                 StartCoroutine(RotateTowards(window.transform.position, 5f));
 
                 LastInteractedWindow = window;
+
                 OnTouchingWindow();
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (State == State.Dead)
-                return;
-
-            if (other.GetComponent<WindowTrigger>())
-            {
-                if (State == State.AttackWindow)
-                {
-                    State = State.Chase;
-                    _agent.speed = 0.1f;
-
-                    StartMovementAnimation();
-                    ChangeTarget(GameReferences.Instance.Player);
-                }
-            }
-        }
+        // private void OnTriggerExit(Collider other)
+        // {
+        //     if (State == State.Dead)
+        //         return;
+        //
+        //     if (other.GetComponent<WindowTrigger>())
+        //     {
+        //         if (State == State.AttackWindow)
+        //         {
+        //             State = State.Chase;
+        //             _agent.speed = 0.1f;
+        //
+        //             StartMovementAnimation();
+        //             ChangeTarget(GameReferences.Instance.Player);
+        //         }
+        //     }
+        // }
 
         public override void OnHit(float damage, bool headHit = false)
         {
@@ -285,6 +280,9 @@ namespace CustomScripts.Zombie
         public void OnHitPlayer()
         {
             if (State == State.Dead)
+                return;
+
+            if (PlayerData.Instance.IsInvincible)
                 return;
 
             IsBeingHit = true;

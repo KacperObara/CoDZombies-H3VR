@@ -37,16 +37,16 @@ namespace CustomScripts.Gamemode
 
         private void OnPlayerDeath()
         {
-            Debug.Log("On player's death");
             if (PlayerData.Instance.QuickRevivePerkActivated)
             {
                 PlayerData.Instance.QuickRevivePerkActivated = false;
-                Debug.Log("Quick revive working");
 
                 transform.position = GameReferences.Instance.Player.position;
 
                 GM.CurrentPlayerBody.ActivatePower(PowerupType.Invincibility, PowerUpIntensity.High, PowerUpDuration.VeryShort,
                     false, false);
+
+                StartCoroutine(PlayerData.Instance.ActivateInvincibility(10f));
 
                 GM.CurrentPlayerBody.HealPercent(.5f);
 
@@ -61,7 +61,6 @@ namespace CustomScripts.Gamemode
 
             orig.Invoke(self);
 
-            Debug.Log("PlayerRespawned!");
             transform.position = EndGameSpawnerPos.position;
         }
 

@@ -1,6 +1,7 @@
 #if H3VR_IMPORTED
 
 using CustomScripts.Managers;
+using CustomScripts.Player;
 using CustomScripts.Powerups;
 using UnityEngine;
 namespace CustomScripts.Gamemode.GMDebug
@@ -40,6 +41,11 @@ namespace CustomScripts.Gamemode.GMDebug
             {
                 if (ZombieManager.Instance.ExistingZombies.Count > 0)
                     ZombieManager.Instance.ExistingZombies[0].OnHit(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(PlayerData.Instance.ActivateStun());
             }
 
             if (Input.GetKeyDown(KeyCode.M))

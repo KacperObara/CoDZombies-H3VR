@@ -21,25 +21,20 @@ namespace CustomScripts.Player
         public float DamageModifier = 1f;
         public float MoneyModifier = 1f;
 
-        // public float LargeItemSpeed = 4f;
-        // public float MassiveItemSpeed = 3f;
-        // public float NormalSpeed = 5f;
-        // private float realSpeed;
         public float LargeItemSpeedMult;
         public float MassiveItemSpeedMult;
         private float currentSpeedMult = 1f;
 
-        public bool InstaKill = false;
+        public bool InstaKill;
+        public bool IsInvincible;
 
-        public bool DeadShotPerkActivated = false;
-        public bool DoubleTapPerkActivated = false;
-        public bool SpeedColaPerkActivated = false;
-        public bool QuickRevivePerkActivated = false;
-        public bool StaminUpPerkActivated = false;
-        public bool PHDFlopperPerkActivated = false;
-        public bool ElectricCherryPerkActivated = false;
-
-
+        public bool DeadShotPerkActivated;
+        public bool DoubleTapPerkActivated;
+        public bool SpeedColaPerkActivated;
+        public bool QuickRevivePerkActivated;
+        public bool StaminUpPerkActivated;
+        public bool PHDFlopperPerkActivated;
+        public bool ElectricCherryPerkActivated;
 
         public FVRViveHand LeftHand { get { return GM.CurrentMovementManager.Hands[0]; } }
         public FVRViveHand RightHand { get { return GM.CurrentMovementManager.Hands[1]; } }
@@ -185,7 +180,7 @@ namespace CustomScripts.Player
         }
 
         private bool stunThrottle = false;
-        private IEnumerator ActivateStun()
+        public IEnumerator ActivateStun()
         {
             stunThrottle = true;
 
@@ -208,8 +203,14 @@ namespace CustomScripts.Player
             stunThrottle = false;
         }
 
+        public IEnumerator ActivateInvincibility(float time)
+        {
+            IsInvincible = true;
 
+            yield return new WaitForSeconds(10f);
 
+            IsInvincible = false;
+        }
 
         private void OnDestroy()
         {
