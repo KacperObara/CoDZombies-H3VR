@@ -2184,7 +2184,7 @@ Animator:
   m_GameObject: {fileID: 1621272781823170}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 83df9562de1b27646afd2f8bfb8d8927, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5159f0a32b7ca214f8d2bd6b5fd21862, type: 2}
+  m_Controller: {fileID: 9100000, guid: e911e007000835d409b4c5d02f227c3c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 1
@@ -2283,13 +2283,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LastInteractedWindow: {fileID: 0}
   Target: {fileID: 0}
-  PointsOnHit: 10
-  PointsOnKill: 100
   HeadObject: {fileID: 1356950884735104}
   State: 0
   Health: 0
-  RunAnimationIndex: 0
-  AnimIndex: 0
 --- !u!114 &114247481788568938
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,6 +20,7 @@ namespace CustomScripts.Gamemode.GMDebug
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
+                GameSettings.Instance.ToggleUseZosigs();
                 RoundManager.Instance.StartGame();
             }
 
@@ -39,6 +40,11 @@ namespace CustomScripts.Gamemode.GMDebug
             {
                 if (ZombieManager.Instance.ExistingZombies.Count > 0)
                     ZombieManager.Instance.ExistingZombies[0].OnHit(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                GameManager.Instance.AddPoints(300);
             }
         }
 

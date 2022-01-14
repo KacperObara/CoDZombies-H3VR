@@ -6,18 +6,28 @@ using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CustomScripts.Managers
 {
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
     {
-        public List<ZombieController> AllZombies;
+        public AnimationCurve ZombieCountCurve;
+        public AnimationCurve CustomZombieHPCurve;
+        public AnimationCurve ZosigHPCurve;
+        public AnimationCurve ZosigLinkIntegrityCurve;
+
+        public int CustomZombieDamage = 2000;
+        public int PointsOnHit = 10;
+        public int PointsOnKill = 100;
+
+        public List<ZombieController> AllCustomZombies;
         [HideInInspector] public List<ZombieController> ExistingZombies;
 
-        public List<Transform> ZombieSpawnPoints;
-        public List<CustomSosigSpawnPoint> ZosigsSpawnPoints;
+        public List<Transform> CustomZombieSpawnPoints;
+        public List<CustomSosigSpawnPoint> ZosigSpawnPoints;
 
-        public Transform ZombieTarget;
+        private Transform _zombieTarget;
 
         public override void Awake()
         {
@@ -26,29 +36,23 @@ namespace CustomScripts.Managers
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
         }
 
-        private void OnDestroy()
-        {
-            GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
-            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
-        }
-
         public void SpawnZombie(float delay)
         {
-            StartCoroutine(DelayedZombieSpawn(delay));
+            StartCoroutine(DelayedCustomZombieSpawn(delay));
         }
 
         public void OnZombieSpawned(ZombieController controller)
         {
             Transform spawnPoint =
-                ZombieSpawnPoints[Random.Range(0, ZombieSpawnPoints.Count)];
+                CustomZombieSpawnPoints[Random.Range(0, CustomZombieSpawnPoints.Count)];
 
             controller.transform.position = spawnPoint.position;
 
             Window targetWindow = spawnPoint.GetComponent<ZombieSpawner>().WindowWaypoint;
             if (targetWindow != null)
-                ZombieTarget = targetWindow.ZombieWaypoint;
+                _zombieTarget = targetWindow.ZombieWaypoint;
 
-            controller.Initialize(ZombieTarget);
+            controller.Initialize(_zombieTarget);
             ExistingZombies.Add(controller);
         }
 
@@ -56,64 +60,49 @@ namespace CustomScripts.Managers
         {
             ZombieController controller = zosig.gameObject.AddComponent<ZosigZombieController>();
 
-            controller.Initialize(ZombieTarget);
+            controller.Initialize(_zombieTarget);
             ExistingZombies.Add(controller);
         }
 
         public void SpawnZosig()
         {
             CustomSosigSpawnPoint spawner =
-                ZosigsSpawnPoints[Random.Range(0, ZosigsSpawnPoints.Count)];
+                ZosigSpawnPoints[Random.Range(0, ZosigSpawnPoints.Count)];
 
             Window targetWindow = spawner.GetComponent<ZombieSpawner>().WindowWaypoint;
             if (targetWindow != null)
-                ZombieTarget = targetWindow.ZombieWaypoint;
+                _zombieTarget = targetWindow.ZombieWaypoint;
 
             spawner.Spawn();
-            // spawner.SpawnCount = 1;
-            // spawner.SetActive(true);
         }
 
         public void OnZombieDied(ZombieController controller)
         {
-            if (!GameSettings.UseZosigs)
-                StartCoroutine(DelayedZombieDespawn(controller.GetComponent<CustomZombieController>()));
+            if (GameSettings.UseCustomEnemies)
+                StartCoroutine(DelayedCustomZombieDespawn(controller.GetComponent<CustomZombieController>()));
 
             ExistingZombies.Remove(controller);
 
             RoundManager.Instance.ZombiesLeft--;
 
+            if (RoundManager.Instance.ZombiesLeft <= 0)
+            {
+                RoundManager.Instance.EndRound();
+            }
+
             if (RoundManager.OnZombiesLeftChanged != null)
                 RoundManager.OnZombiesLeftChanged.Invoke();
             if (RoundManager.OnZombieKilled != null)
                 RoundManager.OnZombieKilled.Invoke(controller.gameObject);
-
-
-            if (RoundManager.Instance.ZombiesLeft <= 0) //if (ExistingZombies.Count <= 0)
-            {
-                RoundManager.Instance.EndRound();
-
-                CleanZombies();
-            }
         }
 
-
-        public void CleanZombies()
-        {
-            for (int i = ExistingZombies.Count - 1; i >= 0; i--)
-            {
-                ExistingZombies[i].OnHit(9999);
-                Debug.LogWarning("There are still zombies existing when they shouldn't!");
-            }
-        }
-
-        private IEnumerator DelayedZombieSpawn(float delay)
+        private IEnumerator DelayedCustomZombieSpawn(float delay)
         {
             yield return new WaitForSeconds(delay);
 
-            ZombieTarget = GameReferences.Instance.Player;
+            _zombieTarget = GameReferences.Instance.Player;
 
-            if (GameSettings.UseZosigs)
+            if (!GameSettings.UseCustomEnemies)
             {
                 SpawnZosig();
             }
@@ -123,36 +112,44 @@ namespace CustomScripts.Managers
             }
         }
 
-        private IEnumerator DelayedZombieDespawn(CustomZombieController controller)
+        private IEnumerator DelayedCustomZombieDespawn(CustomZombieController controller)
         {
             yield return new WaitForSeconds(5f);
             ZombiePool.Instance.Despawn(controller);
         }
-
-
-        // Zosig stuff
-
-
-        // private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass,
-        //     Sosig.SosigDeathType deathtype)
-        // {
-        //     orig.Invoke(self, damclass, deathtype);
-        //     //self.GetComponent<ZosigZombieController>().OnKill();
-        // }
 
         private void OnSosigDied(Sosig sosig)
         {
             sosig.GetComponent<ZosigZombieController>().OnKill();
         }
 
-// #if !UNITY_EDITOR_LINUX //MMHook dont work on Unity-Linux 
         private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
             SosigLink link)
         {
+            if (d.Class == Damage.DamageClass.Melee &&
+                d.Source_IFF != GM.CurrentPlayerBody.GetPlayerIFF())
+            {
+                d.Dam_Blinding = 0;
+                d.Dam_TotalKinetic = 0;
+                d.Dam_TotalEnergetic = 0;
+                d.Dam_Blunt = 0;
+                d.Dam_Chilling = 0;
+                d.Dam_Cutting = 0;
+                d.Dam_Thermal = 0;
+                d.Dam_EMP = 0;
+                d.Dam_Piercing = 0;
+                d.Dam_Stunning = 0;
+            }
+
             orig.Invoke(self, d, link);
-            self.GetComponent<ZosigZombieController>().OnGetHit(d);
+            self.GetComponent<ZosigZombieController>().OnHit(d);
         }
-// #endif
+
+        private void OnDestroy()
+        {
+            GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
+            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
+        }
     }
 }
 #endif

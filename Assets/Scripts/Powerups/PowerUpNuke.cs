@@ -16,18 +16,6 @@ namespace CustomScripts
 
         public override void Spawn(Vector3 pos)
         {
-            if (Renderer == null) // for error debugging
-            {
-                Debug.LogWarning("NukePowerUp spawn failed! renderer == null Tell Kodeman");
-                return;
-            }
-
-            if (_animator == null)
-            {
-                Debug.LogWarning("NukePowerUp spawn failed! animator == null Tell Kodeman");
-                return;
-            }
-
             transform.position = pos;
             Renderer.enabled = true;
             _animator.Play("Rotating");

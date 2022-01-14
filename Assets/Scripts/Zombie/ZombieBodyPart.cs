@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using CustomScripts.Player;
 using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
@@ -47,9 +48,17 @@ namespace CustomScripts
 
 
             if (PartDamageMultiplier == 3)
+            {
+                // Custom zombies operate on small damage numbers for now, so this modifier can change damage by less or more than 20%
+                if (PlayerData.Instance.DeadShotPerkActivated)
+                    damage = Mathf.CeilToInt(damage * 1.2f);
+
                 Controller.OnHit(damage, true);
+            }
             else
+            {
                 Controller.OnHit(damage);
+            }
         }
     }
 }

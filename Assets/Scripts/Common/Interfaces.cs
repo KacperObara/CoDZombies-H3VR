@@ -1,6 +1,8 @@
 #if H3VR_IMPORTED
 
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace CustomScripts
 {
     public interface IModifier
@@ -18,6 +20,11 @@ namespace CustomScripts
     {
         public abstract void ApplyModifier();
         public abstract void Spawn(Vector3 pos);
+    }
+
+    public interface IPurchasable
+    {
+        int PurchaseCost { get; }
     }
 }
 

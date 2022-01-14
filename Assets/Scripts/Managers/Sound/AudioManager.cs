@@ -10,6 +10,12 @@ namespace CustomScripts
         public List<AudioClip> FarZombieSounds;
         public List<AudioClip> CloseZombieSounds;
 
+        public AudioSource MainAudioSource;
+        public void Play(AudioClip audioClip, float volume)
+        {
+            MainAudioSource.PlayOneShot(audioClip, volume);
+        }
+
         public AudioSource BuySound;
         public AudioSource DrinkSound;
 

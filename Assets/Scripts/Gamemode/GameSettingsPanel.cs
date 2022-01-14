@@ -38,7 +38,7 @@ namespace CustomScripts
             WeakerEnemies.text = GameSettings.WeakerEnemies ? "Enabled" : "Disabled";
             LimitedAmmo.text = GameSettings.LimitedAmmo ? "Enabled" : "Disabled";
             BackgroundMusic.text = GameSettings.BackgroundMusic ? "Enabled" : "Disabled";
-            UseZosigs.text = GameSettings.UseZosigs ? "Enabled" : "Disabled";
+            UseZosigs.text = GameSettings.UseCustomEnemies ? "Enabled" : "Disabled";
             ItemSpawnerStatus.text = GameSettings.ItemSpawnerSpawned ? "Spawned" : "Not spawned";
         }
     }

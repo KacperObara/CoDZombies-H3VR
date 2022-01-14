@@ -12,6 +12,7 @@ namespace CustomScripts.Powerups
 
         public CustomItemSpawner MinigunSpawner;
         public CustomItemSpawner MagazineSpawner;
+
         private Animator _animator;
         private FVRPhysicalObject _magazineObject;
 
@@ -24,18 +25,6 @@ namespace CustomScripts.Powerups
 
         public override void Spawn(Vector3 pos)
         {
-            if (Renderer == null) // for error debugging
-            {
-                Debug.LogWarning("DeathMachine spawn failed! renderer == null Tell Kodeman");
-                return;
-            }
-
-            if (_animator == null)
-            {
-                Debug.LogWarning("DeathMachine spawn failed! animator == null Tell Kodeman");
-                return;
-            }
-
             transform.position = pos;
             Renderer.enabled = true;
             _animator.Play("Rotating");

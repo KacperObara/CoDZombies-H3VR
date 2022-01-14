@@ -20,40 +20,9 @@ namespace CustomScripts
         [HideInInspector] public int RoundNumber = 0;
         [HideInInspector] public int ZombiesLeft;
 
-        public int ZombieStartHp = 2;
-
-        [Tooltip("How much zombie HP is added per round")]
-        public int ZombieRoundHpIncrement = 1;
-
-        public int ZombieStartCount = 2;
-
         public int ZombieFastWalkRound = 4;
         public int ZombieRunRound = 6;
-        private readonly int _zombieLimit = 20;
-
-
-        private GameManager _gameManager;
-
-        [Tooltip("How much zombies are added per round")]
-        private int _zombieRoundCountIncrement; // Make public and expand
-
-        public int ZombieHp
-        {
-            get
-            {
-                return ZombieStartHp + RoundNumber * ZombieRoundHpIncrement;
-                // 3 4 5 6 7...
-            }
-        }
-
-        public int WeakerZombieHp
-        {
-            get
-            {
-                return ZombieStartHp + RoundNumber / 2;
-                // 2 3 3 4 4 5 5...
-            }
-        }
+        private const int zombieLimit = 20;
 
         public bool IsFastWalking
         {
@@ -65,15 +34,9 @@ namespace CustomScripts
             get { return RoundNumber >= ZombieRunRound; }
         }
 
-        private void Start()
-        {
-            _gameManager = GameManager.Instance;
-        }
-
         public void StartGame()
         {
             StartButton.SetActive(false);
-            GameReferences.Instance.Respawn.position = _gameManager.RespawnWaypoint.position;
 
             GameManager.Instance.FirstShop.IsFree = true;
             GameManager.Instance.FirstShop.TryBuying();
@@ -93,16 +56,16 @@ namespace CustomScripts
 
             RoundNumber++;
 
+            int zombiesToSpawn = 0;
+
+
             if (GameSettings.MoreEnemies)
-                _zombieRoundCountIncrement = 2;
+                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber) + 3);
             else
-                _zombieRoundCountIncrement = 1;
+                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber));
 
-            ZombieManager.Instance.CleanZombies();
-
-            var zombiesToSpawn = ZombieStartCount + RoundNumber * _zombieRoundCountIncrement;
-            if (zombiesToSpawn > _zombieLimit)
-                zombiesToSpawn = _zombieLimit;
+            if (zombiesToSpawn > zombieLimit)
+                zombiesToSpawn = zombieLimit;
 
             for (int i = 0; i < zombiesToSpawn; i++)
             {

@@ -39,7 +39,7 @@ namespace CustomScripts
 
             soundPoolable.AudioSource.Play();
 
-            Invoke("PlayRandomSound", Random.Range(4f, 6f)); // TODO possible stack overflow? / Expensive method
+            Invoke("PlayRandomSound", Random.Range(4f, 6f));
         }
     }
 }

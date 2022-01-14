@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace CustomScripts.Objects
 {
-    public class WallShop : MonoBehaviour
+    public class WallShop : MonoBehaviour, IPurchasable
     {
         private const int AMMO_SPAWNER_ID = 1;
         public bool ExistsInLimitedAmmo = true;
@@ -18,6 +18,8 @@ namespace CustomScripts.Objects
 
         public string Name;
         public int Cost;
+
+        public int PurchaseCost { get { return Cost; } }
 
         public Text NameText;
         public Text CostText;

@@ -1,8 +1,11 @@
 #if H3VR_IMPORTED
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 namespace CustomScripts
 {
     public class MysteryBoxMover : MonoBehaviour
@@ -12,7 +15,12 @@ namespace CustomScripts
         [Range(0, 100)] public float TeleportChance = 20f;
         public int SafeRollsProvided = 3;
 
-        public AudioSource ByeByeSound;
+        //public AudioSource ByeByeSound;
+        //public AudioSource ByeByeSound;
+        public AudioClip TeddyBearSound;
+        public AudioClip SecretTeddyBearSound;
+
+        public Transform TeddyBear;
 
         [HideInInspector] public Transform CurrentPos;
         [HideInInspector] public int CurrentRoll = 0;
@@ -60,9 +68,44 @@ namespace CustomScripts
             return (Random.Range(0, 100) <= TeleportChance);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                StartTeleportAnim();
+            }
+        }
+
         public void StartTeleportAnim()
         {
-            ByeByeSound.Play();
+            int secretTeddyChance = Random.Range(0, 5801);
+            GameObject teddy;
+
+            if (secretTeddyChance == 0)
+            {
+                teddy = TeddyBear.GetChild(1).gameObject;
+
+                AudioManager.Instance.Play(SecretTeddyBearSound, 1);
+            }
+            else
+            {
+                teddy = TeddyBear.GetChild(0).gameObject;
+
+                AudioManager.Instance.Play(TeddyBearSound, 1f);
+            }
+            TeddyBear.GetComponent<Animator>().Play("Activation");
+            teddy.SetActive(true);
+
+            StartCoroutine(DelayedAnimation(teddy));
+        }
+
+        private IEnumerator DelayedAnimation(GameObject teddy)
+        {
+            yield return new WaitForSeconds(3f);
+
+            teddy.SetActive(false);
+
+            yield return new WaitForSeconds(1.2f);
 
             _animator.Play("Teleport");
             StartCoroutine(DelayedTeleport());

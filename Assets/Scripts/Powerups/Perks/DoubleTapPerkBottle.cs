@@ -1,8 +1,10 @@
-#if H3VR_IMPORTED
+using CustomScripts.Gamemode;
 using CustomScripts.Managers;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
+using FistVR;
 using UnityEngine;
+
 namespace CustomScripts
 {
     public class DoubleTapPerkBottle : MonoBehaviour, IModifier
@@ -12,7 +14,7 @@ namespace CustomScripts
         public void ApplyModifier()
         {
             PlayerData.Instance.DoubleTapPerkActivated = true;
-            if (GameSettings.UseZosigs)
+            if (!GameSettings.UseCustomEnemies)
             {
                 for (int i = 0; i < ZombieManager.Instance.ExistingZombies.Count; i++)
                 {
@@ -20,10 +22,19 @@ namespace CustomScripts
                 }
             }
 
+            FVRFireArm heldWeapon = PlayerData.Instance.LeftHand.CurrentInteractable as FVRFireArm;
+            if (heldWeapon != null)
+                heldWeapon.GetComponent<WeaponWrapper>().OnWeaponGrabbed();
+
+            heldWeapon = PlayerData.Instance.RightHand.CurrentInteractable as FVRFireArm;
+            if (heldWeapon != null)
+                heldWeapon.GetComponent<WeaponWrapper>().OnWeaponGrabbed();
+
+
             PlayerData.Instance.DamageModifier = DamageMultiplier;
             AudioManager.Instance.DrinkSound.Play();
+
             Destroy(gameObject);
         }
     }
 }
-#endif

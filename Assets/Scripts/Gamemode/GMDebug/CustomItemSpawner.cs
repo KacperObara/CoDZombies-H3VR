@@ -22,7 +22,7 @@ namespace CustomScripts.Gamemode.GMDebug
             FVRObject obj = IM.OD[ObjectId];
             GameObject callback = obj.GetGameObject();
 
-            GameObject go = Instantiate(callback, transform.position, transform.rotation, transform); //TODO: Replace with real pos
+            GameObject go = Instantiate(callback, transform.position, transform.rotation);
             go.SetActive(true);
 
             SpawnedObject = go;

@@ -1,24 +1,26 @@
-#if H3VR_IMPORTED
+using FistVR;
 using UnityEngine;
+
 namespace CustomScripts
 {
-    public class PerkShop : MonoBehaviour
+    public class PerkShop : MonoBehaviour, IPurchasable
     {
         public int Cost;
+        public int PurchaseCost { get { return Cost; } }
 
         public GameObject Bottle;
         public Transform SpawnPoint;
 
-        private bool _alreadyUsed;
+        private bool alreadyUsed = false;
 
         public void TryBuying()
         {
-            if (_alreadyUsed)
+            if (alreadyUsed)
                 return;
 
             if (GameManager.Instance.TryRemovePoints(Cost))
             {
-                _alreadyUsed = true;
+                alreadyUsed = true;
 
                 Bottle.transform.position = SpawnPoint.position;
 
@@ -27,4 +29,3 @@ namespace CustomScripts
         }
     }
 }
-#endif

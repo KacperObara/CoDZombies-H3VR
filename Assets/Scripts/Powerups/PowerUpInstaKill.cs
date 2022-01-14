@@ -16,18 +16,6 @@ namespace CustomScripts.Powerups
 
         public override void Spawn(Vector3 pos)
         {
-            if (Renderer == null) // for error debugging
-            {
-                Debug.LogWarning("InstaKill spawn failed! renderer == null Tell Kodeman");
-                return;
-            }
-
-            if (_animator == null)
-            {
-                Debug.LogWarning("InstaKill spawn failed! animator == null Tell Kodeman");
-                return;
-            }
-
             transform.position = pos;
             Renderer.enabled = true;
             _animator.Play("Rotating");

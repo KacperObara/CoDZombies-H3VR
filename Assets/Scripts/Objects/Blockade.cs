@@ -13,7 +13,7 @@ namespace CustomScripts
     /// Blocks both player and zombies, when it's removed, it checks and enables unlockable spawn points for zombies.
     /// Because there is no reason to spawn zombies on the blocked side of the map
     /// </summary>
-    public class Blockade : MonoBehaviour
+    public class Blockade : MonoBehaviour, IPurchasable
     {
         public List<Transform> UnlockableZombieSpawnPoints;
         public List<CustomSosigSpawnPoint> UnlockableZosigSpawnPoints;
@@ -21,6 +21,7 @@ namespace CustomScripts
         public List<Text> CostTexts;
 
         public int Cost;
+        public int PurchaseCost { get { return Cost; } }
 
         private bool _alreadyUsed;
 
@@ -44,14 +45,14 @@ namespace CustomScripts
 
             foreach (Transform zombieSp in UnlockableZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZombieSpawnPoints.Contains(zombieSp))
-                    ZombieManager.Instance.ZombieSpawnPoints.Add(zombieSp);
+                if (!ZombieManager.Instance.CustomZombieSpawnPoints.Contains(zombieSp))
+                    ZombieManager.Instance.CustomZombieSpawnPoints.Add(zombieSp);
             }
 
             foreach (CustomSosigSpawnPoint zosigSp in UnlockableZosigSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZosigsSpawnPoints.Contains(zosigSp))
-                    ZombieManager.Instance.ZosigsSpawnPoints.Add(zosigSp);
+                if (!ZombieManager.Instance.ZosigSpawnPoints.Contains(zosigSp))
+                    ZombieManager.Instance.ZosigSpawnPoints.Add(zosigSp);
             }
 
             AudioManager.Instance.BuySound.Play();

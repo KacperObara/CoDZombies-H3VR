@@ -1,36 +1,27 @@
-#if H3VR_IMPORTED
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using CustomScripts.Gamemode;
 using FistVR;
 using UnityEngine;
+
 namespace CustomScripts.Powerups
 {
     public class PowerUpMaxAmmo : PowerUp
     {
+        private Animator animator;
         public MeshRenderer Renderer;
-        private Animator _animator;
 
         private void Awake()
         {
-            _animator = transform.GetComponent<Animator>();
+            animator = transform.GetComponent<Animator>();
         }
 
         public override void Spawn(Vector3 pos)
         {
-            if (Renderer == null) // for error debugging
-            {
-                Debug.LogWarning("MaxAmmoPowerUp spawn failed! renderer == null Tell Kodeman");
-                return;
-            }
-
-            if (_animator == null)
-            {
-                Debug.LogWarning("MaxAmmoPowerUp spawn failed! animator == null Tell Kodeman");
-                return;
-            }
-
             transform.position = pos;
             Renderer.enabled = true;
-            _animator.Play("Rotating");
+            animator.Play("Rotating");
             StartCoroutine(DespawnDelay());
         }
 
@@ -38,19 +29,48 @@ namespace CustomScripts.Powerups
         {
             foreach (FVRQuickBeltSlot slot in GM.CurrentPlayerBody.QuickbeltSlots)
             {
+                MagazineWrapper magazineWrapper = null;
                 FVRFireArmMagazine magazine = slot.CurObject as FVRFireArmMagazine;
                 if (magazine)
                 {
-                    magazine.ReloadMagWithType(magazine.DefaultLoadingPattern.Classes[0]);
+                    magazineWrapper = magazine.GetComponent<MagazineWrapper>();
+                    if (magazineWrapper)
+                        magazine.ReloadMagWithType(magazineWrapper.RoundClass);
+                    else
+                        magazine.ReloadMagWithType(magazine.DefaultLoadingPattern.Classes[0]);
                 }
 
                 FVRFireArmClip clip = slot.CurObject as FVRFireArmClip;
                 if (clip)
                 {
-                    clip.ReloadClipWithType(clip.DefaultLoadingPattern.Classes[0]);
+                    magazineWrapper = clip.GetComponent<MagazineWrapper>();
+                    if (magazineWrapper)
+                        clip.ReloadClipWithType(magazineWrapper.RoundClass);
+                    else
+                        clip.ReloadClipWithType(clip.DefaultLoadingPattern.Classes[0]);
                 }
 
-
+                Speedloader speedloader = slot.CurObject as Speedloader;
+                if (speedloader)
+                {
+                    magazineWrapper = speedloader.GetComponent<MagazineWrapper>();
+                    if (magazineWrapper)
+                        speedloader.ReloadClipWithType(magazineWrapper.RoundClass);
+                    else
+                    {
+                        try
+                        {
+                            List<FVRObject> compatibleRounds =
+                                IM.OD[speedloader.ObjectWrapper.ItemID].CompatibleSingleRounds;
+                            FVRFireArmRound round = compatibleRounds[0].GetGameObject().GetComponent<FVRFireArmRound>();
+                            speedloader.ReloadClipWithType(round.RoundClass);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogWarning("Raygun failed to reload it's ammo, tell Kodeman");
+                        }
+                    }
+                }
             }
 
             AudioManager.Instance.PowerUpMaxAmmoSound.Play();
@@ -79,4 +99,3 @@ namespace CustomScripts.Powerups
         }
     }
 }
-#endif

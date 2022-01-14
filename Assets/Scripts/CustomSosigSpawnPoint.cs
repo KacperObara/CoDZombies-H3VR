@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Managers;
 using FistVR;
 using Sodalite.Api;
@@ -24,19 +26,28 @@ namespace Atlas.MappingComponents.Sandbox
 
         public void Spawn()
         {
-            SosigAPI.SpawnOptions options = new SosigAPI.SpawnOptions
+            try
             {
-                SpawnActivated = true,
-                SpawnState = SpawnState,
-                IFF = IFF,
-                SpawnWithFullAmmo = true,
-                EquipmentMode = SosigAPI.SpawnOptions.EquipmentSlots.All,
-                SosigTargetPosition = transform.position,
-                SosigTargetRotation = transform.eulerAngles
-            };
+                SosigAPI.SpawnOptions options = new SosigAPI.SpawnOptions
+                {
+                    SpawnActivated = true,
+                    SpawnState = SpawnState,
+                    IFF = IFF,
+                    SpawnWithFullAmmo = true,
+                    EquipmentMode = SosigAPI.SpawnOptions.EquipmentSlots.All,
+                    SosigTargetPosition = transform.position,
+                    SosigTargetRotation = transform.eulerAngles
+                };
 
-            Sosig spawnedSosig = SosigAPI.Spawn(SosigEnemyTemplate, options, transform.position, transform.rotation);
-            ZombieManager.Instance.OnZosigSpawned(spawnedSosig);
+                Sosig spawnedSosig = SosigAPI.Spawn(SosigEnemyTemplate, options, transform.position, transform.rotation);
+                ZombieManager.Instance.OnZosigSpawned(spawnedSosig);
+            }
+            catch (Exception e)
+            {
+                ErrorShower.Instance.Show("Error, zosigs failed to spawn\nPlease send logs to Kodeman");
+                Debug.LogError(e);
+                throw;
+            }
         }
 
         private void OnDrawGizmos()

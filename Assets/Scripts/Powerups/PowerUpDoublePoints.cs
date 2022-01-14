@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using CustomScripts.Player;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace CustomScripts
 {
     public class PowerUpDoublePoints : PowerUp
     {
+        public static Action PickedUpEvent;
+
         public MeshRenderer Renderer;
         private Animator _animator;
 
@@ -16,18 +19,6 @@ namespace CustomScripts
 
         public override void Spawn(Vector3 pos)
         {
-            if (Renderer == null) // for error debugging
-            {
-                Debug.LogWarning("X2PowerUp spawn failed! renderer == null Tell Kodeman");
-                return;
-            }
-
-            if (_animator == null)
-            {
-                Debug.LogWarning("X2PowerUp spawn failed! animator == null Tell Kodeman");
-                return;
-            }
-
             transform.position = pos;
             Renderer.enabled = true;
             _animator.Play("Rotating");
@@ -41,6 +32,9 @@ namespace CustomScripts
             StartCoroutine(DisablePowerUpDelay(30f));
 
             AudioManager.Instance.PowerUpX2Sound.Play();
+
+            if (PickedUpEvent != null)
+                PickedUpEvent.Invoke();
 
             Despawn();
         }

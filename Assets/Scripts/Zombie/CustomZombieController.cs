@@ -6,6 +6,7 @@ using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace CustomScripts.Zombie
@@ -17,34 +18,39 @@ namespace CustomScripts.Zombie
         Dead
     }
 
-    // TODO string based property lookup is inefficient, also awful code readability
+    public enum SpeedType
+    {
+        Walk,
+        FastWalk,
+        Run
+    }
+
+
+    // TODO Call all animations from the code using crossfade instead of bad animator transitions
     public class CustomZombieController : ZombieController
     {
-        private const float AGENT_UPDATE_INTERVAL = 1f;
-
-        public static int Playertouches;
-        public static bool IsBeingHit;
-
-        public int PointsOnHit = 10;
-        public int PointsOnKill = 100;
+        public Action<float> OnZombieDied;
+        public Action OnZombieInitialize;
 
         public GameObject HeadObject;
 
         [HideInInspector] public State State;
         [HideInInspector] public float Health;
 
-        public int RunAnimationIndex;
-        public int AnimIndex;
-        private NavMeshAgent _agent;
-
-        private float _agentUpdateTimer;
+        // Manages player's invincibility frames after getting hit by custom zombie
+        public static int PlayerTouchCount;
+        public static bool IsBeingHit;
+        private bool _hitThrottled;
 
         private Animator _animator;
-
-        private bool _hitThrottled;
         private RandomZombieSound _soundPlayer;
-        public Action<float> OnZombieDied;
-        public Action OnZombieInitialize;
+        private NavMeshAgent _agent;
+
+        private const float agentUpdateInterval = .15f;
+        private float _agentUpdateTimer;
+
+        private SpeedType _moveSpeed;
+        private int _animIndex;
 
         private void Awake()
         {
@@ -58,6 +64,70 @@ namespace CustomScripts.Zombie
             _soundPlayer = GetComponent<RandomZombieSound>();
         }
 
+        public override void Initialize(Transform newTarget)
+        {
+            Target = newTarget;
+
+            _agent.updateRotation = false;
+            _agentUpdateTimer = agentUpdateInterval;
+
+            _agent.speed = 0.1f;
+
+            if (RoundManager.Instance.IsFastWalking)
+            {
+                int random = Random.Range(0, 3);
+
+                _moveSpeed = SpeedType.FastWalk;
+                _animIndex = random;
+
+                if (GameSettings.FasterEnemies)
+                    _animator.SetFloat("FastWalkSpeed", 1.05f);
+                else
+                    _animator.SetFloat("FastWalkSpeed", .85f);
+            }
+
+            if (RoundManager.Instance.IsRunning)
+            {
+                int random = Random.Range(0, 4);
+
+                _moveSpeed = SpeedType.Run;
+                _animIndex = random;
+
+                if (GameSettings.FasterEnemies)
+                    _animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
+                else
+                    _animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
+            }
+
+            if (!RoundManager.Instance.IsRunning && !RoundManager.Instance.IsFastWalking) // walking
+            {
+                int random = Random.Range(0, 4);
+
+                _moveSpeed = SpeedType.Walk;
+                _animIndex = random;
+
+                if (GameSettings.FasterEnemies)
+                    _animator.SetFloat("WalkSpeed", 1.2f);
+            }
+
+            StartMovementAnimation();
+
+            int currentRound = RoundManager.Instance.RoundNumber;
+
+            if (GameSettings.WeakerEnemies)
+                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
+            else
+                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
+
+            State = State.Chase;
+            _agent.enabled = true;
+
+            _soundPlayer.Initialize();
+
+            if (OnZombieInitialize != null)
+                OnZombieInitialize.Invoke();
+        }
+
         private void Update()
         {
             if (State == State.Dead)
@@ -67,10 +137,35 @@ namespace CustomScripts.Zombie
                 return;
 
             _agentUpdateTimer += Time.deltaTime;
-            if (_agentUpdateTimer >= AGENT_UPDATE_INTERVAL)
+            if (_agentUpdateTimer >= agentUpdateInterval)
             {
-                _agentUpdateTimer -= AGENT_UPDATE_INTERVAL;
+                _agentUpdateTimer -= agentUpdateInterval;
                 _agent.SetDestination(Target.position);
+            }
+
+            if (_agent.velocity.sqrMagnitude > Mathf.Epsilon)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(_agent.velocity.normalized), 10 * Time.deltaTime);
+            }
+        }
+
+        public IEnumerator Stun()
+        {
+            if (State != State.Dead)
+            {
+                _animator.CrossFade("Stunned", .25f, 0, 0);
+
+                yield return new WaitForSeconds(2f);
+
+                if (State == State.AttackWindow)
+                {
+                    _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+                }
+                else
+                {
+                    StartMovementAnimation();
+                }
             }
         }
 
@@ -97,68 +192,22 @@ namespace CustomScripts.Zombie
             }
         }
 
-        public override void Initialize(Transform newTarget)
+        private void OnTriggerExit(Collider other)
         {
-            Target = newTarget;
+            if (State == State.Dead)
+                return;
 
-            _agentUpdateTimer = AGENT_UPDATE_INTERVAL;
-            _animator.SetBool("IsDead", false);
-            _animator.SetBool("IsAttacking", false);
-            _animator.SetBool("IsIdle", false);
-            _animator.SetBool("IsMoving", true);
-
-            _agent.speed = 0.1f;
-
-            if (RoundManager.Instance.IsFastWalking)
+            if (other.GetComponent<WindowTrigger>())
             {
-                int random = Random.Range(0, 3);
-                _animator.SetInteger("RunAnimationIndex", 1);
-                _animator.SetInteger("AnimIndex", random);
-                RunAnimationIndex = 1;
-                AnimIndex = random;
+                if (State == State.AttackWindow)
+                {
+                    State = State.Chase;
+                    _agent.speed = 0.1f;
 
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("FastWalkSpeed", 1.2f);
+                    StartMovementAnimation();
+                    ChangeTarget(GameReferences.Instance.Player);
+                }
             }
-
-            if (RoundManager.Instance.IsRunning)
-            {
-                int random = Random.Range(0, 4);
-                _animator.SetInteger("RunAnimationIndex", 2);
-                _animator.SetInteger("AnimIndex", random);
-                RunAnimationIndex = 2;
-                AnimIndex = random;
-
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("RunSpeed", Random.Range(.75f, .85f));
-                else
-                    _animator.SetFloat("RunSpeed", Random.Range(.9f, 1f));
-            }
-
-            if (!RoundManager.Instance.IsRunning && !RoundManager.Instance.IsFastWalking) // walking
-            {
-                int random = Random.Range(0, 4);
-                _animator.SetInteger("RunAnimationIndex", 0);
-                _animator.SetInteger("AnimIndex", random);
-                RunAnimationIndex = 0;
-                AnimIndex = random;
-
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("WalkSpeed", 1.2f);
-            }
-
-            if (GameSettings.WeakerEnemies)
-                Health = RoundManager.Instance.WeakerZombieHp;
-            else
-                Health = RoundManager.Instance.ZombieHp;
-
-            State = State.Chase;
-            _agent.enabled = true;
-
-            _soundPlayer.Initialize();
-
-            if (OnZombieInitialize != null)
-                OnZombieInitialize.Invoke();
         }
 
         public override void OnHit(float damage, bool headHit = false)
@@ -166,19 +215,12 @@ namespace CustomScripts.Zombie
             if (Health <= 0 || State == State.Dead)
                 return;
 
-            if (!ZombieManager.Instance.ExistingZombies.Contains(this))
-            {
-                Debug.LogWarning("Trying to kill a zombie that should not exist!");
-                Debug.LogWarning("Health: " + Health + " Damage " + damage);
-                return;
-            }
-
             float newDamage = damage * PlayerData.Instance.DamageModifier;
 
             damage = (int) newDamage;
 
             AudioManager.Instance.ZombieHitSound.Play();
-            GameManager.Instance.AddPoints(PointsOnHit);
+            GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnHit);
             Health -= damage;
 
             if (Health <= 0 || PlayerData.Instance.InstaKill)
@@ -188,6 +230,8 @@ namespace CustomScripts.Zombie
 
                 State = State.Dead;
 
+                // weird mumbo jumbo to minimize weird behavior that causes custom zombies
+                // to jump upon death
                 int random = Random.Range(0, 3);
                 switch (random)
                 {
@@ -205,15 +249,10 @@ namespace CustomScripts.Zombie
                         break;
                 }
 
-                _animator.SetInteger("AnimIndex", random);
-
-                _animator.SetBool("IsDead", true);
-                _animator.SetBool("IsMoving", false);
-                _animator.SetBool("IsAttacking", false);
-                _animator.SetBool("IsIdle", false);
+                _animator.CrossFade("Death" + random, 0.25f, 0, 0);
 
                 _agent.enabled = false;
-                GameManager.Instance.AddPoints(PointsOnKill);
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
 
                 AudioManager.Instance.ZombieDeathSound.Play();
 
@@ -224,11 +263,9 @@ namespace CustomScripts.Zombie
                 if (headHit && !_hitThrottled)
                 {
                     _animator.SetTrigger("GetHit");
-                    //animator.SetFloat("HitAngle", Random.Range(0f, 1f));
                     _animator.SetFloat("HitAngle", .5f);
 
                     StartCoroutine(HitAnimThrottle());
-                    //animator.SetLayerWeight(1, 1f);
                 }
             }
         }
@@ -240,21 +277,25 @@ namespace CustomScripts.Zombie
             _hitThrottled = false;
         }
 
-        public override void ChangeTarget(Transform newTarget)
+        public void ChangeTarget(Transform newTarget)
         {
             Target = newTarget;
         }
 
-        public override void OnHitPlayer()
+        public void OnHitPlayer()
         {
             if (State == State.Dead)
                 return;
 
             IsBeingHit = true;
-            Playertouches++;
+            PlayerTouchCount++;
 
             AudioManager.Instance.PlayerHitSound.Play();
-            GM.CurrentPlayerBody.Health -= 2000;
+            GM.CurrentPlayerBody.Health -= ZombieManager.Instance.CustomZombieDamage;
+
+            if (PlayerData.GettingHitEvent != null)
+                PlayerData.GettingHitEvent.Invoke();
+
             StartCoroutine(CheckStillColliding());
 
             if (GM.CurrentPlayerBody.Health <= 0)
@@ -279,39 +320,58 @@ namespace CustomScripts.Zombie
         public void OnTouchingWindow()
         {
             _agent.speed = 0;
-            //animator.applyRootMotion = false;
-            _animator.SetBool("IsAttacking", true);
-            _animator.SetBool("IsMoving", false);
-            _animator.SetInteger("AnimIndex", Random.Range(0, 4));
+
+            _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
             State = State.AttackWindow;
         }
 
+        // Called by animation
         public void OnHitWindow()
         {
             LastInteractedWindow.OnPlankRipped();
-            _animator.SetInteger("AnimIndex", Random.Range(0, 4));
         }
 
+        // Called by animation
         public void OnHitWindowEnd()
         {
             if (LastInteractedWindow.IsOpen)
             {
-                _animator.SetBool("IsAttacking", false);
-                _animator.SetBool("IsMoving", true);
-                _animator.SetInteger("RunAnimationIndex", RunAnimationIndex);
-                _animator.SetInteger("AnimIndex", AnimIndex);
-
                 State = State.Chase;
                 _agent.speed = 0.1f;
-                //animator.applyRootMotion = true;
 
+                StartMovementAnimation();
                 ChangeTarget(GameReferences.Instance.Player);
             }
+            else
+            {
+                _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+            }
+        }
+
+        private void StartMovementAnimation()
+        {
+            string anim = "";
+            switch (_moveSpeed)
+            {
+                case SpeedType.Walk:
+                    anim = "Walk";
+                    break;
+                case SpeedType.FastWalk:
+                    anim = "FastWalk";
+                    break;
+                case SpeedType.Run:
+                    anim = "Run";
+                    break;
+            }
+
+            anim += _animIndex.ToString();
+
+            _animator.CrossFade(anim, 0.25f, 0, 0);
         }
 
         public void OnPlayerTouch()
         {
-            if (Playertouches != 0)
+            if (PlayerTouchCount != 0)
                 return;
 
             if (IsBeingHit)
@@ -322,17 +382,17 @@ namespace CustomScripts.Zombie
 
         public void OnPlayerStopTouch()
         {
-            if (Playertouches == 0)
+            if (PlayerTouchCount == 0)
                 return;
 
-            Playertouches--;
+            PlayerTouchCount--;
         }
 
         private IEnumerator CheckStillColliding()
         {
             yield return new WaitForSeconds(1.5f);
 
-            if (Playertouches != 0 && !GameManager.Instance.GameEnded)
+            if (PlayerTouchCount != 0 && !GameManager.Instance.GameEnded)
             {
                 OnHitPlayer();
             }
