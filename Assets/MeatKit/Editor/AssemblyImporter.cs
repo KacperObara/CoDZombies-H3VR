@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Mono.Cecil;
+using NStrip;
 using UnityEditor;
 using UnityEngine;
 
@@ -49,6 +50,14 @@ namespace MeatKit
             "BakeryLightMesh",
             "BakeryPointLight",
             "BakerySkyLight",
+            "BakeryVolume",
+            "BakeryVolumeReceiver",
+            "BakeryVolumeTrigger",
+            "BakeryProjectSettings",
+            "VolumeTestScene2",
+            "BakeryPackAsSingleSquare",
+            "BakerySector",
+            "BakerySectorCapture",
             "ftGlobalStorage",
             "ftLightmaps",
             "ftLightmapsStorage",
@@ -56,15 +65,17 @@ namespace MeatKit
 
             // Bakery supporting types
             "ftUniqueIDRegistry",
-            "BakeryLightmapGroupPlain"
+            "BakeryLightmapGroupPlain",
+
+            //Editor Tool Scripts
+            "IconCamera"
         };
 
         // Array of the extra assemblies that need to come with the main Unity assemblies
         private static readonly string[] ExtraAssemblies =
         {
             "DinoFracture.dll",
-            "ES2.dll",
-            "Valve.Newtonsoft.Json.dll"
+            "ES2.dll"
         };
 
 
@@ -94,6 +105,9 @@ namespace MeatKit
                 // Apply modifications
                 foreach (var editor in editors) editor.ApplyModification(firstpassAssembly);
 
+                // Publicize Assembly
+                AssemblyStripper.MakePublic(firstpassAssembly, new string[0], false, false);
+                
                 firstpassAssembly.Write(Path.Combine(destinationDirectory, AssemblyFirstpassRename + ".dll"));
                 firstpassAssembly.Dispose();
             }
@@ -122,6 +136,9 @@ namespace MeatKit
                 // Apply modifications
                 foreach (var editor in editors) editor.ApplyModification(mainAssembly);
 
+                // Publicize assembly
+                AssemblyStripper.MakePublic(mainAssembly, new string[0], false, false);
+                
                 // Write the main assembly out into the destination folder and dispose it
                 mainAssembly.Write(Path.Combine(destinationDirectory, AssemblyRename + ".dll"));
             }

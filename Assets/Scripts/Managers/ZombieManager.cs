@@ -32,8 +32,9 @@ namespace CustomScripts.Managers
         public override void Awake()
         {
             base.Awake();
-            GM.CurrentSceneSettings.SosigKillEvent += OnSosigDied;
+            //GM.CurrentSceneSettings.SosigKillEvent += OnSosigDiedOld;
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
+            On.FistVR.Sosig.SosigDies += OnSosigDied;
         }
 
         public void SpawnZombie(float delay)
@@ -118,16 +119,22 @@ namespace CustomScripts.Managers
             ZombiePool.Instance.Despawn(controller);
         }
 
-        private void OnSosigDied(Sosig sosig)
+        private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass, Sosig.SosigDeathType deathtype)
         {
-            sosig.GetComponent<ZosigZombieController>().OnKill();
+            orig.Invoke(self, damclass, deathtype);
+            self.GetComponent<ZosigZombieController>().OnKill();
         }
+
+        // private void OnSosigDiedOld(Sosig sosig)
+        // {
+        //     sosig.GetComponent<ZosigZombieController>().OnKill();
+        // }
 
         private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
             SosigLink link)
         {
             if (d.Class == Damage.DamageClass.Melee &&
-                d.Source_IFF != GM.CurrentPlayerBody.GetPlayerIFF())
+                d.Source_IFF != GM.CurrentSceneSettings.DefaultPlayerIFF)
             {
                 d.Dam_Blinding = 0;
                 d.Dam_TotalKinetic = 0;
@@ -147,7 +154,8 @@ namespace CustomScripts.Managers
 
         private void OnDestroy()
         {
-            GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDied;
+            //GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDiedOld;
+            On.FistVR.Sosig.SosigDies -= OnSosigDied;
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
         }
     }

@@ -4,26 +4,29 @@ using CustomScripts;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerTrigger : MonoBehaviour
+namespace CustomScripts
 {
-    public UnityEvent OnEnter;
-    public UnityEvent OnExit;
-
-    private void OnTriggerEnter(Collider other)
+    public class PlayerTrigger : MonoBehaviour
     {
-        if (other.GetComponent<PlayerCollider>())
+        public UnityEvent OnEnter;
+        public UnityEvent OnExit;
+
+        private void OnTriggerEnter(Collider other)
         {
-            if (OnEnter != null)
-                OnEnter.Invoke();
+            if (other.GetComponent<PlayerCollider>())
+            {
+                if (OnEnter != null)
+                    OnEnter.Invoke();
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<PlayerCollider>())
+        private void OnTriggerExit(Collider other)
         {
-            if (OnExit != null)
-                OnExit.Invoke();
+            if (other.GetComponent<PlayerCollider>())
+            {
+                if (OnExit != null)
+                    OnExit.Invoke();
+            }
         }
     }
 }

@@ -15,12 +15,10 @@ using Valve.Newtonsoft.Json.Linq;
 
 namespace MeatKit
 {
-    public class BuildSettings : ScriptableObject, IValidatable
+    [CreateAssetMenu(menuName = "MeatKit/Build Profile")]
+    public class BuildProfile : ScriptableObject, IValidatable
     {
-        private const string FileName = "BuildSettings.asset";
-
-        private static BuildSettings _instance;
-
+        [Header("Thunderstore Metadata")]
         public string PackageName = "";
         public string Author = "";
         public string Version = "";
@@ -29,26 +27,18 @@ namespace MeatKit
         public string WebsiteURL = "";
         public string Description = "";
         public string[] AdditionalDependencies = new string[0];
+
+        [Header("Script Options")]
+        public bool StripNamespaces = true;
+        public string[] AdditionalNamespaces = new string[0];
+        
+        [Header("Export Options")]
         public BuildItem[] BuildItems = new BuildItem[0];
-
         public AssetBundleCompressionType BundleCompressionType = AssetBundleCompressionType.LZ4;
+        public BuildAction BuildAction = BuildAction.JustBuildFiles;
 
-        public static BuildSettings Instance
-        {
-            get
-            {
-                if (_instance) return _instance;
-
-                // Check if we already have some build settings somewhere
-                var search = Extensions.GetAllInstances<BuildSettings>();
-                if (search.Length > 0) return search[0];
-
-                // If we don't, go and make it.
-                _instance = CreateInstance<BuildSettings>();
-                AssetDatabase.CreateAsset(_instance, MeatKit.MeatKitDir + FileName);
-                return _instance;
-            }
-        }
+        [HideInInspector]
+        public string OutputProfile = "";
 
         public Dictionary<string, BuildMessage> Validate()
         {
@@ -85,6 +75,32 @@ namespace MeatKit
                 case AssetBundleCompressionType.LZMA:
                     messages["BundleCompressionType"] = BuildMessage.Info(
                         "LZMA can take longer to compress than LZ4, however it will result in smaller file sizes usually.");
+                    break;
+            }
+
+            switch (BuildAction)
+            {
+                case BuildAction.JustBuildFiles:
+                    messages["BuildAction"] =
+                        BuildMessage.Info(
+                            "This will just create the files for a Thunderstore package in your AssetBundles folder.");
+                    break;
+                case BuildAction.CopyToProfile:
+                    messages["BuildAction"] =
+                        BuildMessage.Info(
+                            "This will copy the built files into the plugins folder of the selected profile.");
+                    if (string.IsNullOrEmpty(OutputProfile))
+                        messages["OutputProfile"] = BuildMessage.Error("Please set the output profile.");
+                    else if (!Directory.Exists(OutputProfile))
+                        messages["OutputProfile"] = BuildMessage.Error("Selected profile no longer exists.");
+                    else if (!File.Exists(Path.Combine(OutputProfile, "mods.yml")))
+                        messages["OutputProfile"] = BuildMessage.Error(
+                            "Selected folder is not a r2mm profile. Please select the folder which contains the plugins folder.");
+                    break;
+                case BuildAction.CreateThunderstorePackage:
+                    messages["BuildAction"] =
+                        BuildMessage.Info(
+                            "This will zip up the built files as a final build for importing into r2mm / uploading to Thunderstore.");
                     break;
             }
 
@@ -140,6 +156,24 @@ namespace MeatKit
                 .SelectMany(x => x.RequiredDependencies).ToArray();
         }
 
+        public string MainNamespace
+        {
+            get
+            {
+                return Author + "." + PackageName;
+            }
+        }
+        
+        public string[] GetRequiredNamespaces()
+        {
+            return new[] {MainNamespace};
+        }
+
+        public string[] GetAllAllowedNamespaces()
+        {
+            return GetRequiredNamespaces().Concat(AdditionalNamespaces).ToArray();
+        }
+        
         public void WriteThunderstoreManifest(string location)
         {
 #if H3VR_IMPORTED
@@ -156,5 +190,12 @@ namespace MeatKit
             File.WriteAllText(location, JsonConvert.SerializeObject(obj));
 #endif
         }
+    }
+
+    public enum BuildAction
+    {
+        JustBuildFiles,
+        CopyToProfile,
+        CreateThunderstorePackage
     }
 }

@@ -46,17 +46,6 @@ Perks:
 
 ## Changelog
 
-### 0.7.0
-Atlas update
-Finally, Atlas port is complete. It was basically mod rework, so let me know if something is broken / works differently
-than before.
-- Quick Revive perk. Upon death, player will respawn in the same spot shortly after and will be given 
-invincibility for a short time. Works only once.
-- Electric cherry perk. Unloading an empty magazine will stun enemies for a short duration. 5 sec cooldown.  
-
-With this, all perk machines I wanted to implement are complete. I know the map got little cluttered,
-but I accepted the fact, that Nacht is essentialy proving grounds for other maps.
-
 ### 0.6.4
 - You can now find the Raygun in the Mystery Box. Beautiful gun provided by Sora101Ven. Good luck rolling for it.
 - PHDFlopper added for reducing explosion damage, that You will cause yourself while shooting the Raygun.

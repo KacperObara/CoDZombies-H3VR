@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1743412743, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
+  m_Name: ZombieStandard
+  m_EditorClassIdentifier: 
+  DisplayName: ZombieSosig
+  SosigEnemyCategory: 0
+  SosigEnemyID: -5324
+  SosigPrefabs:
+  - {fileID: 11400000, guid: 62e74e46dec3d9347a167f7d6e8bcbaa, type: 2}
+  ConfigTemplates:
+  - {fileID: 11400000, guid: 16e2a26f083f7b6408a0819767ee8f95, type: 2}
+  ConfigTemplates_Easy: []
+  OutfitConfig:
+  - {fileID: 11400000, guid: e99520632dc254142b2b9ccbc17b8773, type: 2}
+  - {fileID: 11400000, guid: 53df788c5221c6d4bab6f754fa55f35d, type: 2}
+  WeaponOptions:
+  - {fileID: 11400000, guid: 8dc8e1e5a22bdfe4188adec6c76104d1, type: 2}
+  - {fileID: 11400000, guid: 05af58f44319c5549b6c0e089819106d, type: 2}
+  WeaponOptions_Secondary: []
+  SecondaryChance: 0
+  WeaponOptions_Tertiary: []
+  TertiaryChance: 0

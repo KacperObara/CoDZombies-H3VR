@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CODZombiesBuildProfile
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:MeatKit:BuildProfile
+  PackageName: CODZombies
+  Author: Kodeman
+  Version: 0.7.0
+  Icon: {fileID: 2800000, guid: 3bf2e05c80b5b724ba9490e9805a0349, type: 3}
+  ReadMe: {fileID: 102900000, guid: 0ef972042aeb3144a87158168db7cdbc, type: 3}
+  WebsiteURL: https://github.com/KacperObara/CoDZombies-H3VR
+  Description: Custom game mode based on Call of Duty Zombies
+  AdditionalDependencies:
+  - nrgill28-HookGenPatcher_H3VR-1.2.3
+  - devyndamonster-OtherLoader-1.1.5
+  - devyndamonster-MagazinePatcher-0.1.9
+  - Nuigo_Ftrmarket-CDZ_Raygun_Mk1-1.2.3
+  StripNamespaces: 1
+  AdditionalNamespaces:
+  - CustomScripts
+  BuildItems:
+  - {fileID: 11400000, guid: 1d720bb5de0286042ae34e79dd940e2c, type: 2}
+  - {fileID: 11400000, guid: 1dfa3e4639093bd46a2826d8474b14b5, type: 2}
+  BundleCompressionType: 2
+  BuildAction: 0
+  OutputProfile: 

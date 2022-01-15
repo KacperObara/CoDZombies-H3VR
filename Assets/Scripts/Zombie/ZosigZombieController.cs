@@ -16,6 +16,7 @@ namespace CustomScripts.Zombie
         private bool _isAttackingWindow;
         private bool _isDead;
 
+
         private Sosig _sosig;
 
         private Coroutine _tearingPlanksCoroutine;
@@ -96,25 +97,27 @@ namespace CustomScripts.Zombie
             {
                 _agentUpdateTimer -= agentUpdateInterval;
 
-                _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
+                _sosig.CommandAssaultPoint(Target.position);
 
-                _sosig.UpdateGuardPoint(Target.position);
-                _sosig.UpdateAssaultPoint(Target.position);
-
-                // Quick hack if sosigs try to follow you but on the wrong floor
-                if (_sosig.Agent.destination.y + 3f < Target.position.y)
-                {
-                    _sosig.UpdateAssaultPoint(Target.position + Vector3.up);
-                }
-
-                if (_sosig.Agent.destination.y > Target.position.y + 3f)
-                {
-                    _sosig.UpdateAssaultPoint(Target.position + Vector3.down);
-                }
-
-                _sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
-
-                _sosig.FallbackOrder = Sosig.SosigOrder.Assault; // I know I'm calling this two times, maybe it doesn't make sense
+                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
+                //
+                // _sosig.UpdateGuardPoint(Target.position);
+                // _sosig.UpdateAssaultPoint(Target.position);
+                //
+                // // Quick hack if sosigs try to follow you but on the wrong floor
+                // if (_sosig.Agent.destination.y + 3f < Target.position.y)
+                // {
+                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.up);
+                // }
+                //
+                // if (_sosig.Agent.destination.y > Target.position.y + 3f)
+                // {
+                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.down);
+                // }
+                //
+                // _sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
+                //
+                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault; // I know I'm calling this two times, maybe it doesn't make sense
             }
 
             if (_isAttackingWindow)
@@ -141,6 +144,7 @@ namespace CustomScripts.Zombie
                 return;
 
             _sosig.Stun(time);
+            _sosig.Shudder(.5f);
         }
 
         public void CheckPerks()
@@ -231,6 +235,8 @@ namespace CustomScripts.Zombie
             }
         }
 
+        // Be mindful that sosig can sometimes get stuck on the edge and enter and exit constantly,
+        // which means it will take longer to tear down planks
         public void OnTriggerExited(Collider other)
         {
             if (_isDead)
@@ -247,7 +253,8 @@ namespace CustomScripts.Zombie
 
                 ChangeTarget(GameReferences.Instance.Player);
 
-                StopCoroutine(_tearingPlanksCoroutine);
+                if (_tearingPlanksCoroutine != null)
+                    StopCoroutine(_tearingPlanksCoroutine);
             }
         }
 

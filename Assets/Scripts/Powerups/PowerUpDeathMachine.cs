@@ -48,7 +48,9 @@ namespace CustomScripts.Powerups
 
             _magazineObject.RootRigidbody.isKinematic = true;
 
-            (_minigunObject as FVRFireArm).LoadMag(_magazineObject as FVRFireArmMagazine);
+
+            (_magazineObject as FVRFireArmMagazine).Load(_minigunObject as FVRFireArm);
+            //(_minigunObject as FVRFireArm).LoadMag(_magazineObject as FVRFireArmMagazine);
 
             PlayerData.Instance.DeathMachinePowerUpIndicator.Activate(30f);
 

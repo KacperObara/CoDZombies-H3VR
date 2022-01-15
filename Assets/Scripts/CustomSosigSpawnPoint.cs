@@ -6,7 +6,7 @@ using FistVR;
 using Sodalite.Api;
 using UnityEngine;
 
-namespace Atlas.MappingComponents.Sandbox
+namespace CustomScripts
 {
     public class CustomSosigSpawnPoint : MonoBehaviour
     {

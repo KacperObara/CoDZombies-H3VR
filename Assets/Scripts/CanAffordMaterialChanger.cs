@@ -6,56 +6,43 @@ using CustomScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanAffordMaterialChanger : MonoBehaviour
+namespace CustomScripts
 {
-	private IPurchasable _purchasable;
-	[SerializeField] private List<Renderer> _renderers;
-	[SerializeField] private List<Text> _texts;
-
-	// private void Awake()
-	// {
-	// 	_purchasable = GetComponent<IPurchasable>();
-	// 	GameManager.OnPointsChanged += OnPointsChanged;
-	//
-	// 	OnPointsChanged();
-	// }
-
-	private void Start()
+	public class CanAffordMaterialChanger : MonoBehaviour
 	{
-		_purchasable = GetComponent<IPurchasable>();
-		GameManager.OnPointsChanged += OnPointsChanged;
+		private IPurchasable _purchasable;
+		[SerializeField] private List<Text> _texts;
 
-		OnPointsChanged();
-	}
-
-	private void OnPointsChanged()
-	{
-		if (GameManager.Instance.Points >= _purchasable.PurchaseCost)
+		private void Start()
 		{
-			for (int i = 0; i < _renderers.Count; i++)
+			_purchasable = GetComponent<IPurchasable>();
+			GameManager.OnPointsChanged += OnPointsChanged;
+
+			OnPointsChanged();
+		}
+
+		private void OnPointsChanged()
+		{
+			if (GameManager.Instance.Points >= _purchasable.PurchaseCost)
 			{
-				_renderers[i].materials[1] = GameReferences.Instance.CanBuyMat;
+				for (int i = 0; i < _texts.Count; i++)
+				{
+					_texts[i].color = GameReferences.Instance.CanBuyColor;
+				}
 			}
-			for (int i = 0; i < _texts.Count; i++)
+			else
 			{
-				_texts[i].color = GameReferences.Instance.CanBuyColor;
+				for (int i = 0; i < _texts.Count; i++)
+				{
+					_texts[i].color = GameReferences.Instance.CannotBuyColor;
+				}
 			}
 		}
-		else
-		{
-			for (int i = 0; i < _renderers.Count; i++)
-			{
-				_renderers[i].materials[1] = GameReferences.Instance.CannotBuyMat;
-			}
-			for (int i = 0; i < _texts.Count; i++)
-			{
-				_texts[i].color = GameReferences.Instance.CannotBuyColor;
-			}
-		}
-	}
 
-	private void OnDestroy()
-	{
-		GameManager.OnPointsChanged -= OnPointsChanged;
+		private void OnDestroy()
+		{
+			GameManager.OnPointsChanged -= OnPointsChanged;
+		}
 	}
 }
+

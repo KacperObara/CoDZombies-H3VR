@@ -195,7 +195,7 @@ namespace CustomScripts.Player
             {
                 for (int i = 0; i < ZombieManager.Instance.ExistingZombies.Count; i++)
                 {
-                    (ZombieManager.Instance.ExistingZombies[i] as ZosigZombieController).Stun(1.25f);
+                    (ZombieManager.Instance.ExistingZombies[i] as ZosigZombieController).Stun(2f);
                 }
             }
 
