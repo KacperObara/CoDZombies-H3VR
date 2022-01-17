@@ -4,6 +4,7 @@ using CustomScripts.Managers;
 using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
+
 namespace CustomScripts.Zombie
 {
     public class ZosigZombieController : ZombieController
@@ -29,20 +30,10 @@ namespace CustomScripts.Zombie
 
             _sosig.CoreRB.gameObject.AddComponent<ZosigTrigger>().Initialize(this);
 
-            _sosig.Speed_Run = 2f;
-            if (RoundManager.Instance.IsFastWalking)
-            {
-                _sosig.Speed_Run = 3f;
-            }
-
-            if (RoundManager.Instance.IsRunning)
-            {
-                _sosig.Speed_Run = 4f;
-            }
-
+            _sosig.Speed_Run = ZombieManager.Instance.ZosigPerRoundSpeed.Evaluate(RoundManager.Instance.RoundNumber);
             if (GameSettings.FasterEnemies)
             {
-                _sosig.Speed_Run += 1.5f;
+                _sosig.Speed_Run += 1.25f;
             }
 
             if (GameSettings.WeakerEnemies)
@@ -50,7 +41,8 @@ namespace CustomScripts.Zombie
                 _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber - 5);
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
+                    link.SetIntegrity(
+                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
                 }
             }
             else
@@ -58,11 +50,10 @@ namespace CustomScripts.Zombie
                 _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
+                    link.SetIntegrity(
+                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
                 }
             }
-
-            _sosig.DamMult_Melee = 0.2f;
 
             _sosig.Speed_Walk = _sosig.Speed_Run;
             _sosig.Speed_Turning = _sosig.Speed_Run;
@@ -235,27 +226,32 @@ namespace CustomScripts.Zombie
             }
         }
 
+        // TODO In next version, create two colliders, one for entering, second larger for exiting to avoid looping
         // Be mindful that sosig can sometimes get stuck on the edge and enter and exit constantly,
         // which means it will take longer to tear down planks
+        // public void OnTriggerExited(Collider other)
+        // {
+        //     if (_isDead)
+        //         return;
+        //
+        //     if (other.GetComponent<WindowTrigger>())
+        //     {
+        //         _isAttackingWindow = false;
+        //         _sosig.Speed_Run = _cachedSpeed;
+        //         _sosig.Speed_Walk = _cachedSpeed;
+        //         _sosig.Speed_Turning = _cachedSpeed;
+        //         _sosig.Speed_Crawl = _cachedSpeed;
+        //         _sosig.Speed_Sneak = _cachedSpeed;
+        //
+        //         ChangeTarget(GameReferences.Instance.Player);
+        //
+        //         if (_tearingPlanksCoroutine != null)
+        //             StopCoroutine(_tearingPlanksCoroutine);
+        //     }
+        // }
+
         public void OnTriggerExited(Collider other)
         {
-            if (_isDead)
-                return;
-
-            if (other.GetComponent<WindowTrigger>())
-            {
-                _isAttackingWindow = false;
-                _sosig.Speed_Run = _cachedSpeed;
-                _sosig.Speed_Walk = _cachedSpeed;
-                _sosig.Speed_Turning = _cachedSpeed;
-                _sosig.Speed_Crawl = _cachedSpeed;
-                _sosig.Speed_Sneak = _cachedSpeed;
-
-                ChangeTarget(GameReferences.Instance.Player);
-
-                if (_tearingPlanksCoroutine != null)
-                    StopCoroutine(_tearingPlanksCoroutine);
-            }
         }
 
         public void OnTouchingWindow()

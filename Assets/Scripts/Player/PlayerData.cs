@@ -36,8 +36,15 @@ namespace CustomScripts.Player
         public bool PHDFlopperPerkActivated;
         public bool ElectricCherryPerkActivated;
 
-        public FVRViveHand LeftHand { get { return GM.CurrentMovementManager.Hands[0]; } }
-        public FVRViveHand RightHand { get { return GM.CurrentMovementManager.Hands[1]; } }
+        public FVRViveHand LeftHand
+        {
+            get { return GM.CurrentMovementManager.Hands[0]; }
+        }
+
+        public FVRViveHand RightHand
+        {
+            get { return GM.CurrentMovementManager.Hands[1]; }
+        }
 
         public override void Awake()
         {
@@ -47,7 +54,8 @@ namespace CustomScripts.Player
 
             On.FistVR.FVRPhysicalObject.BeginInteraction += OnPhysicalObjectStartInteraction;
             On.FistVR.FVRPhysicalObject.EndInteraction += OnPhysicalObjectEndInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot += OnPhysicalObjectEndInteractionIntoInventorySlot;
+            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot +=
+                OnPhysicalObjectEndInteractionIntoInventorySlot;
             On.FistVR.FVRPlayerHitbox.Damage_Damage += OnPlayerHit;
 
             On.FistVR.FVRFireArmMagazine.Release += OnMagRelease;
@@ -167,7 +175,8 @@ namespace CustomScripts.Player
         }
 
 
-        private void OnMagRelease(On.FistVR.FVRFireArmMagazine.orig_Release orig, FVRFireArmMagazine self, bool physicalrelease)
+        private void OnMagRelease(On.FistVR.FVRFireArmMagazine.orig_Release orig, FVRFireArmMagazine self,
+            bool physicalrelease)
         {
             orig.Invoke(self, physicalrelease);
 
@@ -180,6 +189,7 @@ namespace CustomScripts.Player
         }
 
         private bool stunThrottle = false;
+
         public IEnumerator ActivateStun()
         {
             stunThrottle = true;
@@ -218,7 +228,8 @@ namespace CustomScripts.Player
 
             On.FistVR.FVRPhysicalObject.BeginInteraction -= OnPhysicalObjectStartInteraction;
             On.FistVR.FVRPhysicalObject.EndInteraction -= OnPhysicalObjectEndInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot -= OnPhysicalObjectEndInteractionIntoInventorySlot;
+            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot -=
+                OnPhysicalObjectEndInteractionIntoInventorySlot;
 
             On.FistVR.FVRPlayerHitbox.Damage_Damage -= OnPlayerHit;
 

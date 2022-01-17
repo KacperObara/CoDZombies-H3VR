@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
+﻿#if H3VR_IMPORTED
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Atlas;
 using BepInEx;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using UnityEditor;
 using UnityEngine;
-#if H3VR_IMPORTED
+
 using Valve.Newtonsoft.Json;
 using Valve.Newtonsoft.Json.Linq;
 using FistVR;
-#endif
 
 namespace MeatKit
 {
@@ -29,7 +28,6 @@ namespace MeatKit
         [Tooltip("Drag your SpawnerIDs here")]
         public List<OtherLoader.ItemSpawnerEntry> SpawnerEntries;
 
-#if H3VR_IMPORTED
         [Tooltip("Drag your FVRObjects here")]
         public List<FVRObject> FVRObjects;
 
@@ -46,7 +44,6 @@ namespace MeatKit
         public List<AudioBulletImpactSet> AudioBulletImpactSets;
 
         public List<AudioImpactSet> AudioImpactSets;
-#endif
 
         [Tooltip("When true, contents of item will be broken into two bundles: the data and the assets. This improves load times")]
         public bool OnDemand = true;
@@ -67,7 +64,6 @@ namespace MeatKit
         {
             List<AssetBundleBuild> bundles = new List<AssetBundleBuild>();
 
-#if H3VR_IMPORTED
 
             List<string> dataNames = new List<string>();
             dataNames.AddRange(SpawnerEntries.Select(o => AssetDatabase.GetAssetPath(o)));
@@ -111,8 +107,7 @@ namespace MeatKit
                 });
             }
 
-            
-#endif
+        
 
             return bundles;
         }
@@ -126,4 +121,6 @@ namespace MeatKit
     }
 
 }
+    
+#endif
 

@@ -12,6 +12,8 @@ namespace CustomScripts
     {
         public SosigEnemyTemplate SosigEnemyTemplate;
 
+        public SosigEnemyID DELETETHISSosigType;
+
         [Tooltip("Spawn when game starts?")]
         public bool SpawnOnStart = false;
 
@@ -39,7 +41,8 @@ namespace CustomScripts
                     SosigTargetRotation = transform.eulerAngles
                 };
 
-                Sosig spawnedSosig = SosigAPI.Spawn(SosigEnemyTemplate, options, transform.position, transform.rotation);
+                //Sosig spawnedSosig = SosigAPI.Spawn(SosigEnemyTemplate, options, transform.position, transform.rotation);
+                Sosig spawnedSosig = SosigAPI.Spawn(IM.Instance.odicSosigObjsByID[DELETETHISSosigType], options, transform.position, transform.rotation);
                 ZombieManager.Instance.OnZosigSpawned(spawnedSosig);
             }
             catch (Exception e)

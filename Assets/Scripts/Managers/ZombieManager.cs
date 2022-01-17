@@ -16,6 +16,7 @@ namespace CustomScripts.Managers
         public AnimationCurve CustomZombieHPCurve;
         public AnimationCurve ZosigHPCurve;
         public AnimationCurve ZosigLinkIntegrityCurve;
+        public AnimationCurve ZosigPerRoundSpeed;
 
         public int CustomZombieDamage = 2000;
         public int PointsOnHit = 10;
@@ -32,7 +33,7 @@ namespace CustomScripts.Managers
         public override void Awake()
         {
             base.Awake();
-            //GM.CurrentSceneSettings.SosigKillEvent += OnSosigDiedOld;
+
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
             On.FistVR.Sosig.SosigDies += OnSosigDied;
         }
@@ -125,11 +126,6 @@ namespace CustomScripts.Managers
             self.GetComponent<ZosigZombieController>().OnKill();
         }
 
-        // private void OnSosigDiedOld(Sosig sosig)
-        // {
-        //     sosig.GetComponent<ZosigZombieController>().OnKill();
-        // }
-
         private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
             SosigLink link)
         {
@@ -154,7 +150,6 @@ namespace CustomScripts.Managers
 
         private void OnDestroy()
         {
-            //GM.CurrentSceneSettings.SosigKillEvent -= OnSosigDiedOld;
             On.FistVR.Sosig.SosigDies -= OnSosigDied;
             On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
         }

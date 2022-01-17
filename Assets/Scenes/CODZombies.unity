@@ -6918,6 +6918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -12507,6 +12508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -34303,6 +34305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -36990,6 +36993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -37411,6 +37415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -55275,6 +55280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -56549,6 +56555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -80593,6 +80600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -85452,7 +85460,7 @@ MonoBehaviour:
   MaxSpeedClamp: 5
   UsesPlayerCatcher: 1
   CatchHeight: -50
-  DefaultPlayerIFF: -6
+  DefaultPlayerIFF: 2
   DoesPlayerRespawnOnDeath: 1
   PlayerDeathFade: 3
   PlayerRespawnLoadDelay: 3.5
@@ -85676,6 +85684,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ZosigPerRoundSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   CustomZombieDamage: 2000
   PointsOnHit: 10
   PointsOnKill: 100
@@ -96299,6 +96313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7
@@ -113578,6 +113593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SosigEnemyTemplate: {fileID: 11400000, guid: 6d4e19b5a4c3a1246863e9dbab8b1051, type: 2}
+  DELETETHISSosigType: 911
   SpawnOnStart: 0
   IFF: 1
   SpawnState: 7

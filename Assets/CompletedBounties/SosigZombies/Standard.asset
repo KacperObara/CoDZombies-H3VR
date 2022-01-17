@@ -39,7 +39,7 @@ MonoBehaviour:
   BleedVFXIntensity: 1
   DamMult_Projectile: 1
   DamMult_Explosive: 1
-  DamMult_Melee: 1
+  DamMult_Melee: 0.2
   DamMult_Piercing: 1
   DamMult_Blunt: 1
   DamMult_Cutting: 1

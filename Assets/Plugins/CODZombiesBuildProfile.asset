@@ -20,7 +20,6 @@ MonoBehaviour:
   Description: Custom game mode based on Call of Duty Zombies
   AdditionalDependencies:
   - nrgill28-HookGenPatcher_H3VR-1.2.3
-  - devyndamonster-OtherLoader-1.1.5
   - devyndamonster-MagazinePatcher-0.1.9
   - Nuigo_Ftrmarket-CDZ_Raygun_Mk1-1.2.3
   StripNamespaces: 1
@@ -28,7 +27,7 @@ MonoBehaviour:
   - CustomScripts
   BuildItems:
   - {fileID: 11400000, guid: 1d720bb5de0286042ae34e79dd940e2c, type: 2}
-  - {fileID: 11400000, guid: 1dfa3e4639093bd46a2826d8474b14b5, type: 2}
+  - {fileID: 11400000, guid: 0d2f62ebe2fad074d850490949e14184, type: 2}
   BundleCompressionType: 2
-  BuildAction: 0
+  BuildAction: 2
   OutputProfile: 
