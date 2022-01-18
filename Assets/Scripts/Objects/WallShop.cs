@@ -19,7 +19,10 @@ namespace CustomScripts.Objects
         public string Name;
         public int Cost;
 
-        public int PurchaseCost { get { return Cost; } }
+        public int PurchaseCost
+        {
+            get { return Cost; }
+        }
 
         public Text NameText;
         public Text CostText;
@@ -94,10 +97,6 @@ namespace CustomScripts.Objects
                         // Spawning ammo
                         ItemSpawners[AMMO_SPAWNER_ID].ObjectId = Weapon.DefaultSpawners[AMMO_SPAWNER_ID];
                         StartCoroutine(DelayedAmmoSpawn());
-                        for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
-                        {
-                            ItemSpawners[AMMO_SPAWNER_ID].Spawn();
-                        }
                     }
 
                     // Updating text
@@ -125,7 +124,7 @@ namespace CustomScripts.Objects
             for (int i = 0; i < Weapon.LimitedAmmoMagazineCount; i++)
             {
                 ItemSpawners[AMMO_SPAWNER_ID].Spawn();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.15f);
             }
         }
     }

@@ -3,7 +3,7 @@
 Welcome to the call of duty zombies inspired mod. It is not only a map, but also
 a gamemode, in which you'll be fighting to survive through waves of zombies.
 Features including:
-- Custom enemies
+- Zosigs or Custom enemies
 - Wave system
 - Limited ammo mode
 - Power ups
@@ -12,6 +12,7 @@ Features including:
 - Mystery Box
 - Pack A Punch
 - Barricading windows
+- Raygun by Sora101Ven
 
 Important:
 - Buying stuff, changing settings etc. are done by pulling the levers
@@ -21,17 +22,9 @@ Important:
 When you launch the game, turn 180 degrees to see and select the custom map. Then load it like any other scene.
 If you can't see it, or it loads proving grounds, then 90% chances are, you've done something wrong, or there is a problem with other mods.
 
-
 Feel free to contact me, especially if you have any questions/feedback on [Discord group](https://discord.gg/83yTrfr)  
 or directly: Kodeman#8924    
 or by e-mail: kodeman625@gmail.com  
-
-If you want to learn how I did some things, or want to contribute, [here](https://github.com/KacperObara/H3VR_Zombie_Gamemode) is the whole map and scripts.
-
-I have been asked a few times about ways to support me, so I've created [KO-FI euro](https://ko-fi.com/kodeman) and [KO-FI CAD$](https://ko-fi.com/kodeman2) accounts.
-(Two accounts since some people couldn't donate euros for some reason.)
-Don't feel obliged to donate anything. Feedback or contribution is enough :)
-
 
 Perks:
 - Juggernog: doubles player's health.
@@ -43,8 +36,26 @@ Perks:
 - SpeedCola: Repairing barricades now requires only a single plank, and every applicable weapon receives mag release button
 - StaminUp: Disables player's slowdown when carrying large and massive weapons and increases speed by 10%
 - PHDFlopper: Reduces explosion damage dealt to the Player by 70%
+- Quick Revive: Grants a single respawn and provides invincibility for 10 seconds.
+- Electric Cherry: Unloading an empty magazine will stun enemies for a short duration. 5 sec cooldown. (Works only for magazine using weapons temporarily)
+
+[![kofi](https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0)](https://ko-fi.com/kodeman)  
+&emsp; &emsp; &emsp; &emsp;[KO-FI CAD$ version](https://ko-fi.com/kodeman2)
 
 ## Changelog
+
+### 0.7.0
+Atlas update
+Finally, the Atlas port is complete. It was basically mod remake, so some details might be changed.
+
+- Quick Revive perk. Upon death, player will respawn in the same spot shortly after and will be given 
+invincibility for a short time. Works only once.
+- Electric cherry perk. Unloading an empty magazine will stun enemies for a short duration. 5 sec cooldown.  
+
+With this, all perk machines I wanted to implement are complete. I know the map got little cluttered,
+but I accepted the fact, that Nacht is essentialy proving grounds for other maps.
+I have few more updates planned and then I will create tutorial so other people will have easier time creating better looking maps than my abomination
+
 
 ### 0.6.4
 - You can now find the Raygun in the Mystery Box. Beautiful gun provided by Sora101Ven. Good luck rolling for it.

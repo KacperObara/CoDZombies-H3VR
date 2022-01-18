@@ -120,7 +120,8 @@ namespace CustomScripts.Managers
             ZombiePool.Instance.Despawn(controller);
         }
 
-        private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass, Sosig.SosigDeathType deathtype)
+        private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass,
+            Sosig.SosigDeathType deathtype)
         {
             orig.Invoke(self, damclass, deathtype);
             self.GetComponent<ZosigZombieController>().OnKill();

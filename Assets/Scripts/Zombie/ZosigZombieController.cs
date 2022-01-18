@@ -89,7 +89,6 @@ namespace CustomScripts.Zombie
                 _agentUpdateTimer -= agentUpdateInterval;
 
                 _sosig.CommandAssaultPoint(Target.position);
-
                 // _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
                 //
                 // _sosig.UpdateGuardPoint(Target.position);
@@ -135,7 +134,7 @@ namespace CustomScripts.Zombie
                 return;
 
             _sosig.Stun(time);
-            _sosig.Shudder(.5f);
+            _sosig.Shudder(.75f);
         }
 
         public void CheckPerks()

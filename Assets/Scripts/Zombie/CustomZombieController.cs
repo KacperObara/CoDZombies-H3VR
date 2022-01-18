@@ -317,6 +317,9 @@ namespace CustomScripts.Zombie
 
         public void OnTouchingWindow()
         {
+            if (State == State.Dead)
+                return;
+
             _agent.speed = 0;
 
             _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
@@ -332,6 +335,9 @@ namespace CustomScripts.Zombie
         // Called by animation
         public void OnHitWindowEnd()
         {
+            if (State == State.Dead)
+                return;
+
             if (LastInteractedWindow.IsOpen)
             {
                 State = State.Chase;
