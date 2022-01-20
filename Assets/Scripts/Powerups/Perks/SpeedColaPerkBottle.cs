@@ -19,7 +19,7 @@ namespace CustomScripts.Powerups.Perks
             if (heldWeapon != null)
                 heldWeapon.GetComponent<WeaponWrapper>().OnWeaponGrabbed();
 
-            AudioManager.Instance.DrinkSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }
     }

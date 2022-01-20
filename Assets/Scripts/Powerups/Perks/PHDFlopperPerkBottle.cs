@@ -8,7 +8,7 @@ namespace CustomScripts.Powerups.Perks
         public void ApplyModifier()
         {
             PlayerData.Instance.PHDFlopperPerkActivated = true;
-            AudioManager.Instance.DrinkSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }
     }

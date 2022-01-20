@@ -26,7 +26,7 @@ namespace CustomScripts
         {
             StartCoroutine(DelayedKillAll());
 
-            AudioManager.Instance.PowerUpNukeSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .5f);
 
             Despawn();
         }

@@ -20,6 +20,8 @@ namespace CustomScripts
     {
         public abstract void ApplyModifier();
         public abstract void Spawn(Vector3 pos);
+
+        public AudioClip ApplyAudio;
     }
 
     public interface IPurchasable

@@ -74,7 +74,7 @@ namespace CustomScripts.Powerups
                 }
             }
 
-            AudioManager.Instance.PowerUpMaxAmmoSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .5f);
 
             Despawn();
         }

@@ -10,7 +10,7 @@ public class ElectricCherryPerkBottle : MonoBehaviour, IModifier
 	public void ApplyModifier()
 	{
 		PlayerData.Instance.ElectricCherryPerkActivated = true;
-		AudioManager.Instance.DrinkSound.Play();
+		AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
 		Destroy(gameObject);
 	}
 }

@@ -25,7 +25,7 @@ namespace CustomScripts.Powerups
         {
             StartCoroutine(DelayedApply());
 
-            AudioManager.Instance.PowerUpCarpenterSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .3f);
 
             Despawn();
         }
@@ -39,7 +39,7 @@ namespace CustomScripts.Powerups
                 window.RepairAll();
             }
 
-            AudioManager.Instance.BarricadeRepairSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.BarricadeRepairSound, .5f);
         }
 
         private void Despawn()

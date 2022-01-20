@@ -8,6 +8,8 @@ namespace CustomScripts.Powerups
 {
     public class PowerUpDeathMachine : PowerUp
     {
+        public AudioClip EndAudio;
+
         public MeshRenderer Renderer;
 
         public CustomItemSpawner MinigunSpawner;
@@ -56,7 +58,7 @@ namespace CustomScripts.Powerups
 
             StartCoroutine(DisablePowerUpDelay(30f));
 
-            AudioManager.Instance.PowerUpDeathMachineSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .5f);
 
             Despawn();
         }
@@ -64,7 +66,7 @@ namespace CustomScripts.Powerups
         private IEnumerator DisablePowerUpDelay(float time)
         {
             yield return new WaitForSeconds(time);
-            AudioManager.Instance.PowerUpDoublePointsEndSound.Play();
+            AudioManager.Instance.Play(EndAudio, .5f);
 
             _minigunObject.ForceBreakInteraction();
             _minigunObject.IsPickUpLocked = true;

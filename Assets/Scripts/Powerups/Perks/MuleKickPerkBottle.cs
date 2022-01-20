@@ -17,13 +17,12 @@ namespace CustomScripts.Powerups.Perks
             Spawner.ObjectId = ObjectID;
             Spawner.Spawn();
 
-            AudioManager.Instance.DrinkSound.Play();
-
             GetComponent<FVRPhysicalObject>().IsPickUpLocked = true;
             GetComponent<FVRPhysicalObject>().ForceBreakInteraction();
             GetComponent<Collider>().enabled = false;
             Model.SetActive(false);
 
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject, 1f);
         }
     }

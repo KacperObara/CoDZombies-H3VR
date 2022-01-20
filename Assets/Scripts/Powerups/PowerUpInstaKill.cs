@@ -6,6 +6,7 @@ namespace CustomScripts.Powerups
 {
     public class PowerUpInstaKill : PowerUp
     {
+        public AudioClip EndAudio;
         public MeshRenderer Renderer;
         private Animator _animator;
 
@@ -29,7 +30,7 @@ namespace CustomScripts.Powerups
             PlayerData.Instance.InstaKillPowerUpIndicator.Activate(30f);
             StartCoroutine(DisablePowerUpDelay(30f));
 
-            AudioManager.Instance.PowerUpInstaKillSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .2f);
 
             Despawn();
         }
@@ -37,7 +38,7 @@ namespace CustomScripts.Powerups
         private IEnumerator DisablePowerUpDelay(float time)
         {
             yield return new WaitForSeconds(time);
-            AudioManager.Instance.PowerUpDoublePointsEndSound.Play();
+            AudioManager.Instance.Play(EndAudio, .5f);
             PlayerData.Instance.InstaKill = false;
         }
 

@@ -26,8 +26,7 @@ namespace CustomScripts
                         .GetComponent<BoxCollider>().size = new Vector3(1.25f, 1.25f, 1.25f);
                 }
             }
-
-            AudioManager.Instance.DrinkSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }
     }

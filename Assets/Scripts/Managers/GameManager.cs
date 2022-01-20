@@ -66,7 +66,7 @@ namespace CustomScripts
 
             GameEnded = true;
 
-            AudioManager.Instance.EndMusic.PlayDelayed(1f);
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.EndMusic, 0.25f, 1f);
 
             EndPanel.UpdatePanel();
 

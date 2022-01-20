@@ -55,7 +55,7 @@ namespace CustomScripts
                     ZombieManager.Instance.ZosigSpawnPoints.Add(zosigSp);
             }
 
-            AudioManager.Instance.BuySound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
             gameObject.SetActive(false);
         }
     }

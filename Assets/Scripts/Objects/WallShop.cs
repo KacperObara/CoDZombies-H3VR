@@ -115,7 +115,7 @@ namespace CustomScripts.Objects
 
                 if (!_alreadyBoughtOnce)
                     _alreadyBoughtOnce = true;
-                AudioManager.Instance.BuySound.Play();
+                AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
             }
         }
 

@@ -24,7 +24,7 @@ namespace CustomScripts
         {
             StartCoroutine(MoveTo(destination, .2f));
 
-            AudioManager.Instance.BarricadeRepairSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.BarricadeRepairSound, .5f);
         }
 
 

@@ -1,10 +1,13 @@
 using FistVR;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CustomScripts
 {
     public class PerkShop : MonoBehaviour, IPurchasable
     {
+        public AudioSource PurchaseJingle;
+
         public int Cost;
         public int PurchaseCost { get { return Cost; } }
 
@@ -24,7 +27,7 @@ namespace CustomScripts
 
                 Bottle.transform.position = SpawnPoint.position;
 
-                AudioManager.Instance.BuySound.Play();
+                PurchaseJingle.Play();
             }
         }
     }

@@ -74,7 +74,7 @@ namespace CustomScripts
 
             ZombiesLeft = zombiesToSpawn;
 
-            AudioManager.Instance.RoundStartSound.PlayDelayed(1);
+            AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
 
             if (OnZombiesLeftChanged != null)
                 OnZombiesLeftChanged.Invoke();
@@ -84,7 +84,7 @@ namespace CustomScripts
 
         public void EndRound()
         {
-            AudioManager.Instance.RoundEndSound.PlayDelayed(1);
+            AudioManager.Instance.Play(AudioManager.Instance.RoundEndSound, 0.2f, 1f);
             StartCoroutine(DelayedAdvanceRound());
         }
 

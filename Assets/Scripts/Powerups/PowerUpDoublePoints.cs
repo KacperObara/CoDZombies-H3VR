@@ -9,6 +9,7 @@ namespace CustomScripts
     {
         public static Action PickedUpEvent;
 
+        public AudioClip EndAudio;
         public MeshRenderer Renderer;
         private Animator _animator;
 
@@ -31,7 +32,7 @@ namespace CustomScripts
             PlayerData.Instance.DoublePointsPowerUpIndicator.Activate(30f);
             StartCoroutine(DisablePowerUpDelay(30f));
 
-            AudioManager.Instance.PowerUpX2Sound.Play();
+            AudioManager.Instance.Play(ApplyAudio,.3f);
 
             if (PickedUpEvent != null)
                 PickedUpEvent.Invoke();
@@ -42,7 +43,7 @@ namespace CustomScripts
         private IEnumerator DisablePowerUpDelay(float time)
         {
             yield return new WaitForSeconds(time);
-            AudioManager.Instance.PowerUpDoublePointsEndSound.Play();
+            AudioManager.Instance.Play(EndAudio,5f);
             PlayerData.Instance.MoneyModifier = 1f;
         }
 

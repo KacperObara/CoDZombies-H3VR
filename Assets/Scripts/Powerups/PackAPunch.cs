@@ -7,18 +7,22 @@ using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Objects.Weapons;
 using FistVR;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace CustomScripts.Powerups
 {
     public class PackAPunch : MonoBehaviour, IPurchasable
     {
+        public static Action PurchaseEvent;
+
         public int Cost;
         public int PurchaseCost { get { return Cost; } }
 
         public List<WeaponData> WeaponsData;
         public List<CustomItemSpawner> Spawners;
 
+        public AudioClip UpgradeSound;
         [HideInInspector] public bool InUse = false;
 
         private void OnTriggerEnter(Collider other)
@@ -67,8 +71,8 @@ namespace CustomScripts.Powerups
 
                     StartCoroutine(DelayedSpawn(weapon));
 
-                    AudioManager.Instance.BuySound.Play();
-                    AudioManager.Instance.PackAPunchUpgradeSound.Play();
+                    AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
+                    AudioManager.Instance.Play(UpgradeSound, .3f);
 
                     weaponWrapper.BlockPackAPunchUpgrade();
                 }
@@ -85,9 +89,8 @@ namespace CustomScripts.Powerups
 
                     StartCoroutine(DelayedReturn(fvrPhysicalObject));
 
-
-                    AudioManager.Instance.BuySound.Play();
-                    AudioManager.Instance.PackAPunchUpgradeSound.Play();
+                    AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
+                    AudioManager.Instance.Play(UpgradeSound, .3f);
 
                     weaponWrapper.IncreaseFireRate(1.4f);
 
@@ -99,6 +102,9 @@ namespace CustomScripts.Powerups
                     weaponWrapper.gameObject.SetActive(false);
                 }
             }
+
+            if (PurchaseEvent != null)
+                PurchaseEvent.Invoke();
         }
 
         private IEnumerator DelayedSpawn(WeaponData weapon)

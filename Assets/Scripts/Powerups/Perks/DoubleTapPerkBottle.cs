@@ -32,8 +32,7 @@ namespace CustomScripts
 
 
             PlayerData.Instance.DamageModifier = DamageMultiplier;
-            AudioManager.Instance.DrinkSound.Play();
-
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }
     }

@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using FistVR;
 
 namespace CustomScripts
@@ -27,7 +28,8 @@ namespace CustomScripts
             ItemSpawnerSpawned = false;
         }
 
-        public static event Delegates.VoidDelegate OnSettingsChanged;
+        public static Action OnSettingsChanged;
+        public static Action OnMusicSettingChanged;
 
         public void ToggleMoreEnemies()
         {
@@ -53,6 +55,10 @@ namespace CustomScripts
         public void ToggleBackgroundMusic()
         {
             BackgroundMusic = !BackgroundMusic;
+
+            if (OnMusicSettingChanged != null)
+                OnMusicSettingChanged.Invoke();
+
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
         }

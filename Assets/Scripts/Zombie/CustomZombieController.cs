@@ -214,7 +214,7 @@ namespace CustomScripts.Zombie
 
             damage = (int) newDamage;
 
-            AudioManager.Instance.ZombieHitSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.ZombieHitSound, .7f);
             GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnHit);
             Health -= damage;
 
@@ -249,7 +249,7 @@ namespace CustomScripts.Zombie
                 _agent.enabled = false;
                 GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
 
-                AudioManager.Instance.ZombieDeathSound.Play();
+                AudioManager.Instance.Play(AudioManager.Instance.ZombieDeathSound, .7f);
 
                 ZombieManager.Instance.OnZombieDied(this);
             }
@@ -288,7 +288,8 @@ namespace CustomScripts.Zombie
             IsBeingHit = true;
             PlayerTouchCount++;
 
-            AudioManager.Instance.PlayerHitSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.PlayerHitSound);
+
             GM.CurrentPlayerBody.Health -= ZombieManager.Instance.CustomZombieDamage;
 
             if (PlayerData.GettingHitEvent != null)

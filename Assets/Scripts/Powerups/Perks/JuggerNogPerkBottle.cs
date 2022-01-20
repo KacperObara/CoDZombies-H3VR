@@ -15,11 +15,10 @@ namespace CustomScripts
             GM.CurrentPlayerBody.SetHealthThreshold(NewHealth);
             GM.CurrentPlayerBody.ResetHealth();
 
-            AudioManager.Instance.DrinkSound.Play();
-
             if (ConsumedEvent != null)
                 ConsumedEvent.Invoke();
 
+            AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }
     }
