@@ -20,14 +20,12 @@ namespace CustomScripts
 
         public GameObject StartButton;
 
-        public int ZombieAtOnceLimit = 20;
-
         public int ZombieFastWalkRound = 4;
         public int ZombieRunRound = 6;
         public int SpecialRoundInterval;
 
         [HideInInspector] public int RoundNumber = 0;
-        [HideInInspector] public int ZombiesLeft;
+
 
         public bool IsRoundSpecial { get { return RoundNumber % SpecialRoundInterval == 0; }}
         public bool IsFastWalking { get { return RoundNumber >= ZombieFastWalkRound; } }
@@ -58,7 +56,7 @@ namespace CustomScripts
 
             RoundNumber++;
 
-            SpawnEnemies();
+            ZombieManager.Instance.BeginSpawningEnemies();
 
             if (OnZombiesLeftChanged != null)
                 OnZombiesLeftChanged.Invoke();
@@ -66,32 +64,32 @@ namespace CustomScripts
                 OnRoundChanged.Invoke();
         }
 
-        private void SpawnEnemies()
-        {
-            int zombiesToSpawn = 0;
-
-            if (GameSettings.MoreEnemies)
-                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber) + 3);
-            else
-                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber));
-
-            if (zombiesToSpawn > ZombieAtOnceLimit)
-                zombiesToSpawn = ZombieAtOnceLimit;
-
-            for (int i = 0; i < zombiesToSpawn; i++)
-            {
-                ZombieManager.Instance.SpawnZombie(2f + i);
-            }
-
-            ZombiesLeft = zombiesToSpawn;
-
-            AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
-        }
-
-        public void OnEnemyDied()
-        {
-
-        }
+        // private void SpawnEnemies()
+        // {
+        //     int zombiesToSpawn = 0;
+        //
+        //     if (GameSettings.MoreEnemies)
+        //         zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber) + 3);
+        //     else
+        //         zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber));
+        //
+        //     if (zombiesToSpawn > ZombieAtOnceLimit)
+        //         zombiesToSpawn = ZombieAtOnceLimit;
+        //
+        //     for (int i = 0; i < zombiesToSpawn; i++)
+        //     {
+        //         ZombieManager.Instance.SpawnZombie(2f + i);
+        //     }
+        //
+        //     ZombiesLeft = zombiesToSpawn;
+        //
+        //     AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
+        // }
+        //
+        // public void OnEnemyDied()
+        // {
+        //
+        // }
 
         public void EndRound()
         {

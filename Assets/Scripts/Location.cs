@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Location : MonoBehaviour
 {
-	public List<CustomSosigSpawnPoint> SosigSpawnPoints;
-	public List<Transform> CustomZombieSpawnPoints;
-
-	public List<CustomSosigSpawnPoint> SpecialSosigSpawnPoints;
-	public List<Transform> SpecialCustomZombieSpawnPoints;
+	public List<Transform> ZombieSpawnPoints;
+	public List<Transform> SpecialZombieSpawnPoints;
 }
