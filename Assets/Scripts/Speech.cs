@@ -42,29 +42,33 @@ namespace CustomScripts
             PlayerSpawner.BeingRevivedEvent += OnBeingRevived;
             PowerUpDoublePoints.PickedUpEvent += OnDoublePointsPickedUp;
             PackAPunch.PurchaseEvent += OnPackAPunchPurchase;
-            Window.BarricadedEvent += OnBarricading;
             RoundManager.OnRoundChanged += OnRoundChanged;
             RoundManager.OnGameStarted += OnGameStarted;
         }
 
+        private void Start()
+        {
+            Window.BarricadedEvent += OnBarricading;
+        }
+
         private void OnGameStarted()
         {
-            bool active = Random.Range(0, 2000) != 0;
+            bool active = Random.Range(0, 2000) == 0;
             if (!active)
                 return;
 
-            AudioManager.Instance.Play(StartingGame, .5f, 1f);
+            AudioManager.Instance.Play(StartingGame, .5f, 9f);
             RoundManager.OnGameStarted -= OnGameStarted ;
         }
 
         private void OnRoundChanged()
         {
-            bool active = Random.Range(0, 2500) != 0;
+            bool active = Random.Range(0, 2500) == 0;
             if (!active)
                 return;
 
-            AudioManager.Instance.Play(RoundEnd, .5f, 1f);
-            RoundManager.OnGameStarted -= OnGameStarted;
+            AudioManager.Instance.Play(RoundEnd, .5f, 9f);
+            RoundManager.OnRoundChanged -= OnRoundChanged;
         }
 
         private void OnBarricading()
@@ -111,7 +115,7 @@ namespace CustomScripts
             if (!active)
                 return;
 
-            AudioManager.Instance.Play(JuggernogConsumed, .5f, 1f);
+            AudioManager.Instance.Play(JuggernogConsumed, .5f, 3f);
             JuggerNogPerkBottle.ConsumedEvent -= OnJuggernogConsumed;
         }
 
@@ -121,7 +125,7 @@ namespace CustomScripts
             if (!active)
                 return;
 
-            AudioManager.Instance.Play(BuyingStaminUp, .5f, 1f);
+            AudioManager.Instance.Play(BuyingStaminUp, .5f, 3f);
             StaminUpPerkBottle.ConsumedEvent -= OnStaminUpConsumed;
         }
 

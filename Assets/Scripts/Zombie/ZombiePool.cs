@@ -1,20 +1,19 @@
 #if H3VR_IMPORTED
+using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Managers;
 using CustomScripts.Zombie;
 using UnityEngine;
 namespace CustomScripts
 {
-    public class ZombiePool : MonoBehaviourSingleton<ZombiePool>
+    public class ZombiePool : MonoBehaviour
     {
         public Transform DespawnedWaypoint;
 
         public List<CustomZombieController> AvailableZombies;
 
-        public override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
             RoundManager.OnGameStarted -= OnGameStart;
             RoundManager.OnGameStarted += OnGameStart;
         }

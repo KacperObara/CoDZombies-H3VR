@@ -87,6 +87,9 @@ namespace CustomScripts.Player
             orig.Invoke(self, d);
         }
 
+        /// <summary>
+        /// Place in which weapon or magazine wrapper classes are added to the objects
+        /// </summary>
         private void OnPhysicalObjectStartInteraction(On.FistVR.FVRPhysicalObject.orig_BeginInteraction orig,
             FVRPhysicalObject self, FVRViveHand hand)
         {
@@ -103,6 +106,15 @@ namespace CustomScripts.Player
                 }
 
                 wrapper.OnWeaponGrabbed();
+            }
+            else if (self as FVRFireArmMagazine)
+            {
+                MagazineWrapper wrapper = self.GetComponent<MagazineWrapper>();
+                if (wrapper == null)
+                {
+                    wrapper = self.gameObject.AddComponent<MagazineWrapper>();
+                    wrapper.Initialize((FVRFireArmMagazine) self);
+                }
             }
         }
 

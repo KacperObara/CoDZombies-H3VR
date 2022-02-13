@@ -4,11 +4,14 @@ using CustomScripts.Managers;
 using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CustomScripts.Zombie
 {
     public class ZosigZombieController : ZombieController
     {
+        public bool CanInteractWithWindows = true;
+
         private const float agentUpdateInterval = .5f;
         private int _hitsGivingMoney = 6;
 
@@ -16,7 +19,6 @@ namespace CustomScripts.Zombie
         private float _cachedSpeed;
         private bool _isAttackingWindow;
         private bool _isDead;
-
 
         private Sosig _sosig;
 
@@ -78,6 +80,23 @@ namespace CustomScripts.Zombie
             CheckPerks();
         }
 
+        public override void InitializeSpecialType()
+        {
+            StartCoroutine(SpawnSpecialEnemy());
+        }
+
+        private IEnumerator SpawnSpecialEnemy()
+        {
+            _sosig.Speed_Walk = 5f;
+            _sosig.Speed_Turning = 5f;
+            _sosig.Speed_Sneak = 5f;
+            _sosig.Speed_Crawl = 5f;
+
+            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("InsidePlayArea");
+
+            yield return new WaitForSeconds(2);
+        }
+
         private void Update()
         {
             if (_sosig == null)
@@ -89,25 +108,6 @@ namespace CustomScripts.Zombie
                 _agentUpdateTimer -= agentUpdateInterval;
 
                 _sosig.CommandAssaultPoint(Target.position);
-                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
-                //
-                // _sosig.UpdateGuardPoint(Target.position);
-                // _sosig.UpdateAssaultPoint(Target.position);
-                //
-                // // Quick hack if sosigs try to follow you but on the wrong floor
-                // if (_sosig.Agent.destination.y + 3f < Target.position.y)
-                // {
-                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.up);
-                // }
-                //
-                // if (_sosig.Agent.destination.y > Target.position.y + 3f)
-                // {
-                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.down);
-                // }
-                //
-                // _sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
-                //
-                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault; // I know I'm calling this two times, maybe it doesn't make sense
             }
 
             if (_isAttackingWindow)
@@ -202,7 +202,7 @@ namespace CustomScripts.Zombie
             if (_isAttackingWindow)
                 return;
 
-            if (other.GetComponent<WindowTrigger>())
+            if (CanInteractWithWindows && other.GetComponent<WindowTrigger>())
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (window.IsOpen)

@@ -1,6 +1,8 @@
 #if H3VR_IMPORTED
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 namespace CustomScripts
 {
     /// <summary>
@@ -10,7 +12,7 @@ namespace CustomScripts
     /// </summary>
     public class SoundPool : MonoBehaviour
     {
-        public List<SoundPoolableObject> FreeAudio;
+        public List<SoundPoolableObject> PooledAudioSources;
         public static SoundPool Instance { get; private set; }
 
         private void Awake()
@@ -21,17 +23,17 @@ namespace CustomScripts
 
         public SoundPoolableObject Spawn()
         {
-            if (FreeAudio.Count <= 0)
+            if (PooledAudioSources.Count <= 0)
                 return null;
 
-            SoundPoolableObject soundPoolable = FreeAudio[0];
-            FreeAudio.RemoveAt(0);
+            SoundPoolableObject soundPoolable = PooledAudioSources[0];
+            PooledAudioSources.RemoveAt(0);
             return soundPoolable;
         }
 
         public void Despawn(SoundPoolableObject soundPoolable)
         {
-            FreeAudio.Add(soundPoolable);
+            PooledAudioSources.Add(soundPoolable);
         }
     }
 }

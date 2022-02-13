@@ -18,6 +18,9 @@ namespace CustomScripts
         public int IFF = 1;
         public Sosig.SosigOrder SpawnState;
 
+        public float SpawnDelay = 0;
+        public ParticleSystem SpawnPS;
+
         public IEnumerator Start()
         {
             yield return new WaitForEndOfFrame();
@@ -26,6 +29,15 @@ namespace CustomScripts
 
         public void Spawn()
         {
+            StartCoroutine(DelayedSpawn());
+        }
+
+        private IEnumerator DelayedSpawn()
+        {
+            if (SpawnPS)
+                SpawnPS.Play(true);
+            yield return new WaitForSeconds(SpawnDelay);
+
             try
             {
                 SosigAPI.SpawnOptions options = new SosigAPI.SpawnOptions

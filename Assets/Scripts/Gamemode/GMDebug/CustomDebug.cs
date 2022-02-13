@@ -1,6 +1,7 @@
 #if H3VR_IMPORTED
 
 using CustomScripts.Managers;
+using CustomScripts.Objects;
 using CustomScripts.Player;
 using CustomScripts.Powerups;
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace CustomScripts.Gamemode.GMDebug
         public PowerUpMaxAmmo MaxAmmo;
         public PowerUpDoublePoints DoublePoints;
         public PowerUpNuke Nuke;
+
+        public Blockade TrapBlockade;
+        public ElectroTrap ElectroTrap;
 
         private void Update()
         {
@@ -51,6 +55,15 @@ namespace CustomScripts.Gamemode.GMDebug
             if (Input.GetKeyDown(KeyCode.M))
             {
                 GameManager.Instance.AddPoints(300);
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                TrapBlockade.Buy();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                ElectroTrap.OnLeverPull();
             }
         }
 

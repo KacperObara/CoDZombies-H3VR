@@ -61,7 +61,7 @@ namespace CustomScripts
 
         public void OnPlankTouch(Plank plank)
         {
-            if (BarricadedEvent != null)
+            if (BarricadedEvent != null && GameManager.Instance.GameStarted)
                 BarricadedEvent.Invoke();
 
             if (PlayerData.Instance.SpeedColaPerkActivated)

@@ -8,6 +8,7 @@ namespace CustomScripts
     {
         public List<AudioClip> FarZombieSounds;
         public List<AudioClip> CloseZombieSounds;
+        public List<AudioClip> HellHoundsSounds;
 
         public AudioSource MainAudioSource;
 
@@ -19,6 +20,9 @@ namespace CustomScripts
 
         public AudioClip ZombieHitSound;
         public AudioClip ZombieDeathSound;
+
+        public AudioClip HellHoundSpawnSound;
+        public AudioClip HellHoundDeathSound;
 
         public AudioClip RoundStartSound;
         public AudioClip RoundEndSound;

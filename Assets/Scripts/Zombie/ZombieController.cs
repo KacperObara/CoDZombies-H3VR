@@ -9,6 +9,7 @@ namespace CustomScripts.Zombie
         public Transform Target;
 
         public abstract void Initialize(Transform newTarget);
+        public abstract void InitializeSpecialType();
         public abstract void OnHit(float damage, bool headHit = false);
     }
 }

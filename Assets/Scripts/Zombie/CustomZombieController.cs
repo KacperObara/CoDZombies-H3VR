@@ -52,6 +52,8 @@ namespace CustomScripts.Zombie
         private SpeedType _moveSpeed;
         private int _animIndex;
 
+        public ParticleSystem ExplosionPS;
+
         private void Awake()
         {
             State = State.Dead;
@@ -126,6 +128,20 @@ namespace CustomScripts.Zombie
 
             if (OnZombieInitialize != null)
                 OnZombieInitialize.Invoke();
+        }
+
+        public override void InitializeSpecialType()
+        {
+            StartCoroutine(SpawnSpecialEnemy());
+        }
+
+        private IEnumerator SpawnSpecialEnemy()
+        {
+            _animator.SetFloat("WalkSpeed", 1.5f); //Random.Range(1.25f, 1.3f)
+            _animator.SetFloat("FastWalkSpeed", 1.5f);
+            _animator.SetFloat("RunSpeed", 1.5f);
+
+            yield return new WaitForSeconds(2);
         }
 
         private void Update()
@@ -215,6 +231,7 @@ namespace CustomScripts.Zombie
             damage = (int) newDamage;
 
             AudioManager.Instance.Play(AudioManager.Instance.ZombieHitSound, .7f);
+
             GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnHit);
             Health -= damage;
 
@@ -224,6 +241,12 @@ namespace CustomScripts.Zombie
                 _animator.applyRootMotion = true;
 
                 State = State.Dead;
+
+                if (RoundManager.Instance.IsRoundSpecial)
+                {
+                    Explode();
+                    return;
+                }
 
                 // weird mumbo jumbo to minimize weird behavior that causes custom zombies
                 // to jump upon death
@@ -263,6 +286,24 @@ namespace CustomScripts.Zombie
                     StartCoroutine(HitAnimThrottle());
                 }
             }
+        }
+
+        private void Explode()
+        {
+            if (OnZombieDied != null)
+                OnZombieDied.Invoke(0f);
+            _agent.enabled = false;
+
+            GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+            AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .35f);
+            ZombieManager.Instance.OnZombieDied(this);
+
+            if (ExplosionPS == null)
+                return;
+
+            var explosionPS = Instantiate(ExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
+            //explosionPS.Play(true);
+            Destroy(explosionPS, 4f);
         }
 
         private IEnumerator HitAnimThrottle()

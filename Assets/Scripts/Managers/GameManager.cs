@@ -18,6 +18,7 @@ namespace CustomScripts
         [HideInInspector] public int Points;
         [HideInInspector] public int TotalPoints; // for highscore
 
+        [HideInInspector] public bool GameStarted = false;
         [HideInInspector] public bool GameEnded = false;
 
         public WallShop FirstShop;

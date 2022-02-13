@@ -26,9 +26,9 @@ MonoBehaviour:
   NoFreshTargetTime: 1.5
   AssaultPointOverridesSkirmishPointWhenFurtherThan: 0
   RunSpeed: 3.5
-  WalkSpeed: 1.4
-  SneakSpeed: 0.6
-  CrawlSpeed: 0.3
+  WalkSpeed: 3.5
+  SneakSpeed: 3.5
+  CrawlSpeed: 3.5
   TurnSpeed: 8
   MaxJointLimit: 6
   MovementRotMagnitude: 3

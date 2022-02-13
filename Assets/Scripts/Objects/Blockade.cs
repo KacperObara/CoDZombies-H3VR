@@ -1,5 +1,6 @@
 #if H3VR_IMPORTED
 
+using System;
 using System.Collections.Generic;
 using Atlas.MappingComponents.Sandbox;
 using CustomScripts.Gamemode.GMDebug;
@@ -15,8 +16,10 @@ namespace CustomScripts
     /// </summary>
     public class Blockade : MonoBehaviour, IPurchasable
     {
+        public Action OnPurchase;
+
         public List<Transform> UnlockableZombieSpawnPoints;
-        public List<CustomSosigSpawnPoint> UnlockableZosigSpawnPoints;
+        public List<Transform> UnlockableSpecialZombieSpawnPoints;
 
         public List<Text> CostTexts;
 
@@ -43,20 +46,24 @@ namespace CustomScripts
 
             _alreadyUsed = true;
 
-            foreach (Transform zombieSp in UnlockableZombieSpawnPoints)
+
+            foreach (Transform spawnPoint in UnlockableZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.CustomZombieSpawnPoints.Contains(zombieSp))
-                    ZombieManager.Instance.CustomZombieSpawnPoints.Add(zombieSp);
+                if (!ZombieManager.Instance.ZombieSpawnPoints.Contains(spawnPoint))
+                    ZombieManager.Instance.ZombieSpawnPoints.Add(spawnPoint);
             }
 
-            foreach (CustomSosigSpawnPoint zosigSp in UnlockableZosigSpawnPoints)
+            foreach (Transform spawnPoint in UnlockableSpecialZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZosigSpawnPoints.Contains(zosigSp))
-                    ZombieManager.Instance.ZosigSpawnPoints.Add(zosigSp);
+                if (!ZombieManager.Instance.SpecialZombieSpawnPoints.Contains(spawnPoint))
+                    ZombieManager.Instance.SpecialZombieSpawnPoints.Add(spawnPoint);
             }
 
             AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
             gameObject.SetActive(false);
+
+            if (OnPurchase != null)
+                OnPurchase.Invoke();
         }
     }
 }

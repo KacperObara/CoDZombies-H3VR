@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e58aa4ec2589042bd90cc0020943d3, type: 3}
+  m_Name: NOTUSEDSpecialRoundEnemyConfig
+  m_EditorClassIdentifier: 
+  CustomZombiePrefabs:
+  - {fileID: 1295136959226150, guid: 3c415a8b141c85c40b3323ca2a6ff16c, type: 2}
+  ZosigPrefabs:
+  - {fileID: 0}
+  AppearanceQuantity:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SpecialRoundOnly: 1
+  SpecialRoundStart: 1
+  SpecialRoundInterval: 2

@@ -7,17 +7,19 @@ namespace CustomScripts
 {
     public class PowerUpManager : MonoBehaviourSingleton<PowerUpManager>
     {
-        public float ChanceForAmmo = 5f;
-        public float ChanceForPowerUp = 10f;
+        public float ChanceForAmmo = 2.5f;
+        public float ChanceForPowerUp = 6f;
 
-        public bool IsPowerUpCooldown = false;
-        public bool IsMaxAmmoCooldown = false;
+        public float AmmoCooldownTime;
+        public float PowerUpCooldownTime;
 
         public PowerUpMaxAmmo MaxAmmo;
-
         public List<PowerUp> PowerUps;
+
         private readonly List<int> _randomIndexes = new List<int>();
 
+        private bool _isPowerUpCooldown;
+        private bool _isMaxAmmoCooldown;
 
         public override void Awake()
         {
@@ -36,8 +38,9 @@ namespace CustomScripts
 
         public void RollForPowerUp(GameObject spawnPos)
         {
-            int chance = Random.Range(0, 200);
-            if (GameSettings.LimitedAmmo && !IsMaxAmmoCooldown)
+            // Chance for Max Ammo
+            float chance = Random.Range(0f, 100f);
+            if (GameSettings.LimitedAmmo && !_isMaxAmmoCooldown)
             {
                 if (chance < ChanceForAmmo)
                 {
@@ -47,10 +50,11 @@ namespace CustomScripts
                 }
             }
 
-            if (IsPowerUpCooldown) //30 sec cooldown between power ups
+            if (_isPowerUpCooldown)
                 return;
 
-            chance = Random.Range(0, 200);
+            // Chance for other power ups
+            chance = Random.Range(0f, 100f);
             if (chance < ChanceForPowerUp)
             {
                 if (_randomIndexes.Count == 0)
@@ -60,10 +64,13 @@ namespace CustomScripts
                 SpawnPowerUp(PowerUps[_randomIndexes[0]], spawnPos.transform.position);
 
                 _randomIndexes.RemoveAt(0);
-                return;
             }
         }
 
+        /// <summary>
+        /// Power ups have randomized order. If one spawns,
+        /// it cannot spawn again before all others have spawned too
+        /// </summary>
         private void ShuffleIndexes()
         {
             _randomIndexes.Clear();
@@ -80,7 +87,7 @@ namespace CustomScripts
         {
             if (powerUp == null)
             {
-                Debug.LogWarning("PowerUp spawn failed! PowerUp == null Tell Kodeman");
+                Debug.LogWarning("PowerUp spawn failed! PowerUp == null");
                 return;
             }
 
@@ -90,16 +97,16 @@ namespace CustomScripts
 
         private IEnumerator PowerUpCooldown()
         {
-            IsPowerUpCooldown = true;
-            yield return new WaitForSeconds(30f);
-            IsPowerUpCooldown = false;
+            _isPowerUpCooldown = true;
+            yield return new WaitForSeconds(PowerUpCooldownTime);
+            _isPowerUpCooldown = false;
         }
 
         private IEnumerator PowerUpMaxAmmoCooldown()
         {
-            IsMaxAmmoCooldown = true;
-            yield return new WaitForSeconds(30f);
-            IsMaxAmmoCooldown = false;
+            _isMaxAmmoCooldown = true;
+            yield return new WaitForSeconds(AmmoCooldownTime);
+            _isMaxAmmoCooldown = false;
         }
     }
 }

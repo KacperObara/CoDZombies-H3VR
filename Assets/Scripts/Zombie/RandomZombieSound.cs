@@ -24,7 +24,13 @@ namespace CustomScripts
             soundPoolable.Initialize();
             soundPoolable.AudioSource.pitch = Random.Range(0.8f, 1.2f);
 
-            if (GameReferences.Instance.IsPlayerClose(transform, 5f))
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                soundPoolable.AudioSource.clip =
+                    AudioManager.Instance.HellHoundsSounds[
+                        Random.Range(0, AudioManager.Instance.HellHoundsSounds.Count)];
+            }
+            else if (GameReferences.Instance.IsPlayerClose(transform, 5f))
             {
                 soundPoolable.AudioSource.clip =
                     AudioManager.Instance.CloseZombieSounds[
