@@ -150,16 +150,19 @@ namespace CustomScripts.Zombie
             }
         }
 
-        public void OnKill()
+        public override void OnKill(bool awardPoints = true)
         {
             if (!ZombieManager.Instance.ExistingZombies.Contains(this))
                 return;
 
             _isDead = true;
 
-            GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
 
-            ZombieManager.Instance.OnZombieDied(this);
+                ZombieManager.Instance.OnZombieDied(this);
+            }
 
             StartCoroutine(DelayedDespawn());
         }

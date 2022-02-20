@@ -8,7 +8,7 @@ namespace CustomScripts.Gamemode.GMDebug
     {
         public string ObjectId;
 
-        public GameObject SpawnedObject;
+        [HideInInspector] public GameObject SpawnedObject;
 
         private void OnDrawGizmos()
         {

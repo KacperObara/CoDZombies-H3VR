@@ -10,8 +10,11 @@ using UnityEngine.Serialization;
 
 namespace CustomScripts.Managers
 {
+    //TODO Need to refactor AI classes, it became quite a monster from having to support 4 types of enemies in 2 modes
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
     {
+        public Location CurrentLocation;
+
         public ZombiePool NormalZombiePool;
         public ZombiePool SpecialZombiePool;
 
@@ -28,14 +31,11 @@ namespace CustomScripts.Managers
         public List<ZombieController> AllCustomZombies;
         [HideInInspector] public List<ZombieController> ExistingZombies;
 
-        public List<Transform> ZombieSpawnPoints;
-        public List<Transform> SpecialZombieSpawnPoints;
-
         private Transform _zombieTarget;
 
         public int ZombieAtOnceLimit = 20;
         [HideInInspector] public int ZombiesRemaining;
-        private int _zombiesWaitingToSpawn;
+        //[HideInInspector] public int ZombiesWaitingToSpawn;
         private int ZombiesToSpawnThisRound
         {
             get
@@ -46,6 +46,8 @@ namespace CustomScripts.Managers
                     return Mathf.CeilToInt(ZombieCountCurve.Evaluate(RoundManager.Instance.RoundNumber));
             }
         }
+
+        private Coroutine _spawningCoroutine;
 
         public override void Awake()
         {
@@ -59,25 +61,16 @@ namespace CustomScripts.Managers
 
         public void BeginSpawningEnemies()
         {
-            int zombiesToSpawn = ZombiesToSpawnThisRound;
-            if (zombiesToSpawn > ZombieAtOnceLimit)
-                zombiesToSpawn = ZombieAtOnceLimit;
-
-            _zombiesWaitingToSpawn = ZombiesToSpawnThisRound;
-
-            for (int i = 0; i < zombiesToSpawn; i++)
-            {
-                SpawnZombie(2f + i);
-            }
-
             ZombiesRemaining = ZombiesToSpawnThisRound;
+
+            StartSpawningZombies(2f);
 
             AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
         }
 
-        public void SpawnZombie(float delay)
+        public void StartSpawningZombies(float initialDelay)
         {
-            StartCoroutine(DelayedZombieSpawn(delay));
+            _spawningCoroutine = StartCoroutine(DelayedZombieSpawn(initialDelay));
         }
 
         public void OnZombieSpawned(ZombieController controller)
@@ -87,22 +80,31 @@ namespace CustomScripts.Managers
 
         private IEnumerator DelayedZombieSpawn(float delay)
         {
-            _zombiesWaitingToSpawn--;
-
             yield return new WaitForSeconds(delay);
 
-            _zombieTarget = GameReferences.Instance.Player;
+            while (ZombiesRemaining > ExistingZombies.Count)
+            {
+                if (ExistingZombies.Count >= ZombieAtOnceLimit)
+                {
+                    yield return new WaitForSeconds(5);
+                    continue;
+                }
 
-            if (!GameSettings.UseCustomEnemies)
-            {
-                SpawnZosig();
-            }
-            else
-            {
-                if (RoundManager.Instance.IsRoundSpecial)
-                    SpecialZombiePool.Spawn();
+                _zombieTarget = GameReferences.Instance.Player;
+
+                if (!GameSettings.UseCustomEnemies)
+                {
+                    SpawnZosig();
+                }
                 else
-                    NormalZombiePool.Spawn();
+                {
+                    if (RoundManager.Instance.IsRoundSpecial)
+                        SpecialZombiePool.Spawn();
+                    else
+                        NormalZombiePool.Spawn();
+                }
+
+                yield return new WaitForSeconds(2);
             }
         }
 
@@ -113,12 +115,21 @@ namespace CustomScripts.Managers
             Transform spawnPoint = null;
             if (RoundManager.Instance.IsRoundSpecial)
             {
-                spawnPoint = SpecialZombieSpawnPoints[Random.Range(0, SpecialZombieSpawnPoints.Count)].transform;
+                spawnPoint = CurrentLocation.SpecialZombieSpawnPoints[Random.Range(0, CurrentLocation.SpecialZombieSpawnPoints.Count)].transform;
             }
             else
             {
-                spawnPoint = ZombieSpawnPoints[Random.Range(0, ZombieSpawnPoints.Count)];
+                spawnPoint = CurrentLocation.ZombieSpawnPoints[Random.Range(0, CurrentLocation.ZombieSpawnPoints.Count)];
             }
+
+            if (spawnPoint.GetComponent<ZombieSpawner>() != null)
+            {
+                Window targetWindow = spawnPoint.GetComponent<ZombieSpawner>().WindowWaypoint;
+                if (targetWindow != null)
+                    _zombieTarget = targetWindow.ZombieWaypoint;
+            }
+
+            ExistingZombies.Add(controller);
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
@@ -130,20 +141,10 @@ namespace CustomScripts.Managers
                 yield return new WaitForSeconds(2f);
             }
 
-            controller.transform.position = spawnPoint.position;
-
-            if (spawnPoint.GetComponent<ZombieSpawner>() != null)
+            if (ExistingZombies.Contains(controller))
             {
-                Window targetWindow = spawnPoint.GetComponent<ZombieSpawner>().WindowWaypoint;
-                if (targetWindow != null)
-                    _zombieTarget = targetWindow.ZombieWaypoint;
-            }
-
-            controller.Initialize(_zombieTarget);
-            ExistingZombies.Add(controller);
-
-            if (RoundManager.Instance.IsRoundSpecial)
-            {
+                controller.transform.position = spawnPoint.position;
+                controller.Initialize(_zombieTarget);
                 controller.InitializeSpecialType();
             }
         }
@@ -153,14 +154,14 @@ namespace CustomScripts.Managers
             if (RoundManager.Instance.IsRoundSpecial)
             {
                 CustomSosigSpawnPoint spawner =
-                    SpecialZombieSpawnPoints[Random.Range(0, SpecialZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
+                    CurrentLocation.SpecialZombieSpawnPoints[Random.Range(0, CurrentLocation.SpecialZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
 
                 spawner.Spawn();
             }
             else
             {
                 CustomSosigSpawnPoint spawner =
-                    ZombieSpawnPoints[Random.Range(0, ZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
+                    CurrentLocation.ZombieSpawnPoints[Random.Range(0, CurrentLocation.ZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
 
                 Window targetWindow = spawner.GetComponent<ZombieSpawner>().WindowWaypoint;
                 if (targetWindow != null)
@@ -185,15 +186,32 @@ namespace CustomScripts.Managers
 
         #endregion
 
-        public void OnZombieDied(ZombieController controller)
+        public void ChangeLocation(Location newLocation)
+        {
+            StopCoroutine(_spawningCoroutine);
+
+            CurrentLocation = newLocation;
+
+            for (int i = ExistingZombies.Count - 1; i >= 0; i--)
+            {
+                ExistingZombies[i].OnKill(false);
+            }
+
+            StartSpawningZombies(5f);
+        }
+
+        public void OnZombieDied(ZombieController controller, bool awardKill = true)
         {
             if (GameSettings.UseCustomEnemies)
                 StartCoroutine(DelayedCustomZombieDespawn(controller.GetComponent<CustomZombieController>()));
 
             ExistingZombies.Remove(controller);
 
-            if (_zombiesWaitingToSpawn > 0)
-                SpawnZombie(2f);
+            if (!awardKill)
+                return;
+
+            //if (ZombiesWaitingToSpawn > 0)
+            //    SpawnZombie(2f);
 
             ZombiesRemaining--;
 
@@ -225,11 +243,6 @@ namespace CustomScripts.Managers
                 yield return new WaitForSeconds(5f);
                 NormalZombiePool.Despawn(controller);
             }
-        }
-
-        private void OnPlayerChangeLocation(Location location)
-        {
-
         }
 
         private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass,

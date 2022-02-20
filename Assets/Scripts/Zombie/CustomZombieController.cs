@@ -132,17 +132,24 @@ namespace CustomScripts.Zombie
 
         public override void InitializeSpecialType()
         {
-            StartCoroutine(SpawnSpecialEnemy());
-        }
-
-        private IEnumerator SpawnSpecialEnemy()
-        {
-            _animator.SetFloat("WalkSpeed", 1.5f); //Random.Range(1.25f, 1.3f)
+            _animator.SetFloat("WalkSpeed", 1.5f);
             _animator.SetFloat("FastWalkSpeed", 1.5f);
             _animator.SetFloat("RunSpeed", 1.5f);
-
-            yield return new WaitForSeconds(2);
+            //StartCoroutine(SpawnSpecialEnemy());
         }
+
+        // private IEnumerator SpawnSpecialEnemy()
+        // {
+        //     _animator.SetFloat("WalkSpeed", 0);
+        //     _animator.SetFloat("FastWalkSpeed", 0);
+        //     _animator.SetFloat("RunSpeed", 0);
+        //
+        //     yield return new WaitForSeconds(1);
+        //
+        //     _animator.SetFloat("WalkSpeed", 1.5f);
+        //     _animator.SetFloat("FastWalkSpeed", 1.5f);
+        //     _animator.SetFloat("RunSpeed", 1.5f);
+        // }
 
         private void Update()
         {
@@ -237,44 +244,7 @@ namespace CustomScripts.Zombie
 
             if (Health <= 0 || PlayerData.Instance.InstaKill)
             {
-                _agent.speed = 0.1f;
-                _animator.applyRootMotion = true;
-
-                State = State.Dead;
-
-                if (RoundManager.Instance.IsRoundSpecial)
-                {
-                    Explode();
-                    return;
-                }
-
-                // weird mumbo jumbo to minimize weird behavior that causes custom zombies
-                // to jump upon death
-                int random = Random.Range(0, 3);
-                switch (random)
-                {
-                    case 0:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(1.8f);
-                        break;
-                    case 1:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(2.4f);
-                        break;
-                    case 2:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(1.25f);
-                        break;
-                }
-
-                _animator.CrossFade("Death" + random, 0.25f, 0, 0);
-
-                _agent.enabled = false;
-                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
-
-                AudioManager.Instance.Play(AudioManager.Instance.ZombieDeathSound, .7f);
-
-                ZombieManager.Instance.OnZombieDied(this);
+                OnKill();
             }
             else // Hit animation
             {
@@ -288,7 +258,54 @@ namespace CustomScripts.Zombie
             }
         }
 
-        private void Explode()
+        public override void OnKill(bool awardPoints = true)
+        {
+            _agent.speed = 0.1f;
+            _animator.applyRootMotion = true;
+
+            State = State.Dead;
+
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                Explode(awardPoints);
+                return;
+            }
+
+            // weird mumbo jumbo to minimize weird behavior that causes custom zombies
+            // to jump upon death
+            int random = Random.Range(0, 3);
+            switch (random)
+            {
+                case 0:
+                    if (OnZombieDied != null)
+                        OnZombieDied.Invoke(1.8f);
+                    break;
+                case 1:
+                    if (OnZombieDied != null)
+                        OnZombieDied.Invoke(2.4f);
+                    break;
+                case 2:
+                    if (OnZombieDied != null)
+                        OnZombieDied.Invoke(1.25f);
+                    break;
+            }
+
+            _animator.CrossFade("Death" + random, 0.25f, 0, 0);
+
+            _agent.enabled = false;
+
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+
+                AudioManager.Instance.Play(AudioManager.Instance.ZombieDeathSound, .7f);
+            }
+
+
+            ZombieManager.Instance.OnZombieDied(this, awardPoints);
+        }
+
+        private void Explode(bool awardPoints)
         {
             if (OnZombieDied != null)
                 OnZombieDied.Invoke(0f);
@@ -296,14 +313,14 @@ namespace CustomScripts.Zombie
 
             GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
             AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .35f);
-            ZombieManager.Instance.OnZombieDied(this);
+            ZombieManager.Instance.OnZombieDied(this, awardPoints);
 
             if (ExplosionPS == null)
                 return;
 
             var explosionPS = Instantiate(ExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
             //explosionPS.Play(true);
-            Destroy(explosionPS, 4f);
+            Destroy(explosionPS.gameObject, 4f);
         }
 
         private IEnumerator HitAnimThrottle()

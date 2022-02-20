@@ -38,9 +38,28 @@ namespace CustomScripts
                 return;
             }
 
+
             ZombieManager.Instance.OnZombieSpawned(AvailableZombies[0]);
             AvailableZombies.Remove(AvailableZombies[0]);
+            // if (RoundManager.Instance.IsRoundSpecial)
+            // {
+            //     StartCoroutine(DelayedSpawn(2f));
+            // }
+            // else
+            // {
+            //     StartCoroutine(DelayedSpawn(0f));
+            // }
+
+
         }
+
+        // private IEnumerator DelayedSpawn(float delay)
+        // {
+        //     yield return new WaitForSeconds(delay);
+        //
+        //     ZombieManager.Instance.OnZombieSpawned(AvailableZombies[0]);
+        //     AvailableZombies.Remove(AvailableZombies[0]);
+        // }
 
         public void Despawn(CustomZombieController customZombie)
         {

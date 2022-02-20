@@ -21,6 +21,9 @@ namespace CustomScripts.Gamemode.GMDebug
         public Blockade TrapBlockade;
         public ElectroTrap ElectroTrap;
 
+        public Teleport TeleportToSecondArea;
+        public Teleport TeleportToMainArea;
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -65,6 +68,18 @@ namespace CustomScripts.Gamemode.GMDebug
             {
                 ElectroTrap.OnLeverPull();
             }
+
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                TeleportToSecondArea.OnLeverPull();
+            }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                TeleportToMainArea.OnLeverPull();
+            }
+
+
         }
 
         public void SpawnCarpenter()

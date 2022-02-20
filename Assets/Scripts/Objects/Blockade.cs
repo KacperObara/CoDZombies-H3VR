@@ -49,14 +49,14 @@ namespace CustomScripts
 
             foreach (Transform spawnPoint in UnlockableZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.ZombieSpawnPoints.Contains(spawnPoint))
-                    ZombieManager.Instance.ZombieSpawnPoints.Add(spawnPoint);
+                if (!ZombieManager.Instance.CurrentLocation.ZombieSpawnPoints.Contains(spawnPoint))
+                    ZombieManager.Instance.CurrentLocation.ZombieSpawnPoints.Add(spawnPoint);
             }
 
             foreach (Transform spawnPoint in UnlockableSpecialZombieSpawnPoints)
             {
-                if (!ZombieManager.Instance.SpecialZombieSpawnPoints.Contains(spawnPoint))
-                    ZombieManager.Instance.SpecialZombieSpawnPoints.Add(spawnPoint);
+                if (!ZombieManager.Instance.CurrentLocation.SpecialZombieSpawnPoints.Contains(spawnPoint))
+                    ZombieManager.Instance.CurrentLocation.SpecialZombieSpawnPoints.Add(spawnPoint);
             }
 
             AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);

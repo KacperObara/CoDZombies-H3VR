@@ -114,7 +114,7 @@ public class MagazineBox : FVRPhysicalObject
 		UpdateUI();
 	}
 
-	private void AddMagazine(FVRFireArmMagazine magazine)
+	public void AddMagazine(FVRFireArmMagazine magazine)
 	{
 		_magazines.Push(magazine);
 		magazine.gameObject.SetActive(false);
