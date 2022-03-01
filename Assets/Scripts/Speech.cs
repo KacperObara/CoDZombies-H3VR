@@ -73,7 +73,7 @@ namespace CustomScripts
 
         private void OnBarricading()
         {
-            bool active = Random.Range(0, 3000) != 0;
+            bool active = Random.Range(0, 3000) == 0;
             if (!active)
                 return;
 
@@ -83,7 +83,7 @@ namespace CustomScripts
 
         private void OnPackAPunchPurchase()
         {
-            bool active = Random.Range(0, 1500) != 0;
+            bool active = Random.Range(0, 1500) == 0;
             if (!active)
                 return;
 
@@ -93,7 +93,7 @@ namespace CustomScripts
 
         private void OnWeaponSpawned(WeaponData weapon)
         {
-            bool active = Random.Range(0, 850) != 0;
+            bool active = Random.Range(0, 850) == 0;
             if (!active)
                 return;
 
@@ -121,7 +121,7 @@ namespace CustomScripts
 
         private void OnStaminUpConsumed()
         {
-            bool active = Random.Range(0, 1000) != 0;
+            bool active = Random.Range(0, 1000) == 0;
             if (!active)
                 return;
 

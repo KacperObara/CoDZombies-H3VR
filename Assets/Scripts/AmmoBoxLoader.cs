@@ -4,19 +4,28 @@ using System.Collections.Generic;
 using CustomScripts.Gamemode.GMDebug;
 using FistVR;
 using UnityEngine;
+using UnityEngine.Serialization;
 
+// TODO Auto loading to the box Not working
 public class AmmoBoxLoader : MonoBehaviour
 {
 	public MagazineBox MagazineBox;
 
-	public CustomItemSpawner ItemSpawner;
+	public CustomItemSpawner GunItemSpawner;
+	public List<CustomItemSpawner> AmmmoItemSpawners;
 
-	private void Start()
+
+	private IEnumerator Start()
 	{
-		for (int i = 0; i < 5; i++)
+		GunItemSpawner.Spawn();
+
+		for (int i = 0; i < AmmmoItemSpawners.Count; i++)
 		{
-			ItemSpawner.Spawn();
-			MagazineBox.AddMagazine(ItemSpawner.SpawnedObject.GetComponent<FVRFireArmMagazine>());
+			AmmmoItemSpawners[i].Spawn();
+
+			yield return null;
+			//
+			// MagazineBox.AddMagazine(AmmmoItemSpawner.SpawnedObject.GetComponent<FVRFireArmMagazine>());
 		}
 	}
 }

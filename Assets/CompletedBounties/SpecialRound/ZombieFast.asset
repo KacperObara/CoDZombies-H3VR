@@ -15,7 +15,7 @@ MonoBehaviour:
   SosigEnemyCategory: 0
   SosigEnemyID: -5324
   SosigPrefabs:
-  - {fileID: 11400000, guid: 62e74e46dec3d9347a167f7d6e8bcbaa, type: 2}
+  - {fileID: 11400000, guid: de3d33895bfc48a4e8a2d87d9b141c66, type: 2}
   ConfigTemplates:
   - {fileID: 11400000, guid: 7722c89801c9b32469b8e8d3fcf16665, type: 2}
   ConfigTemplates_Easy: []

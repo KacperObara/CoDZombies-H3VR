@@ -1,15 +1,18 @@
 #if H3VR_IMPORTED
 
+using CustomScripts.Zombie;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CustomScripts
 {
+    // Juggernog, DoubleTap etc.
     public interface IModifier
     {
         void ApplyModifier();
     }
 
+    // Insta kill, double points etc.
     public interface IPowerUp : IModifier
     {
         void Spawn(Vector3 pos);
@@ -24,9 +27,15 @@ namespace CustomScripts
         public AudioClip ApplyAudio;
     }
 
+    // Shops, doors, traps, teleports etc.
     public interface IPurchasable
     {
         int PurchaseCost { get; }
+    }
+
+    public interface ITrap
+    {
+        void OnEnemyEntered(ZombieController controller);
     }
 }
 

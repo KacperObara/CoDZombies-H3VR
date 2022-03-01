@@ -39,7 +39,7 @@ public class MagazineBox : FVRPhysicalObject
 		{
 			Debug.Log("Hand entered");
 			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (hand.IsThisTheRightHand)
+			if (!hand.IsThisTheRightHand)
 			{
 				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
 				hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
@@ -68,7 +68,7 @@ public class MagazineBox : FVRPhysicalObject
 		{
 			Debug.Log("Hand exited");
 			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (hand.IsThisTheRightHand)
+			if (!hand.IsThisTheRightHand)
 			{
 				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
 			}
@@ -92,9 +92,21 @@ public class MagazineBox : FVRPhysicalObject
 		}
 
 		if (hand.CurrentInteractable == null)
+		{
+			Debug.Log("This hand is null");
 			return;
+		}
 
 		FVRFireArmMagazine magazine = hand.CurrentInteractable.GetComponent<FVRFireArmMagazine>();
+
+		Debug.Log("Magazine: " + magazine);
+
+		if (magazine == null)
+		{
+			Debug.Log("current interactable nie jest magazinem Null");
+			return;
+		}
+		
 		if (IsEmpty || !IsEmpty && IsMagazineCompatible(magazine))
 		{
 			AddMagazine(magazine);
@@ -136,36 +148,36 @@ public class MagazineBox : FVRPhysicalObject
 		}
 		else
 		{
-			try
-			{
-				Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.ItemID).DisplayName + "First Try!");
-			}
-			catch (Exception e)
-			{
-				Debug.Log("First try is null");
-			}
+			// try
+			// {
+			// 	Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.ItemID).DisplayName + "First Try!");
+			// }
+			// catch (Exception e)
+			// {
+			// 	Debug.Log("First try is null");
+			// }
+			//
+			// try
+			// {
+			// 	Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName + "Second Try!");
+			// }
+			// catch (Exception e)
+			// {
+			// 	Debug.Log("Second try is null");
+			// }
+			//
+			// try
+			// {
+			// 	Debug.Log(CurrentMagazine.IDSpawnedFrom.DisplayName + "Third Try!");
+			// }
+			// catch (Exception e)
+			// {
+			// 	Debug.Log("Third try is null");
+			// }
 
-			try
-			{
-				Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName + "Second Try!");
-			}
-			catch (Exception e)
-			{
-				Debug.Log("Second try is null");
-			}
-
-			try
-			{
-				Debug.Log(CurrentMagazine.IDSpawnedFrom.DisplayName + "Third Try!");
-			}
-			catch (Exception e)
-			{
-				Debug.Log("Third try is null");
-			}
-
-			// _magazineNameText.text = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.ItemID).DisplayName;
-			// _magazineCountText.text = _magazines.Count.ToString();
-			// _magazineImage.sprite = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.ItemID).Sprite;
+			_magazineNameText.text = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName;
+			_magazineCountText.text = _magazines.Count.ToString();
+			_magazineImage.sprite = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).Sprite;
 		}
 	}
 }

@@ -121,6 +121,9 @@ namespace CustomScripts.Zombie
             else
                 Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
 
+            if (RoundManager.Instance.IsRoundSpecial)
+                Health *= .5f;
+
             State = State.Chase;
             _agent.enabled = true;
 
@@ -191,7 +194,11 @@ namespace CustomScripts.Zombie
             if (State == State.Dead)
                 return;
 
-            if (other.GetComponent<WindowTrigger>())
+            if (other.GetComponent<ITrap>() != null)
+            {
+                other.GetComponent<ITrap>().OnEnemyEntered(this);
+            }
+            else if (other.GetComponent<WindowTrigger>())
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (State == State.AttackWindow)
@@ -311,8 +318,12 @@ namespace CustomScripts.Zombie
                 OnZombieDied.Invoke(0f);
             _agent.enabled = false;
 
-            GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
-            AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .35f);
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .2f);
+            }
+
             ZombieManager.Instance.OnZombieDied(this, awardPoints);
 
             if (ExplosionPS == null)

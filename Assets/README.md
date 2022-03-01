@@ -44,6 +44,13 @@ Perks:
 
 ## Changelog
 
+### 0.8.0
+- Hellhound inspired round. Appears every 8 rounds. During that time, enemies will spawn inside the bunker.
+They are fast but have reduced HP.
+- Multi location support added. Created a small second room as a preview, accessed by a teleport.
+- Pause option available. Pull the lever at spawn to pause (Works only between rounds).
+- Added trap. It creates a barrier that kills every enemy passing through for 10 seconds.  
+
 ### 0.7.0
 Atlas update
 Finally, the Atlas port is complete. It was basically mod remake, so some details might be changed.

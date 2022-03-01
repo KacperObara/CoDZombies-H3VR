@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Atlas.MappingComponents.Sandbox;
@@ -7,12 +8,15 @@ using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace CustomScripts.Managers
 {
     //TODO Need to refactor AI classes, it became quite a monster from having to support 4 types of enemies in 2 modes
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
     {
+        public static Action LocationChangedEvent;
+
         public Location CurrentLocation;
 
         public ZombiePool NormalZombiePool;
@@ -188,7 +192,8 @@ namespace CustomScripts.Managers
 
         public void ChangeLocation(Location newLocation)
         {
-            StopCoroutine(_spawningCoroutine);
+            if (_spawningCoroutine != null)
+                StopCoroutine(_spawningCoroutine);
 
             CurrentLocation = newLocation;
 
@@ -198,6 +203,9 @@ namespace CustomScripts.Managers
             }
 
             StartSpawningZombies(5f);
+
+            if (LocationChangedEvent != null)
+                LocationChangedEvent.Invoke();
         }
 
         public void OnZombieDied(ZombieController controller, bool awardKill = true)

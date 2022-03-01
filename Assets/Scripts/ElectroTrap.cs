@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace CustomScripts.Objects
 {
-    public class ElectroTrap : MonoBehaviour, IPurchasable
+    public class ElectroTrap : MonoBehaviour, IPurchasable, ITrap
     {
         public Blockade RequiredBlockade;
         public GameObject LeversCanvases;
@@ -55,13 +55,15 @@ namespace CustomScripts.Objects
             RequiredBlockade.OnPurchase -= EnableLevers;
         }
 
+        // I can't put this into OnTriggerEnter, because zosigs don't call it
+        public void OnEnemyEntered(ZombieController controller)
+        {
+            controller.OnHit(99999, true);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<ZombieController>())
-            {
-                other.GetComponent<ZombieController>().OnHit(99999, true);
-            }
-            else if (other.GetComponent<PlayerCollider>())
+            if (other.GetComponent<PlayerCollider>())
             {
                 if (_damageThrottled)
                     return;

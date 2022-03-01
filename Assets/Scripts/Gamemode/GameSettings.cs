@@ -17,6 +17,8 @@ namespace CustomScripts
 
         public static bool ItemSpawnerSpawned;
 
+        public static bool SpecialRoundDisabled;
+
         private void Start()
         {
             MoreEnemies = false;
@@ -26,6 +28,7 @@ namespace CustomScripts
             BackgroundMusic = false;
             UseCustomEnemies = false;
             ItemSpawnerSpawned = false;
+            SpecialRoundDisabled = false;
         }
 
         public static Action OnSettingsChanged;
@@ -66,6 +69,13 @@ namespace CustomScripts
         public void ToggleUseZosigs()
         {
             UseCustomEnemies = !UseCustomEnemies;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+        }
+
+        public void ToggleSpecialRound()
+        {
+            SpecialRoundDisabled = !SpecialRoundDisabled;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
         }

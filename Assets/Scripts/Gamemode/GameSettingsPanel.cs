@@ -19,6 +19,7 @@ namespace CustomScripts
         public Text WeakerEnemies;
         public Text BackgroundMusic;
         public Text UseZosigs;
+        public Text DisableSpecialRound;
         public Text ItemSpawnerStatus;
 
         private void Awake()
@@ -40,6 +41,7 @@ namespace CustomScripts
             BackgroundMusic.text = GameSettings.BackgroundMusic ? "Enabled" : "Disabled";
             UseZosigs.text = GameSettings.UseCustomEnemies ? "Enabled" : "Disabled";
             ItemSpawnerStatus.text = GameSettings.ItemSpawnerSpawned ? "Spawned" : "Not spawned";
+            DisableSpecialRound.text = GameSettings.SpecialRoundDisabled ? "Enabled" : "Disabled";
         }
     }
 }

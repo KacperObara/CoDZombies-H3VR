@@ -57,6 +57,15 @@ namespace CustomScripts.Zombie
                 }
             }
 
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                _sosig.Mustard *= .5f;
+                foreach (SosigLink link in _sosig.Links)
+                {
+                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .6f);
+                }
+            }
+
             _sosig.Speed_Walk = _sosig.Speed_Run;
             _sosig.Speed_Turning = _sosig.Speed_Run;
             _sosig.Speed_Sneak = _sosig.Speed_Run;
@@ -87,12 +96,16 @@ namespace CustomScripts.Zombie
 
         private IEnumerator SpawnSpecialEnemy()
         {
+            _cachedSpeed = 5f;
+            _sosig.Speed_Run = 5f;
             _sosig.Speed_Walk = 5f;
             _sosig.Speed_Turning = 5f;
             _sosig.Speed_Sneak = 5f;
             _sosig.Speed_Crawl = 5f;
 
             _sosig.Agent.areaMask = NavMesh.GetAreaFromName("InsidePlayArea");
+
+            CanInteractWithWindows = false;
 
             yield return new WaitForSeconds(2);
         }
@@ -157,11 +170,20 @@ namespace CustomScripts.Zombie
 
             _isDead = true;
 
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .2f);
+            }
+
             if (awardPoints)
             {
                 GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
 
                 ZombieManager.Instance.OnZombieDied(this);
+            }
+            else
+            {
+                ZombieManager.Instance.ExistingZombies.Remove(this);
             }
 
             StartCoroutine(DelayedDespawn());
@@ -201,6 +223,11 @@ namespace CustomScripts.Zombie
         {
             if (_isDead)
                 return;
+
+            if (other.GetComponent<ITrap>() != null)
+            {
+                other.GetComponent<ITrap>().OnEnemyEntered(this);
+            }
 
             if (_isAttackingWindow)
                 return;
@@ -294,7 +321,17 @@ namespace CustomScripts.Zombie
 
         private IEnumerator DelayedDespawn()
         {
-            yield return new WaitForSeconds(5);
+            if (_sosig == null)
+            {
+                Debug.Log("Sosig is null");
+                yield break;
+            }
+            
+            if (!RoundManager.Instance.IsRoundSpecial)
+            {
+                yield return new WaitForSeconds(5);
+            }
+            
             _sosig.DeSpawnSosig();
         }
     }

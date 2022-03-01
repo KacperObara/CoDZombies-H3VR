@@ -21,6 +21,8 @@ namespace CustomScripts
         public float SpawnDelay = 0;
         public ParticleSystem SpawnPS;
 
+        private bool _spawnInterrupted = false;
+
         public IEnumerator Start()
         {
             yield return new WaitForEndOfFrame();
@@ -29,6 +31,7 @@ namespace CustomScripts
 
         public void Spawn()
         {
+            ZombieManager.LocationChangedEvent += InterruptSpawn;
             StartCoroutine(DelayedSpawn());
         }
 
@@ -36,7 +39,17 @@ namespace CustomScripts
         {
             if (SpawnPS)
                 SpawnPS.Play(true);
+            if (RoundManager.Instance.IsRoundSpecial)
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, delay:.25f);
+
             yield return new WaitForSeconds(SpawnDelay);
+
+            ZombieManager.LocationChangedEvent -= InterruptSpawn;
+            if (_spawnInterrupted)
+            {
+                _spawnInterrupted = false;
+                yield break;
+            }
 
             try
             {
@@ -60,6 +73,11 @@ namespace CustomScripts
                 Debug.LogError(e);
                 throw;
             }
+        }
+
+        private void InterruptSpawn()
+        {
+            _spawnInterrupted = true;
         }
 
         private void OnDrawGizmos()
