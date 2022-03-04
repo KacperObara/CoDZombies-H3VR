@@ -122,7 +122,7 @@ namespace CustomScripts.Zombie
                 Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
 
             if (RoundManager.Instance.IsRoundSpecial)
-                Health *= .5f;
+                Health *= .82f;
 
             State = State.Chase;
             _agent.enabled = true;
@@ -135,9 +135,9 @@ namespace CustomScripts.Zombie
 
         public override void InitializeSpecialType()
         {
-            _animator.SetFloat("WalkSpeed", 1.5f);
-            _animator.SetFloat("FastWalkSpeed", 1.5f);
-            _animator.SetFloat("RunSpeed", 1.5f);
+            _animator.SetFloat("WalkSpeed", 1.8f);
+            _animator.SetFloat("FastWalkSpeed", 1.8f);
+            _animator.SetFloat("RunSpeed", 1.8f);
             //StartCoroutine(SpawnSpecialEnemy());
         }
 
@@ -153,6 +153,7 @@ namespace CustomScripts.Zombie
         //     _animator.SetFloat("FastWalkSpeed", 1.5f);
         //     _animator.SetFloat("RunSpeed", 1.5f);
         // }
+
 
         private void Update()
         {
@@ -321,7 +322,7 @@ namespace CustomScripts.Zombie
             if (awardPoints)
             {
                 GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
-                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .2f);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
             }
 
             ZombieManager.Instance.OnZombieDied(this, awardPoints);

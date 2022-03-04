@@ -43,6 +43,11 @@ namespace CustomScripts
                         Random.Range(0, AudioManager.Instance.FarZombieSounds.Count)];
             }
 
+            if (RoundManager.Instance.IsRoundSpecial)
+                soundPoolable.AudioSource.volume = .4f;
+            else
+                soundPoolable.AudioSource.volume = 1f;
+
             soundPoolable.AudioSource.Play();
 
             Invoke("PlayRandomSound", Random.Range(4f, 6f));

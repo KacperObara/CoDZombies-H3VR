@@ -10,7 +10,6 @@ namespace CustomScripts
         // public FVRPointableButton MoreEnemies;
         // public FVRPointableButton FasterEnemies;
         // public FVRPointableButton WeakerEnemies;
-        //
         // public FVRPointableButton StartGame;
 
         public Text LimitedAmmo;
@@ -41,7 +40,7 @@ namespace CustomScripts
             BackgroundMusic.text = GameSettings.BackgroundMusic ? "Enabled" : "Disabled";
             UseZosigs.text = GameSettings.UseCustomEnemies ? "Enabled" : "Disabled";
             ItemSpawnerStatus.text = GameSettings.ItemSpawnerSpawned ? "Spawned" : "Not spawned";
-            DisableSpecialRound.text = GameSettings.SpecialRoundDisabled ? "Enabled" : "Disabled";
+            DisableSpecialRound.text = GameSettings.SpecialRoundEnabled ? "Enabled" : "Disabled";
         }
     }
 }

@@ -37,9 +37,8 @@ public class MagazineBox : FVRPhysicalObject
 	{
 		if (other.GetComponent<FVRViveHand>())
 		{
-			Debug.Log("Hand entered");
 			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (!hand.IsThisTheRightHand)
+			if (hand.IsThisTheRightHand)
 			{
 				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
 				hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
@@ -50,25 +49,14 @@ public class MagazineBox : FVRPhysicalObject
 				hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
 			}
 		}
-
-		// if (other.GetComponent<FVRFireArmMagazine>())
-		// {
-		// 	FVRFireArmMagazine magazine = other.GetComponent<FVRFireArmMagazine>();
-		//
-		// 	if (IsEmpty || !IsEmpty && IsMagazineCompatible(magazine))
-		// 	{
-		// 		AddMagazine(magazine);
-		// 	}
-		// }
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.GetComponent<FVRViveHand>())
 		{
-			Debug.Log("Hand exited");
 			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (!hand.IsThisTheRightHand)
+			if (hand.IsThisTheRightHand)
 			{
 				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
 			}
@@ -82,7 +70,7 @@ public class MagazineBox : FVRPhysicalObject
 	private void TryPlacing(SteamVR_Action_Boolean fromaction, SteamVR_Input_Sources fromsource)
 	{
 		FVRViveHand hand;
-		if (fromsource == SteamVR_Input_Sources.RightHand)
+		if (fromsource != SteamVR_Input_Sources.RightHand)
 		{
 			hand = GM.CurrentMovementManager.Hands[0];
 		}
@@ -92,20 +80,12 @@ public class MagazineBox : FVRPhysicalObject
 		}
 
 		if (hand.CurrentInteractable == null)
-		{
-			Debug.Log("This hand is null");
 			return;
-		}
 
 		FVRFireArmMagazine magazine = hand.CurrentInteractable.GetComponent<FVRFireArmMagazine>();
 
-		Debug.Log("Magazine: " + magazine);
-
 		if (magazine == null)
-		{
-			Debug.Log("current interactable nie jest magazinem Null");
 			return;
-		}
 		
 		if (IsEmpty || !IsEmpty && IsMagazineCompatible(magazine))
 		{
@@ -148,33 +128,6 @@ public class MagazineBox : FVRPhysicalObject
 		}
 		else
 		{
-			// try
-			// {
-			// 	Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.ItemID).DisplayName + "First Try!");
-			// }
-			// catch (Exception e)
-			// {
-			// 	Debug.Log("First try is null");
-			// }
-			//
-			// try
-			// {
-			// 	Debug.Log(IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName + "Second Try!");
-			// }
-			// catch (Exception e)
-			// {
-			// 	Debug.Log("Second try is null");
-			// }
-			//
-			// try
-			// {
-			// 	Debug.Log(CurrentMagazine.IDSpawnedFrom.DisplayName + "Third Try!");
-			// }
-			// catch (Exception e)
-			// {
-			// 	Debug.Log("Third try is null");
-			// }
-
 			_magazineNameText.text = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName;
 			_magazineCountText.text = _magazines.Count.ToString();
 			_magazineImage.sprite = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).Sprite;

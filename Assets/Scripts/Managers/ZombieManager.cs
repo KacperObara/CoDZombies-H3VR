@@ -67,9 +67,20 @@ namespace CustomScripts.Managers
         {
             ZombiesRemaining = ZombiesToSpawnThisRound;
 
-            StartSpawningZombies(2f);
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                StartSpawningZombies(6f);
 
-            AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundRoundStartSound, 0.35f, 0f);
+            }
+            else
+            {
+                StartSpawningZombies(2f);
+
+                AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
+            }
+
+
         }
 
         public void StartSpawningZombies(float initialDelay)
@@ -140,7 +151,7 @@ namespace CustomScripts.Managers
                 spawnPoint.GetComponent<CustomSosigSpawnPoint>().SpawnPS.Play(true);
 
                 if (RoundManager.Instance.IsRoundSpecial)
-                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, delay:.25f);
+                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.6f, delay:.25f);
 
                 yield return new WaitForSeconds(2f);
             }

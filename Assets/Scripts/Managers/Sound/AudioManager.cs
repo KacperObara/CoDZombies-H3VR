@@ -26,6 +26,7 @@ namespace CustomScripts
 
         public AudioClip RoundStartSound;
         public AudioClip RoundEndSound;
+        public AudioClip HellHoundRoundStartSound;
 
         public AudioClip EndMusic;
 

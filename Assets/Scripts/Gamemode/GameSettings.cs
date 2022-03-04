@@ -17,7 +17,7 @@ namespace CustomScripts
 
         public static bool ItemSpawnerSpawned;
 
-        public static bool SpecialRoundDisabled;
+        public static bool SpecialRoundEnabled;
 
         private void Start()
         {
@@ -28,7 +28,7 @@ namespace CustomScripts
             BackgroundMusic = false;
             UseCustomEnemies = false;
             ItemSpawnerSpawned = false;
-            SpecialRoundDisabled = false;
+            SpecialRoundEnabled = true;
         }
 
         public static Action OnSettingsChanged;
@@ -75,7 +75,7 @@ namespace CustomScripts
 
         public void ToggleSpecialRound()
         {
-            SpecialRoundDisabled = !SpecialRoundDisabled;
+            SpecialRoundEnabled = !SpecialRoundEnabled;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
         }

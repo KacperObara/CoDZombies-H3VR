@@ -27,7 +27,14 @@ namespace CustomScripts
         [HideInInspector] public int RoundNumber = 0;
 
 
-        public bool IsRoundSpecial { get { return RoundNumber % SpecialRoundInterval == 0; }}
+        public bool IsRoundSpecial
+        {
+            get
+            {
+                if (!GameSettings.SpecialRoundEnabled) return false;
+                return RoundNumber % SpecialRoundInterval == 0;
+            }
+        }
         public bool IsFastWalking { get { return RoundNumber >= ZombieFastWalkRound; } }
         public bool IsRunning { get { return RoundNumber >= ZombieRunRound; } }
 

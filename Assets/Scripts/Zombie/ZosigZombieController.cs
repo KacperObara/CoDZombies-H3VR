@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using CustomScripts.Managers;
 using CustomScripts.Player;
@@ -59,10 +60,10 @@ namespace CustomScripts.Zombie
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
-                _sosig.Mustard *= .5f;
+                _sosig.Mustard *= .8f;
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .6f);
+                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .8f);
                 }
             }
 
@@ -115,13 +116,13 @@ namespace CustomScripts.Zombie
             if (_sosig == null)
                 return;
 
-            _agentUpdateTimer += Time.deltaTime;
-            if (_agentUpdateTimer >= agentUpdateInterval)
-            {
-                _agentUpdateTimer -= agentUpdateInterval;
-
-                _sosig.CommandAssaultPoint(Target.position);
-            }
+            // _agentUpdateTimer += Time.deltaTime;
+            // if (_agentUpdateTimer >= agentUpdateInterval)
+            // {
+            //     _agentUpdateTimer -= agentUpdateInterval;
+            //
+            //     _sosig.CommandAssaultPoint(Target.position);
+            // }
 
             if (_isAttackingWindow)
             {
@@ -138,6 +139,20 @@ namespace CustomScripts.Zombie
                 _sosig.Speed_Turning = _cachedSpeed;
                 _sosig.Speed_Crawl = _cachedSpeed;
                 _sosig.Speed_Sneak = _cachedSpeed;
+            }
+        }
+
+        private void LateUpdate()
+        {
+            if (_sosig == null)
+                return;
+
+            _agentUpdateTimer += Time.deltaTime;
+            if (_agentUpdateTimer >= agentUpdateInterval)
+            {
+                _agentUpdateTimer -= agentUpdateInterval;
+
+                _sosig.CommandAssaultPoint(Target.position);
             }
         }
 
@@ -172,7 +187,7 @@ namespace CustomScripts.Zombie
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
-                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .2f);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
             }
 
             if (awardPoints)

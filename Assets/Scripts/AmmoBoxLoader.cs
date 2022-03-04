@@ -24,6 +24,7 @@ public class AmmoBoxLoader : MonoBehaviour
 			AmmmoItemSpawners[i].Spawn();
 
 			yield return null;
+
 			//
 			// MagazineBox.AddMagazine(AmmmoItemSpawner.SpawnedObject.GetComponent<FVRFireArmMagazine>());
 		}
