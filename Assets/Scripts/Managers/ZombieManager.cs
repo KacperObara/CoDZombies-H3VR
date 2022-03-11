@@ -37,6 +37,8 @@ namespace CustomScripts.Managers
 
         private Transform _zombieTarget;
 
+        public ParticleSystem HellhoundExplosionPS;
+
         public int ZombieAtOnceLimit = 20;
         [HideInInspector] public int ZombiesRemaining;
         //[HideInInspector] public int ZombiesWaitingToSpawn;
@@ -160,7 +162,9 @@ namespace CustomScripts.Managers
             {
                 controller.transform.position = spawnPoint.position;
                 controller.Initialize(_zombieTarget);
-                controller.InitializeSpecialType();
+
+                if (RoundManager.Instance.IsRoundSpecial)
+                    controller.InitializeSpecialType();
             }
         }
 
@@ -228,9 +232,6 @@ namespace CustomScripts.Managers
 
             if (!awardKill)
                 return;
-
-            //if (ZombiesWaitingToSpawn > 0)
-            //    SpawnZombie(2f);
 
             ZombiesRemaining--;
 

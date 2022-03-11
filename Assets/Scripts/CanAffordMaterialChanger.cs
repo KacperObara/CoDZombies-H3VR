@@ -10,6 +10,7 @@ namespace CustomScripts
 {
     public class CanAffordMaterialChanger : MonoBehaviour
     {
+        public bool RequiresPower = true;
         private IPurchasable _purchasable;
         [SerializeField] private List<Text> _texts;
 

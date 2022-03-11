@@ -54,7 +54,7 @@ namespace CustomScripts.Objects
             {
                 _isPlaying = false;
 
-                AudioManager.Instance.MainAudioSource.Stop();
+                AudioManager.Instance.MusicAudioSource.Stop();
 
                 if (GameSettings.BackgroundMusic)
                 {
@@ -71,7 +71,7 @@ namespace CustomScripts.Objects
                 var musicLength = Song.length;
                 _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
 
-                AudioManager.Instance.PlayMusic(Song, 0.08f);
+                AudioManager.Instance.PlayMusic(Song, 0.095f);
             }
 
             StartCoroutine(Throttle());
@@ -89,6 +89,11 @@ namespace CustomScripts.Objects
             yield return new WaitForSeconds(endTimer);
 
             _isPlaying = false;
+
+            if (GameSettings.BackgroundMusic)
+            {
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.Music, .08f);
+            }
         }
 
         private void OnDestroy()

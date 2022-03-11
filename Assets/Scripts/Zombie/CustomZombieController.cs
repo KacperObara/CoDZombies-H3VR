@@ -327,11 +327,7 @@ namespace CustomScripts.Zombie
 
             ZombieManager.Instance.OnZombieDied(this, awardPoints);
 
-            if (ExplosionPS == null)
-                return;
-
-            var explosionPS = Instantiate(ExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
-            //explosionPS.Play(true);
+            var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
             Destroy(explosionPS.gameObject, 4f);
         }
 

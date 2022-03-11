@@ -12,6 +12,7 @@ namespace CustomScripts
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         public static Action OnPointsChanged;
+        public static Action OnPowerEnabled;
 
         public EndPanel EndPanel;
 
@@ -22,6 +23,15 @@ namespace CustomScripts
         [HideInInspector] public bool GameEnded = false;
 
         public WallShop FirstShop;
+
+        public bool PowerEnabled;
+
+        public void TurnOnPower()
+        {
+            PowerEnabled = true;
+            if (OnPowerEnabled != null)
+                OnPowerEnabled.Invoke();
+        }
 
         public void AddPoints(int amount)
         {

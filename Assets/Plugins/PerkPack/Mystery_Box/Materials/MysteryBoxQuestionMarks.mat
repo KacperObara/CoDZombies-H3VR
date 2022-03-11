@@ -110,7 +110,7 @@ Material:
     - _DissolveTexUV: 0
     - _DstBlend: 0
     - _Emission: 1
-    - _EmissionWeight: 0.58100164
+    - _EmissionWeight: 1
     - _EnableInstancing: 0
     - _ForwardRenderingOptions: 0
     - _GlossyReflections: 1

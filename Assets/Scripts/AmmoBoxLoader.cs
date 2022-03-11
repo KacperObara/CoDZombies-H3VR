@@ -9,16 +9,14 @@ using UnityEngine.Serialization;
 // TODO Auto loading to the box Not working
 public class AmmoBoxLoader : MonoBehaviour
 {
-	public MagazineBox MagazineBox;
+	//public MagazineBox MagazineBox;
 
-	public CustomItemSpawner GunItemSpawner;
+	//public CustomItemSpawner GunItemSpawner;
 	public List<CustomItemSpawner> AmmmoItemSpawners;
-
 
 	private IEnumerator Start()
 	{
-		GunItemSpawner.Spawn();
-
+		//GunItemSpawner.Spawn();
 		for (int i = 0; i < AmmmoItemSpawners.Count; i++)
 		{
 			AmmmoItemSpawners[i].Spawn();

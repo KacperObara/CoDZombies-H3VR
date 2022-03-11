@@ -16,6 +16,7 @@ MonoBehaviour:
   Mode: sandbox
   Thumbnail: {fileID: 2800000, guid: 3bf2e05c80b5b724ba9490e9805a0349, type: 3}
   Author: Kodeman
-  Description: "Perk info and the changelog are available on the Thunderstore page\n\nCreated
-    with the help of Arpy, Frityet and Sora101Ven\r\nSpecial thanks to devyndamonster
-    and nrgill28 \nfor making the tools that made this mod possible"
+  Description: "(Zosigs are broken on experimental game branch!)\n\nPerk info and
+    the changelog are available on the Thunderstore page\n\nCreated with the help
+    of Arpy, Frityet and Sora101Ven\r\nSpecial thanks to devyndamonster and nrgill28
+    \nfor making the tools that made this mod possible"

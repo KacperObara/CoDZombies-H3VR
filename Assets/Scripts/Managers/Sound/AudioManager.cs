@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace CustomScripts
         public List<AudioClip> HellHoundsSounds;
 
         public AudioSource MainAudioSource;
+        public AudioSource MusicAudioSource;
 
         [Space(20)]
         public AudioClip Music;
@@ -68,9 +70,14 @@ namespace CustomScripts
         /// </summary>
         public void PlayMusic(AudioClip audioClip, float volume = 1f, float delay = 0f)
         {
-            MainAudioSource.clip = audioClip;
-            MainAudioSource.volume = volume;
-            MainAudioSource.PlayDelayed(delay);
+            MusicAudioSource.clip = audioClip;
+            MusicAudioSource.volume = volume;
+            MusicAudioSource.PlayDelayed(delay);
+        }
+
+        private void OnDestroy()
+        {
+            GameSettings.OnMusicSettingChanged -= OnMusicSettingChanged;
         }
     }
 }
