@@ -30,6 +30,8 @@ namespace CustomScripts
         public AudioClip RoundEndSound;
         public AudioClip HellHoundRoundStartSound;
 
+        public AudioClip PowerOnSound;
+
         public AudioClip EndMusic;
 
         public AudioClip PlayerHitSound;

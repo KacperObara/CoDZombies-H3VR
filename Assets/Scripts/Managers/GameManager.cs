@@ -26,9 +26,13 @@ namespace CustomScripts
 
         public bool PowerEnabled;
 
+        public int Kills;
+        public int Headshots;
+
         public void TurnOnPower()
         {
             PowerEnabled = true;
+            AudioManager.Instance.Play(AudioManager.Instance.PowerOnSound, .8f);
             if (OnPowerEnabled != null)
                 OnPowerEnabled.Invoke();
         }
@@ -81,9 +85,8 @@ namespace CustomScripts
 
             EndPanel.UpdatePanel();
 
-            if (!GameSettings.ItemSpawnerSpawned)
-                if (PlayerPrefs.GetInt("BestScore") < TotalPoints)
-                    PlayerPrefs.SetInt("BestScore", TotalPoints);
+            if (!GameSettings.ItemSpawnerEnabled)
+                SaveSystem.Instance.SaveHighscore(TotalPoints);
         }
     }
 }

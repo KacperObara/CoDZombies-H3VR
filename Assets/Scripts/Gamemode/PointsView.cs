@@ -19,7 +19,7 @@ namespace CustomScripts.Gamemode
 
         private void OnPointsChanged()
         {
-            PointsText.text = "Points:\n" + GameManager.Instance.Points.ToString();
+            PointsText.text = "Points:\n" + GameManager.Instance.Points;
         }
     }
 }

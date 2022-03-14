@@ -50,9 +50,20 @@ namespace CustomScripts.Powerups
 
             _magazineObject.RootRigidbody.isKinematic = true;
 
-
             (_magazineObject as FVRFireArmMagazine).Load(_minigunObject as FVRFireArm);
-            //(_minigunObject as FVRFireArm).LoadMag(_magazineObject as FVRFireArmMagazine);
+
+            FVRViveHand hand = PlayerData.Instance.RightHand;
+            // If players has empty right hand and is holding the grip, then auto equip minigun
+            if (hand.CurrentInteractable == null &&
+                hand.Grip_Button.stateDown)
+            {
+                Debug.Log("Player should grab minigun");
+                hand.RetrieveObject(_minigunObject);
+                // hand.CurrentInteractable = _minigunObject;
+                // //this.m_state = FVRViveHand.HandState.GripInteracting;
+                // _minigunObject.BeginInteraction(hand);
+                // hand.Buzz(hand.Buzzer.Buzz_BeginInteraction);
+            }
 
             PlayerData.Instance.DeathMachinePowerUpIndicator.Activate(30f);
 

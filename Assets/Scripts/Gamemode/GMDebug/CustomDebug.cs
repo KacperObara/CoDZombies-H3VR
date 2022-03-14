@@ -28,7 +28,7 @@ namespace CustomScripts.Gamemode.GMDebug
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                GameSettings.Instance.ToggleUseZosigs();
+                GameSettings.Instance.EnableCustomEnemiesClicked();
                 RoundManager.Instance.StartGame();
             }
 
@@ -67,6 +67,11 @@ namespace CustomScripts.Gamemode.GMDebug
             if (Input.GetKeyDown(KeyCode.L))
             {
                 ElectroTrap.OnLeverPull();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Slash))
+            {
+                GameManager.Instance.TurnOnPower();
             }
 
 

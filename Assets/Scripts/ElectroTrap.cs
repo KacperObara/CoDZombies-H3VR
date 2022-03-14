@@ -8,16 +8,19 @@ using UnityEngine.UI;
 
 namespace CustomScripts.Objects
 {
-    public class ElectroTrap : MonoBehaviour, IPurchasable, ITrap
+    public class ElectroTrap : MonoBehaviour, IPurchasable, IRequiresPower, ITrap
     {
         public Blockade RequiredBlockade;
         public GameObject LeversCanvases;
 
         public int Cost;
-        public int PurchaseCost
-        {
-            get { return Cost; }
-        }
+        public int PurchaseCost { get { return Cost; } }
+        [SerializeField] private bool _isOneTimeOnly;
+        public bool IsOneTimeOnly { get { return _isOneTimeOnly; } }
+
+        private bool _alreadyBought;
+        public bool AlreadyBought { get { return _alreadyBought; } }
+        public bool IsPowered { get { return GameManager.Instance.PowerEnabled; } }
 
         public float EnabledTime;
         public float PlayerTouchDamage;
@@ -83,7 +86,7 @@ namespace CustomScripts.Objects
             if (_activated)
                 return;
 
-            if (GameManager.Instance.TryRemovePoints(Cost))
+            if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
             {
                 ActivateTrap();
             }

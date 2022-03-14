@@ -46,7 +46,7 @@ namespace CustomScripts.Managers
         {
             get
             {
-                if (GameSettings.MoreEnemies)
+                if (GameSettings.HardMode)
                     return Mathf.CeilToInt(ZombieCountCurve.Evaluate(RoundManager.Instance.RoundNumber) + 3);
                 else
                     return Mathf.CeilToInt(ZombieCountCurve.Evaluate(RoundManager.Instance.RoundNumber));

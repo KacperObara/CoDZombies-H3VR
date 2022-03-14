@@ -116,7 +116,6 @@ public class MagazineBox : FVRPhysicalObject
 	private bool IsMagazineCompatible(FVRFireArmMagazine magazine)
 	{
 		return CurrentMagazine.ObjectWrapper.SpawnedFromId == magazine.ObjectWrapper.SpawnedFromId;
-		//return CurrentMagazine.MagazineType == magazine.MagazineType;
 	}
 
 	private void UpdateUI()

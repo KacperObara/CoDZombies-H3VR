@@ -34,29 +34,29 @@ namespace CustomScripts.Zombie
             _sosig.CoreRB.gameObject.AddComponent<ZosigTrigger>().Initialize(this);
 
             _sosig.Speed_Run = ZombieManager.Instance.ZosigPerRoundSpeed.Evaluate(RoundManager.Instance.RoundNumber);
-            if (GameSettings.FasterEnemies)
+            if (GameSettings.HardMode)
             {
                 _sosig.Speed_Run += 1.25f;
             }
 
-            if (GameSettings.WeakerEnemies)
+            // if (GameSettings.WeakerEnemies)
+            // {
+            //     _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber - 5);
+            //     foreach (SosigLink link in _sosig.Links)
+            //     {
+            //         link.SetIntegrity(
+            //             ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
+            //     }
+            // }
+            //else
+            //{
+            _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
+            foreach (SosigLink link in _sosig.Links)
             {
-                _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber - 5);
-                foreach (SosigLink link in _sosig.Links)
-                {
-                    link.SetIntegrity(
-                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
-                }
+                link.SetIntegrity(
+                    ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
             }
-            else
-            {
-                _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
-                foreach (SosigLink link in _sosig.Links)
-                {
-                    link.SetIntegrity(
-                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
-                }
-            }
+            //}
 
             if (RoundManager.Instance.IsRoundSpecial)
             {

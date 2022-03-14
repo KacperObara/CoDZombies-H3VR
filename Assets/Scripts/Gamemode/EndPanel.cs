@@ -8,11 +8,26 @@ namespace CustomScripts
     {
         public Text TotalPointsText;
         public Text BestPointsText;
+        public Text KillsText;
+        public Text HeadshotsText;
+
+        public Text DifficultyText;
+        public Text EnemiesTypeText;
+        public Text LimitedAmmoText;
+        public Text SpecialRoundsText;
 
         public void UpdatePanel()
         {
-            TotalPointsText.text = "Total score: " + GameManager.Instance.TotalPoints;
-            BestPointsText.text = "Best score: " + PlayerPrefs.GetInt("BestScore");
+            TotalPointsText.text = "Total Points:\n" + GameManager.Instance.TotalPoints;
+            BestPointsText.text = "High Score:\n" + SaveSystem.Instance.GetHighscore();
+
+            KillsText.text = "Kills:\n" + GameManager.Instance.Kills;
+            HeadshotsText.text = "Headshots:\n" + GameManager.Instance.Headshots;
+
+            DifficultyText.text = GameSettings.HardMode ? "Hard" : "Normal";
+            EnemiesTypeText.text = GameSettings.UseCustomEnemies ? "Custom" : "Normal";
+            LimitedAmmoText.text = GameSettings.LimitedAmmo ? "Yes" : "No";
+            SpecialRoundsText.text = GameSettings.SpecialRoundDisabled ? "No" : "Yes";
         }
     }
 }

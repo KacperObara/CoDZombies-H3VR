@@ -31,6 +31,13 @@ namespace CustomScripts
     public interface IPurchasable
     {
         int PurchaseCost { get; }
+        bool IsOneTimeOnly { get; }
+        bool AlreadyBought { get; }
+    }
+
+    public interface IRequiresPower
+    {
+        bool IsPowered { get; }
     }
 
     public interface ITrap

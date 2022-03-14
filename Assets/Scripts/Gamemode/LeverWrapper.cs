@@ -12,15 +12,46 @@ namespace CustomScripts
         public UnityEvent LeverToggleEvent;
         public UnityEvent LeverOnEvent;
         public UnityEvent LeverOffEvent;
+        public UnityEvent LeverHoldStartEvent;
+        public UnityEvent LeverHoldEndEvent;
 
         private TrapLever _lever;
 
         private bool _isOn;
 
+        private bool _isHeld;
+
         private void Awake()
         {
             _lever = GetComponent<TrapLever>();
             _lever.MessageTargets.Add(gameObject);
+        }
+
+        private void Update()
+        {
+            if (!_isHeld && _lever.IsHeld)
+            {
+                OnHoldStart();
+            }
+
+            else if (_isHeld && !_lever.IsHeld)
+            {
+                OnHoldEnd();
+            }
+        }
+
+        private void OnHoldStart()
+        {
+            _isHeld = true;
+            if (LeverHoldStartEvent != null)
+                LeverHoldStartEvent.Invoke();
+        }
+
+        private void OnHoldEnd()
+        {
+            _isHeld = false;
+            if (LeverHoldEndEvent != null)
+                LeverHoldEndEvent.Invoke();
         }
 
         public void ON()

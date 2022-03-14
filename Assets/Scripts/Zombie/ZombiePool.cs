@@ -14,7 +14,6 @@ namespace CustomScripts
 
         private void Awake()
         {
-            RoundManager.OnGameStarted -= OnGameStart;
             RoundManager.OnGameStarted += OnGameStart;
         }
 

@@ -11,6 +11,11 @@ namespace CustomScripts.Gamemode.GMDebug
 {
     public class CheatItemSpawner : MonoBehaviour
     {
+        private void Awake()
+        {
+            RoundManager.OnGameStarted += TrySpawning;
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = new Color(0.4f, 0.4f, 0.9f, 0.5f);
@@ -24,9 +29,10 @@ namespace CustomScripts.Gamemode.GMDebug
             Gizmos.DrawLine(center, center + forward * 0.5f);
         }
 
-        public void Spawn()
+        public void TrySpawning()
         {
-            StartCoroutine(InitializeAsync());
+            if (GameSettings.ItemSpawnerEnabled)
+                StartCoroutine(InitializeAsync());
         }
 
         private IEnumerator InitializeAsync()
@@ -39,6 +45,11 @@ namespace CustomScripts.Gamemode.GMDebug
             Instantiate(itemSpawner, transform.position, transform.rotation).SetActive(true);
 
             Destroy(this);
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnGameStarted -= TrySpawning;
         }
     }
 }

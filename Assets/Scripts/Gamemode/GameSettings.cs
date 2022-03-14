@@ -1,58 +1,159 @@
 #if H3VR_IMPORTED
 using System;
 using FistVR;
+using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace CustomScripts
 {
     public class GameSettings : MonoBehaviourSingleton<GameSettings>
     {
-        public static bool MoreEnemies;
-        public static bool FasterEnemies;
-        public static bool WeakerEnemies;
-        public static bool BackgroundMusic;
-
-        public static bool UseCustomEnemies;
-
-        public static bool LimitedAmmo;
-
-        public static bool ItemSpawnerSpawned;
-
-        public static bool SpecialRoundEnabled;
-
-        private void Start()
-        {
-            MoreEnemies = false;
-            FasterEnemies = false;
-            WeakerEnemies = false;
-            LimitedAmmo = false;
-            BackgroundMusic = false;
-            UseCustomEnemies = false;
-            ItemSpawnerSpawned = false;
-            SpecialRoundEnabled = true;
-        }
-
         public static Action OnSettingsChanged;
         public static Action OnMusicSettingChanged;
 
-        public void ToggleMoreEnemies()
+        public static bool HardMode;
+        public static bool UseCustomEnemies;
+        public static bool LimitedAmmo;
+        public static bool SpecialRoundDisabled;
+        public static bool ItemSpawnerEnabled;
+
+        public static bool BackgroundMusic;
+
+        public Text OptionDescriptionText;
+
+        private void Start()
         {
-            MoreEnemies = !MoreEnemies;
+            OptionDescriptionText.text = "";
+            if (Random.Range(0, 1000) != 0)
+            {
+                int random = Random.Range(0, 7);
+                switch (random)
+                {
+                    case 0: OptionDescriptionText.text = "You are my sunshine,\nMy only sunshine"; break;
+                    case 1: OptionDescriptionText.text = "I missed you"; break;
+                    case 2: OptionDescriptionText.text = "Play with me"; break;
+                    case 3: OptionDescriptionText.text = "It's just a game, mostly"; break;
+                    case 4: OptionDescriptionText.text = "I have granted kids to hell"; break;
+                    case 5: OptionDescriptionText.text = "It's only partially your fault"; break;
+                    case 6: OptionDescriptionText.text = "This game is not suitable for children\nor those who are easily dismembered"; break;
+                }
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+                EnableSpecialRoundClicked();
+
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+                DisableSpecialRoundClicked();
+
+            if (Input.GetKeyDown(KeyCode.I))
+                RestoreDefaultSettings();
+        }
+
+        public void RestoreDefaultSettings()
+        {
+            HardMode = false;
+            LimitedAmmo = false;
+            UseCustomEnemies = false;
+            ItemSpawnerEnabled = false;
+            SpecialRoundDisabled = false;
+
+            OptionDescriptionText.text = "Default settings restored.";
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
         }
 
-        public void ToggleFasterEnemies()
+        public void DifficultyNormalClicked()
         {
-            FasterEnemies = !FasterEnemies;
+            HardMode = false;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Normal mode: Normal Enemy speed, HP and numbers.";
         }
 
-        public void ToggleWeakerEnemies()
+        public void DifficultyHardClicked()
         {
-            WeakerEnemies = !WeakerEnemies;
+            HardMode = true;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Hard mode: Increased Enemy speed, HP and numbers.";
+        }
+
+        public void EnableCustomEnemiesClicked()
+        {
+            UseCustomEnemies = true;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Custom humanoid enemies (Instead of Sosigs).";
+        }
+
+        public void DisableCustomEnemiesClicked()
+        {
+            UseCustomEnemies = false;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Default Sosig zombies.";
+        }
+
+        public void EnableLimitedAmmoClicked()
+        {
+            LimitedAmmo = true;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Cannot use Spawnlock. Restore ammunition from Max Ammo power ups or buy it from a wall.";
+        }
+
+        public void DisableLimitedAmmoClicked()
+        {
+            LimitedAmmo = false;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Spawnlock enabled.";
+        }
+
+        public void EnableSpecialRoundClicked()
+        {
+            SpecialRoundDisabled = true;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Special round inspired by Hellhounds, occurs every 8 rounds.";
+        }
+
+        public void DisableSpecialRoundClicked()
+        {
+            SpecialRoundDisabled = false;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Special round disabled.";
+        }
+
+        public void EnableItemSpawnerClicked()
+        {
+            ItemSpawnerEnabled = true;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Item Spawner will appear at the starting location. Scoring will be disabled for that game.";
+        }
+
+        public void DisableItemSpawnerClicked()
+        {
+            ItemSpawnerEnabled = false;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "No Item Spawner. Scoring enabled";
         }
 
         public void ToggleBackgroundMusic()
@@ -62,35 +163,6 @@ namespace CustomScripts
             if (OnMusicSettingChanged != null)
                 OnMusicSettingChanged.Invoke();
 
-            if (OnSettingsChanged != null)
-                OnSettingsChanged.Invoke();
-        }
-
-        public void ToggleUseZosigs()
-        {
-            UseCustomEnemies = !UseCustomEnemies;
-            if (OnSettingsChanged != null)
-                OnSettingsChanged.Invoke();
-        }
-
-        public void ToggleSpecialRound()
-        {
-            SpecialRoundEnabled = !SpecialRoundEnabled;
-            if (OnSettingsChanged != null)
-                OnSettingsChanged.Invoke();
-        }
-
-        public void ToggleLimitedAmmo()
-        {
-            LimitedAmmo = !LimitedAmmo;
-            GM.CurrentSceneSettings.IsSpawnLockingEnabled = !LimitedAmmo;
-            if (OnSettingsChanged != null)
-                OnSettingsChanged.Invoke();
-        }
-
-        public void SpawnSpawner()
-        {
-            ItemSpawnerSpawned = true;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
         }

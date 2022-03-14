@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using CustomScripts.Managers;
+using FistVR;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +19,7 @@ namespace CustomScripts
 
         public static Action OnGameStarted;
 
-        public GameObject StartButton;
+        public Transform StartGameWaypoint;
 
         public int ZombieFastWalkRound = 4;
         public int ZombieRunRound = 6;
@@ -26,12 +27,11 @@ namespace CustomScripts
 
         [HideInInspector] public int RoundNumber = 0;
 
-
         public bool IsRoundSpecial
         {
             get
             {
-                if (!GameSettings.SpecialRoundEnabled) return false;
+                if (GameSettings.SpecialRoundDisabled) return false;
                 return RoundNumber % SpecialRoundInterval == 0;
             }
         }
@@ -42,7 +42,7 @@ namespace CustomScripts
 
         public void StartGame()
         {
-            StartButton.SetActive(false);
+            GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
 
             GameManager.Instance.GameStarted = true;
             GameManager.Instance.FirstShop.IsFree = true;
@@ -70,33 +70,6 @@ namespace CustomScripts
             if (OnRoundChanged != null)
                 OnRoundChanged.Invoke();
         }
-
-        // private void SpawnEnemies()
-        // {
-        //     int zombiesToSpawn = 0;
-        //
-        //     if (GameSettings.MoreEnemies)
-        //         zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber) + 3);
-        //     else
-        //         zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber));
-        //
-        //     if (zombiesToSpawn > ZombieAtOnceLimit)
-        //         zombiesToSpawn = ZombieAtOnceLimit;
-        //
-        //     for (int i = 0; i < zombiesToSpawn; i++)
-        //     {
-        //         ZombieManager.Instance.SpawnZombie(2f + i);
-        //     }
-        //
-        //     ZombiesLeft = zombiesToSpawn;
-        //
-        //     AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
-        // }
-        //
-        // public void OnEnemyDied()
-        // {
-        //
-        // }
 
         public void EndRound()
         {

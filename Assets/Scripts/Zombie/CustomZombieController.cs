@@ -82,7 +82,7 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.FastWalk;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
+                if (GameSettings.HardMode)
                     _animator.SetFloat("FastWalkSpeed", 1.05f);
                 else
                     _animator.SetFloat("FastWalkSpeed", .85f);
@@ -95,7 +95,7 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.Run;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
+                if (GameSettings.HardMode)
                     _animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
                 else
                     _animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
@@ -108,7 +108,7 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.Walk;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
+                if (GameSettings.HardMode)
                     _animator.SetFloat("WalkSpeed", 1.2f);
             }
 
@@ -116,10 +116,10 @@ namespace CustomScripts.Zombie
 
             int currentRound = RoundManager.Instance.RoundNumber;
 
-            if (GameSettings.WeakerEnemies)
-                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
-            else
-                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
+            // if (GameSettings.WeakerEnemies)
+            //     Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
+            // else
+            Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
 
             if (RoundManager.Instance.IsRoundSpecial)
                 Health *= .82f;

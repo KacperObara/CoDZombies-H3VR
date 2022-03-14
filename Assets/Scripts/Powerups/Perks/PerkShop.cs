@@ -4,12 +4,18 @@ using UnityEngine.Serialization;
 
 namespace CustomScripts
 {
-    public class PerkShop : MonoBehaviour, IPurchasable
+    public class PerkShop : MonoBehaviour, IPurchasable, IRequiresPower
     {
         public AudioSource PurchaseJingle;
 
         public int Cost;
         public int PurchaseCost { get { return Cost; } }
+        [SerializeField] private bool _isOneTimeOnly = true;
+        public bool IsOneTimeOnly { get { return _isOneTimeOnly; } }
+
+        private bool _alreadyBought;
+        public bool AlreadyBought { get { return _alreadyBought; } }
+        public bool IsPowered { get { return GameManager.Instance.PowerEnabled; } }
 
         public GameObject Bottle;
         public Transform SpawnPoint;
@@ -21,7 +27,7 @@ namespace CustomScripts
             if (alreadyUsed)
                 return;
 
-            if (GameManager.Instance.TryRemovePoints(Cost))
+            if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
             {
                 alreadyUsed = true;
 
