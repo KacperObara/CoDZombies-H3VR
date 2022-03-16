@@ -71,8 +71,8 @@ MonoBehaviour:
   ConfusionMultiplier: 0
   ConfusionTimeMax: 0
   StunThreshold: 0.4
-  StunMultiplier: 2
-  StunTimeMax: 2.5
+  StunMultiplier: 1
+  StunTimeMax: 1
   CanBeGrabbed: 0
   CanBeSevered: 1
   CanBeStabbed: 1
@@ -90,5 +90,5 @@ MonoBehaviour:
   UsesLinkSpawns: 0
   LinkSpawns: []
   LinkSpawnChance: []
-  OverrideSpeech: 0
-  OverrideSpeechSet: {fileID: 0}
+  OverrideSpeech: 1
+  OverrideSpeechSet: {fileID: 11400000, guid: 5b1fa90337caf0c46b5b8bb9c78540ae, type: 2}

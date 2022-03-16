@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -872332539, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
+  m_Name: Sosig Speech Set
+  m_EditorClassIdentifier: 
+  BasePitch: 1
+  BaseVolume: 0.4
+  ForceDeathSpeech: 0
+  UseAltDeathOnHeadExplode: 0
+  LessTalkativeSkirmish: 0
+  OnJointBreak: []
+  OnJointSlice: []
+  OnJointSever: []
+  OnDeath:
+  - {fileID: 8300000, guid: 0f35e36e39ebc014287c84b9e1618efa, type: 3}
+  - {fileID: 8300000, guid: b78788f8271ce6a4cbf19f1a43d4d9fd, type: 3}
+  - {fileID: 8300000, guid: 6c570bb6b81242145a5152b57a411c15, type: 3}
+  - {fileID: 8300000, guid: 674749effd8943d44984befaf43b412e, type: 3}
+  - {fileID: 8300000, guid: f825daa47cd691448bb1749fcf7d717b, type: 3}
+  - {fileID: 8300000, guid: 1b55cceb42640304c8b1a57d223fbfb9, type: 3}
+  - {fileID: 8300000, guid: 438a7c00a2289dd46a0bef6e538f1169, type: 3}
+  - {fileID: 8300000, guid: cdd3c60ab3280814f97ff6b798235f69, type: 3}
+  OnBackBreak: []
+  OnNeckBreak: []
+  OnPain: []
+  OnConfusion: []
+  OnDeathAlt: []
+  OnWander: []
+  OnSkirmish: []
+  OnInvestigate: []
+  OnSearchingForGuns: []
+  OnTakingCover: []
+  OnBeingAimedAt:
+  - {fileID: 8300000, guid: 235105d0ad58f684d99993e0d034cc30, type: 3}
+  - {fileID: 8300000, guid: cb57a9487df30954aa6154c6fcf2a4d7, type: 3}
+  - {fileID: 8300000, guid: 7f97705669672ec49a4cacd2a255ccd1, type: 3}
+  - {fileID: 8300000, guid: 03a774517bb40f542bb06614ceed0a14, type: 3}
+  OnAssault:
+  - {fileID: 8300000, guid: 09258e057168adf4d8302c4c409d9904, type: 3}
+  - {fileID: 8300000, guid: 0ebb019a001cf31459fe309ddd5a488f, type: 3}
+  - {fileID: 8300000, guid: 52d4ddc053b6d444faa7e09ac54c68fd, type: 3}
+  - {fileID: 8300000, guid: 365f9b38a4d86e2478c37e2ffc6af8d9, type: 3}
+  - {fileID: 8300000, guid: 6d74dece2787b824aaaf94b52baf5a67, type: 3}
+  - {fileID: 8300000, guid: acbd6ba03d4f2714fafcc9379de84743, type: 3}
+  - {fileID: 8300000, guid: 3309b9847514bf8418efa508961418ee, type: 3}
+  - {fileID: 8300000, guid: de44fd44f8e66444fbb89b1ec7df819a, type: 3}
+  OnReloading:
+  - {fileID: 8300000, guid: 5e917a672ea0e85439457393fedadf16, type: 3}
+  - {fileID: 8300000, guid: 15b7b138b4b11984c81cdb094a61169c, type: 3}
+  - {fileID: 8300000, guid: fcc196cad6e1e7842bb0630266358e7b, type: 3}
+  OnMedic: []
+  OnCall_Skirmish: []
+  OnRespond_Skirmish: []
+  OnCall_Assistance: []
+  OnRespond_Assistance: []
+  Test: []

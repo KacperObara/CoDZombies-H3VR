@@ -225,6 +225,8 @@ namespace CustomScripts.Managers
 
         public void OnZombieDied(ZombieController controller, bool awardKill = true)
         {
+            GameManager.Instance.Kills++;
+
             if (GameSettings.UseCustomEnemies)
                 StartCoroutine(DelayedCustomZombieDespawn(controller.GetComponent<CustomZombieController>()));
 

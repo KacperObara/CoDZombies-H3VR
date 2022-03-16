@@ -21,11 +21,15 @@ namespace CustomScripts
 
         public Transform StartGameWaypoint;
 
-        public int ZombieFastWalkRound = 4;
+        public int ZombieFastWalkRound = 2;
         public int ZombieRunRound = 6;
+        public int HardModeFastWalkRound = 0;
+        public int HardModeRunRound = 3;
         public int SpecialRoundInterval;
 
         [HideInInspector] public int RoundNumber = 0;
+
+        private Coroutine _roundDelayCoroutine;
 
         public bool IsRoundSpecial
         {
@@ -35,10 +39,28 @@ namespace CustomScripts
                 return RoundNumber % SpecialRoundInterval == 0;
             }
         }
-        public bool IsFastWalking { get { return RoundNumber >= ZombieFastWalkRound; } }
-        public bool IsRunning { get { return RoundNumber >= ZombieRunRound; } }
 
-        private Coroutine _roundDelayCoroutine;
+        public bool IsFastWalking
+        {
+            get
+            {
+                if (GameSettings.HardMode)
+                    return RoundNumber >= HardModeFastWalkRound;
+                return RoundNumber >= ZombieFastWalkRound;
+            }
+        }
+
+        public bool IsRunning
+        {
+            get
+            {
+                if (GameSettings.HardMode)
+                    return RoundNumber >= HardModeRunRound;
+                return RoundNumber >= ZombieRunRound;
+            }
+        }
+
+
 
         public void StartGame()
         {

@@ -31,7 +31,7 @@ namespace CustomScripts
                 heldWeapon.GetComponent<WeaponWrapper>().OnWeaponGrabbed();
 
 
-            PlayerData.Instance.DamageModifier = DamageMultiplier;
+            PlayerData.Instance.DamageModifier *= DamageMultiplier;
             AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
             Destroy(gameObject);
         }

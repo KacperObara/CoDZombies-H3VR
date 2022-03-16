@@ -9,7 +9,6 @@ namespace CustomScripts
         public Text TotalPointsText;
         public Text BestPointsText;
         public Text KillsText;
-        public Text HeadshotsText;
 
         public Text DifficultyText;
         public Text EnemiesTypeText;
@@ -22,7 +21,6 @@ namespace CustomScripts
             BestPointsText.text = "High Score:\n" + SaveSystem.Instance.GetHighscore();
 
             KillsText.text = "Kills:\n" + GameManager.Instance.Kills;
-            HeadshotsText.text = "Headshots:\n" + GameManager.Instance.Headshots;
 
             DifficultyText.text = GameSettings.HardMode ? "Hard" : "Normal";
             EnemiesTypeText.text = GameSettings.UseCustomEnemies ? "Custom" : "Normal";

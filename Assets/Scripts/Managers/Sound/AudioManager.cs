@@ -34,6 +34,8 @@ namespace CustomScripts
 
         public AudioClip EndMusic;
 
+        public AudioClip TeleportingSound;
+
         public AudioClip PlayerHitSound;
 
         public AudioClip BarricadeRepairSound;

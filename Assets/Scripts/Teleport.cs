@@ -33,6 +33,7 @@ public class Teleport : MonoBehaviour, IPurchasable, IRequiresPower
 		{
 			ZombieManager.Instance.ChangeLocation(TargetLocation);
 			GM.CurrentMovementManager.TeleportToPoint(PlayerTeleportWaypoint.position, true);
+			AudioManager.Instance.Play(AudioManager.Instance.TeleportingSound, .5f);
 		}
 	}
 

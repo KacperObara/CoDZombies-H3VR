@@ -26,8 +26,7 @@ namespace CustomScripts
 
         public bool PowerEnabled;
 
-        public int Kills;
-        public int Headshots;
+        [HideInInspector]public int Kills;
 
         public void TurnOnPower()
         {
