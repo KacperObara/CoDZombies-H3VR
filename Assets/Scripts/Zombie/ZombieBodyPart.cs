@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System.Collections;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
 using FistVR;
@@ -12,6 +13,8 @@ namespace CustomScripts
 
         public void Damage(Damage dam)
         {
+            StartCoroutine(AddForce(dam));
+
             if (dam.Class == FistVR.Damage.DamageClass.Melee)
             {
                 Controller.OnHit(1);
@@ -58,6 +61,20 @@ namespace CustomScripts
             else
             {
                 Controller.OnHit(damage);
+            }
+        }
+
+        private static WaitForSeconds staticDelay = new WaitForSeconds(.1f);
+        private IEnumerator AddForce(Damage dam)
+        {
+            yield return staticDelay;
+            if (Controller.State == State.Dead)
+            {
+                float force = dam.Dam_TotalKinetic / 20f;
+
+                GetComponent<Rigidbody>().AddForceAtPosition((-dam.hitNormal.normalized) * force, dam.point, ForceMode.Impulse);
+
+                Debug.Log("Enemy hit in: " + gameObject.name + " with force: " + force + " force vector: " + (-dam.hitNormal) * force);
             }
         }
     }

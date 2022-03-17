@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp-Editor:MeatKit:BuildProfile
   PackageName: CodZombies
   Author: Kodeman
-  Version: 0.8.0
+  Version: 0.9.0
   Icon: {fileID: 2800000, guid: 0148ce2cb3a59434fb095ed1aa374ee0, type: 3}
   ReadMe: {fileID: 102900000, guid: 0ef972042aeb3144a87158168db7cdbc, type: 3}
   WebsiteURL: https://github.com/KacperObara/CoDZombies-H3VR
@@ -22,6 +22,7 @@ MonoBehaviour:
   - nrgill28-HookGenPatcher_H3VR-1.2.3
   - devyndamonster-MagazinePatcher-0.1.9
   - Nuigo_Ftrmarket-CDZ_Raygun_Mk1-1.2.3
+  - Nuigo_Ftrmarket-CDZ_Raygun_Mk2-1.0.2
   StripNamespaces: 1
   AdditionalNamespaces:
   - CustomScripts

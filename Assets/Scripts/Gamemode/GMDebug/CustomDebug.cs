@@ -4,6 +4,7 @@ using CustomScripts.Managers;
 using CustomScripts.Objects;
 using CustomScripts.Player;
 using CustomScripts.Powerups;
+using FistVR;
 using UnityEngine;
 namespace CustomScripts.Gamemode.GMDebug
 {
@@ -34,8 +35,18 @@ namespace CustomScripts.Gamemode.GMDebug
 
             if (Input.GetKeyDown(KeyCode.B))
             {
+                //if (ZombieManager.Instance.ExistingZombies.Count > 0)
+                //    ZombieManager.Instance.ExistingZombies[0].OnHit(99999);
+
                 if (ZombieManager.Instance.ExistingZombies.Count > 0)
-                    ZombieManager.Instance.ExistingZombies[0].OnHit(99999);
+                {
+                    Damage dam = new Damage();
+                    dam.Class = Damage.DamageClass.Projectile;
+                    dam.Dam_Piercing += 1 * 1f;
+                    dam.Dam_TotalKinetic = 600000;
+
+                    ZombieManager.Instance.ExistingZombies[0].GetComponentInChildren<ZombieBodyPart>().Damage(dam);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.C))

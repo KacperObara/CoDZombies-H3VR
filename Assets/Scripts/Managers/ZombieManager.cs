@@ -41,7 +41,7 @@ namespace CustomScripts.Managers
 
         public int ZombieAtOnceLimit = 20;
         [HideInInspector] public int ZombiesRemaining;
-        //[HideInInspector] public int ZombiesWaitingToSpawn;
+
         private int ZombiesToSpawnThisRound
         {
             get

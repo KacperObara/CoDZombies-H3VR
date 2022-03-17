@@ -279,26 +279,32 @@ namespace CustomScripts.Zombie
                 return;
             }
 
+
+            //////////
             // weird mumbo jumbo to minimize weird behavior that causes custom zombies
             // to jump upon death
-            int random = Random.Range(0, 3);
-            switch (random)
-            {
-                case 0:
-                    if (OnZombieDied != null)
-                        OnZombieDied.Invoke(1.8f);
-                    break;
-                case 1:
-                    if (OnZombieDied != null)
-                        OnZombieDied.Invoke(2.4f);
-                    break;
-                case 2:
-                    if (OnZombieDied != null)
-                        OnZombieDied.Invoke(1.25f);
-                    break;
-            }
+            // int random = Random.Range(0, 3);
+            // switch (random)
+            // {
+            //     case 0:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(1.8f);
+            //         break;
+            //     case 1:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(2.4f);
+            //         break;
+            //     case 2:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(1.25f);
+            //         break;
+            // }
+            //
+            // _animator.CrossFade("Death" + random, 0.25f, 0, 0);
+            //////////////////////////
 
-            _animator.CrossFade("Death" + random, 0.25f, 0, 0);
+            if (OnZombieDied != null)
+                OnZombieDied.Invoke(0f);
 
             _agent.enabled = false;
 

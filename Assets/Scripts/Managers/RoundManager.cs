@@ -64,7 +64,8 @@ namespace CustomScripts
 
         public void StartGame()
         {
-            GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
+            if (!Application.isEditor)
+                GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
 
             GameManager.Instance.GameStarted = true;
             GameManager.Instance.FirstShop.IsFree = true;

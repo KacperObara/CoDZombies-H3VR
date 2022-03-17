@@ -17,6 +17,8 @@ namespace CustomScripts.Zombie
 
             _controller.OnZombieDied += ActivateRagdoll;
             _controller.OnZombieInitialize += DeactivateRagdoll;
+
+            DeactivateRagdoll();
         }
 
         private void OnDestroy()
@@ -47,18 +49,18 @@ namespace CustomScripts.Zombie
                 rb.isKinematic = false;
             }
 
-            StartCoroutine(DampenFall());
+            //StartCoroutine(DampenFall());
         }
 
-        private IEnumerator DampenFall()
-        {
-            yield return new WaitForSeconds(.1f);
-            foreach (Rigidbody rb in _rbs)
-            {
-                rb.velocity = Vector3.zero;
-                rb.ResetInertiaTensor();
-            }
-        }
+        // private IEnumerator DampenFall()
+        // {
+        //     yield return new WaitForSeconds(.1f);
+        //     foreach (Rigidbody rb in _rbs)
+        //     {
+        //         rb.velocity = Vector3.zero;
+        //         rb.ResetInertiaTensor();
+        //     }
+        // }
 
         private IEnumerator DelayedActivate(float delay)
         {

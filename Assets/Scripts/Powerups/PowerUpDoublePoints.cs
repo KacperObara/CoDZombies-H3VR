@@ -43,7 +43,7 @@ namespace CustomScripts
         private IEnumerator DisablePowerUpDelay(float time)
         {
             yield return new WaitForSeconds(time);
-            AudioManager.Instance.Play(EndAudio,5f);
+            AudioManager.Instance.Play(EndAudio,.5f);
             PlayerData.Instance.MoneyModifier = 1f;
         }
 
