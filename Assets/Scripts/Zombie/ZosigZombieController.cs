@@ -36,7 +36,7 @@ namespace CustomScripts.Zombie
             _sosig.Speed_Run = ZombieManager.Instance.ZosigPerRoundSpeed.Evaluate(RoundManager.Instance.RoundNumber);
             if (GameSettings.HardMode)
             {
-                _sosig.Speed_Run += 1.25f;
+                _sosig.Speed_Run += 1.12f;
             }
 
             // if (GameSettings.WeakerEnemies)
@@ -60,10 +60,10 @@ namespace CustomScripts.Zombie
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
-                _sosig.Mustard *= .8f;
+                _sosig.Mustard *= .65f;
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .8f);
+                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .65f);
                 }
             }
 

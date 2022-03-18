@@ -43,7 +43,6 @@ namespace CustomScripts
             if (dam.Dam_TotalKinetic > 10000)
                 damage = 20;
 
-
             damage *= PartDamageMultiplier;
 
             if (GameSettings.LimitedAmmo)
@@ -71,10 +70,7 @@ namespace CustomScripts
             if (Controller.State == State.Dead)
             {
                 float force = dam.Dam_TotalKinetic / 20f;
-
                 GetComponent<Rigidbody>().AddForceAtPosition((-dam.hitNormal.normalized) * force, dam.point, ForceMode.Impulse);
-
-                Debug.Log("Enemy hit in: " + gameObject.name + " with force: " + force + " force vector: " + (-dam.hitNormal) * force);
             }
         }
     }

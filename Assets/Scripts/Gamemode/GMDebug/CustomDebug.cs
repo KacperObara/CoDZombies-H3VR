@@ -25,6 +25,7 @@ namespace CustomScripts.Gamemode.GMDebug
         public Teleport TeleportToSecondArea;
         public Teleport TeleportToMainArea;
 
+        ZombieBodyPart part;
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -43,16 +44,24 @@ namespace CustomScripts.Gamemode.GMDebug
                     Damage dam = new Damage();
                     dam.Class = Damage.DamageClass.Projectile;
                     dam.Dam_Piercing += 1 * 1f;
-                    dam.Dam_TotalKinetic = 600000;
+                    dam.Dam_TotalKinetic = 60000;
+                    dam.hitNormal = Vector3.back;
 
                     ZombieManager.Instance.ExistingZombies[0].GetComponentInChildren<ZombieBodyPart>().Damage(dam);
+
+                    part = ZombieManager.Instance.ExistingZombies[0]
+                        .GetComponentInChildren<ZombieBodyPart>();
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                if (ZombieManager.Instance.ExistingZombies.Count > 0)
-                    ZombieManager.Instance.ExistingZombies[0].OnHit(1, true);
+                Damage dam = new Damage();
+                dam.Class = Damage.DamageClass.Projectile;
+                dam.Dam_Piercing += 1 * 1f;
+                dam.Dam_TotalKinetic = 60000;
+                dam.hitNormal = Vector3.back;
+                part.Damage(dam);
             }
 
             if (Input.GetKeyDown(KeyCode.D))
@@ -96,6 +105,21 @@ namespace CustomScripts.Gamemode.GMDebug
             }
 
 
+
+
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                GameSettings.Instance.ToggleBackgroundMusic();
+            }
+            // // if (Input.GetKeyDown(KeyCode.LeftBracket))
+            // {
+            //     GameSettings.Instance.DifficultyNormalClicked();
+            // }
+            // if (Input.GetKeyDown(KeyCode.RightBracket))
+            // {
+            //     GameSettings.Instance.DifficultyHardClicked();
+            // }
         }
 
         public void SpawnCarpenter()

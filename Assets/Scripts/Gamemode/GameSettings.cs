@@ -24,8 +24,8 @@ namespace CustomScripts
 
         private void Start()
         {
-            OptionDescriptionText.text = "";
-            if (Random.Range(0, 750) == 0)
+            OptionDescriptionText.text = "Call of Duty\nZOMBIES";
+            if (Random.Range(0, 1000) == 0)
             {
                 int random = Random.Range(0, 7);
                 switch (random)
@@ -36,7 +36,6 @@ namespace CustomScripts
                     case 3: OptionDescriptionText.text = "It's just a game, mostly"; break;
                     case 4: OptionDescriptionText.text = "I have granted kids to hell"; break;
                     case 5: OptionDescriptionText.text = "It's only partially your fault"; break;
-                    case 6: OptionDescriptionText.text = "This game is not suitable for children\nor those who are easily dismembered"; break;
                 }
             }
         }
@@ -44,12 +43,12 @@ namespace CustomScripts
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftBracket))
-                EnableSpecialRoundClicked();
+                EnableCustomEnemiesClicked();
 
             if (Input.GetKeyDown(KeyCode.RightBracket))
-                DisableSpecialRoundClicked();
+                DisableCustomEnemiesClicked();
 
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.Comma))
                 RestoreDefaultSettings();
         }
 
@@ -90,7 +89,7 @@ namespace CustomScripts
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
 
-            OptionDescriptionText.text = "Custom humanoid enemies (Instead of Sosigs).";
+            OptionDescriptionText.text = "Custom humanoid enemies\n(Instead of Sosigs).";
         }
 
         public void DisableCustomEnemiesClicked()
@@ -122,7 +121,7 @@ namespace CustomScripts
 
         public void EnableSpecialRoundClicked()
         {
-            SpecialRoundDisabled = true;
+            SpecialRoundDisabled = false;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
 
@@ -131,7 +130,7 @@ namespace CustomScripts
 
         public void DisableSpecialRoundClicked()
         {
-            SpecialRoundDisabled = false;
+            SpecialRoundDisabled = true;
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
 

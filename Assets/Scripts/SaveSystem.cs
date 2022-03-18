@@ -8,8 +8,10 @@ public class SaveSystem : MonoBehaviourSingleton<SaveSystem>
 {
 	public string MapID;
 
-	private void Start()
+	public override void Awake()
 	{
+		base.Awake();
+
 		RoundManager.OnGameStarted += SaveStartSettings;
 		LoadStartSettings();
 		MapID += "CodZombies";

@@ -42,6 +42,8 @@ namespace CustomScripts.Zombie
         public static bool IsBeingHit;
         private bool _hitThrottled;
 
+        public Ragdoll Ragdoll;
+
         private Animator _animator;
         private RandomZombieSound _soundPlayer;
         private NavMeshAgent _agent;
@@ -64,6 +66,7 @@ namespace CustomScripts.Zombie
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
             _soundPlayer = GetComponent<RandomZombieSound>();
+            Ragdoll = GetComponent<Ragdoll>();
         }
 
         public override void Initialize(Transform newTarget)
@@ -122,7 +125,7 @@ namespace CustomScripts.Zombie
             Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
 
             if (RoundManager.Instance.IsRoundSpecial)
-                Health *= .82f;
+                Health *= .65f;
 
             State = State.Chase;
             _agent.enabled = true;
@@ -138,22 +141,7 @@ namespace CustomScripts.Zombie
             _animator.SetFloat("WalkSpeed", 1.8f);
             _animator.SetFloat("FastWalkSpeed", 1.8f);
             _animator.SetFloat("RunSpeed", 1.8f);
-            //StartCoroutine(SpawnSpecialEnemy());
         }
-
-        // private IEnumerator SpawnSpecialEnemy()
-        // {
-        //     _animator.SetFloat("WalkSpeed", 0);
-        //     _animator.SetFloat("FastWalkSpeed", 0);
-        //     _animator.SetFloat("RunSpeed", 0);
-        //
-        //     yield return new WaitForSeconds(1);
-        //
-        //     _animator.SetFloat("WalkSpeed", 1.5f);
-        //     _animator.SetFloat("FastWalkSpeed", 1.5f);
-        //     _animator.SetFloat("RunSpeed", 1.5f);
-        // }
-
 
         private void Update()
         {

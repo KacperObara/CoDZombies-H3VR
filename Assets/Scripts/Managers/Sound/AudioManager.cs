@@ -52,7 +52,7 @@ namespace CustomScripts
             if (GameSettings.BackgroundMusic)
                 PlayMusic(Music, .08f);
             else
-                MainAudioSource.Stop();
+                MusicAudioSource.Stop();
         }
 
         public void Play(AudioClip audioClip, float volume = 1f, float delay = 0f)

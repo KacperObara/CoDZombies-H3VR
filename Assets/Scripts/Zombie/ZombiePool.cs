@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Managers;
@@ -15,6 +16,14 @@ namespace CustomScripts
         private void Awake()
         {
             RoundManager.OnGameStarted += OnGameStart;
+        }
+
+        private void Start()
+        {
+            for (int i = 0; i < AvailableZombies.Count; i++)
+            {
+                AvailableZombies[i].gameObject.SetActive(false);
+            }
         }
 
         private void OnDestroy()
@@ -37,33 +46,25 @@ namespace CustomScripts
                 return;
             }
 
+            AvailableZombies[0].gameObject.SetActive(true);
 
             ZombieManager.Instance.OnZombieSpawned(AvailableZombies[0]);
+
+            if (AvailableZombies[0].Ragdoll != null)
+                AvailableZombies[0].Ragdoll.ResetRagdoll();
+
             AvailableZombies.Remove(AvailableZombies[0]);
-            // if (RoundManager.Instance.IsRoundSpecial)
-            // {
-            //     StartCoroutine(DelayedSpawn(2f));
-            // }
-            // else
-            // {
-            //     StartCoroutine(DelayedSpawn(0f));
-            // }
-
-
         }
-
-        // private IEnumerator DelayedSpawn(float delay)
-        // {
-        //     yield return new WaitForSeconds(delay);
-        //
-        //     ZombieManager.Instance.OnZombieSpawned(AvailableZombies[0]);
-        //     AvailableZombies.Remove(AvailableZombies[0]);
-        // }
 
         public void Despawn(CustomZombieController customZombie)
         {
+            if (AvailableZombies[0].Ragdoll != null)
+                AvailableZombies[0].Ragdoll.DeactivateRagdoll();
+
             AvailableZombies.Add(customZombie);
             customZombie.transform.position = DespawnedWaypoint.position;
+
+            customZombie.gameObject.SetActive(false);
         }
     }
 }

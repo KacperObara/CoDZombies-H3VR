@@ -50,6 +50,8 @@ namespace CustomScripts
 
             ItemSpawnerEnabledText.color = GameSettings.ItemSpawnerEnabled ? EnabledColor : DisabledColor;
             ItemSpawnerDisabledText.color = GameSettings.ItemSpawnerEnabled ? DisabledColor : EnabledColor;
+
+            //Debug.Log(GameSettings.SpecialRoundDisabled);
         }
     }
 }
