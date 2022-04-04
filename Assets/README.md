@@ -44,6 +44,12 @@ Perks:
 
 ## Changelog
 
+### 1.0.0
+- Finishing touches  
+I'm releasing the update a little early to fix few problems existing in 0.8.0.
+Within few days I'm planning to refactor some of the code and create tutorial on how to create other
+maps with this template.
+
 ### 0.8.0
 - Hellhound inspired round. Appears every 8 rounds. During that time, enemies will spawn inside the bunker.
 They are fast but have reduced HP.

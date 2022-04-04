@@ -22,8 +22,7 @@ GameObject:
   - component: {fileID: 95082926042431824}
   - component: {fileID: 114083351539785378}
   - component: {fileID: 65081107035671074}
-  - component: {fileID: 114938075119371214}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MaxAmmoPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358325664133034}
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 0.08933282, y: -0.18625546, z: -1.5844357}
+  m_LocalPosition: {x: 0.9636595, y: -0.39294124, z: -0.9983399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4534828553784156}
@@ -184,20 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29cac0e671ba4305ab09bd98ce67eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyAudio: {fileID: 8300000, guid: 6572ea61c8e877e4fa6e516f4c430111, type: 3}
   Renderer: {fileID: 23284467195134698}
---- !u!114 &114938075119371214
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1358325664133034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -870000170, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Def: {fileID: 0}
-  MatDef: {fileID: 11400000, guid: 1dbae5343e5e7c64f8d3049db4df2e10, type: 2}
 --- !u!198 &198230976371756760
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -56,8 +56,7 @@ GameObject:
   - component: {fileID: 95173934425680328}
   - component: {fileID: 65005805253829642}
   - component: {fileID: 114321377186317702}
-  - component: {fileID: 114104501523749094}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: InstaKillPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1731738182966144}
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: -2.579, y: -0.18625546, z: -1.5844357}
+  m_LocalPosition: {x: -1.7046733, y: -0.39294124, z: -0.9983399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4787792150950884}
@@ -173,19 +172,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114104501523749094
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1731738182966144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -870000170, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Def: {fileID: 0}
-  MatDef: {fileID: 11400000, guid: 1dbae5343e5e7c64f8d3049db4df2e10, type: 2}
 --- !u!114 &114321377186317702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddf186c58d814078916643e952d591d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyAudio: {fileID: 8300000, guid: 7a6f2828153d55e4ebf12eaf9d006a3d, type: 3}
+  EndAudio: {fileID: 8300000, guid: 56be16e69d3fa2841826d184d9153c76, type: 3}
   Renderer: {fileID: 23685392239107528}
 --- !u!198 &198459207529499742
 ParticleSystem:

@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 114536288018302578}
   - component: {fileID: 54270454040444176}
   - component: {fileID: 144989647834519670}
-  - component: {fileID: 135253347140087930}
   - component: {fileID: 136482064636293292}
   m_Layer: 11
   m_Name: Head
@@ -2112,6 +2111,8 @@ MonoBehaviour:
   HeadObject: {fileID: 1356950884735104}
   State: 0
   Health: 0
+  Ragdoll: {fileID: 0}
+  Animator: {fileID: 0}
   ExplosionPS: {fileID: 0}
 --- !u!114 &114247481788568938
 MonoBehaviour:
@@ -2357,18 +2358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
---- !u!135 &135253347140087930
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1356950884735104}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.11951691
-  m_Center: {x: 0, y: 0.08182144, z: 0}
 --- !u!136 &136041251547266738
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3025,5 +3014,5 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 7
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 1

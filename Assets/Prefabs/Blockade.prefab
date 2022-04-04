@@ -290,6 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4052354289262310}
   - component: {fileID: 114969371329401926}
+  - component: {fileID: 114179997436945922}
   m_Layer: 0
   m_Name: Blockade
   m_TagString: Untagged
@@ -473,7 +474,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1636975220725632}
   m_LocalRotation: {x: 0.7071068, y: -0.0000010281801, z: 0.0000010281801, w: 0.7071068}
-  m_LocalPosition: {x: 1.0223198, y: -1.8258514, z: -2.3626251}
+  m_LocalPosition: {x: 1.191, y: -1.428, z: -2.3626251}
   m_LocalScale: {x: 0.14811993, y: 0.14812008, z: 0.14812025}
   m_Children:
   - {fileID: 4490307144004884}
@@ -793,6 +794,30 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  LeverHoldStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverHoldEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114179997436945922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935746137970046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43334fe28f830c548ba854a4d8ea9da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _texts:
+  - {fileID: 114570722193743944}
+  - {fileID: 114749357064615638}
 --- !u!114 &114324791537832318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,17 +831,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlType: 0
   IsSimpleInteract: 0
-  HandlingGrabSound: 1
-  HandlingReleaseSound: 1
+  HandlingGrabSound: 0
+  HandlingReleaseSound: 0
   PoseOverride: {fileID: 0}
   QBPoseOverride: {fileID: 0}
   PoseOverride_Touch: {fileID: 0}
   UseGrabPointChild: 0
   UseGripRotInterp: 0
-  PositionInterpSpeed: 0
-  RotationInterpSpeed: 0
+  PositionInterpSpeed: 1
+  RotationInterpSpeed: 1
   EndInteractionIfDistant: 1
-  EndInteractionDistance: 1
+  EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
@@ -825,16 +850,15 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
-  MaxRot: 45
+  MaxRot: 30
   RefVector: {fileID: 0}
-  ValvePos: 0
+  ValvePos: 0.5
   MessageTargets: []
   AudEvent_Release:
-    Clips:
-    - {fileID: 8300000, guid: 0541d22dd82914e4c8e905aa1d90896b, type: 3}
-    VolumeRange: {x: 0, y: 0}
-    PitchRange: {x: 0, y: 0}
-    ClipLengthRange: {x: 0, y: 0}
+    Clips: []
+    VolumeRange: {x: 1, y: 1}
+    PitchRange: {x: 1, y: 1}
+    ClipLengthRange: {x: 1, y: 1}
   Lever: {fileID: 0}
 --- !u!114 &114517640207154258
 MonoBehaviour:
@@ -884,7 +908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 700
 --- !u!114 &114609514650627056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,17 +943,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlType: 0
   IsSimpleInteract: 0
-  HandlingGrabSound: 1
-  HandlingReleaseSound: 1
+  HandlingGrabSound: 0
+  HandlingReleaseSound: 0
   PoseOverride: {fileID: 0}
   QBPoseOverride: {fileID: 0}
   PoseOverride_Touch: {fileID: 0}
   UseGrabPointChild: 0
   UseGripRotInterp: 0
-  PositionInterpSpeed: 0
-  RotationInterpSpeed: 0
+  PositionInterpSpeed: 1
+  RotationInterpSpeed: 1
   EndInteractionIfDistant: 1
-  EndInteractionDistance: 1
+  EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
@@ -938,16 +962,15 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
-  MaxRot: 45
+  MaxRot: 30
   RefVector: {fileID: 0}
-  ValvePos: 0
+  ValvePos: 0.5
   MessageTargets: []
   AudEvent_Release:
-    Clips:
-    - {fileID: 8300000, guid: 0541d22dd82914e4c8e905aa1d90896b, type: 3}
-    VolumeRange: {x: 0, y: 0}
-    PitchRange: {x: 0, y: 0}
-    ClipLengthRange: {x: 0, y: 0}
+    Clips: []
+    VolumeRange: {x: 1, y: 1}
+    PitchRange: {x: 1, y: 1}
+    ClipLengthRange: {x: 1, y: 1}
   Lever: {fileID: 0}
 --- !u!114 &114749357064615638
 MonoBehaviour:
@@ -981,7 +1004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 700
 --- !u!114 &114840479993332686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1015,6 +1038,16 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   LeverOffEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverHoldStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverHoldEndEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
@@ -1069,12 +1102,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnlockableZombieSpawnPoints:
   - {fileID: 0}
-  UnlockableZosigSpawnPoints:
+  UnlockableSpecialZombieSpawnPoints:
+  - {fileID: 0}
   - {fileID: 0}
   CostTexts:
   - {fileID: 114570722193743944}
   - {fileID: 114749357064615638}
-  Cost: 0
+  Cost: 700
+  _isOneTimeOnly: 1
 --- !u!208 &208562942492463784
 NavMeshObstacle:
   m_ObjectHideFlags: 1
@@ -1167,7 +1202,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481108711276714}
   m_LocalRotation: {x: 0.00000008940713, y: -0.70711094, z: 0.000000085681414, w: -0.7071027}
-  m_LocalPosition: {x: 0, y: 0, z: -2.3132935}
+  m_LocalPosition: {x: 0, y: 0, z: -2.373}
   m_LocalScale: {x: 0.0012000006, y: 0.0011999999, z: 0.0012000006}
   m_Children:
   - {fileID: 224256441363016576}
@@ -1176,7 +1211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -180, y: -89.99899, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.2401924, y: -1.5906479}
+  m_AnchoredPosition: {x: 1.2401924, y: -1.165}
   m_SizeDelta: {x: 1031.008, y: 316.942}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224256441363016576

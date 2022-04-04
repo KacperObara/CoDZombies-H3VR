@@ -25,7 +25,7 @@ namespace CustomScripts
         private void Start()
         {
             OptionDescriptionText.text = "Call of Duty\nZOMBIES";
-            if (Random.Range(0, 1000) == 0)
+            if (Random.Range(0, 900) == 0)
             {
                 int random = Random.Range(0, 7);
                 switch (random)

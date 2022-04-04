@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -27,6 +28,11 @@ namespace CustomScripts
             GameSettings.OnSettingsChanged += UpdateText;
         }
 
+        private void Start()
+        {
+            UpdateText();
+        }
+
         private void OnDestroy()
         {
             GameSettings.OnSettingsChanged -= UpdateText;
@@ -50,8 +56,6 @@ namespace CustomScripts
 
             ItemSpawnerEnabledText.color = GameSettings.ItemSpawnerEnabled ? EnabledColor : DisabledColor;
             ItemSpawnerDisabledText.color = GameSettings.ItemSpawnerEnabled ? DisabledColor : EnabledColor;
-
-            //Debug.Log(GameSettings.SpecialRoundDisabled);
         }
     }
 }

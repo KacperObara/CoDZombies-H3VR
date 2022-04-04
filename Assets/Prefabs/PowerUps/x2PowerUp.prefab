@@ -39,8 +39,7 @@ GameObject:
   - component: {fileID: 95684403825156718}
   - component: {fileID: 114430857214966924}
   - component: {fileID: 65264192785542504}
-  - component: {fileID: 114429449972238746}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: x2PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535923537413018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9273303, y: -0.18625546, z: -1.5054333}
+  m_LocalPosition: {x: 2.8016567, y: -0.39294124, z: -0.9193363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4980725567597122}
@@ -173,19 +172,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114429449972238746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1535923537413018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -870000170, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Def: {fileID: 0}
-  MatDef: {fileID: 11400000, guid: 1dbae5343e5e7c64f8d3049db4df2e10, type: 2}
 --- !u!114 &114430857214966924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3728407bd2226417dafd8eae74cbd167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyAudio: {fileID: 8300000, guid: 00ae8c2630b8f3547974f61e3ff7f34f, type: 3}
+  EndAudio: {fileID: 8300000, guid: 56be16e69d3fa2841826d184d9153c76, type: 3}
   Renderer: {fileID: 23103893928094156}
 --- !u!198 &198139718135731880
 ParticleSystem:
@@ -255,7 +243,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1800228640
+  randomSeed: 660358347
   InitialModule:
     serializedVersion: 3
     enabled: 1

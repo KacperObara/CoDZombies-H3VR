@@ -44,6 +44,7 @@ namespace CustomScripts
             PackAPunch.PurchaseEvent += OnPackAPunchPurchase;
             RoundManager.OnRoundChanged += OnRoundChanged;
             RoundManager.OnGameStarted += OnGameStarted;
+            GameManager.OnPowerEnabled += OnPowerTurnedOn;
         }
 
         private void Start()
@@ -159,6 +160,16 @@ namespace CustomScripts
             PowerUpDoublePoints.PickedUpEvent -= OnDoublePointsPickedUp;
         }
 
+        private void OnPowerTurnedOn()
+        {
+            bool active = Random.Range(0, 1000) == 0;
+            if (!active)
+                return;
+
+            AudioManager.Instance.Play(SwitchingPower, .5f, 1.5f);
+            GameManager.OnPowerEnabled -= OnPowerTurnedOn;
+        }
+
 
         private void OnDestroy()
         {
@@ -172,6 +183,7 @@ namespace CustomScripts
             Window.BarricadedEvent -= OnBarricading;
             RoundManager.OnRoundChanged -= OnRoundChanged;
             RoundManager.OnGameStarted -= OnGameStarted;
+            GameManager.OnPowerEnabled -= OnPowerTurnedOn;
         }
     }
 }

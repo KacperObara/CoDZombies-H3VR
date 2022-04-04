@@ -27,7 +27,6 @@ namespace CustomScripts.Zombie
 
         public void DeactivateRagdoll()
         {
-            _animator.enabled = true;
             foreach (Rigidbody rb in _rbs)
             {
                 rb.gameObject.SetActive(false);

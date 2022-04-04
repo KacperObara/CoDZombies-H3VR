@@ -38,13 +38,11 @@ namespace CustomScripts.Zombie
         [HideInInspector] public float Health;
 
         // Manages player's invincibility frames after getting hit by custom zombie
-        public static int PlayerTouchCount;
-        public static bool IsBeingHit;
         private bool _hitThrottled;
 
         public Ragdoll Ragdoll;
 
-        private Animator _animator;
+        [HideInInspector] public Animator Animator;
         private RandomZombieSound _soundPlayer;
         private NavMeshAgent _agent;
 
@@ -59,12 +57,9 @@ namespace CustomScripts.Zombie
         private void Awake()
         {
             State = State.Dead;
-        }
 
-        private void Start()
-        {
             _agent = GetComponent<NavMeshAgent>();
-            _animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
             _soundPlayer = GetComponent<RandomZombieSound>();
             Ragdoll = GetComponent<Ragdoll>();
         }
@@ -72,6 +67,8 @@ namespace CustomScripts.Zombie
         public override void Initialize(Transform newTarget)
         {
             Target = newTarget;
+
+            Animator.enabled = true;
 
             _agent.updateRotation = false;
             _agentUpdateTimer = agentUpdateInterval;
@@ -86,9 +83,9 @@ namespace CustomScripts.Zombie
                 _animIndex = random;
 
                 if (GameSettings.HardMode)
-                    _animator.SetFloat("FastWalkSpeed", 1.05f);
+                    Animator.SetFloat("FastWalkSpeed", 1.05f);
                 else
-                    _animator.SetFloat("FastWalkSpeed", .85f);
+                    Animator.SetFloat("FastWalkSpeed", .85f);
             }
 
             if (RoundManager.Instance.IsRunning)
@@ -99,9 +96,9 @@ namespace CustomScripts.Zombie
                 _animIndex = random;
 
                 if (GameSettings.HardMode)
-                    _animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
+                    Animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
                 else
-                    _animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
+                    Animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
             }
 
             if (!RoundManager.Instance.IsRunning && !RoundManager.Instance.IsFastWalking) // walking
@@ -112,7 +109,7 @@ namespace CustomScripts.Zombie
                 _animIndex = random;
 
                 if (GameSettings.HardMode)
-                    _animator.SetFloat("WalkSpeed", 1.2f);
+                    Animator.SetFloat("WalkSpeed", 1.2f);
             }
 
             StartMovementAnimation();
@@ -138,9 +135,9 @@ namespace CustomScripts.Zombie
 
         public override void InitializeSpecialType()
         {
-            _animator.SetFloat("WalkSpeed", 1.8f);
-            _animator.SetFloat("FastWalkSpeed", 1.8f);
-            _animator.SetFloat("RunSpeed", 1.8f);
+            Animator.SetFloat("WalkSpeed", 1.8f);
+            Animator.SetFloat("FastWalkSpeed", 1.8f);
+            Animator.SetFloat("RunSpeed", 1.8f);
         }
 
         private void Update()
@@ -170,7 +167,7 @@ namespace CustomScripts.Zombie
         {
             if (State == State.Chase)
             {
-                _animator.CrossFade("Stunned", .25f, 0, 0);
+                Animator.CrossFade("Stunned", .25f, 0, 0);
 
                 yield return new WaitForSeconds(2f);
 
@@ -187,7 +184,7 @@ namespace CustomScripts.Zombie
             {
                 other.GetComponent<ITrap>().OnEnemyEntered(this);
             }
-            else if (other.GetComponent<WindowTrigger>())
+            else if (other.GetComponent<WindowTrigger>() && !RoundManager.Instance.IsRoundSpecial)
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (State == State.AttackWindow)
@@ -205,24 +202,6 @@ namespace CustomScripts.Zombie
                 OnTouchingWindow();
             }
         }
-
-        // private void OnTriggerExit(Collider other)
-        // {
-        //     if (State == State.Dead)
-        //         return;
-        //
-        //     if (other.GetComponent<WindowTrigger>())
-        //     {
-        //         if (State == State.AttackWindow)
-        //         {
-        //             State = State.Chase;
-        //             _agent.speed = 0.1f;
-        //
-        //             StartMovementAnimation();
-        //             ChangeTarget(GameReferences.Instance.Player);
-        //         }
-        //     }
-        // }
 
         public override void OnHit(float damage, bool headHit = false)
         {
@@ -246,8 +225,8 @@ namespace CustomScripts.Zombie
             {
                 if (headHit && !_hitThrottled)
                 {
-                    _animator.SetTrigger("GetHit");
-                    _animator.SetFloat("HitAngle", .5f);
+                    Animator.SetTrigger("GetHit");
+                    Animator.SetFloat("HitAngle", .5f);
 
                     StartCoroutine(HitAnimThrottle());
                 }
@@ -257,7 +236,7 @@ namespace CustomScripts.Zombie
         public override void OnKill(bool awardPoints = true)
         {
             _agent.speed = 0.1f;
-            _animator.applyRootMotion = true;
+            Animator.applyRootMotion = true;
 
             State = State.Dead;
 
@@ -345,17 +324,15 @@ namespace CustomScripts.Zombie
             if (PlayerData.Instance.IsInvincible)
                 return;
 
-            IsBeingHit = true;
-            PlayerTouchCount++;
-
             AudioManager.Instance.Play(AudioManager.Instance.PlayerHitSound);
+
+            if (Application.isEditor)
+                return;
 
             GM.CurrentPlayerBody.Health -= ZombieManager.Instance.CustomZombieDamage;
 
             if (PlayerData.GettingHitEvent != null)
                 PlayerData.GettingHitEvent.Invoke();
-
-            StartCoroutine(CheckStillColliding());
 
             if (GM.CurrentPlayerBody.Health <= 0)
                 GameManager.Instance.KillPlayer();
@@ -383,7 +360,7 @@ namespace CustomScripts.Zombie
 
             _agent.speed = 0;
 
-            _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+            Animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
             State = State.AttackWindow;
         }
 
@@ -409,7 +386,7 @@ namespace CustomScripts.Zombie
             }
             else
             {
-                _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+                Animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
             }
         }
 
@@ -431,38 +408,7 @@ namespace CustomScripts.Zombie
 
             anim += _animIndex.ToString();
 
-            _animator.CrossFade(anim, 0.25f, 0, 0);
-        }
-
-        public void OnPlayerTouch()
-        {
-            if (PlayerTouchCount != 0)
-                return;
-
-            if (IsBeingHit)
-                return;
-
-            OnHitPlayer();
-        }
-
-        public void OnPlayerStopTouch()
-        {
-            if (PlayerTouchCount == 0)
-                return;
-
-            PlayerTouchCount--;
-        }
-
-        private IEnumerator CheckStillColliding()
-        {
-            yield return new WaitForSeconds(1.5f);
-
-            if (PlayerTouchCount != 0 && !GameManager.Instance.GameEnded)
-            {
-                OnHitPlayer();
-            }
-
-            IsBeingHit = false;
+            Animator.CrossFade(anim, 0.25f, 0, 0);
         }
     }
 }

@@ -50,16 +50,18 @@ namespace CustomScripts
 
             ZombieManager.Instance.OnZombieSpawned(AvailableZombies[0]);
 
-            if (AvailableZombies[0].Ragdoll != null)
+            if (AvailableZombies[0].Ragdoll)
                 AvailableZombies[0].Ragdoll.ResetRagdoll();
+
+           //AvailableZombies[0].Animator.enabled = true;
 
             AvailableZombies.Remove(AvailableZombies[0]);
         }
 
         public void Despawn(CustomZombieController customZombie)
         {
-            if (AvailableZombies[0].Ragdoll != null)
-                AvailableZombies[0].Ragdoll.DeactivateRagdoll();
+            if (customZombie.Ragdoll)
+                customZombie.Ragdoll.DeactivateRagdoll();
 
             AvailableZombies.Add(customZombie);
             customZombie.transform.position = DespawnedWaypoint.position;

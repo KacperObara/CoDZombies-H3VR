@@ -39,24 +39,12 @@ namespace CustomScripts.Zombie
                 _sosig.Speed_Run += 1.12f;
             }
 
-            // if (GameSettings.WeakerEnemies)
-            // {
-            //     _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber - 5);
-            //     foreach (SosigLink link in _sosig.Links)
-            //     {
-            //         link.SetIntegrity(
-            //             ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
-            //     }
-            // }
-            //else
-            //{
             _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
             foreach (SosigLink link in _sosig.Links)
             {
                 link.SetIntegrity(
                     ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
             }
-            //}
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
@@ -104,7 +92,7 @@ namespace CustomScripts.Zombie
             _sosig.Speed_Sneak = 5f;
             _sosig.Speed_Crawl = 5f;
 
-            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("InsidePlayArea");
+            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("Obstructed"); //InsidePlayArea
 
             CanInteractWithWindows = false;
 
@@ -115,14 +103,6 @@ namespace CustomScripts.Zombie
         {
             if (_sosig == null)
                 return;
-
-            // _agentUpdateTimer += Time.deltaTime;
-            // if (_agentUpdateTimer >= agentUpdateInterval)
-            // {
-            //     _agentUpdateTimer -= agentUpdateInterval;
-            //
-            //     _sosig.CommandAssaultPoint(Target.position);
-            // }
 
             if (_isAttackingWindow)
             {

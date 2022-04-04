@@ -15,8 +15,6 @@ namespace CustomScripts
         [Range(0, 100)] public float TeleportChance = 20f;
         public int SafeRollsProvided = 3;
 
-        //public AudioSource ByeByeSound;
-        //public AudioSource ByeByeSound;
         public AudioClip TeddyBearSound;
         public AudioClip SecretTeddyBearSound;
 

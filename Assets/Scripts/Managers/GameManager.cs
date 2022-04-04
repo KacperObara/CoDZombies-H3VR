@@ -30,6 +30,9 @@ namespace CustomScripts
 
         public void TurnOnPower()
         {
+            if (PowerEnabled)
+                return;
+
             PowerEnabled = true;
             AudioManager.Instance.Play(AudioManager.Instance.PowerOnSound, .8f);
             if (OnPowerEnabled != null)

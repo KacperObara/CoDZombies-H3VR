@@ -180,9 +180,9 @@ namespace CustomScripts.Powerups
                     GameObject magObject = Instantiate(newMagazine.GetGameObject(), Spawners[1].transform.position,
                         Quaternion.identity);
 
-                    magObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
-
+                    //magObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
                     FVRFireArmMagazine magazine = magObject.GetComponent<FVRFireArmMagazine>();
+                    magObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(magazine, randomRound.RoundClass);
 
                     magazine.ReloadMagWithType(randomRound.RoundClass);
                 }
@@ -202,9 +202,9 @@ namespace CustomScripts.Powerups
                 {
                     GameObject clipObject = Instantiate(newClip.GetGameObject(), Spawners[1].transform.position,
                         Quaternion.identity);
-                    clipObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
 
                     FVRFireArmClip clip = clipObject.GetComponent<FVRFireArmClip>();
+                    clipObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(clip, randomRound.RoundClass);
 
                     clip.ReloadClipWithType(randomRound.RoundClass);
                 }
@@ -224,9 +224,9 @@ namespace CustomScripts.Powerups
                         Spawners[1].transform.position,
                         Quaternion.identity);
 
-                    speedLoaderObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
 
                     Speedloader speedLoader = speedLoaderObject.GetComponent<Speedloader>();
+                    speedLoaderObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(speedLoader, randomRound.RoundClass);
 
                     speedLoader.ReloadClipWithType(randomRound.RoundClass);
                 }
@@ -237,7 +237,7 @@ namespace CustomScripts.Powerups
             if (loadedMag && randomRound != null)
             {
                 if (!loadedMag.GetComponent<MagazineWrapper>())
-                    loadedMag.gameObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
+                    loadedMag.gameObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(loadedMag, randomRound.RoundClass);
 
                 loadedMag.ReloadMagWithType(randomRound.RoundClass);
             }
@@ -246,7 +246,7 @@ namespace CustomScripts.Powerups
             if (loadedClip && randomRound != null)
             {
                 if (!loadedClip.GetComponent<MagazineWrapper>())
-                    loadedClip.gameObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
+                    loadedClip.gameObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(loadedClip, randomRound.RoundClass);
 
                 loadedClip.ReloadClipWithType(randomRound.RoundClass);
             }

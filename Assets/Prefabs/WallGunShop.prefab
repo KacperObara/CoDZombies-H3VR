@@ -102,9 +102,9 @@ GameObject:
   - component: {fileID: 4498599289028954}
   - component: {fileID: 33794227769789192}
   - component: {fileID: 23970313326564590}
-  - component: {fileID: 114499872672700646}
-  - component: {fileID: 114375808847805300}
   - component: {fileID: 65354694644852066}
+  - component: {fileID: 114561436946100150}
+  - component: {fileID: 114105436378845594}
   m_Layer: 10
   m_Name: Lever
   m_TagString: Untagged
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 23820632003760324}
   - component: {fileID: 114820531030492588}
   - component: {fileID: 65282764097343566}
+  - component: {fileID: 114914952041200268}
   m_Layer: 0
   m_Name: WallGunShop
   m_TagString: Untagged
@@ -250,7 +251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413998473892050}
   m_LocalRotation: {x: -0.0000020861623, y: -0.7071067, z: -0.7071069, w: 0.0000020787118}
-  m_LocalPosition: {x: 50.312, y: 102.552, z: 174.91}
+  m_LocalPosition: {x: 50.217, y: 102.552, z: 174.91}
   m_LocalScale: {x: 0.4504922, y: 0.45049173, z: 0.45049173}
   m_Children:
   - {fileID: 4402504635344616}
@@ -501,6 +502,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 2.2, z: 2.74}
   m_Center: {x: -0.0005014966, y: 0.000000043815408, z: 0.9714674}
+--- !u!114 &114105436378845594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286046210311788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cecbba2f8db7461b91591c7101c7fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeverToggleEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114820531030492588}
+        m_MethodName: TryBuying
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverOnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverOffEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverHoldStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  LeverHoldEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114351100260655920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,40 +565,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114375808847805300
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286046210311788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1773859441, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeverToggleEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114820531030492588}
-        m_MethodName: 547279427579696e67
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 556e697479456e67696e652e4f626a6563742c20556e697479456e67696e65
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: 556e697479456e67696e652e4576656e74732e556e6974794576656e742c20556e697479456e67696e652c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-  LeverOnEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: 556e697479456e67696e652e4576656e74732e556e6974794576656e742c20556e697479456e67696e652c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
-  LeverOffEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: 556e697479456e67696e652e4576656e74732e556e6974794576656e742c20556e697479456e67696e652c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
 --- !u!114 &114386137137605492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,53 +627,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1883639899870248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2006412635, guid: 4e91c9c27f007764786aeac0df344838, type: 3}
+  m_Script: {fileID: 866657763, guid: f389002fcd463a4322b6940096404f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectId: 4b39386b
-  SpawnOnLoad: 0
---- !u!114 &114499872672700646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286046210311788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52ed93198509b3d489dae80962477f4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ControlType: 0
-  IsSimpleInteract: 0
-  HandlingGrabSound: 1
-  HandlingReleaseSound: 1
-  PoseOverride: {fileID: 0}
-  QBPoseOverride: {fileID: 0}
-  PoseOverride_Touch: {fileID: 0}
-  UseGrabPointChild: 0
-  UseGripRotInterp: 0
-  PositionInterpSpeed: 0
-  RotationInterpSpeed: 0
-  EndInteractionIfDistant: 1
-  EndInteractionDistance: 1
-  m_hasTriggeredUpSinceBegin: 0
-  UXGeo_Hover: {fileID: 0}
-  UXGeo_Held: {fileID: 0}
-  UseFilteredHandTransform: 0
-  UseFilteredHandPosition: 0
-  UseFilteredHandRotation: 0
-  UseSecondStepRotationFiltering: 0
-  MaxRot: 45
-  RefVector: {fileID: 4067711692275158}
-  ValvePos: 0
-  MessageTargets: []
-  AudEvent_Release:
-    Clips:
-    - {fileID: 8300000, guid: 0541d22dd82914e4c8e905aa1d90896b, type: 3}
-    VolumeRange: {x: 0, y: 0}
-    PitchRange: {x: 0, y: 0}
-    ClipLengthRange: {x: 0, y: 0}
-  Lever: {fileID: 4330005553910630}
+  ObjectId: 
+  SpawnOnStart: 0
 --- !u!114 &114556739413052496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -693,6 +665,49 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 200
+--- !u!114 &114561436946100150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286046210311788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -572758631, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlType: 0
+  IsSimpleInteract: 0
+  HandlingGrabSound: 1
+  HandlingReleaseSound: 1
+  PoseOverride: {fileID: 0}
+  QBPoseOverride: {fileID: 0}
+  PoseOverride_Touch: {fileID: 0}
+  UseGrabPointChild: 0
+  UseGripRotInterp: 0
+  PositionInterpSpeed: 0
+  RotationInterpSpeed: 0
+  EndInteractionIfDistant: 1
+  EndInteractionDistance: 1
+  m_hasTriggeredUpSinceBegin: 0
+  m_hand: {fileID: 0}
+  UXGeo_Hover: {fileID: 0}
+  UXGeo_Held: {fileID: 0}
+  UseFilteredHandTransform: 0
+  UseFilteredHandPosition: 0
+  UseFilteredHandRotation: 0
+  UseSecondStepRotationFiltering: 0
+  MaxRot: 45
+  RefVector: {fileID: 4067711692275158}
+  ValvePos: 0
+  MessageTargets: []
+  AudEvent_Release:
+    Clips:
+    - {fileID: 8300000, guid: 0541d22dd82914e4c8e905aa1d90896b, type: 3}
+    VolumeRange: {x: 0, y: 0}
+    PitchRange: {x: 0, y: 0}
+    ClipLengthRange: {x: 0, y: 0}
+  Lever: {fileID: 4330005553910630}
 --- !u!114 &114681916487456208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -738,13 +753,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413998473892050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 374772433, guid: e49b3957171eb9245812ac8a2cbd03ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f0d9ea25c6a845b39aa620778ceb3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ExistsInLimitedAmmo: 1
   ExistsInSpawnlock: 1
-  Name: 4b39386b
+  Name: K98k
   Cost: 200
+  _isOneTimeOnly: 0
   NameText: {fileID: 114459325634075416}
   CostText: {fileID: 114556739413052496}
   ItemSpawners:
@@ -753,6 +769,19 @@ MonoBehaviour:
   Weapon: {fileID: 11400000, guid: e96a62cc0edaf1841a7e6abfdc20ca89, type: 2}
   SameRebuy: 0
   IsFree: 0
+--- !u!114 &114914952041200268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1413998473892050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43334fe28f830c548ba854a4d8ea9da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _texts:
+  - {fileID: 114556739413052496}
 --- !u!114 &114931386508888292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -761,11 +790,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096429512262570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2006412635, guid: 4e91c9c27f007764786aeac0df344838, type: 3}
+  m_Script: {fileID: 866657763, guid: f389002fcd463a4322b6940096404f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectId: 4b39386b
-  SpawnOnLoad: 0
+  ObjectId: K98k
+  SpawnOnStart: 0
 --- !u!222 &222136931150109976
 CanvasRenderer:
   m_ObjectHideFlags: 1

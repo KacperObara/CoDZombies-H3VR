@@ -60,8 +60,6 @@ namespace CustomScripts
             }
         }
 
-
-
         public void StartGame()
         {
             if (!Application.isEditor)

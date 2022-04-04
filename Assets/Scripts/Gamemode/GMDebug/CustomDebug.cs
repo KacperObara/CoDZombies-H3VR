@@ -25,6 +25,8 @@ namespace CustomScripts.Gamemode.GMDebug
         public Teleport TeleportToSecondArea;
         public Teleport TeleportToMainArea;
 
+        public DeadShotPerkBottle DeadShotPerkBottle;
+
         ZombieBodyPart part;
         private void Update()
         {
@@ -36,9 +38,6 @@ namespace CustomScripts.Gamemode.GMDebug
 
             if (Input.GetKeyDown(KeyCode.B))
             {
-                //if (ZombieManager.Instance.ExistingZombies.Count > 0)
-                //    ZombieManager.Instance.ExistingZombies[0].OnHit(99999);
-
                 if (ZombieManager.Instance.ExistingZombies.Count > 0)
                 {
                     Damage dam = new Damage();
@@ -64,10 +63,11 @@ namespace CustomScripts.Gamemode.GMDebug
                 part.Damage(dam);
             }
 
+
+
             if (Input.GetKeyDown(KeyCode.D))
             {
-                if (ZombieManager.Instance.ExistingZombies.Count > 0)
-                    ZombieManager.Instance.ExistingZombies[0].OnHit(2);
+                DeadShotPerkBottle.ApplyModifier();
             }
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -156,6 +156,21 @@ namespace CustomScripts.Gamemode.GMDebug
         {
             if (ZombieManager.Instance.ExistingZombies.Count > 0)
                 ZombieManager.Instance.ExistingZombies[0].OnHit(99999);
+        }
+
+        private bool _forcingSpecialEnemy;
+        public void ToggleForceSpecialRound()
+        {
+            if (_forcingSpecialEnemy)
+            {
+                RoundManager.Instance.SpecialRoundInterval = 8;
+                _forcingSpecialEnemy = false;
+            }
+            else
+            {
+                RoundManager.Instance.SpecialRoundInterval = 1;
+                _forcingSpecialEnemy = true;
+            }
         }
     }
 }

@@ -7,39 +7,38 @@ using Random = UnityEngine.Random;
 
 public class DoorBanging : MonoBehaviour
 {
-	public AudioSource BangingSound;
-	private float _timer;
-	private bool _activated;
+    public AudioSource BangingSound;
+    private float _timer;
+    private bool _activated;
 
-	private void Awake()
-	{
-		if (Random.Range(0, 20) != 0)
-		{
-			Destroy(this);
-			return;
-		}
+    private void Awake()
+    {
+        if (Random.Range(0, 20) != 0)
+        {
+            Destroy(this);
+            return;
+        }
 
+        RoundManager.OnGameStarted += OnGameStart;
+        _timer = Time.time;
+    }
 
-		RoundManager.OnGameStarted += OnGameStart;
-		_timer = Time.time;
-	}
+    private void Update()
+    {
+        if (!_activated && _timer + 120 <= Time.time)
+        {
+            BangingSound.Play();
+            _activated = true;
+        }
+    }
 
-	private void Update()
-	{
-		if (!_activated && _timer + 120 <= Time.time)
-		{
-			BangingSound.Play();
-			_activated = true;
-		}
-	}
+    public void OnGameStart()
+    {
+        Destroy(this);
+    }
 
-	public void OnGameStart()
-	{
-		Destroy(this);
-	}
-
-	private void OnDestroy()
-	{
-		RoundManager.OnGameStarted -= OnGameStart;
-	}
+    private void OnDestroy()
+    {
+        RoundManager.OnGameStarted -= OnGameStart;
+    }
 }

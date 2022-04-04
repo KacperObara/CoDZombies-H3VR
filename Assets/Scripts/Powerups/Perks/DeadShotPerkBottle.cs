@@ -23,7 +23,7 @@ namespace CustomScripts
                 for (int i = 0; i < ZombieManager.Instance.AllCustomZombies.Count; i++)
                 {
                     (ZombieManager.Instance.AllCustomZombies[i] as CustomZombieController).HeadObject
-                        .GetComponent<BoxCollider>().size = new Vector3(1.25f, 1.25f, 1.25f);
+                        .GetComponent<CapsuleCollider>().radius *= 1.375f;
                 }
             }
             AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
