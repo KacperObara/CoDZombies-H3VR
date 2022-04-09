@@ -12,7 +12,7 @@ Features including:
 - Mystery Box
 - Pack A Punch
 - Barricading windows
-- Raygun by Sora101Ven
+- Rayguns by Sora101Ven
 
 Important:
 - Buying stuff, changing settings etc. are done by pulling the levers
@@ -46,9 +46,10 @@ Perks:
 
 ### 1.0.0
 - Finishing touches  
-I'm releasing the update a little early to fix few problems existing in 0.8.0.
-Within few days I'm planning to refactor some of the code and create tutorial on how to create other
-maps with this template.
+- Implemented Raygun MK2 from Sora101Ven
+Within a few days I'm planning to create a tutorial showcasing how to create custom maps with this gamemode template.
+Please notify me if You see any bugs
+
 
 ### 0.8.0
 - Hellhound inspired round. Appears every 8 rounds. During that time, enemies will spawn inside the bunker.

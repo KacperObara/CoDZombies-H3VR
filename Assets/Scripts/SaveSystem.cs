@@ -13,8 +13,9 @@ public class SaveSystem : MonoBehaviourSingleton<SaveSystem>
 		base.Awake();
 
 		RoundManager.OnGameStarted += SaveStartSettings;
-		LoadStartSettings();
 		MapID += "CodZombies";
+
+		LoadStartSettings();
 	}
 
 	public void SaveHighscore(int score)
@@ -44,6 +45,7 @@ public class SaveSystem : MonoBehaviourSingleton<SaveSystem>
 		GameSettings.LimitedAmmo =         PlayerPrefs.GetInt(MapID + "LimitedAmmo") > 0;
 		GameSettings.SpecialRoundDisabled = PlayerPrefs.GetInt(MapID + "SpecialRoundDisabled") > 0;
 		GameSettings.ItemSpawnerEnabled =  PlayerPrefs.GetInt(MapID + "ItemSpawnerSpawned") > 0;
+
 		if (GameSettings.OnSettingsChanged != null)
 			GameSettings.OnSettingsChanged.Invoke();
 	}

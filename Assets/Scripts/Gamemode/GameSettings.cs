@@ -40,18 +40,6 @@ namespace CustomScripts
             }
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.LeftBracket))
-                EnableCustomEnemiesClicked();
-
-            if (Input.GetKeyDown(KeyCode.RightBracket))
-                DisableCustomEnemiesClicked();
-
-            if (Input.GetKeyDown(KeyCode.Comma))
-                RestoreDefaultSettings();
-        }
-
         public void RestoreDefaultSettings()
         {
             HardMode = false;
@@ -104,6 +92,7 @@ namespace CustomScripts
         public void EnableLimitedAmmoClicked()
         {
             LimitedAmmo = true;
+
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
 
@@ -113,6 +102,7 @@ namespace CustomScripts
         public void DisableLimitedAmmoClicked()
         {
             LimitedAmmo = false;
+
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();
 

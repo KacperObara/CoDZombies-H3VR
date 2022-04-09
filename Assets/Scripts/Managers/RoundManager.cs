@@ -65,6 +65,8 @@ namespace CustomScripts
             if (!Application.isEditor)
                 GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
 
+            GM.CurrentSceneSettings.IsSpawnLockingEnabled = !GameSettings.LimitedAmmo;
+
             GameManager.Instance.GameStarted = true;
             GameManager.Instance.FirstShop.IsFree = true;
             GameManager.Instance.FirstShop.TryBuying();
