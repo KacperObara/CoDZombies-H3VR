@@ -1,29 +1,36 @@
 #if H3VR_IMPORTED
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 namespace CustomScripts
 {
     public class GameSettingsPanel : MonoBehaviour
     {
-        //TODO: Set the OnClick actions
-        // public FVRPointableButton LimitedAmmo;
-        // public FVRPointableButton MoreEnemies;
-        // public FVRPointableButton FasterEnemies;
-        // public FVRPointableButton WeakerEnemies;
-        //
-        // public FVRPointableButton StartGame;
-
-        public Text LimitedAmmo;
-        public Text MoreEnemies;
-        public Text FasterEnemies;
-        public Text WeakerEnemies;
         public Text BackgroundMusic;
-        public Text UseZosigs;
-        public Text ItemSpawnerStatus;
+
+        public Text DifficultyNormalText;
+        public Text DifficultyHardText;
+        public Text CustomEnemiesEnabledText;
+        public Text CustomEnemiesDisabledText;
+        public Text LimitedAmmoEnabledText;
+        public Text LimitedAmmoDisabledText;
+        public Text SpecialRoundEnabledText;
+        public Text SpecialRoundDisabledText;
+        public Text ItemSpawnerEnabledText;
+        public Text ItemSpawnerDisabledText;
+
+        public Color EnabledColor;
+        public Color DisabledColor;
 
         private void Awake()
         {
             GameSettings.OnSettingsChanged += UpdateText;
+        }
+
+        private void Start()
+        {
+            UpdateText();
         }
 
         private void OnDestroy()
@@ -33,13 +40,22 @@ namespace CustomScripts
 
         private void UpdateText()
         {
-            MoreEnemies.text = GameSettings.MoreEnemies ? "Enabled" : "Disabled";
-            FasterEnemies.text = GameSettings.FasterEnemies ? "Enabled" : "Disabled";
-            WeakerEnemies.text = GameSettings.WeakerEnemies ? "Enabled" : "Disabled";
-            LimitedAmmo.text = GameSettings.LimitedAmmo ? "Enabled" : "Disabled";
             BackgroundMusic.text = GameSettings.BackgroundMusic ? "Enabled" : "Disabled";
-            UseZosigs.text = GameSettings.UseCustomEnemies ? "Enabled" : "Disabled";
-            ItemSpawnerStatus.text = GameSettings.ItemSpawnerSpawned ? "Spawned" : "Not spawned";
+
+            DifficultyNormalText.color = GameSettings.HardMode ? DisabledColor : EnabledColor;
+            DifficultyHardText.color = GameSettings.HardMode ? EnabledColor : DisabledColor;
+
+            CustomEnemiesEnabledText.color = GameSettings.UseCustomEnemies ? EnabledColor : DisabledColor;
+            CustomEnemiesDisabledText.color = GameSettings.UseCustomEnemies ? DisabledColor : EnabledColor;
+
+            LimitedAmmoEnabledText.color = GameSettings.LimitedAmmo ? EnabledColor : DisabledColor;
+            LimitedAmmoDisabledText.color = GameSettings.LimitedAmmo ? DisabledColor : EnabledColor;
+
+            SpecialRoundEnabledText.color = GameSettings.SpecialRoundDisabled ? DisabledColor : EnabledColor;
+            SpecialRoundDisabledText.color = GameSettings.SpecialRoundDisabled ? EnabledColor : DisabledColor;
+
+            ItemSpawnerEnabledText.color = GameSettings.ItemSpawnerEnabled ? EnabledColor : DisabledColor;
+            ItemSpawnerDisabledText.color = GameSettings.ItemSpawnerEnabled ? DisabledColor : EnabledColor;
         }
     }
 }

@@ -12,15 +12,32 @@ namespace CustomScripts
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         public static Action OnPointsChanged;
+        public static Action OnPowerEnabled;
 
         public EndPanel EndPanel;
 
         [HideInInspector] public int Points;
         [HideInInspector] public int TotalPoints; // for highscore
 
+        [HideInInspector] public bool GameStarted = false;
         [HideInInspector] public bool GameEnded = false;
 
         public WallShop FirstShop;
+
+        public bool PowerEnabled;
+
+        [HideInInspector]public int Kills;
+
+        public void TurnOnPower()
+        {
+            if (PowerEnabled)
+                return;
+
+            PowerEnabled = true;
+            AudioManager.Instance.Play(AudioManager.Instance.PowerOnSound, .8f);
+            if (OnPowerEnabled != null)
+                OnPowerEnabled.Invoke();
+        }
 
         public void AddPoints(int amount)
         {
@@ -66,13 +83,12 @@ namespace CustomScripts
 
             GameEnded = true;
 
-            AudioManager.Instance.EndMusic.PlayDelayed(1f);
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.EndMusic, 0.25f, 1f);
 
             EndPanel.UpdatePanel();
 
-            if (!GameSettings.ItemSpawnerSpawned)
-                if (PlayerPrefs.GetInt("BestScore") < TotalPoints)
-                    PlayerPrefs.SetInt("BestScore", TotalPoints);
+            if (!GameSettings.ItemSpawnerEnabled)
+                SaveSystem.Instance.SaveHighscore(TotalPoints);
         }
     }
 }

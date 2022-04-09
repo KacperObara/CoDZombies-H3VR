@@ -16,21 +16,34 @@ namespace CustomScripts.Zombie
             _animator = GetComponent<Animator>();
 
             _controller.OnZombieDied += ActivateRagdoll;
-            _controller.OnZombieInitialize += DeactivateRagdoll;
+
+            DeactivateRagdoll();
         }
 
         private void OnDestroy()
         {
             _controller.OnZombieDied -= ActivateRagdoll;
-            _controller.OnZombieInitialize -= DeactivateRagdoll;
         }
 
-        private void DeactivateRagdoll()
+        public void DeactivateRagdoll()
         {
-            _animator.enabled = true;
             foreach (Rigidbody rb in _rbs)
             {
+                rb.gameObject.SetActive(false);
+                rb.gameObject.SetActive(true);
                 rb.isKinematic = true;
+            }
+        }
+
+        /// <summary>
+        /// Solution to the problem in which zombies don't reset their joints and are invisible because of it
+        /// </summary>
+        public void ResetRagdoll()
+        {
+            foreach (Rigidbody rb in _rbs)
+            {
+                rb.gameObject.transform.position = Vector3.zero;
+                rb.gameObject.transform.rotation = Quaternion.identity;
             }
         }
 
@@ -45,18 +58,6 @@ namespace CustomScripts.Zombie
             foreach (Rigidbody rb in _rbs)
             {
                 rb.isKinematic = false;
-            }
-
-            StartCoroutine(DampenFall());
-        }
-
-        private IEnumerator DampenFall()
-        {
-            yield return new WaitForSeconds(.1f);
-            foreach (Rigidbody rb in _rbs)
-            {
-                rb.velocity = Vector3.zero;
-                rb.ResetInertiaTensor();
             }
         }
 

@@ -9,7 +9,7 @@ namespace CustomScripts
 
         private void Start()
         {
-            HighscoreText.text = "Highscore: " + PlayerPrefs.GetInt("BestScore").ToString();
+            HighscoreText.text = "Highscore:\n" + SaveSystem.Instance.GetHighscore();
         }
     }
 }

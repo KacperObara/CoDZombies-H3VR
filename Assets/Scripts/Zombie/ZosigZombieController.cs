@@ -1,14 +1,18 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using CustomScripts.Managers;
 using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CustomScripts.Zombie
 {
     public class ZosigZombieController : ZombieController
     {
+        public bool CanInteractWithWindows = true;
+
         private const float agentUpdateInterval = .5f;
         private int _hitsGivingMoney = 6;
 
@@ -16,7 +20,6 @@ namespace CustomScripts.Zombie
         private float _cachedSpeed;
         private bool _isAttackingWindow;
         private bool _isDead;
-
 
         private Sosig _sosig;
 
@@ -31,27 +34,24 @@ namespace CustomScripts.Zombie
             _sosig.CoreRB.gameObject.AddComponent<ZosigTrigger>().Initialize(this);
 
             _sosig.Speed_Run = ZombieManager.Instance.ZosigPerRoundSpeed.Evaluate(RoundManager.Instance.RoundNumber);
-            if (GameSettings.FasterEnemies)
+            if (GameSettings.HardMode)
             {
-                _sosig.Speed_Run += 1.25f;
+                _sosig.Speed_Run += 1.12f;
             }
 
-            if (GameSettings.WeakerEnemies)
+            _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
+            foreach (SosigLink link in _sosig.Links)
             {
-                _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber - 5);
-                foreach (SosigLink link in _sosig.Links)
-                {
-                    link.SetIntegrity(
-                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber - 5));
-                }
+                link.SetIntegrity(
+                    ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
             }
-            else
+
+            if (RoundManager.Instance.IsRoundSpecial)
             {
-                _sosig.Mustard = ZombieManager.Instance.ZosigHPCurve.Evaluate(RoundManager.Instance.RoundNumber);
+                _sosig.Mustard *= .65f;
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(
-                        ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
+                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .65f);
                 }
             }
 
@@ -78,37 +78,31 @@ namespace CustomScripts.Zombie
             CheckPerks();
         }
 
+        public override void InitializeSpecialType()
+        {
+            StartCoroutine(SpawnSpecialEnemy());
+        }
+
+        private IEnumerator SpawnSpecialEnemy()
+        {
+            _cachedSpeed = 5f;
+            _sosig.Speed_Run = 5f;
+            _sosig.Speed_Walk = 5f;
+            _sosig.Speed_Turning = 5f;
+            _sosig.Speed_Sneak = 5f;
+            _sosig.Speed_Crawl = 5f;
+
+            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("Obstructed"); //InsidePlayArea
+
+            CanInteractWithWindows = false;
+
+            yield return new WaitForSeconds(2);
+        }
+
         private void Update()
         {
             if (_sosig == null)
                 return;
-
-            _agentUpdateTimer += Time.deltaTime;
-            if (_agentUpdateTimer >= agentUpdateInterval)
-            {
-                _agentUpdateTimer -= agentUpdateInterval;
-
-                _sosig.CommandAssaultPoint(Target.position);
-                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault;
-                //
-                // _sosig.UpdateGuardPoint(Target.position);
-                // _sosig.UpdateAssaultPoint(Target.position);
-                //
-                // // Quick hack if sosigs try to follow you but on the wrong floor
-                // if (_sosig.Agent.destination.y + 3f < Target.position.y)
-                // {
-                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.up);
-                // }
-                //
-                // if (_sosig.Agent.destination.y > Target.position.y + 3f)
-                // {
-                //     _sosig.UpdateAssaultPoint(Target.position + Vector3.down);
-                // }
-                //
-                // _sosig.SetCurrentOrder(Sosig.SosigOrder.Assault);
-                //
-                // _sosig.FallbackOrder = Sosig.SosigOrder.Assault; // I know I'm calling this two times, maybe it doesn't make sense
-            }
 
             if (_isAttackingWindow)
             {
@@ -125,6 +119,20 @@ namespace CustomScripts.Zombie
                 _sosig.Speed_Turning = _cachedSpeed;
                 _sosig.Speed_Crawl = _cachedSpeed;
                 _sosig.Speed_Sneak = _cachedSpeed;
+            }
+        }
+
+        private void LateUpdate()
+        {
+            if (_sosig == null)
+                return;
+
+            _agentUpdateTimer += Time.deltaTime;
+            if (_agentUpdateTimer >= agentUpdateInterval)
+            {
+                _agentUpdateTimer -= agentUpdateInterval;
+
+                _sosig.CommandAssaultPoint(Target.position);
             }
         }
 
@@ -150,16 +158,30 @@ namespace CustomScripts.Zombie
             }
         }
 
-        public void OnKill()
+        public override void OnKill(bool awardPoints = true)
         {
             if (!ZombieManager.Instance.ExistingZombies.Contains(this))
                 return;
 
             _isDead = true;
 
-            GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
+                var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
+                Destroy(explosionPS.gameObject, 4f);
+            }
 
-            ZombieManager.Instance.OnZombieDied(this);
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+
+                ZombieManager.Instance.OnZombieDied(this);
+            }
+            else
+            {
+                ZombieManager.Instance.ExistingZombies.Remove(this);
+            }
 
             StartCoroutine(DelayedDespawn());
         }
@@ -199,10 +221,15 @@ namespace CustomScripts.Zombie
             if (_isDead)
                 return;
 
+            if (other.GetComponent<ITrap>() != null)
+            {
+                other.GetComponent<ITrap>().OnEnemyEntered(this);
+            }
+
             if (_isAttackingWindow)
                 return;
 
-            if (other.GetComponent<WindowTrigger>())
+            if (CanInteractWithWindows && other.GetComponent<WindowTrigger>())
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (window.IsOpen)
@@ -291,7 +318,17 @@ namespace CustomScripts.Zombie
 
         private IEnumerator DelayedDespawn()
         {
-            yield return new WaitForSeconds(5);
+            if (_sosig == null)
+            {
+                Debug.Log("Sosig is null");
+                yield break;
+            }
+            
+            if (!RoundManager.Instance.IsRoundSpecial)
+            {
+                yield return new WaitForSeconds(5);
+            }
+            
             _sosig.DeSpawnSosig();
         }
     }

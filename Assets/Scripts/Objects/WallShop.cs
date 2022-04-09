@@ -19,10 +19,12 @@ namespace CustomScripts.Objects
         public string Name;
         public int Cost;
 
-        public int PurchaseCost
-        {
-            get { return Cost; }
-        }
+        public int PurchaseCost { get { return Cost; } }
+        [SerializeField] private bool _isOneTimeOnly;
+        public bool IsOneTimeOnly { get { return _isOneTimeOnly; } }
+
+        private bool _alreadyBought;
+        public bool AlreadyBought { get { return _alreadyBought; } }
 
         public Text NameText;
         public Text CostText;
@@ -35,11 +37,8 @@ namespace CustomScripts.Objects
 
         [HideInInspector] public bool IsFree;
 
-        private bool _alreadyBoughtOnce;
-
         private void Awake()
         {
-            RoundManager.OnGameStarted -= OnRoundStarted;
             RoundManager.OnGameStarted += OnRoundStarted;
         }
 
@@ -71,7 +70,7 @@ namespace CustomScripts.Objects
                 if (GameSettings.LimitedAmmo && !SameRebuy)
                 {
                     // Spawning weapons
-                    if (!_alreadyBoughtOnce)
+                    if (!_alreadyBought)
                     {
                         for (int i = 0; i < Weapon.DefaultSpawners.Count; i++)
                         {
@@ -113,9 +112,9 @@ namespace CustomScripts.Objects
                     }
                 }
 
-                if (!_alreadyBoughtOnce)
-                    _alreadyBoughtOnce = true;
-                AudioManager.Instance.BuySound.Play();
+                if (!_alreadyBought)
+                    _alreadyBought = true;
+                AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
             }
         }
 

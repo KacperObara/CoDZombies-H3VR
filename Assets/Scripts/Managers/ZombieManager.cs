@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Atlas.MappingComponents.Sandbox;
@@ -7,11 +8,20 @@ using CustomScripts.Zombie;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace CustomScripts.Managers
 {
+    //TODO Need to refactor AI classes, it became quite a monster from having to support 4 types of enemies in 2 modes
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>
     {
+        public static Action LocationChangedEvent;
+
+        public Location CurrentLocation;
+
+        public ZombiePool NormalZombiePool;
+        public ZombiePool SpecialZombiePool;
+
         public AnimationCurve ZombieCountCurve;
         public AnimationCurve CustomZombieHPCurve;
         public AnimationCurve ZosigHPCurve;
@@ -25,10 +35,25 @@ namespace CustomScripts.Managers
         public List<ZombieController> AllCustomZombies;
         [HideInInspector] public List<ZombieController> ExistingZombies;
 
-        public List<Transform> CustomZombieSpawnPoints;
-        public List<CustomSosigSpawnPoint> ZosigSpawnPoints;
-
         private Transform _zombieTarget;
+
+        public ParticleSystem HellhoundExplosionPS;
+
+        public int ZombieAtOnceLimit = 20;
+        [HideInInspector] public int ZombiesRemaining;
+
+        private int ZombiesToSpawnThisRound
+        {
+            get
+            {
+                if (GameSettings.HardMode)
+                    return Mathf.CeilToInt(ZombieCountCurve.Evaluate(RoundManager.Instance.RoundNumber) + 1);
+                else
+                    return Mathf.CeilToInt(ZombieCountCurve.Evaluate(RoundManager.Instance.RoundNumber));
+            }
+        }
+
+        private Coroutine _spawningCoroutine;
 
         public override void Awake()
         {
@@ -38,24 +63,131 @@ namespace CustomScripts.Managers
             On.FistVR.Sosig.SosigDies += OnSosigDied;
         }
 
-        public void SpawnZombie(float delay)
+#region Spawning
+
+        public void BeginSpawningEnemies()
         {
-            StartCoroutine(DelayedCustomZombieSpawn(delay));
+            ZombiesRemaining = ZombiesToSpawnThisRound;
+
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                StartSpawningZombies(6f);
+
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundRoundStartSound, 0.35f, 0f);
+            }
+            else
+            {
+                StartSpawningZombies(2f);
+
+                AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
+            }
+
+
+        }
+
+        public void StartSpawningZombies(float initialDelay)
+        {
+            _spawningCoroutine = StartCoroutine(DelayedZombieSpawn(initialDelay));
         }
 
         public void OnZombieSpawned(ZombieController controller)
         {
-            Transform spawnPoint =
-                CustomZombieSpawnPoints[Random.Range(0, CustomZombieSpawnPoints.Count)];
+            StartCoroutine(DelayedCustomZombieSpawn(controller));
+        }
 
-            controller.transform.position = spawnPoint.position;
+        private IEnumerator DelayedZombieSpawn(float delay)
+        {
+            yield return new WaitForSeconds(delay);
 
-            Window targetWindow = spawnPoint.GetComponent<ZombieSpawner>().WindowWaypoint;
-            if (targetWindow != null)
-                _zombieTarget = targetWindow.ZombieWaypoint;
+            while (ZombiesRemaining > ExistingZombies.Count)
+            {
+                if (ExistingZombies.Count >= ZombieAtOnceLimit)
+                {
+                    yield return new WaitForSeconds(5);
+                    continue;
+                }
 
-            controller.Initialize(_zombieTarget);
+                _zombieTarget = GameReferences.Instance.Player;
+
+                if (!GameSettings.UseCustomEnemies)
+                {
+                    SpawnZosig();
+                }
+                else
+                {
+                    if (RoundManager.Instance.IsRoundSpecial)
+                        SpecialZombiePool.Spawn();
+                    else
+                        NormalZombiePool.Spawn();
+                }
+
+                yield return new WaitForSeconds(2);
+            }
+        }
+
+        private IEnumerator DelayedCustomZombieSpawn(ZombieController controller)
+        {
+            yield return null;
+
+            Transform spawnPoint = null;
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                spawnPoint = CurrentLocation.SpecialZombieSpawnPoints[Random.Range(0, CurrentLocation.SpecialZombieSpawnPoints.Count)].transform;
+            }
+            else
+            {
+                spawnPoint = CurrentLocation.ZombieSpawnPoints[Random.Range(0, CurrentLocation.ZombieSpawnPoints.Count)];
+            }
+
+            if (spawnPoint.GetComponent<ZombieSpawner>() != null)
+            {
+                Window targetWindow = spawnPoint.GetComponent<ZombieSpawner>().WindowWaypoint;
+                if (targetWindow != null)
+                    _zombieTarget = targetWindow.ZombieWaypoint;
+            }
+
             ExistingZombies.Add(controller);
+
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                spawnPoint.GetComponent<CustomSosigSpawnPoint>().SpawnPS.Play(true);
+
+                if (RoundManager.Instance.IsRoundSpecial)
+                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.6f, delay:.25f);
+
+                yield return new WaitForSeconds(2f);
+            }
+
+            if (ExistingZombies.Contains(controller))
+            {
+                controller.transform.position = spawnPoint.position;
+                controller.Initialize(_zombieTarget);
+
+                if (RoundManager.Instance.IsRoundSpecial)
+                    controller.InitializeSpecialType();
+            }
+        }
+
+        public void SpawnZosig()
+        {
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                CustomSosigSpawnPoint spawner =
+                    CurrentLocation.SpecialZombieSpawnPoints[Random.Range(0, CurrentLocation.SpecialZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
+
+                spawner.Spawn();
+            }
+            else
+            {
+                CustomSosigSpawnPoint spawner =
+                    CurrentLocation.ZombieSpawnPoints[Random.Range(0, CurrentLocation.ZombieSpawnPoints.Count)].GetComponent<CustomSosigSpawnPoint>();
+
+                Window targetWindow = spawner.GetComponent<ZombieSpawner>().WindowWaypoint;
+                if (targetWindow != null)
+                    _zombieTarget = targetWindow.ZombieWaypoint;
+
+                spawner.Spawn();
+            }
         }
 
         public void OnZosigSpawned(Sosig zosig)
@@ -64,31 +196,52 @@ namespace CustomScripts.Managers
 
             controller.Initialize(_zombieTarget);
             ExistingZombies.Add(controller);
+
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                controller.InitializeSpecialType();
+            }
         }
 
-        public void SpawnZosig()
+        #endregion
+
+        public void ChangeLocation(Location newLocation)
         {
-            CustomSosigSpawnPoint spawner =
-                ZosigSpawnPoints[Random.Range(0, ZosigSpawnPoints.Count)];
+            if (_spawningCoroutine != null)
+                StopCoroutine(_spawningCoroutine);
 
-            Window targetWindow = spawner.GetComponent<ZombieSpawner>().WindowWaypoint;
-            if (targetWindow != null)
-                _zombieTarget = targetWindow.ZombieWaypoint;
+            CurrentLocation = newLocation;
 
-            spawner.Spawn();
+            for (int i = ExistingZombies.Count - 1; i >= 0; i--)
+            {
+                ExistingZombies[i].OnKill(false);
+            }
+
+            StartSpawningZombies(5f);
+
+            if (LocationChangedEvent != null)
+                LocationChangedEvent.Invoke();
         }
 
-        public void OnZombieDied(ZombieController controller)
+        public void OnZombieDied(ZombieController controller, bool awardKill = true)
         {
+            GameManager.Instance.Kills++;
+
             if (GameSettings.UseCustomEnemies)
                 StartCoroutine(DelayedCustomZombieDespawn(controller.GetComponent<CustomZombieController>()));
 
             ExistingZombies.Remove(controller);
 
-            RoundManager.Instance.ZombiesLeft--;
+            if (!awardKill)
+                return;
 
-            if (RoundManager.Instance.ZombiesLeft <= 0)
+            ZombiesRemaining--;
+
+            if (ZombiesRemaining <= 0)
             {
+                if (RoundManager.Instance.IsRoundSpecial && GameSettings.LimitedAmmo)
+                    PowerUpManager.Instance.SpawnPowerUp(PowerUpManager.Instance.MaxAmmo, controller.transform.position);
+
                 RoundManager.Instance.EndRound();
             }
 
@@ -98,26 +251,20 @@ namespace CustomScripts.Managers
                 RoundManager.OnZombieKilled.Invoke(controller.gameObject);
         }
 
-        private IEnumerator DelayedCustomZombieSpawn(float delay)
+        private IEnumerator DelayedCustomZombieDespawn(CustomZombieController controller)
         {
-            yield return new WaitForSeconds(delay);
+            bool specialEnemy = RoundManager.Instance.IsRoundSpecial;
 
-            _zombieTarget = GameReferences.Instance.Player;
-
-            if (!GameSettings.UseCustomEnemies)
+            if (specialEnemy)
             {
-                SpawnZosig();
+                yield return new WaitForSeconds(0);
+                SpecialZombiePool.Despawn(controller);
             }
             else
             {
-                ZombiePool.Instance.Spawn();
+                yield return new WaitForSeconds(5f);
+                NormalZombiePool.Despawn(controller);
             }
-        }
-
-        private IEnumerator DelayedCustomZombieDespawn(CustomZombieController controller)
-        {
-            yield return new WaitForSeconds(5f);
-            ZombiePool.Instance.Despawn(controller);
         }
 
         private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass,

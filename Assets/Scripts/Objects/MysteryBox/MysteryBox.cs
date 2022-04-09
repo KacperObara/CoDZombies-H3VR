@@ -17,6 +17,12 @@ namespace CustomScripts
         public int Cost = 950;
         public int PurchaseCost { get { return Cost; } }
 
+        [SerializeField] private bool _isOneTimeOnly;
+        public bool IsOneTimeOnly { get { return _isOneTimeOnly; } }
+
+        private bool _alreadyBought;
+        public bool AlreadyBought { get { return _alreadyBought; } }
+
         public List<WeaponData> LootId;
         public List<WeaponData> LimitedAmmoLootId;
 

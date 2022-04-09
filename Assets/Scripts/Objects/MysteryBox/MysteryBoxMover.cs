@@ -15,8 +15,6 @@ namespace CustomScripts
         [Range(0, 100)] public float TeleportChance = 20f;
         public int SafeRollsProvided = 3;
 
-        //public AudioSource ByeByeSound;
-        //public AudioSource ByeByeSound;
         public AudioClip TeddyBearSound;
         public AudioClip SecretTeddyBearSound;
 
@@ -85,13 +83,13 @@ namespace CustomScripts
             {
                 teddy = TeddyBear.GetChild(1).gameObject;
 
-                AudioManager.Instance.Play(SecretTeddyBearSound, 1);
+                AudioManager.Instance.Play(SecretTeddyBearSound);
             }
             else
             {
                 teddy = TeddyBear.GetChild(0).gameObject;
 
-                AudioManager.Instance.Play(TeddyBearSound, 1f);
+                AudioManager.Instance.Play(TeddyBearSound);
             }
             TeddyBear.GetComponent<Animator>().Play("Activation");
             teddy.SetActive(true);

@@ -19,22 +19,22 @@ namespace CustomScripts.Player
         public PowerUpIndicator DeathMachinePowerUpIndicator;
 
         public float DamageModifier = 1f;
-        public float MoneyModifier = 1f;
+        [HideInInspector] public float MoneyModifier = 1f;
 
         public float LargeItemSpeedMult;
         public float MassiveItemSpeedMult;
-        private float currentSpeedMult = 1f;
+        private float _currentSpeedMult = 1f;
 
-        public bool InstaKill;
-        public bool IsInvincible;
+        [HideInInspector] public bool InstaKill;
+        [HideInInspector] public bool IsInvincible;
 
-        public bool DeadShotPerkActivated;
-        public bool DoubleTapPerkActivated;
-        public bool SpeedColaPerkActivated;
-        public bool QuickRevivePerkActivated;
-        public bool StaminUpPerkActivated;
-        public bool PHDFlopperPerkActivated;
-        public bool ElectricCherryPerkActivated;
+        [HideInInspector] public bool DeadShotPerkActivated;
+        [HideInInspector] public bool DoubleTapPerkActivated;
+        [HideInInspector] public bool SpeedColaPerkActivated;
+        [HideInInspector] public bool QuickRevivePerkActivated;
+        [HideInInspector] public bool StaminUpPerkActivated;
+        [HideInInspector] public bool PHDFlopperPerkActivated;
+        [HideInInspector] public bool ElectricCherryPerkActivated;
 
         public FVRViveHand LeftHand
         {
@@ -87,6 +87,9 @@ namespace CustomScripts.Player
             orig.Invoke(self, d);
         }
 
+        /// <summary>
+        /// Place in which weapon or magazine wrapper classes are added to the objects
+        /// </summary>
         private void OnPhysicalObjectStartInteraction(On.FistVR.FVRPhysicalObject.orig_BeginInteraction orig,
             FVRPhysicalObject self, FVRViveHand hand)
         {
@@ -103,6 +106,15 @@ namespace CustomScripts.Player
                 }
 
                 wrapper.OnWeaponGrabbed();
+            }
+            else if (self as FVRFireArmMagazine)
+            {
+                MagazineWrapper wrapper = self.GetComponent<MagazineWrapper>();
+                if (wrapper == null)
+                {
+                    wrapper = self.gameObject.AddComponent<MagazineWrapper>();
+                    wrapper.Initialize((FVRFireArmMagazine) self);
+                }
             }
         }
 
@@ -150,28 +162,28 @@ namespace CustomScripts.Player
                 switch (heaviestItem)
                 {
                     case FVRPhysicalObject.FVRPhysicalObjectSize.Large:
-                        currentSpeedMult = LargeItemSpeedMult;
+                        _currentSpeedMult = LargeItemSpeedMult;
                         break;
                     case FVRPhysicalObject.FVRPhysicalObjectSize.Massive:
-                        currentSpeedMult = MassiveItemSpeedMult;
+                        _currentSpeedMult = MassiveItemSpeedMult;
                         break;
                     default:
-                        currentSpeedMult = 1f;
+                        _currentSpeedMult = 1f;
                         break;
                 }
             }
             else
             {
-                currentSpeedMult = 1.1f;
+                _currentSpeedMult = 1.1f;
             }
 
             for (int i = 0; i < GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes.Length; i++)
             {
-                GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes[i] = .75f * currentSpeedMult;
+                GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes[i] = .75f * _currentSpeedMult;
             }
 
             GM.CurrentSceneSettings.UsesMaxSpeedClamp = true;
-            GM.CurrentSceneSettings.MaxSpeedClamp = 5.5f * currentSpeedMult;
+            GM.CurrentSceneSettings.MaxSpeedClamp = 5.5f * _currentSpeedMult;
         }
 
 

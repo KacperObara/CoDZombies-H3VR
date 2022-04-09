@@ -39,8 +39,7 @@ GameObject:
   - component: {fileID: 95259430012086618}
   - component: {fileID: 114771625169708696}
   - component: {fileID: 65454872696484510}
-  - component: {fileID: 114260182716120094}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NukePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591420532810844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.92733026, y: -0.18625546, z: -1.5054333}
+  m_LocalPosition: {x: 1.8016567, y: -0.39294124, z: -0.9193363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4619612698844956}
@@ -173,19 +172,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114260182716120094
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1591420532810844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -870000170, guid: 61df6207064b6df9f1154d3f48a90696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Def: {fileID: 0}
-  MatDef: {fileID: 11400000, guid: 1dbae5343e5e7c64f8d3049db4df2e10, type: 2}
 --- !u!114 &114771625169708696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a6e1eb21d2842babca67782b9afd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyAudio: {fileID: 8300000, guid: f5b3cae7db6ea274781208bf5946b383, type: 3}
   Renderer: {fileID: 23941629026148462}
 --- !u!198 &198117371378220020
 ParticleSystem:
@@ -255,7 +242,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1164105373
+  randomSeed: 577395667
   InitialModule:
     serializedVersion: 3
     enabled: 1

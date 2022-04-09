@@ -8,6 +8,8 @@ namespace CustomScripts.Powerups
 {
     public class PowerUpDeathMachine : PowerUp
     {
+        public AudioClip EndAudio;
+
         public MeshRenderer Renderer;
 
         public CustomItemSpawner MinigunSpawner;
@@ -48,15 +50,26 @@ namespace CustomScripts.Powerups
 
             _magazineObject.RootRigidbody.isKinematic = true;
 
-
             (_magazineObject as FVRFireArmMagazine).Load(_minigunObject as FVRFireArm);
-            //(_minigunObject as FVRFireArm).LoadMag(_magazineObject as FVRFireArmMagazine);
+
+            FVRViveHand hand = PlayerData.Instance.RightHand;
+            // If players has empty right hand and is holding the grip, then auto equip minigun
+            if (hand.CurrentInteractable == null &&
+                hand.Grip_Button.stateDown)
+            {
+                Debug.Log("Player should grab minigun");
+                hand.RetrieveObject(_minigunObject);
+                // hand.CurrentInteractable = _minigunObject;
+                // //this.m_state = FVRViveHand.HandState.GripInteracting;
+                // _minigunObject.BeginInteraction(hand);
+                // hand.Buzz(hand.Buzzer.Buzz_BeginInteraction);
+            }
 
             PlayerData.Instance.DeathMachinePowerUpIndicator.Activate(30f);
 
             StartCoroutine(DisablePowerUpDelay(30f));
 
-            AudioManager.Instance.PowerUpDeathMachineSound.Play();
+            AudioManager.Instance.Play(ApplyAudio, .5f);
 
             Despawn();
         }
@@ -64,7 +77,7 @@ namespace CustomScripts.Powerups
         private IEnumerator DisablePowerUpDelay(float time)
         {
             yield return new WaitForSeconds(time);
-            AudioManager.Instance.PowerUpDoublePointsEndSound.Play();
+            AudioManager.Instance.Play(EndAudio, .5f);
 
             _minigunObject.ForceBreakInteraction();
             _minigunObject.IsPickUpLocked = true;

@@ -7,18 +7,29 @@ using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Objects.Weapons;
 using FistVR;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace CustomScripts.Powerups
 {
-    public class PackAPunch : MonoBehaviour, IPurchasable
+    public class PackAPunch : MonoBehaviour, IPurchasable, IRequiresPower
     {
+        public static Action PurchaseEvent;
+
         public int Cost;
         public int PurchaseCost { get { return Cost; } }
+
+        [SerializeField] private bool _isOneTimeOnly;
+        public bool IsOneTimeOnly { get { return _isOneTimeOnly; } }
+
+        private bool _alreadyBought;
+        public bool AlreadyBought { get { return _alreadyBought; } }
+        public bool IsPowered { get { return GameManager.Instance.PowerEnabled; } }
 
         public List<WeaponData> WeaponsData;
         public List<CustomItemSpawner> Spawners;
 
+        public AudioClip UpgradeSound;
         [HideInInspector] public bool InUse = false;
 
         private void OnTriggerEnter(Collider other)
@@ -55,11 +66,13 @@ namespace CustomScripts.Powerups
 
             if (weapon) // Normal behavior with gun changes
             {
-                if (GameManager.Instance.TryRemovePoints(Cost))
+                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
                 {
                     if (InUse)
                         return;
                     InUse = true;
+
+                    _alreadyBought = true;
 
                     fvrPhysicalObject.ForceBreakInteraction();
                     fvrPhysicalObject.IsPickUpLocked = true;
@@ -67,27 +80,28 @@ namespace CustomScripts.Powerups
 
                     StartCoroutine(DelayedSpawn(weapon));
 
-                    AudioManager.Instance.BuySound.Play();
-                    AudioManager.Instance.PackAPunchUpgradeSound.Play();
+                    AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
+                    AudioManager.Instance.Play(UpgradeSound, .3f);
 
                     weaponWrapper.BlockPackAPunchUpgrade();
                 }
             }
             else // Alternative behavior for unforeseen guns and subsequent Re pack a punching
             {
-                if (GameManager.Instance.TryRemovePoints(Cost))
+                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
                 {
                     if (InUse)
                         return;
                     InUse = true;
 
+                    _alreadyBought = true;
+
                     fvrPhysicalObject.ForceBreakInteraction();
 
                     StartCoroutine(DelayedReturn(fvrPhysicalObject));
 
-
-                    AudioManager.Instance.BuySound.Play();
-                    AudioManager.Instance.PackAPunchUpgradeSound.Play();
+                    AudioManager.Instance.Play(AudioManager.Instance.BuySound, .5f);
+                    AudioManager.Instance.Play(UpgradeSound, .3f);
 
                     weaponWrapper.IncreaseFireRate(1.4f);
 
@@ -99,6 +113,9 @@ namespace CustomScripts.Powerups
                     weaponWrapper.gameObject.SetActive(false);
                 }
             }
+
+            if (PurchaseEvent != null)
+                PurchaseEvent.Invoke();
         }
 
         private IEnumerator DelayedSpawn(WeaponData weapon)
@@ -163,9 +180,9 @@ namespace CustomScripts.Powerups
                     GameObject magObject = Instantiate(newMagazine.GetGameObject(), Spawners[1].transform.position,
                         Quaternion.identity);
 
-                    magObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
-
+                    //magObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
                     FVRFireArmMagazine magazine = magObject.GetComponent<FVRFireArmMagazine>();
+                    magObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(magazine, randomRound.RoundClass);
 
                     magazine.ReloadMagWithType(randomRound.RoundClass);
                 }
@@ -185,9 +202,9 @@ namespace CustomScripts.Powerups
                 {
                     GameObject clipObject = Instantiate(newClip.GetGameObject(), Spawners[1].transform.position,
                         Quaternion.identity);
-                    clipObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
 
                     FVRFireArmClip clip = clipObject.GetComponent<FVRFireArmClip>();
+                    clipObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(clip, randomRound.RoundClass);
 
                     clip.ReloadClipWithType(randomRound.RoundClass);
                 }
@@ -207,9 +224,9 @@ namespace CustomScripts.Powerups
                         Spawners[1].transform.position,
                         Quaternion.identity);
 
-                    speedLoaderObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
 
                     Speedloader speedLoader = speedLoaderObject.GetComponent<Speedloader>();
+                    speedLoaderObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(speedLoader, randomRound.RoundClass);
 
                     speedLoader.ReloadClipWithType(randomRound.RoundClass);
                 }
@@ -220,7 +237,7 @@ namespace CustomScripts.Powerups
             if (loadedMag && randomRound != null)
             {
                 if (!loadedMag.GetComponent<MagazineWrapper>())
-                    loadedMag.gameObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
+                    loadedMag.gameObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(loadedMag, randomRound.RoundClass);
 
                 loadedMag.ReloadMagWithType(randomRound.RoundClass);
             }
@@ -229,7 +246,7 @@ namespace CustomScripts.Powerups
             if (loadedClip && randomRound != null)
             {
                 if (!loadedClip.GetComponent<MagazineWrapper>())
-                    loadedClip.gameObject.AddComponent<MagazineWrapper>().RoundClass = randomRound.RoundClass;
+                    loadedClip.gameObject.AddComponent<MagazineWrapper>().InitialzieWithAmmo(loadedClip, randomRound.RoundClass);
 
                 loadedClip.ReloadClipWithType(randomRound.RoundClass);
             }

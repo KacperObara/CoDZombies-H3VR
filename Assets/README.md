@@ -12,7 +12,7 @@ Features including:
 - Mystery Box
 - Pack A Punch
 - Barricading windows
-- Raygun by Sora101Ven
+- Rayguns by Sora101Ven
 
 Important:
 - Buying stuff, changing settings etc. are done by pulling the levers
@@ -43,6 +43,20 @@ Perks:
 &emsp; &emsp; &emsp; &emsp;[KO-FI CAD$ version](https://ko-fi.com/kodeman2)
 
 ## Changelog
+
+### 1.0.0
+- Finishing touches  
+- Implemented Raygun MK2 from Sora101Ven
+Within a few days I'm planning to create a tutorial showcasing how to create custom maps with this gamemode template.
+Please notify me if You see any bugs
+
+
+### 0.8.0
+- Hellhound inspired round. Appears every 8 rounds. During that time, enemies will spawn inside the bunker.
+They are fast but have reduced HP.
+- Multi location support added. Created a small second room as a preview, accessed by a teleport.
+- Pause option available. Pull the lever at spawn to pause (Works only between rounds).
+- Added trap. It creates a barrier that kills every enemy passing through for 10 seconds.  
 
 ### 0.7.0
 Atlas update

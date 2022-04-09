@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using CustomScripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 namespace CustomScripts
@@ -43,7 +44,7 @@ namespace CustomScripts
 
         private void UpdateLeftText()
         {
-            LeftText.text = "Left:\n" + RoundManager.Instance.ZombiesLeft;
+            LeftText.text = "Left:\n" + ZombieManager.Instance.ZombiesRemaining;
         }
     }
 }

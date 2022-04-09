@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using CustomScripts.Managers;
+using FistVR;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,35 +10,64 @@ namespace CustomScripts
 {
     public class RoundManager : MonoBehaviourSingleton<RoundManager>
     {
+        public static Action RoundStarted;
+        public static Action RoundEnded;
+
         public static Action OnRoundChanged;
         public static Action OnZombiesLeftChanged;
         public static Action<GameObject> OnZombieKilled;
 
         public static Action OnGameStarted;
 
-        public GameObject StartButton;
+        public Transform StartGameWaypoint;
+
+        public int ZombieFastWalkRound = 2;
+        public int ZombieRunRound = 6;
+        public int HardModeFastWalkRound = 0;
+        public int HardModeRunRound = 3;
+        public int SpecialRoundInterval;
 
         [HideInInspector] public int RoundNumber = 0;
-        [HideInInspector] public int ZombiesLeft;
 
-        public int ZombieFastWalkRound = 4;
-        public int ZombieRunRound = 6;
-        private const int zombieLimit = 20;
+        private Coroutine _roundDelayCoroutine;
+
+        public bool IsRoundSpecial
+        {
+            get
+            {
+                if (GameSettings.SpecialRoundDisabled) return false;
+                return RoundNumber % SpecialRoundInterval == 0;
+            }
+        }
 
         public bool IsFastWalking
         {
-            get { return RoundNumber >= ZombieFastWalkRound; }
+            get
+            {
+                if (GameSettings.HardMode)
+                    return RoundNumber >= HardModeFastWalkRound;
+                return RoundNumber >= ZombieFastWalkRound;
+            }
         }
 
         public bool IsRunning
         {
-            get { return RoundNumber >= ZombieRunRound; }
+            get
+            {
+                if (GameSettings.HardMode)
+                    return RoundNumber >= HardModeRunRound;
+                return RoundNumber >= ZombieRunRound;
+            }
         }
 
         public void StartGame()
         {
-            StartButton.SetActive(false);
+            if (!Application.isEditor)
+                GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
 
+            GM.CurrentSceneSettings.IsSpawnLockingEnabled = !GameSettings.LimitedAmmo;
+
+            GameManager.Instance.GameStarted = true;
             GameManager.Instance.FirstShop.IsFree = true;
             GameManager.Instance.FirstShop.TryBuying();
 
@@ -56,25 +86,7 @@ namespace CustomScripts
 
             RoundNumber++;
 
-            int zombiesToSpawn = 0;
-
-
-            if (GameSettings.MoreEnemies)
-                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber) + 3);
-            else
-                zombiesToSpawn = Mathf.CeilToInt(ZombieManager.Instance.ZombieCountCurve.Evaluate(RoundNumber));
-
-            if (zombiesToSpawn > zombieLimit)
-                zombiesToSpawn = zombieLimit;
-
-            for (int i = 0; i < zombiesToSpawn; i++)
-            {
-                ZombieManager.Instance.SpawnZombie(2f + i);
-            }
-
-            ZombiesLeft = zombiesToSpawn;
-
-            AudioManager.Instance.RoundStartSound.PlayDelayed(1);
+            ZombieManager.Instance.BeginSpawningEnemies();
 
             if (OnZombiesLeftChanged != null)
                 OnZombiesLeftChanged.Invoke();
@@ -84,18 +96,35 @@ namespace CustomScripts
 
         public void EndRound()
         {
-            AudioManager.Instance.RoundEndSound.PlayDelayed(1);
-            StartCoroutine(DelayedAdvanceRound());
+            AudioManager.Instance.Play(AudioManager.Instance.RoundEndSound, 0.2f, 1f);
+
+            if (RoundEnded != null)
+                RoundEnded.Invoke();
+
+            if (GameSettings.LimitedAmmo)
+                _roundDelayCoroutine = StartCoroutine(DelayedAdvanceRound(20f));
+            else
+                _roundDelayCoroutine = StartCoroutine(DelayedAdvanceRound(17f));
         }
 
-        private IEnumerator DelayedAdvanceRound()
+        private IEnumerator DelayedAdvanceRound(float delay)
         {
-            if (GameSettings.LimitedAmmo)
-                yield return new WaitForSeconds(20f);
-            else
-                yield return new WaitForSeconds(17f);
+            yield return new WaitForSeconds(delay);
 
             AdvanceRound();
+
+            if (RoundStarted != null)
+                RoundStarted.Invoke();
+        }
+
+        public void PauseGame()
+        {
+            StopCoroutine(_roundDelayCoroutine);
+        }
+
+        public void ResumeGame()
+        {
+            _roundDelayCoroutine = StartCoroutine(DelayedAdvanceRound(0f));
         }
     }
 }

@@ -38,11 +38,11 @@ namespace CustomScripts.Zombie
         [HideInInspector] public float Health;
 
         // Manages player's invincibility frames after getting hit by custom zombie
-        public static int PlayerTouchCount;
-        public static bool IsBeingHit;
         private bool _hitThrottled;
 
-        private Animator _animator;
+        public Ragdoll Ragdoll;
+
+        [HideInInspector] public Animator Animator;
         private RandomZombieSound _soundPlayer;
         private NavMeshAgent _agent;
 
@@ -52,21 +52,23 @@ namespace CustomScripts.Zombie
         private SpeedType _moveSpeed;
         private int _animIndex;
 
+        public ParticleSystem ExplosionPS;
+
         private void Awake()
         {
             State = State.Dead;
-        }
 
-        private void Start()
-        {
             _agent = GetComponent<NavMeshAgent>();
-            _animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
             _soundPlayer = GetComponent<RandomZombieSound>();
+            Ragdoll = GetComponent<Ragdoll>();
         }
 
         public override void Initialize(Transform newTarget)
         {
             Target = newTarget;
+
+            Animator.enabled = true;
 
             _agent.updateRotation = false;
             _agentUpdateTimer = agentUpdateInterval;
@@ -80,10 +82,10 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.FastWalk;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("FastWalkSpeed", 1.05f);
+                if (GameSettings.HardMode)
+                    Animator.SetFloat("FastWalkSpeed", 1.05f);
                 else
-                    _animator.SetFloat("FastWalkSpeed", .85f);
+                    Animator.SetFloat("FastWalkSpeed", .85f);
             }
 
             if (RoundManager.Instance.IsRunning)
@@ -93,10 +95,10 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.Run;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
+                if (GameSettings.HardMode)
+                    Animator.SetFloat("RunSpeed", Random.Range(.9f, .95f));
                 else
-                    _animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
+                    Animator.SetFloat("RunSpeed", Random.Range(.8f, .85f));
             }
 
             if (!RoundManager.Instance.IsRunning && !RoundManager.Instance.IsFastWalking) // walking
@@ -106,18 +108,21 @@ namespace CustomScripts.Zombie
                 _moveSpeed = SpeedType.Walk;
                 _animIndex = random;
 
-                if (GameSettings.FasterEnemies)
-                    _animator.SetFloat("WalkSpeed", 1.2f);
+                if (GameSettings.HardMode)
+                    Animator.SetFloat("WalkSpeed", 1.2f);
             }
 
             StartMovementAnimation();
 
             int currentRound = RoundManager.Instance.RoundNumber;
 
-            if (GameSettings.WeakerEnemies)
-                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
-            else
-                Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
+            // if (GameSettings.WeakerEnemies)
+            //     Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
+            // else
+            Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
+
+            if (RoundManager.Instance.IsRoundSpecial)
+                Health *= .65f;
 
             State = State.Chase;
             _agent.enabled = true;
@@ -126,6 +131,13 @@ namespace CustomScripts.Zombie
 
             if (OnZombieInitialize != null)
                 OnZombieInitialize.Invoke();
+        }
+
+        public override void InitializeSpecialType()
+        {
+            Animator.SetFloat("WalkSpeed", 1.8f);
+            Animator.SetFloat("FastWalkSpeed", 1.8f);
+            Animator.SetFloat("RunSpeed", 1.8f);
         }
 
         private void Update()
@@ -155,7 +167,7 @@ namespace CustomScripts.Zombie
         {
             if (State == State.Chase)
             {
-                _animator.CrossFade("Stunned", .25f, 0, 0);
+                Animator.CrossFade("Stunned", .25f, 0, 0);
 
                 yield return new WaitForSeconds(2f);
 
@@ -168,7 +180,11 @@ namespace CustomScripts.Zombie
             if (State == State.Dead)
                 return;
 
-            if (other.GetComponent<WindowTrigger>())
+            if (other.GetComponent<ITrap>() != null)
+            {
+                other.GetComponent<ITrap>().OnEnemyEntered(this);
+            }
+            else if (other.GetComponent<WindowTrigger>() && !RoundManager.Instance.IsRoundSpecial)
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (State == State.AttackWindow)
@@ -187,24 +203,6 @@ namespace CustomScripts.Zombie
             }
         }
 
-        // private void OnTriggerExit(Collider other)
-        // {
-        //     if (State == State.Dead)
-        //         return;
-        //
-        //     if (other.GetComponent<WindowTrigger>())
-        //     {
-        //         if (State == State.AttackWindow)
-        //         {
-        //             State = State.Chase;
-        //             _agent.speed = 0.1f;
-        //
-        //             StartMovementAnimation();
-        //             ChangeTarget(GameReferences.Instance.Player);
-        //         }
-        //     }
-        // }
-
         public override void OnHit(float damage, bool headHit = false)
         {
             if (Health <= 0 || State == State.Dead)
@@ -214,55 +212,96 @@ namespace CustomScripts.Zombie
 
             damage = (int) newDamage;
 
-            AudioManager.Instance.ZombieHitSound.Play();
+            AudioManager.Instance.Play(AudioManager.Instance.ZombieHitSound, .7f);
+
             GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnHit);
             Health -= damage;
 
             if (Health <= 0 || PlayerData.Instance.InstaKill)
             {
-                _agent.speed = 0.1f;
-                _animator.applyRootMotion = true;
-
-                State = State.Dead;
-
-                // weird mumbo jumbo to minimize weird behavior that causes custom zombies
-                // to jump upon death
-                int random = Random.Range(0, 3);
-                switch (random)
-                {
-                    case 0:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(1.8f);
-                        break;
-                    case 1:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(2.4f);
-                        break;
-                    case 2:
-                        if (OnZombieDied != null)
-                            OnZombieDied.Invoke(1.25f);
-                        break;
-                }
-
-                _animator.CrossFade("Death" + random, 0.25f, 0, 0);
-
-                _agent.enabled = false;
-                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
-
-                AudioManager.Instance.ZombieDeathSound.Play();
-
-                ZombieManager.Instance.OnZombieDied(this);
+                OnKill();
             }
             else // Hit animation
             {
                 if (headHit && !_hitThrottled)
                 {
-                    _animator.SetTrigger("GetHit");
-                    _animator.SetFloat("HitAngle", .5f);
+                    Animator.SetTrigger("GetHit");
+                    Animator.SetFloat("HitAngle", .5f);
 
                     StartCoroutine(HitAnimThrottle());
                 }
             }
+        }
+
+        public override void OnKill(bool awardPoints = true)
+        {
+            _agent.speed = 0.1f;
+            Animator.applyRootMotion = true;
+
+            State = State.Dead;
+
+            if (RoundManager.Instance.IsRoundSpecial)
+            {
+                Explode(awardPoints);
+                return;
+            }
+
+
+            //////////
+            // weird mumbo jumbo to minimize weird behavior that causes custom zombies
+            // to jump upon death
+            // int random = Random.Range(0, 3);
+            // switch (random)
+            // {
+            //     case 0:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(1.8f);
+            //         break;
+            //     case 1:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(2.4f);
+            //         break;
+            //     case 2:
+            //         if (OnZombieDied != null)
+            //             OnZombieDied.Invoke(1.25f);
+            //         break;
+            // }
+            //
+            // _animator.CrossFade("Death" + random, 0.25f, 0, 0);
+            //////////////////////////
+
+            if (OnZombieDied != null)
+                OnZombieDied.Invoke(0f);
+
+            _agent.enabled = false;
+
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+
+                AudioManager.Instance.Play(AudioManager.Instance.ZombieDeathSound, .7f);
+            }
+
+
+            ZombieManager.Instance.OnZombieDied(this, awardPoints);
+        }
+
+        private void Explode(bool awardPoints)
+        {
+            if (OnZombieDied != null)
+                OnZombieDied.Invoke(0f);
+            _agent.enabled = false;
+
+            if (awardPoints)
+            {
+                GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
+            }
+
+            ZombieManager.Instance.OnZombieDied(this, awardPoints);
+
+            var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
+            Destroy(explosionPS.gameObject, 4f);
         }
 
         private IEnumerator HitAnimThrottle()
@@ -285,16 +324,15 @@ namespace CustomScripts.Zombie
             if (PlayerData.Instance.IsInvincible)
                 return;
 
-            IsBeingHit = true;
-            PlayerTouchCount++;
+            AudioManager.Instance.Play(AudioManager.Instance.PlayerHitSound);
 
-            AudioManager.Instance.PlayerHitSound.Play();
+            if (Application.isEditor)
+                return;
+
             GM.CurrentPlayerBody.Health -= ZombieManager.Instance.CustomZombieDamage;
 
             if (PlayerData.GettingHitEvent != null)
                 PlayerData.GettingHitEvent.Invoke();
-
-            StartCoroutine(CheckStillColliding());
 
             if (GM.CurrentPlayerBody.Health <= 0)
                 GameManager.Instance.KillPlayer();
@@ -322,7 +360,7 @@ namespace CustomScripts.Zombie
 
             _agent.speed = 0;
 
-            _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+            Animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
             State = State.AttackWindow;
         }
 
@@ -348,7 +386,7 @@ namespace CustomScripts.Zombie
             }
             else
             {
-                _animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
+                Animator.CrossFade("Attack" + Random.Range(0, 4), 0.25f, 0, 0);
             }
         }
 
@@ -370,38 +408,7 @@ namespace CustomScripts.Zombie
 
             anim += _animIndex.ToString();
 
-            _animator.CrossFade(anim, 0.25f, 0, 0);
-        }
-
-        public void OnPlayerTouch()
-        {
-            if (PlayerTouchCount != 0)
-                return;
-
-            if (IsBeingHit)
-                return;
-
-            OnHitPlayer();
-        }
-
-        public void OnPlayerStopTouch()
-        {
-            if (PlayerTouchCount == 0)
-                return;
-
-            PlayerTouchCount--;
-        }
-
-        private IEnumerator CheckStillColliding()
-        {
-            yield return new WaitForSeconds(1.5f);
-
-            if (PlayerTouchCount != 0 && !GameManager.Instance.GameEnded)
-            {
-                OnHitPlayer();
-            }
-
-            IsBeingHit = false;
+            Animator.CrossFade(anim, 0.25f, 0, 0);
         }
     }
 }

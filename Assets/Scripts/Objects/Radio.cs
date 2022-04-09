@@ -1,5 +1,6 @@
 #if H3VR_IMPORTED
 
+using System;
 using System.Collections;
 using CustomScripts.Managers.Sound;
 using FistVR;
@@ -8,36 +9,36 @@ namespace CustomScripts.Objects
 {
     public class Radio : MonoBehaviour, IFVRDamageable
     {
-        private AudioSource _audio;
+        public AudioClip Song;
+
         private bool _isThrottled;
+        private bool _isPlaying;
 
         private Coroutine _musicEndCoroutine;
 
         private void Awake()
         {
-            _audio = GetComponent<AudioSource>();
+            GameSettings.OnMusicSettingChanged += OnMusicSettingsChanged;
+        }
+
+        private void OnMusicSettingsChanged()
+        {
+            _isPlaying = false;
+            if (_musicEndCoroutine != null)
+                StopCoroutine(_musicEndCoroutine);
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                if (_audio.isPlaying)
-                {
-                    _audio.Stop();
-                    MusicManager.Instance.PlayNextTrack();
+                Damage dam = new Damage();
+                Damage(dam);
+            }
 
-                    var musicLength = _audio.clip.length;
-                    _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
-                }
-                else
-                {
-                    _audio.Play();
-                    MusicManager.Instance.StopMusic();
-
-                    if (_musicEndCoroutine != null)
-                        StopCoroutine(_musicEndCoroutine);
-                }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                GameSettings.Instance.ToggleBackgroundMusic();
             }
         }
 
@@ -49,23 +50,28 @@ namespace CustomScripts.Objects
             if (_isThrottled)
                 return;
 
-            if (!_audio)
-                return;
-
-            if (_audio.isPlaying)
+            if (_isPlaying)
             {
-                _audio.Stop();
-                MusicManager.Instance.PlayNextTrack();
+                _isPlaying = false;
 
-                var musicLength = _audio.clip.length;
-                _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
+                AudioManager.Instance.MusicAudioSource.Stop();
+
+                if (GameSettings.BackgroundMusic)
+                {
+                    AudioManager.Instance.PlayMusic(AudioManager.Instance.Music, .08f);
+                }
+
+                if (_musicEndCoroutine != null)
+                    StopCoroutine(_musicEndCoroutine);
             }
             else
             {
-                _audio.Play();
-                MusicManager.Instance.StopMusic();
-                if (_musicEndCoroutine != null)
-                    StopCoroutine(_musicEndCoroutine);
+                _isPlaying = true;
+
+                var musicLength = Song.length;
+                _musicEndCoroutine = StartCoroutine(OnMusicEnd(musicLength));
+
+                AudioManager.Instance.PlayMusic(Song, 0.095f);
             }
 
             StartCoroutine(Throttle());
@@ -81,8 +87,18 @@ namespace CustomScripts.Objects
         private IEnumerator OnMusicEnd(float endTimer)
         {
             yield return new WaitForSeconds(endTimer);
-            _audio.Stop();
-            MusicManager.Instance.PlayNextTrack();
+
+            _isPlaying = false;
+
+            if (GameSettings.BackgroundMusic)
+            {
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.Music, .08f);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            GameSettings.OnMusicSettingChanged -= OnMusicSettingsChanged;
         }
     }
 }

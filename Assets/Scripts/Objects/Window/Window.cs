@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CustomScripts.Player;
@@ -10,6 +11,8 @@ namespace CustomScripts
 {
     public class Window : MonoBehaviour
     {
+        public static Action BarricadedEvent;
+
         public Transform ZombieWaypoint;
 
         public List<WindowPlank> PlankSlots;
@@ -53,11 +56,14 @@ namespace CustomScripts
             PlanksRemain = PlankSlots.Count;
 
             if (playSound)
-                AudioManager.Instance.BarricadeRepairSound.Play();
+                AudioManager.Instance.Play(AudioManager.Instance.BarricadeRepairSound, .5f);
         }
 
         public void OnPlankTouch(Plank plank)
         {
+            if (BarricadedEvent != null && GameManager.Instance.GameStarted)
+                BarricadedEvent.Invoke();
+
             if (PlayerData.Instance.SpeedColaPerkActivated)
             {
                 RepairAll(true);
