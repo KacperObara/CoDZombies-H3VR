@@ -116,12 +116,12 @@ namespace CustomScripts.Zombie
 
             int currentRound = RoundManager.Instance.RoundNumber;
 
-            // if (GameSettings.WeakerEnemies)
-            //     Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound - 5);
-            // else
             Health = ZombieManager.Instance.CustomZombieHPCurve.Evaluate(currentRound);
 
             if (RoundManager.Instance.IsRoundSpecial)
+                Health *= .65f;
+
+            if (GameSettings.WeakerEnemiesEnabled)
                 Health *= .65f;
 
             State = State.Chase;
@@ -161,6 +161,7 @@ namespace CustomScripts.Zombie
                     Quaternion.LookRotation(_agent.velocity.normalized), 10 * Time.deltaTime);
             }
         }
+
 
         // Theoretically they should be stunned when hitting window too, but little complicated and gives almost no benefit to the player
         public IEnumerator Stun()
@@ -300,7 +301,8 @@ namespace CustomScripts.Zombie
 
             ZombieManager.Instance.OnZombieDied(this, awardPoints);
 
-            var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
+            var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS,
+                transform.position + new Vector3(0, .75f, 0), transform.rotation);
             Destroy(explosionPS.gameObject, 4f);
         }
 

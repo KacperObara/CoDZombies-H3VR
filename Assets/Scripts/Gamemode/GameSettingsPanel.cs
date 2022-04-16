@@ -19,6 +19,8 @@ namespace CustomScripts
         public Text SpecialRoundDisabledText;
         public Text ItemSpawnerEnabledText;
         public Text ItemSpawnerDisabledText;
+        public Text WeakerZombiesEnabledText;
+        public Text WeakerZombiesDisabledText;
 
         public Color EnabledColor;
         public Color DisabledColor;
@@ -56,6 +58,9 @@ namespace CustomScripts
 
             ItemSpawnerEnabledText.color = GameSettings.ItemSpawnerEnabled ? EnabledColor : DisabledColor;
             ItemSpawnerDisabledText.color = GameSettings.ItemSpawnerEnabled ? DisabledColor : EnabledColor;
+
+            WeakerZombiesEnabledText.color = GameSettings.WeakerEnemiesEnabled ? EnabledColor : DisabledColor;
+            WeakerZombiesDisabledText.color = GameSettings.WeakerEnemiesEnabled ? DisabledColor : EnabledColor;
         }
     }
 }

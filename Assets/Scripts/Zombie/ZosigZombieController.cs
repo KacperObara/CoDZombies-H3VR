@@ -46,14 +46,28 @@ namespace CustomScripts.Zombie
                     ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber));
             }
 
+            if (GameSettings.WeakerEnemiesEnabled)
+            {
+                _sosig.Mustard *= .6f;
+                foreach (SosigLink link in _sosig.Links)
+                {
+                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .6f);
+                }
+            }
+
             if (RoundManager.Instance.IsRoundSpecial)
             {
                 _sosig.Mustard *= .65f;
                 foreach (SosigLink link in _sosig.Links)
                 {
-                    link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .65f);
+                    if (GameSettings.WeakerEnemiesEnabled)
+                        link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .45f);
+                    else
+                        link.SetIntegrity(ZombieManager.Instance.ZosigLinkIntegrityCurve.Evaluate(RoundManager.Instance.RoundNumber) * .65f);
                 }
             }
+
+
 
             _sosig.Speed_Walk = _sosig.Speed_Run;
             _sosig.Speed_Turning = _sosig.Speed_Run;

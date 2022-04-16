@@ -15,6 +15,7 @@ namespace CustomScripts
         public Text EnemiesTypeText;
         public Text LimitedAmmoText;
         public Text SpecialRoundsText;
+        public Text LessZombieHPText;
 
 
         public void UpdatePanel()
@@ -28,6 +29,7 @@ namespace CustomScripts
             EnemiesTypeText.text = GameSettings.UseCustomEnemies ? "Custom" : "Normal";
             LimitedAmmoText.text = GameSettings.LimitedAmmo ? "Yes" : "No";
             SpecialRoundsText.text = GameSettings.SpecialRoundDisabled ? "No" : "Yes";
+            LessZombieHPText.text = GameSettings.WeakerEnemiesEnabled ? "Yes" : "No";
         }
     }
 }

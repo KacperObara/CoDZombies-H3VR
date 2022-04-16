@@ -17,6 +17,7 @@ namespace CustomScripts
         public static bool LimitedAmmo;
         public static bool SpecialRoundDisabled;
         public static bool ItemSpawnerEnabled;
+        public static bool WeakerEnemiesEnabled;
 
         public static bool BackgroundMusic;
 
@@ -47,6 +48,7 @@ namespace CustomScripts
             UseCustomEnemies = false;
             ItemSpawnerEnabled = false;
             SpecialRoundDisabled = false;
+            WeakerEnemiesEnabled = false;
 
             OptionDescriptionText.text = "Default settings restored.";
             if (OnSettingsChanged != null)
@@ -143,6 +145,24 @@ namespace CustomScripts
                 OnSettingsChanged.Invoke();
 
             OptionDescriptionText.text = "No Item Spawner. Scoring enabled";
+        }
+
+        public void EnableWeakerEnemiesClicked()
+        {
+            WeakerEnemiesEnabled = true;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Enemies have reduced HP";
+        }
+
+        public void DisableWeakerEnemiesClicked()
+        {
+            WeakerEnemiesEnabled = false;
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+
+            OptionDescriptionText.text = "Enemies have normal HP";
         }
 
         public void ToggleBackgroundMusic()

@@ -44,9 +44,13 @@ Perks:
 
 ## Changelog
 
+
+### 1.0.1
+- Made an option to reduce zombies HP  
+
 ### 1.0.0
 - Finishing touches  
-- Implemented Raygun MK2 from Sora101Ven
+- Implemented Raygun MK2 from Sora101Ven  
 Within a few days I'm planning to create a tutorial showcasing how to create custom maps with this gamemode template.
 Please notify me if You see any bugs
 
