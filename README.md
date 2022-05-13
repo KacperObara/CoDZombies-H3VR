@@ -15,7 +15,7 @@ Features including:
 - Mystery Box
 - Pack A Punch
 - Barricading windows
-- Raygun by Sora101Ven
+- Rayguns by Sora101Ven
 
 Important:
 - Buying stuff, changing settings etc. are done by pulling the levers
@@ -44,5 +44,10 @@ Perks:
 
 [![kofi](https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0)](https://ko-fi.com/kodeman)  
 &emsp; &emsp; &emsp; &emsp;[KO-FI CAD$ version](https://ko-fi.com/kodeman2)
+
+### Want to make Your own map for this mod?
+Here's the [Tutorial](https://docs.google.com/document/d/1B-RW__ZbyKdURF7d-6Qla2Lqe0gZdO1PgaUfGvj4QNw/edit?usp=sharing)
+Let me know of any problems, I'd be glad to help.
+
 
 #### [Changelog](https://h3vr.thunderstore.io/package/Kodeman/CodZombies/)
