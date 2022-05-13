@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace CustomScripts
 {
-    public class EndPanel : MonoBehaviour
+    public class EndPanel : MonoBehaviourSingleton<EndPanel>
     {
         public Text TotalPointsText;
         public Text BestPointsText;

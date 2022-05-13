@@ -42,15 +42,24 @@ Perks:
 [![kofi](https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0)](https://ko-fi.com/kodeman)  
 &emsp; &emsp; &emsp; &emsp;[KO-FI CAD$ version](https://ko-fi.com/kodeman2)
 
+### Want to make Your own map for this mod?
+Here's the [Tutorial](https://docs.google.com/document/d/1B-RW__ZbyKdURF7d-6Qla2Lqe0gZdO1PgaUfGvj4QNw/edit?usp=sharing)
+Let me know of any problems, I'd be glad to help.
+
+
+
 ## Changelog
 
+### 1.0.2
+- Smaller fixes + posted the [tutorial](https://docs.google.com/document/d/1B-RW__ZbyKdURF7d-6Qla2Lqe0gZdO1PgaUfGvj4QNw/edit?usp=sharing)
 
 ### 1.0.1
 - Made an option to reduce zombies HP  
 
 ### 1.0.0
 - Finishing touches  
-- Implemented Raygun MK2 from Sora101Ven  
+- Implemented Raygun MK2 from Sora101Ven    
+
 Within a few days I'm planning to create a tutorial showcasing how to create custom maps with this gamemode template.
 Please notify me if You see any bugs
 

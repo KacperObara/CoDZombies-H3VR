@@ -40,7 +40,7 @@ namespace CustomScripts.Zombie
         // Manages player's invincibility frames after getting hit by custom zombie
         private bool _hitThrottled;
 
-        public Ragdoll Ragdoll;
+        [HideInInspector] public Ragdoll Ragdoll;
 
         [HideInInspector] public Animator Animator;
         private RandomZombieSound _soundPlayer;

@@ -19,8 +19,6 @@ namespace CustomScripts
 
         public static Action OnGameStarted;
 
-        public Transform StartGameWaypoint;
-
         public int ZombieFastWalkRound = 2;
         public int ZombieRunRound = 6;
         public int HardModeFastWalkRound = 0;
@@ -63,13 +61,19 @@ namespace CustomScripts
         public void StartGame()
         {
             if (!Application.isEditor)
-                GM.CurrentMovementManager.TeleportToPoint(StartGameWaypoint.position, true);
-
-            GM.CurrentSceneSettings.IsSpawnLockingEnabled = !GameSettings.LimitedAmmo;
+            {
+                GM.CurrentMovementManager.TeleportToPoint(GameManager.Instance.StartGameWaypoint.position, true);
+                GM.CurrentSceneSettings.IsSpawnLockingEnabled = !GameSettings.LimitedAmmo;
+            }
 
             GameManager.Instance.GameStarted = true;
-            GameManager.Instance.FirstShop.IsFree = true;
-            GameManager.Instance.FirstShop.TryBuying();
+
+            if (GameManager.Instance.FirstShop)
+            {
+                GameManager.Instance.FirstShop.IsFree = true;
+                GameManager.Instance.FirstShop.TryBuying();
+            }
+
 
             RoundNumber = 0;
 

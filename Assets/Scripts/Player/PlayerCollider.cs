@@ -19,9 +19,6 @@ namespace CustomScripts
         private const float DamageInterval = 1.5f;
         private float _damageTimer;
 
-        //private float _resetTimer;
-        //private float _resetTimerInterval = 2.5f;
-
         private void Awake()
         {
             _transform = transform;
@@ -44,13 +41,6 @@ namespace CustomScripts
                     _touchingZombies[0].OnHitPlayer();
                     _touchingZombies.Clear(); /// Fix for an issue in which zombies are killed inside the player but still are referenced
                 }
-
-
-                // if (_resetTimer <= Time.time)
-                // {
-                //     _damageTimer = Time.time + _resetTimerInterval;
-                //     _touchingZombies.Clear();
-                // }
             }
         }
 
@@ -64,8 +54,6 @@ namespace CustomScripts
 
                 if (!_touchingZombies.Contains(controller))
                     _touchingZombies.Add(controller);
-
-                Debug.Log("NewEnemy");
             }
         }
 
@@ -77,8 +65,6 @@ namespace CustomScripts
                     return;
 
                 _touchingZombies.Remove(other.GetComponent<CustomZombieController>());
-
-                Debug.Log("EnemyRemoved");
             }
         }
     }

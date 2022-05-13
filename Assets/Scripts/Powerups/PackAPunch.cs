@@ -251,7 +251,6 @@ namespace CustomScripts.Powerups
                 loadedClip.ReloadClipWithType(randomRound.RoundClass);
             }
 
-
             InUse = false;
         }
     }

@@ -106,7 +106,9 @@ namespace CustomScripts.Zombie
             _sosig.Speed_Sneak = 5f;
             _sosig.Speed_Crawl = 5f;
 
-            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("Obstructed"); //InsidePlayArea
+            //_sosig.Agent.agentTypeID = 1; // Changing zombies agent type to crawlers(Hellhounds)
+
+            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("Obstructed");
 
             CanInteractWithWindows = false;
 

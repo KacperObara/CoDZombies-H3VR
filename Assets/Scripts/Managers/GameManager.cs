@@ -14,13 +14,13 @@ namespace CustomScripts
         public static Action OnPointsChanged;
         public static Action OnPowerEnabled;
 
-        public EndPanel EndPanel;
-
         [HideInInspector] public int Points;
         [HideInInspector] public int TotalPoints; // for highscore
 
         [HideInInspector] public bool GameStarted = false;
         [HideInInspector] public bool GameEnded = false;
+
+        public Transform StartGameWaypoint;
 
         public WallShop FirstShop;
 
@@ -85,7 +85,7 @@ namespace CustomScripts
 
             AudioManager.Instance.PlayMusic(AudioManager.Instance.EndMusic, 0.25f, 1f);
 
-            EndPanel.UpdatePanel();
+            EndPanel.Instance.UpdatePanel();
 
             if (!GameSettings.ItemSpawnerEnabled)
                 SaveSystem.Instance.SaveHighscore(TotalPoints);
