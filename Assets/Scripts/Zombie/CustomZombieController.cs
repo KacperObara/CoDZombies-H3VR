@@ -296,7 +296,7 @@ namespace CustomScripts.Zombie
             if (awardPoints)
             {
                 GameManager.Instance.AddPoints(ZombieManager.Instance.PointsOnKill);
-                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .13f);
             }
 
             ZombieManager.Instance.OnZombieDied(this, awardPoints);

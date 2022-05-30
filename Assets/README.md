@@ -34,7 +34,7 @@ Perks:
 - DoubleTap: Increases overall damage by aprox. 25% and fire rate by 33%
 - MuleKick: Spawns backpack
 - SpeedCola: Repairing barricades now requires only a single plank, and every applicable weapon receives mag release button
-- StaminUp: Disables player's slowdown when carrying large and massive weapons and increases speed by 10%
+- StaminUp: Increases player's max movement speed
 - PHDFlopper: Reduces explosion damage dealt to the Player by 70%
 - Quick Revive: Grants a single respawn and provides invincibility for 10 seconds.
 - Electric Cherry: Unloading an empty magazine will stun enemies for a short duration. 5 sec cooldown. (Works only for magazine using weapons temporarily)
@@ -49,6 +49,14 @@ Let me know of any problems, I'd be glad to help.
 
 
 ## Changelog
+
+### 1.0.3
+- I can't figure out how to fix error that happens in 104 experimental when holding objects like planks. Until I resolve this issue,
+StaminUp perk has been changed to increase movement speed only. (No reduction from carrying heavy weapons)
+Player movement speed is also slightly reduced without the perk.  
+From Jedi's feedback on his stream:  
+- Fixed music not looping
+- Made Hellhounds quieter
 
 ### 1.0.2
 - Smaller fixes + posted the [tutorial](https://docs.google.com/document/d/1B-RW__ZbyKdURF7d-6Qla2Lqe0gZdO1PgaUfGvj4QNw/edit?usp=sharing)

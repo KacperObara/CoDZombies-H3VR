@@ -153,7 +153,7 @@ namespace CustomScripts.Managers
                 spawnPoint.GetComponent<CustomSosigSpawnPoint>().SpawnPS.Play(true);
 
                 if (RoundManager.Instance.IsRoundSpecial)
-                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.6f, delay:.25f);
+                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.4f, delay:.25f);
 
                 yield return new WaitForSeconds(2f);
             }

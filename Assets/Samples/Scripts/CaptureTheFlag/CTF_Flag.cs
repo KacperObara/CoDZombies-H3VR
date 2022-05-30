@@ -31,12 +31,12 @@ public class CTF_Flag :
 
 #if H3VR_IMPORTED
     private CTF_Sosig _heldBy;
-    protected override void Awake()
-    {
-        base.Awake();
-        _resetPosition = transform.position;
-        _resetRotation = transform.rotation;
-    }
+    // protected override void Awake()
+    // {
+    //     base.Awake();
+    //     _resetPosition = transform.position;
+    //     _resetRotation = transform.rotation;
+    // }
 #endif
 
     private void Update()

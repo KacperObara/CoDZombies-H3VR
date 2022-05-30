@@ -183,7 +183,7 @@ namespace CustomScripts.Zombie
 
             if (RoundManager.Instance.IsRoundSpecial)
             {
-                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .25f);
+                AudioManager.Instance.Play(AudioManager.Instance.HellHoundDeathSound, .13f);
                 var explosionPS = Instantiate(ZombieManager.Instance.HellhoundExplosionPS, transform.position + new Vector3(0, .75f, 0), transform.rotation);
                 Destroy(explosionPS.gameObject, 4f);
             }

@@ -40,6 +40,8 @@ namespace CustomScripts
 
         public AudioClip BarricadeRepairSound;
 
+        private Coroutine _musicRepetition;
+
         public override void Awake()
         {
             base.Awake();
@@ -50,7 +52,7 @@ namespace CustomScripts
         private void OnMusicSettingChanged()
         {
             if (GameSettings.BackgroundMusic)
-                PlayMusic(Music, .08f);
+                PlayMusic(Music, .08f, repeat: true);
             else
                 MusicAudioSource.Stop();
         }
@@ -72,11 +74,32 @@ namespace CustomScripts
         /// <summary>
         /// Used to stop old sound when playing the new one
         /// </summary>
-        public void PlayMusic(AudioClip audioClip, float volume = 1f, float delay = 0f)
+        public void PlayMusic(AudioClip audioClip, float volume = 1f, float delay = 0f, bool repeat = false)
         {
+            if (_musicRepetition != null)
+            {
+                StopCoroutine(_musicRepetition);
+                _musicRepetition = null;
+            }
+
             MusicAudioSource.clip = audioClip;
             MusicAudioSource.volume = volume;
             MusicAudioSource.PlayDelayed(delay);
+
+            if (repeat)
+            {
+                _musicRepetition = StartCoroutine(RepeatMusic(audioClip.length, volume));
+            }
+        }
+
+        private IEnumerator RepeatMusic(float endTimer, float volume)
+        {
+            yield return new WaitForSeconds(endTimer);
+
+            if (GameSettings.BackgroundMusic)
+            {
+                PlayMusic(Music, .08f, repeat: true);
+            }
         }
 
         private void OnDestroy()

@@ -53,7 +53,7 @@ namespace CustomScripts.Player
             RoundManager.OnRoundChanged += OnRoundAdvance;
 
             On.FistVR.FVRPhysicalObject.BeginInteraction += OnPhysicalObjectStartInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteraction += OnPhysicalObjectEndInteraction;
+            //On.FistVR.FVRPhysicalObject.EndInteraction += OnPhysicalObjectEndInteraction;
             On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot +=
                 OnPhysicalObjectEndInteractionIntoInventorySlot;
             On.FistVR.FVRPlayerHitbox.Damage_Damage += OnPlayerHit;
@@ -95,7 +95,7 @@ namespace CustomScripts.Player
         {
             orig.Invoke(self, hand);
 
-            OnItemHeldChange();
+            //OnItemHeldChange();
             if (self as FVRFireArm)
             {
                 WeaponWrapper wrapper = self.GetComponent<WeaponWrapper>();
@@ -118,12 +118,14 @@ namespace CustomScripts.Player
             }
         }
 
-        private void OnPhysicalObjectEndInteraction(On.FistVR.FVRPhysicalObject.orig_EndInteraction orig,
-            FVRPhysicalObject self, FVRViveHand hand)
-        {
-            orig.Invoke(self, hand);
-            StartCoroutine(DelayedItemChange());
-        }
+
+        // Broke in 105 experimental
+        // private void OnPhysicalObjectEndInteraction(On.FistVR.FVRPhysicalObject.orig_EndInteraction orig,
+        //     FVRPhysicalObject self, FVRViveHand hand)
+        // {
+        //     orig.Invoke(self, hand);
+        //     StartCoroutine(DelayedItemChange());
+        // }
 
         private void OnPhysicalObjectEndInteractionIntoInventorySlot(
             On.FistVR.FVRPhysicalObject.orig_EndInteractionIntoInventorySlot orig, FVRPhysicalObject self,
@@ -137,55 +139,55 @@ namespace CustomScripts.Player
         {
             yield return new WaitForSeconds(.1f);
 
-            OnItemHeldChange();
+            //OnItemHeldChange();
         }
 
+        // Broke in 105 experimental
         // Called on FVRFireArm grabbed or released
-        private void OnItemHeldChange()
-        {
-            if (!StaminUpPerkActivated)
-            {
-                FVRPhysicalObject.FVRPhysicalObjectSize heaviestItem = FVRPhysicalObject.FVRPhysicalObjectSize.Small;
-
-                if (LeftHand.CurrentInteractable != null && LeftHand.CurrentInteractable as FVRPhysicalObject != null)
-                {
-                    if (((FVRPhysicalObject) LeftHand.CurrentInteractable).Size > heaviestItem)
-                        heaviestItem = ((FVRPhysicalObject) LeftHand.CurrentInteractable).Size;
-                }
-
-                if (RightHand.CurrentInteractable != null && RightHand.CurrentInteractable as FVRPhysicalObject != null)
-                {
-                    if (((FVRPhysicalObject) RightHand.CurrentInteractable).Size > heaviestItem)
-                        heaviestItem = ((FVRPhysicalObject) RightHand.CurrentInteractable).Size;
-                }
-
-                switch (heaviestItem)
-                {
-                    case FVRPhysicalObject.FVRPhysicalObjectSize.Large:
-                        _currentSpeedMult = LargeItemSpeedMult;
-                        break;
-                    case FVRPhysicalObject.FVRPhysicalObjectSize.Massive:
-                        _currentSpeedMult = MassiveItemSpeedMult;
-                        break;
-                    default:
-                        _currentSpeedMult = 1f;
-                        break;
-                }
-            }
-            else
-            {
-                _currentSpeedMult = 1.1f;
-            }
-
-            for (int i = 0; i < GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes.Length; i++)
-            {
-                GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes[i] = .75f * _currentSpeedMult;
-            }
-
-            GM.CurrentSceneSettings.UsesMaxSpeedClamp = true;
-            GM.CurrentSceneSettings.MaxSpeedClamp = 5.5f * _currentSpeedMult;
-        }
-
+        // private void OnItemHeldChange()
+        // {
+        //     if (!StaminUpPerkActivated)
+        //     {
+        //         FVRPhysicalObject.FVRPhysicalObjectSize heaviestItem = FVRPhysicalObject.FVRPhysicalObjectSize.Small;
+        //
+        //         if (LeftHand.CurrentInteractable != null && LeftHand.CurrentInteractable as FVRPhysicalObject != null)
+        //         {
+        //             if (((FVRPhysicalObject) LeftHand.CurrentInteractable).Size > heaviestItem)
+        //                 heaviestItem = ((FVRPhysicalObject) LeftHand.CurrentInteractable).Size;
+        //         }
+        //
+        //         if (RightHand.CurrentInteractable != null && RightHand.CurrentInteractable as FVRPhysicalObject != null)
+        //         {
+        //             if (((FVRPhysicalObject) RightHand.CurrentInteractable).Size > heaviestItem)
+        //                 heaviestItem = ((FVRPhysicalObject) RightHand.CurrentInteractable).Size;
+        //         }
+        //
+        //         switch (heaviestItem)
+        //         {
+        //             case FVRPhysicalObject.FVRPhysicalObjectSize.Large:
+        //                 _currentSpeedMult = LargeItemSpeedMult;
+        //                 break;
+        //             case FVRPhysicalObject.FVRPhysicalObjectSize.Massive:
+        //                 _currentSpeedMult = MassiveItemSpeedMult;
+        //                 break;
+        //             default:
+        //                 _currentSpeedMult = 1f;
+        //                 break;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         _currentSpeedMult = 1.1f;
+        //     }
+        //
+        //     for (int i = 0; i < GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes.Length; i++)
+        //     {
+        //         GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes[i] = .75f * _currentSpeedMult;
+        //     }
+        //
+        //     GM.CurrentSceneSettings.UsesMaxSpeedClamp = true;
+        //     GM.CurrentSceneSettings.MaxSpeedClamp = 5.5f * _currentSpeedMult;
+        // }
 
         private void OnMagRelease(On.FistVR.FVRFireArmMagazine.orig_Release orig, FVRFireArmMagazine self,
             bool physicalrelease)
@@ -239,7 +241,7 @@ namespace CustomScripts.Player
             RoundManager.OnRoundChanged -= OnRoundAdvance;
 
             On.FistVR.FVRPhysicalObject.BeginInteraction -= OnPhysicalObjectStartInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteraction -= OnPhysicalObjectEndInteraction;
+            //On.FistVR.FVRPhysicalObject.EndInteraction -= OnPhysicalObjectEndInteraction;
             On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot -=
                 OnPhysicalObjectEndInteractionIntoInventorySlot;
 
