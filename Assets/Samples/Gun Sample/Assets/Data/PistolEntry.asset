@@ -14,6 +14,9 @@ MonoBehaviour:
   MainObjectID: SamplePistol
   SpawnWithIDs: []
   SecondaryObjectIDs: []
+  MainObjectObj: {fileID: 0}
+  SpawnWithObjs: []
+  SecondaryObjs: []
   EntryPath: Firearms/AutomaticPistol/SamplePistol
   Page: 1
   SubCategory: 1

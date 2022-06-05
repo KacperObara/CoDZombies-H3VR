@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a1d00d4b41c9f4499068404207acdf, type: 3}
+  m_Name: ZosigWeapons
+  m_EditorClassIdentifier: 
+  BundleName: zosig_weapons_bundle
+  Prefabs:
+  - {fileID: 1220908097602212, guid: c8b784b6bc2ff654ebe68a3e5470f294, type: 2}
+  - {fileID: 1018587147938732, guid: f743183af46d1e442a8443a536a6c9dd, type: 2}
+  SpawnerEntries: []
+  FVRObjects:
+  - {fileID: 11400000, guid: 8dc8e1e5a22bdfe4188adec6c76104d1, type: 2}
+  - {fileID: 11400000, guid: 05af58f44319c5549b6c0e089819106d, type: 2}
+  AccuracyCharts: []
+  RoundData: []
+  HandlingGrabSets: []
+  HandlingReleaseSets: []
+  HandlingReleaseSlotSets: []
+  AudioBulletImpactSets: []
+  AudioImpactSets: []
+  TutorialBlocks: []
+  TutorialVideos: []
+  OnDemand: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_anvilPrefab:
     Guid: 
     Bundle: 
-    AssetName: Assets/Samples/Gun Sample/Assets/HomemadePistol.prefab
+    AssetName: Assets/Packages/Otherloader/Sample/Assets/HomemadePistol.prefab
   m_export: 1
   ItemID: HomemadePistol
   DisplayName: Homemade Pistol

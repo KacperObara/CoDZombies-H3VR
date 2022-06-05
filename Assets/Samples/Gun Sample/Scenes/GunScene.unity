@@ -214,7 +214,7 @@ MonoBehaviour:
   path: Icons
   iconName: ExampleIcon
   CameraDepthMode: 2
-  effectMaterial: {fileID: 0}
+  effectMaterials: []
   background: {fileID: 2800000, guid: 95d557f2518a98942b8b75fb4c572df2, type: 3}
   renderTexture: {fileID: 0}
 --- !u!1 &1390180285

@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 04e4eebc8d47a3646b7257557ebfef85,
+  m_LightingDataAsset: {fileID: 112000002, guid: 84b45598bbf7bf84fa2da2b28e0fe032,
     type: 2}
   m_ShadowMaskMode: 2
 --- !u!196 &4
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &13990175
 GameObject:
@@ -338,9 +339,13 @@ MonoBehaviour:
   UseGripRotInterp: 0
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 636756765}
   UXGeo_Held: {fileID: 516386598}
@@ -348,9 +353,17 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
+  m_lastHandPos: {x: 0, y: 0, z: 0}
   CanSlideOn: 0
   SlidePoint0: {fileID: 0}
   SlidePoint1: {fileID: 0}
+  m_slideSpeed: 0
+  isTowards1: 1
+  m_isSliding: 0
   ConnectedGrabPoint_Base: {fileID: 0}
   ConnectedGrabPoint_End: {fileID: 0}
 --- !u!64 &15714013
@@ -528,6 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &47309019
 MeshRenderer:
@@ -871,6 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &88792898
 MeshRenderer:
@@ -1057,6 +1072,46 @@ Transform:
   m_Father: {fileID: 1828030290}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &102767449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: SampleSandbox_LMA3
+  m_EditorClassIdentifier: 
+  resolution: 2048
+  bitmask: 1
+  id: 1
+  sortingID: 4
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  sceneName: 
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &107414466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &115137485
 MeshRenderer:
@@ -1334,6 +1390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &144294824
 MeshRenderer:
@@ -1431,6 +1488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &153848228
 MeshRenderer:
@@ -1579,6 +1637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &161408777
 GameObject:
@@ -1625,6 +1684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &161408780
 MeshRenderer:
@@ -1959,6 +2019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &187615070
 MeshRenderer:
@@ -2056,6 +2117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &188465430
 MeshRenderer:
@@ -2194,6 +2256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &198801983
 MeshRenderer:
@@ -2512,7 +2575,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
+--- !u!114 &266777102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: SampleSandbox_LMA4
+  m_EditorClassIdentifier: 
+  resolution: 512
+  bitmask: 1
+  id: 2
+  sortingID: 5
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  sceneName: 
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &273569040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,6 +2782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -213122109
 --- !u!1 &277982706
 GameObject:
@@ -2724,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &277982709
 MeshRenderer:
@@ -2903,6 +3009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &280644379
 MeshRenderer:
@@ -3234,6 +3341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &290075124
 GameObject:
@@ -3341,6 +3449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &303053130
 MeshRenderer:
@@ -3512,6 +3621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &306478815
 MeshRenderer:
@@ -3620,9 +3730,13 @@ MonoBehaviour:
   UseGripRotInterp: 0
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 399237113}
   UXGeo_Held: {fileID: 1629268351}
@@ -3630,9 +3744,17 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
+  m_lastHandPos: {x: 0, y: 0, z: 0}
   CanSlideOn: 0
   SlidePoint0: {fileID: 0}
   SlidePoint1: {fileID: 0}
+  m_slideSpeed: 0
+  isTowards1: 1
+  m_isSliding: 0
   ConnectedGrabPoint_Base: {fileID: 0}
   ConnectedGrabPoint_End: {fileID: 0}
 --- !u!64 &320391985
@@ -3784,6 +3906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &323609146
 GameObject:
@@ -4018,6 +4141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &342808819
 GameObject:
@@ -4064,6 +4188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -213122109
 --- !u!23 &342808822
 MeshRenderer:
@@ -4316,6 +4441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!1 &372084143
 GameObject:
@@ -4443,6 +4569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &381830957
 GameObject:
@@ -4752,6 +4879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &416162537
 MeshRenderer:
@@ -4877,6 +5005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &421820939
 MeshRenderer:
@@ -5068,6 +5197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!1 &445221476
 GameObject:
@@ -5114,6 +5244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &445221479
 MeshRenderer:
@@ -5525,9 +5656,13 @@ MonoBehaviour:
   UseGripRotInterp: 0
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 1
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
   UXGeo_Held: {fileID: 0}
@@ -5535,8 +5670,15 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
   Mat_Unpushed: {fileID: 2100000, guid: ed270a47c1cfeb341979961ea161efe3, type: 2}
   Mat_Pushed: {fileID: 2100000, guid: a0c859d63f95abb4aaba82240ff2fb3e, type: 2}
+  m_rend: {fileID: 0}
+  m_aud: {fileID: 0}
+  m_hasBeenPressed: 0
   Target: {fileID: 450279720}
   Method: Play
 --- !u!1 &454266980
@@ -5584,6 +5726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &454266983
 MeshRenderer:
@@ -5681,6 +5824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &455936395
 MeshRenderer:
@@ -5778,6 +5922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &456079630
 MeshRenderer:
@@ -5995,6 +6140,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 465406362}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &466629619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: probes
+  m_EditorClassIdentifier: 
+  resolution: 16
+  bitmask: 1
+  id: 5
+  sortingID: 0
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 547
+  vertexCounter: 0
+  sceneLodLevel: -1
+  sceneName: 
+  containsTerrains: 0
+  probes: 1
+  mode: 2
+  renderMode: 1000
+  renderDirMode: 5
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &466638546
 GameObject:
   m_ObjectHideFlags: 0
@@ -6132,6 +6317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &478286595
 GameObject:
@@ -6261,6 +6447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &480642604
 MeshRenderer:
@@ -6358,6 +6545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &487320403
 MeshRenderer:
@@ -6410,7 +6598,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 487320400}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &491208980
+--- !u!114 &489425372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6419,23 +6607,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: probes
+  m_Name: SampleSandbox_LMA1
   m_EditorClassIdentifier: 
-  resolution: 16
+  resolution: 2048
   bitmask: 1
-  id: 5
-  sortingID: 0
+  id: 4
+  sortingID: 2
   isImplicit: 1
   area: 0
-  totalVertexCount: 547
+  totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
   sceneName: 
   containsTerrains: 0
-  probes: 1
-  mode: 2
+  probes: 0
+  mode: 1
   renderMode: 1000
-  renderDirMode: 5
+  renderDirMode: 1000
   atlasPacker: 1000
   computeSSS: 0
   sssSamples: 16
@@ -6705,6 +6893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &514631961
 GameObject:
@@ -6827,6 +7016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &514993417
 MeshRenderer:
@@ -6954,6 +7144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &545205165
 MeshRenderer:
@@ -7062,9 +7253,13 @@ MonoBehaviour:
   UseGripRotInterp: 0
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 1359608752}
   UXGeo_Held: {fileID: 372084143}
@@ -7072,9 +7267,17 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
+  m_lastHandPos: {x: 0, y: 0, z: 0}
   CanSlideOn: 0
   SlidePoint0: {fileID: 0}
   SlidePoint1: {fileID: 0}
+  m_slideSpeed: 0
+  isTowards1: 1
+  m_isSliding: 0
   ConnectedGrabPoint_Base: {fileID: 0}
   ConnectedGrabPoint_End: {fileID: 0}
 --- !u!64 &549031542
@@ -7175,6 +7378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!23 &550986442
 MeshRenderer:
@@ -7402,6 +7606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &595026057
 GameObject:
@@ -7619,6 +7824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &599125535
 MeshRenderer:
@@ -7716,6 +7922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &601740288
 MeshRenderer:
@@ -7897,6 +8104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &619322170
 MeshRenderer:
@@ -8380,6 +8588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &655831132
 GameObject:
@@ -8533,6 +8742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &670064635
 MeshRenderer:
@@ -8803,6 +9013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &695306618
 MeshRenderer:
@@ -8900,6 +9111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &700562127
 MeshRenderer:
@@ -9142,6 +9354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &726987205
 GameObject:
@@ -9333,6 +9546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &734184645
 MeshRenderer:
@@ -9481,6 +9695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1001 &738350020
 Prefab:
@@ -9524,46 +9739,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97d7cc9e767ae944593013c3f36f3d08, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &739310700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: SampleSandbox_LM0
-  m_EditorClassIdentifier: 
-  resolution: 4096
-  bitmask: 1
-  id: 3
-  sortingID: 1
-  isImplicit: 1
-  area: 32241.436
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  sceneName: 
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!4 &751491280 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4371998399138678, guid: 97d7cc9e767ae944593013c3f36f3d08,
@@ -9745,6 +9920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &789062609
 GameObject:
@@ -9949,6 +10125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &795209225
 MeshRenderer:
@@ -10093,46 +10270,6 @@ Transform:
   m_Father: {fileID: 1724601728}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -74.581, y: 0, z: 0}
---- !u!114 &832199336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: SampleSandbox_LMA4
-  m_EditorClassIdentifier: 
-  resolution: 2048
-  bitmask: 1
-  id: 2
-  sortingID: 5
-  isImplicit: 1
-  area: 0
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  sceneName: 
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!1001 &837524262
 Prefab:
   m_ObjectHideFlags: 0
@@ -10487,6 +10624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &863773437
 GameObject:
@@ -10533,6 +10671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &863773440
 MeshRenderer:
@@ -10773,6 +10912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &883320408
 MeshRenderer:
@@ -10877,9 +11017,13 @@ MonoBehaviour:
   UseGripRotInterp: 1
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
   UXGeo_Held: {fileID: 0}
@@ -10887,6 +11031,10 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
   ObjectWrapper: {fileID: 0}
   SpawnLockable: 0
   Harnessable: 0
@@ -10901,6 +11049,10 @@ MonoBehaviour:
   ThrowAngMultiplier: 1
   MoveIntensity: 1
   RotIntensity: 1
+  AttachedRotationMultiplier: 60
+  AttachedPositionMultiplier: 9000
+  AttachedRotationFudge: 10000
+  AttachedPositionFudge: 10000
   UsesGravity: 0
   DependantRBs: []
   DistantGrabbable: 0
@@ -10909,8 +11061,18 @@ MonoBehaviour:
   IsKinematicLocked: 1
   DoesQuickbeltSlotFollowHead: 0
   IsInWater: 0
+  m_storedCOMLocal: {x: 0, y: 0, z: 0}
   AttachmentMounts: []
+  AttachmentsList: []
+  m_quickbeltSlot: {fileID: 0}
+  m_timeSinceInQuickbelt: 10
+  m_altGrip: {fileID: 0}
+  savedGrip: {fileID: 0}
   IsAltToAltTransfer: 0
+  m_bipod: {fileID: 0}
+  m_isPivotLocked: 0
+  m_pivotLockedPos: {x: 0, y: 0, z: 0}
+  m_pivotLockedRot: {x: 0, y: 0, z: 0, w: 1}
   CollisionSound:
     Clips: []
     ColSoundCooldown: 0.65
@@ -10918,9 +11080,14 @@ MonoBehaviour:
     m_hasCollisionSound: 0
     m_audioCollision: {fileID: 0}
     m_colSoundTick: 1
+  m_IDSpawnedFrom: {fileID: 0}
   IsPickUpLocked: 0
+  m_doesDirectParent: 1
   OverridesObjectToHand: 0
+  audioImpactController: {fileID: 0}
+  m_hasImpactController: 0
   MP:
+    m_obj: {fileID: 0}
     IsMeleeWeapon: 0
     IgnoreRBs: []
     HandPoint: {fileID: 0}
@@ -10933,8 +11100,11 @@ MonoBehaviour:
     HighDamageVectors: []
     DoesCyclePosePoints: 0
     PosePoints: []
+    m_poseIndex: 0
     IsThrownDisposable: 0
+    m_isCountingDownToDispose: 0
     m_isThrownAutoAim: 0
+    m_countDownToDestroy: 10
     ThrownDetectMask:
       serializedVersion: 2
       m_Bits: 0
@@ -10951,6 +11121,14 @@ MonoBehaviour:
     StabVelocityRequirement: 1
     CanTearOut: 0
     TearOutVelThreshold: 3
+    m_isJointedToObject: 0
+    m_stabJoint: {fileID: 0}
+    m_stabTargetRB: {fileID: 0}
+    m_initialStabPointWorld: {x: 0, y: 0, z: 0}
+    m_initialStabPointLocal: {x: 0, y: 0, z: 0}
+    m_relativeStabDir: {x: 0, y: 0, z: 0}
+    m_stabbedLink: {fileID: 0}
+    m_initialPosOfStabbedThingLocal: {x: 0, y: 0, z: 0}
     CanNewLodge: 0
     LodgeDepth: 0.04
     MassWhileLodged: 10
@@ -10958,6 +11136,10 @@ MonoBehaviour:
     LodgeColliders: []
     LodgeVelocityRequirement: 4
     DeLodgeVelocityRequirement: 1
+    m_isLodgedToObject: 0
+    m_lodgeJoint: {fileID: 0}
+    m_lodgeTargetRB: {fileID: 0}
+    m_initialLodgeNormal: {x: 0, y: 0, z: 0}
     UsesSweepTesting: 0
     UsesSweepDebug: 0
     TestCols: []
@@ -10966,6 +11148,28 @@ MonoBehaviour:
     LM_DamageTest:
       serializedVersion: 2
       m_Bits: 0
+    m_isReadyToAim: 0
+    m_lastHandPoint: {x: 0, y: 0, z: 0}
+    m_lastEndPoint: {x: 0, y: 0, z: 0}
+    handPointVelocity: {x: 0, y: 0, z: 0}
+    endPointVelocity: {x: 0, y: 0, z: 0}
+    m_pointDistance: 0
+    m_lastangFlick: 0
+    m_lastangFlickLinear: 0
+    m_SweepPointStart: {x: 0, y: 0, z: 0}
+    m_SweepPointEnd: {x: 0, y: 0, z: 0}
+    m_lastSweepPointStart: {x: 0, y: 0, z: 0}
+    m_lastSweepPointEnd: {x: 0, y: 0, z: 0}
+    m_timeSinceLastDamageDone: 0
+    timeSinceStateChange: 10
+    stabDistantPoint: {x: 1, y: 1, z: 1}
+    stabInsidePoint: {x: 1, y: 1, z: 1}
+    m_initialMass: 0
+    m_initRot: 0
+  CheckDestroyTick: 1
+  fakeHandPosWorld: {x: 0, y: 0, z: 0}
+  fakeHandVelWorld: {x: 0, y: 0, z: 0}
+  m_timeSinceFakeVelWorldTransfered: 1
   Team: 1
   RespawnDelay: 10
   FloorOffset: {x: 0, y: 0.25, z: 0}
@@ -11192,6 +11396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &918239664
 GameObject:
@@ -11443,6 +11648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &929242927
 MeshRenderer:
@@ -11593,38 +11799,6 @@ LightProbeGroup:
   m_GameObject: {fileID: 950674012}
   m_Enabled: 1
   m_SourcePositions:
-  - {x: 18, y: 0.05000007, z: -29.55}
-  - {x: 18, y: 0.05000007, z: -28.449999}
-  - {x: 18, y: 0.75000006, z: -29.55}
-  - {x: 18, y: 0.75000006, z: -28.449999}
-  - {x: 18, y: 1.45, z: -29.55}
-  - {x: 18, y: 1.45, z: -28.449999}
-  - {x: 18, y: 2.15, z: -29.55}
-  - {x: 18, y: 2.15, z: -28.449999}
-  - {x: 19, y: 0.05000007, z: -29.55}
-  - {x: 19, y: 0.05000007, z: -28.449999}
-  - {x: 19, y: 0.75000006, z: -29.55}
-  - {x: 19, y: 0.75000006, z: -28.449999}
-  - {x: 19, y: 1.45, z: -29.55}
-  - {x: 19, y: 1.45, z: -28.449999}
-  - {x: 19, y: 2.15, z: -29.55}
-  - {x: 19, y: 2.15, z: -28.449999}
-  - {x: 3.45, y: 0.05000007, z: -10}
-  - {x: 3.45, y: 0.05000007, z: -7}
-  - {x: 3.45, y: 0.75000006, z: -10}
-  - {x: 3.45, y: 0.75000006, z: -7}
-  - {x: 3.45, y: 1.45, z: -10}
-  - {x: 3.45, y: 1.45, z: -7}
-  - {x: 3.45, y: 2.15, z: -10}
-  - {x: 3.45, y: 2.15, z: -7}
-  - {x: 4.55, y: 0.05000007, z: -10}
-  - {x: 4.55, y: 0.05000007, z: -7}
-  - {x: 4.55, y: 0.75000006, z: -10}
-  - {x: 4.55, y: 0.75000006, z: -7}
-  - {x: 4.55, y: 1.45, z: -10}
-  - {x: 4.55, y: 1.45, z: -7}
-  - {x: 4.55, y: 2.15, z: -10}
-  - {x: 4.55, y: 2.15, z: -7}
   - {x: -33, y: -1, z: -33}
   - {x: -33, y: -1, z: 33}
   - {x: -33, y: 5, z: -33}
@@ -11665,6 +11839,22 @@ LightProbeGroup:
   - {x: -9, y: 1.45, z: -28.449999}
   - {x: -9, y: 2.15, z: -29.55}
   - {x: -9, y: 2.15, z: -28.449999}
+  - {x: 18, y: 0.05000007, z: -29.55}
+  - {x: 18, y: 0.05000007, z: -28.449999}
+  - {x: 18, y: 0.75000006, z: -29.55}
+  - {x: 18, y: 0.75000006, z: -28.449999}
+  - {x: 18, y: 1.45, z: -29.55}
+  - {x: 18, y: 1.45, z: -28.449999}
+  - {x: 18, y: 2.15, z: -29.55}
+  - {x: 18, y: 2.15, z: -28.449999}
+  - {x: 19, y: 0.05000007, z: -29.55}
+  - {x: 19, y: 0.05000007, z: -28.449999}
+  - {x: 19, y: 0.75000006, z: -29.55}
+  - {x: 19, y: 0.75000006, z: -28.449999}
+  - {x: 19, y: 1.45, z: -29.55}
+  - {x: 19, y: 1.45, z: -28.449999}
+  - {x: 19, y: 2.15, z: -29.55}
+  - {x: 19, y: 2.15, z: -28.449999}
   - {x: -11.55, y: 0.05000007, z: -21}
   - {x: -11.55, y: 0.05000007, z: -20}
   - {x: -11.55, y: 0.75000006, z: -21}
@@ -12092,6 +12282,22 @@ LightProbeGroup:
   - {x: 30.8, y: 3.8, z: 18.48}
   - {x: 30.8, y: 3.8, z: 24.64}
   - {x: 30.8, y: 3.8, z: 30.8}
+  - {x: 3.45, y: 0.05000007, z: -10}
+  - {x: 3.45, y: 0.05000007, z: -7}
+  - {x: 3.45, y: 0.75000006, z: -10}
+  - {x: 3.45, y: 0.75000006, z: -7}
+  - {x: 3.45, y: 1.45, z: -10}
+  - {x: 3.45, y: 1.45, z: -7}
+  - {x: 3.45, y: 2.15, z: -10}
+  - {x: 3.45, y: 2.15, z: -7}
+  - {x: 4.55, y: 0.05000007, z: -10}
+  - {x: 4.55, y: 0.05000007, z: -7}
+  - {x: 4.55, y: 0.75000006, z: -10}
+  - {x: 4.55, y: 0.75000006, z: -7}
+  - {x: 4.55, y: 1.45, z: -10}
+  - {x: 4.55, y: 1.45, z: -7}
+  - {x: 4.55, y: 2.15, z: -10}
+  - {x: 4.55, y: 2.15, z: -7}
   - {x: -19.975, y: 0.125, z: -30.975}
   - {x: -19.975, y: 0.125, z: -27.658333}
   - {x: -19.975, y: 0.125, z: -24.341667}
@@ -12185,6 +12391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &954657502
 MeshRenderer:
@@ -12486,6 +12693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &1003324354
 GameObject:
@@ -12532,6 +12740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1003324357
 MeshRenderer:
@@ -12680,6 +12889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &1036723984
 GameObject:
@@ -12777,6 +12987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!1 &1037258486
 GameObject:
@@ -12905,6 +13116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1039978298
 MeshRenderer:
@@ -13035,6 +13247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1057702651
 MeshRenderer:
@@ -13234,6 +13447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1098055482
 MeshRenderer:
@@ -13451,6 +13665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &1110339652
 GameObject:
@@ -13497,6 +13712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1110339655
 MeshRenderer:
@@ -13859,7 +14075,7 @@ MonoBehaviour:
   renderSettingsGIBackFaceWeight: 0
   renderSettingsTileSize: 512
   renderSettingsPriority: 2
-  renderSettingsTexelsPerUnit: 32
+  renderSettingsTexelsPerUnit: 24
   renderSettingsForceRefresh: 1
   renderSettingsForceRebuildGeometry: 1
   renderSettingsPerformRendering: 1
@@ -13917,7 +14133,7 @@ MonoBehaviour:
   renderSettingsClientMode: 0
   renderSettingsServerAddress: 127.0.0.1
   renderSettingsUnwrapper: 0
-  renderSettingsDenoiserType: 5
+  renderSettingsDenoiserType: 7
   renderSettingsExportTerrainTrees: 0
   renderSettingsShowPerf: 1
   renderSettingsSampleDiv: 1
@@ -13929,7 +14145,7 @@ MonoBehaviour:
   renderSettingsRTPVSceneView: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
-  lastBakeTime: 6
+  lastBakeTime: 5
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
   lightUIDs: fc7ba845631009fe686d667203e0a6ac9a5c41691c80c11d
@@ -14115,135 +14331,135 @@ MonoBehaviour:
     cookie: {fileID: 0}
     angle: 30
   implicitGroups:
-  - {fileID: 491208980}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 832199336}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 2120948587}
-  - {fileID: 1743334060}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1341373262}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 832199336}
-  - {fileID: 1743334060}
-  - {fileID: 832199336}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 832199336}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 2120948587}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1341373262}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 832199336}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1341373262}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1341373262}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 1341373262}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 2120948587}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1341373262}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 739310700}
-  - {fileID: 832199336}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
-  - {fileID: 1743334060}
+  - {fileID: 466629619}
+  - {fileID: 489425372}
+  - {fileID: 266777102}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1716421324}
+  - {fileID: 1716421324}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 489425372}
+  - {fileID: 489425372}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 1716421324}
+  - {fileID: 489425372}
+  - {fileID: 1716421324}
+  - {fileID: 1716421324}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 1716421324}
+  - {fileID: 489425372}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1716421324}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 489425372}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 102767449}
+  - {fileID: 1716421324}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1716421324}
+  - {fileID: 102767449}
+  - {fileID: 102767449}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
+  - {fileID: 102767449}
+  - {fileID: 489425372}
+  - {fileID: 1560144953}
+  - {fileID: 1560144953}
   implicitGroupedObjects:
   - {fileID: 0}
   - {fileID: 12801712}
@@ -14375,16 +14591,16 @@ MonoBehaviour:
   - {fileID: 2118779228}
   - {fileID: 2124619384}
   bounds:
-  - m_Center: {x: 0, y: 1.5, z: 0.0000038146973}
-    m_Extent: {x: 32, y: 2.5, z: 32.000008}
-  - m_Center: {x: 0.0000076293945, y: 2, z: 0}
-    m_Extent: {x: 32.000008, y: 2, z: 32}
-  - m_Center: {x: 0, y: 2, z: 0}
-    m_Extent: {x: 32, y: 2, z: 32}
-  - m_Center: {x: -7, y: 2.75, z: 0}
-    m_Extent: {x: 25, y: 3.75, z: 32}
-  - m_Center: {x: 0.0000038146973, y: 1.5, z: 0}
-    m_Extent: {x: 32.000004, y: 2.5, z: 32}
+  - m_Center: {x: 0.0000038146973, y: 3.0337477, z: 0.0000038146973}
+    m_Extent: {x: 32.000004, y: 3.4662523, z: 32.000008}
+  - m_Center: {x: 0.0000076293945, y: 1.7837479, z: 0}
+    m_Extent: {x: 32.000008, y: 2.2162519, z: 32}
+  - m_Center: {x: -14, y: 1.475, z: 25}
+    m_Extent: {x: 2, y: 1.475, z: 2}
+  - m_Center: {x: 0, y: 1.5, z: 0}
+    m_Extent: {x: 32, y: 2.5, z: 32}
+  - m_Center: {x: 0, y: 1.5, z: -0.5}
+    m_Extent: {x: 32, y: 2.5, z: 31.5}
   - m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 5000, y: 5000, z: 5000}
   hasEmissive: 0101010101
@@ -14406,11 +14622,11 @@ MonoBehaviour:
   modifiedAssetPathList: []
   modifiedAssets: []
   maps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: 9ba9fd732fc24844da9843b1fb885a26, type: 3}
+  - {fileID: 2800000, guid: c57c751c27eb71a45852d97fd9e966ed, type: 3}
+  - {fileID: 2800000, guid: 373790a32e336024ab80c48791868261, type: 3}
+  - {fileID: 2800000, guid: 2d64aa982ad3dbf4f8ce0527e59404d1, type: 3}
+  - {fileID: 2800000, guid: a4196fb74100fda448b15cba3995d154, type: 3}
   masks: []
   dirMaps: []
   rnmMaps0: []
@@ -14546,136 +14762,136 @@ MonoBehaviour:
   - {fileID: 2112378084}
   - {fileID: 2118779231}
   - {fileID: 2124619387}
-  bakedIDs: 0000000003000000030000000300000004000000040000000200000003000000000000000000000004000000000000000300000004000000030000000100000003000000040000000300000003000000040000000300000004000000040000000200000004000000020000000300000004000000030000000300000002000000040000000300000003000000000000000400000003000000030000000300000003000000040000000300000004000000000000000300000000000000030000000000000003000000000000000300000004000000030000000300000004000000000000000400000004000000030000000400000001000000000000000300000004000000030000000300000003000000000000000400000003000000030000000400000004000000040000000400000002000000040000000300000001000000030000000300000004000000030000000400000004000000040000000300000004000000010000000400000004000000040000000300000001000000040000000400000000000000030000000400000004000000040000000400000004000000030000000000000004000000040000000400000004000000040000000300000003000000030000000000000003000000030000000300000004000000040000000100000003000000030000000300000002000000040000000400000004000000
+  bakedIDs: 0400000002000000040000000300000003000000010000000100000004000000000000000000000004000000030000000300000003000000010000000100000004000000030000000300000003000000040000000100000003000000040000000100000003000000040000000400000004000000040000000300000001000000040000000300000003000000000000000100000003000000030000000400000003000000030000000300000003000000000000000100000000000000040000000000000000000000000000000300000004000000030000000000000001000000000000000400000001000000040000000300000001000000030000000100000000000000030000000300000001000000030000000300000001000000030000000300000004000000010000000300000001000000030000000000000001000000000000000300000003000000040000000300000001000000040000000000000000000000010000000100000003000000040000000300000001000000040000000300000000000000030000000300000003000000030000000100000004000000040000000000000001000000040000000300000001000000010000000000000000000000030000000000000003000000030000000300000000000000010000000100000003000000030000000300000001000000040000000300000003000000
   bakedScaleOffset:
-  - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: 0.53956175}
-  - {x: 0.1500938, y: 0.14931163, z: 0.8115821, w: 0.5305086}
-  - {x: 0.15274978, y: 0.15196763, z: 0.24157014, w: 0.79568857}
-  - {x: 0.0679152, y: 0.06713304, z: 0.00045704492, w: 0.95385283}
-  - {x: 0.07609183, y: 0.07530887, z: 0.00042464997, w: 0.9501024}
-  - {x: 0.07283839, y: 0.07205542, z: 0.33185193, w: 0.79684716}
-  - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: -0.001196822}
-  - {x: 0.16188332, y: 0.16110119, z: 0.8115343, w: 0.11491012}
-  - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.7079424}
-  - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.8538929}
-  - {x: 0.076091826, y: 0.07530885, z: 0.8127333, w: 0.5313653}
-  - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: 0.26931405}
-  - {x: 0.028314287, y: 0.02753873, z: 0.20736581, w: 0.9541251}
-  - {x: 0.082046345, y: 0.08126337, z: 0.89698553, w: 0.2658724}
-  - {x: 0.15274976, y: 0.15196761, z: 0.8115713, w: 0.26530698}
-  - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.32561085}
-  - {x: 0.0679152, y: 0.06713304, z: 0.13821259, w: 0.95385283}
-  - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.4270413}
-  - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: 0.2642747}
-  - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: 0.5294655}
-  - {x: 0.040284444, y: 0.03950147, z: 0.9372374, w: 0.23716313}
-  - {x: 0.047915094, y: 0.047132935, z: 0.94723964, w: 0.6292584}
-  - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: -0.00091711554}
-  - {x: 0.05363665, y: 0.052853677, z: 0.94170684, w: 0.00051889854}
-  - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.32561085}
-  - {x: 0.037062835, y: 0.03627986, z: 0.8128916, w: 0.7036297}
-  - {x: 0.44482183, y: 0.4439295, z: 0.49903163, w: 0.6526506}
-  - {x: 0.0679152, y: 0.06713304, z: 0.06933482, w: 0.95385283}
-  - {x: 0.22598757, y: 0.22520462, z: 0.40597105, w: 0.796226}
-  - {x: 0.17551938, y: 0.17473723, z: 0.811479, w: 0.000023799763}
-  - {x: 0.01198858, y: 0.011206423, z: 0.974293, w: 0.13190728}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.65241855}
-  - {x: 0.040284444, y: 0.03950147, z: 0.9588239, w: 0.5315105}
-  - {x: 0.03445183, y: 0.033669673, z: 0.96249956, w: 0.38915452}
-  - {x: 0.03445183, y: 0.033669673, z: 0.96249956, w: 0.41246372}
-  - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.41604152}
-  - {x: 0.04793589, y: 0.047152914, z: 0.9162603, w: 0.5818048}
-  - {x: 0.034451827, y: 0.03366967, z: 0.96249956, w: 0.43577293}
-  - {x: 0.010894435, y: 0.010864161, z: 0.9878342, w: 0.00069005496}
-  - {x: 0.24178079, y: 0.24099864, z: 0.40548107, w: 0.79532754}
-  - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: -0.0009161555}
-  - {x: 0.08342699, y: 0.082644016, z: 0.81270355, w: 0.2658668}
-  - {x: 0.07601218, y: 0.07523003, z: 0.9235093, w: 0.7175414}
-  - {x: 0.07609183, y: 0.07530887, z: 0.15441555, w: 0.9501024}
-  - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.2700911}
-  - {x: 0.1500938, y: 0.14931163, z: 0.8115821, w: 0.36537626}
-  - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.7079424}
-  - {x: 0.05358053, y: 0.052798375, z: 0.9290974, w: 0.2213336}
-  - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.8538929}
-  - {x: 0.07276215, y: 0.07198, z: 0.7213126, w: 0.9513378}
-  - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.561992}
-  - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: -0.0009161555}
-  - {x: 0.076091826, y: 0.07530885, z: 0.89210963, w: 0.42549482}
-  - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: 0.2642747}
-  - {x: 0.0679152, y: 0.06713304, z: 0.47506398, w: 0.95385283}
-  - {x: 0.06798634, y: 0.067203365, z: 0.8897616, w: 0.5313981}
-  - {x: 0.22345729, y: 0.22266023, z: -0.00015982971, w: 0.81058645}
-  - {x: 0.040284444, y: 0.03950147, z: 0.9585398, w: 0.61736965}
-  - {x: 0.067986354, y: 0.06720339, z: 0.3318716, w: 0.86021566}
-  - {x: 0.2379346, y: 0.23715247, z: 0.6469538, w: 0.79534316}
-  - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: 0.5300203}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.65241855}
-  - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: -0.0009336255}
-  - {x: 0.04791506, y: 0.047132906, z: 0.94723964, w: 0.66130227}
-  - {x: 0.123808235, y: 0.12302526, z: 0.81253976, w: 0.16575673}
-  - {x: 0.09724734, y: 0.096465185, z: 0.88516384, w: 0.93568164}
-  - {x: 0.106239974, y: 0.10545783, z: 0.88512737, w: 0.7958773}
-  - {x: 0.057522517, y: 0.05674036, z: 0.8705195, w: 0.2213176}
-  - {x: 0.41504335, y: 0.41424632, z: 0.41252905, w: -0.0009336255}
-  - {x: 0.096165635, y: 0.09538266, z: 0.23483658, w: 0.8601014}
-  - {x: 0.057522517, y: 0.05674036, z: 0.81195754, w: 0.2213176}
-  - {x: 0.0833397, y: 0.082557544, z: 0.90984577, w: 0.4639824}
-  - {x: 0.08342702, y: 0.082644045, z: 0.3191646, w: 0.92350197}
-  - {x: 0.05329278, y: 0.052509803, z: 0.93718463, w: 0.1205168}
-  - {x: 0.047935873, y: 0.047152895, z: 0.8618953, w: 0.6173386}
-  - {x: 0.07609183, y: 0.07530887, z: 0.0774201, w: 0.9501024}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: -0.001196822}
-  - {x: 0.07906999, y: 0.07828701, z: 0.89562714, w: 0.32096875}
-  - {x: 0.0679152, y: 0.06713304, z: 0.5439418, w: 0.95385283}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.32561085}
-  - {x: 0.07276215, y: 0.07198, z: 0.79500145, w: 0.9513378}
-  - {x: 0.1109828, y: 0.11020064, z: 0.81174076, w: 0.71739954}
-  - {x: 0.082046345, y: 0.08126337, z: 0.8127092, w: 0.3209567}
-  - {x: 0.15274978, y: 0.15196763, z: 0.24157014, w: 0.8957472}
-  - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.47892287}
-  - {x: 0.053292748, y: 0.05250977, z: 0.93718463, w: 0.20157655}
-  - {x: 0.12836555, y: 0.12758258, z: 0.8125213, w: 0.0002158155}
-  - {x: 0.07276218, y: 0.07198002, z: 0.6476237, w: 0.9513378}
-  - {x: 0.123808235, y: 0.12302526, z: 0.81253976, w: 0.08447386}
-  - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.65241855}
-  - {x: 0.046442714, y: 0.04565974, z: 0.9109491, w: 0.6173447}
-  - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: -0.00091711554}
-  - {x: 0.05363665, y: 0.052853677, z: 0.9371832, w: 0.08475846}
-  - {x: 0.106239974, y: 0.10545783, z: 0.88512737, w: 0.8657612}
-  - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: -0.001196822}
-  - {x: 0.040284444, y: 0.03950147, z: 0.81287855, w: 0.649428}
-  - {x: 0.08342703, y: 0.08264405, z: 0.23488824, w: 0.92350197}
-  - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.2700911}
-  - {x: 0.006235356, y: 0.005453198, z: 0.9878515, w: 0.026008857}
-  - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: 0.2645516}
-  - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.37515968}
-  - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: 0.5300203}
-  - {x: 0.040284444, y: 0.03950147, z: 0.81287855, w: 0.6765223}
-  - {x: 0.05363665, y: 0.052853677, z: 0.94170684, w: 0.03627583}
-  - {x: 0.24178079, y: 0.24099864, z: -0.0002481133, w: 0.79532754}
-  - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.561992}
-  - {x: 0.04793589, y: 0.047152914, z: 0.8128475, w: 0.6173386}
-  - {x: 0.076091826, y: 0.07530885, z: 0.89210963, w: 0.47582024}
-  - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: 0.2645516}
-  - {x: 0.053292762, y: 0.052509785, z: 0.93718463, w: 0.16604272}
-  - {x: 0.047935896, y: 0.047152918, z: 0.86721253, w: 0.5818048}
-  - {x: 0.0679152, y: 0.06713304, z: 0.40618622, w: 0.95385283}
-  - {x: 0.13477512, y: 0.13399296, z: 0.8116442, w: 0.6289061}
-  - {x: 0.02378571, y: 0.023003554, z: 0.9742452, w: 0.11547021}
-  - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.41604152}
-  - {x: 0.040242277, y: 0.03946012, z: 0.9236544, w: 0.7679591}
-  - {x: 0.011266813, y: 0.010484654, z: 0.98783106, w: 0.012718292}
-  - {x: 0.09724734, y: 0.096465185, z: 0.8117965, w: 0.463926}
-  - {x: 0.21950574, y: 0.21872278, z: 0.6317796, w: 0.7962523}
-  - {x: 0.053292748, y: 0.05250977, z: 0.8128258, w: 0.5817831}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: -0.001196822}
-  - {x: 0.0062353937, y: 0.0054532364, z: 0.9878515, w: 0.021005921}
-  - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: 0.5294655}
-  - {x: 0.034451865, y: 0.033669706, z: 0.96249956, w: 0.3658453}
-  - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.32561085}
-  - {x: 0.23476352, y: 0.23398055, z: -0.00021888534, w: 0.79619044}
-  - {x: 0.096165635, y: 0.09538266, z: 0.23483658, w: 0.7967525}
-  - {x: 0.07609183, y: 0.07530887, z: 0.89210963, w: 0.37516943}
+  - {x: 0.61247027, y: 0.6116871, z: -0.0017505653, w: -0.001747389}
+  - {x: 1.0041828, y: 1.0024499, z: -0.00244982, w: -0.0024427914}
+  - {x: 0.23016955, y: 0.22938634, z: 0.36246932, w: 0.84951496}
+  - {x: 0.05059079, y: 0.04980828, z: 0.91384023, w: 0.5636572}
+  - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.8341683}
+  - {x: 0.109981015, y: 0.10919816, z: 0.00028710137, w: 0.8603876}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.21442248}
+  - {x: 0.24388815, y: 0.243105, z: 0.60915077, w: 0.23679376}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.21442248}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.42944682}
+  - {x: 0.11490944, y: 0.11412625, z: 0.19364662, w: 0.8689325}
+  - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.79543823}
+  - {x: 0.020879112, y: 0.020103198, z: 0.97721565, w: 0.3987029}
+  - {x: 0.061129604, y: 0.06034709, z: 0.91379744, w: 0.59744316}
+  - {x: 0.23007147, y: 0.22928861, z: 0.6577538, w: 0.64487624}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.42944682}
+  - {x: 0.10274776, y: 0.10196457, z: 0.5929199, w: 0.91765124}
+  - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.7175777}
+  - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.39746812}
+  - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.5964532}
+  - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.8194545}
+  - {x: 0.07267656, y: 0.07189371, z: 0.41095147, w: 0.86053896}
+  - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.79543823}
+  - {x: 0.08121701, y: 0.080433816, z: 0.27586642, w: 0.9445789}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.6444711}
+  - {x: 0.027411714, y: 0.026629196, z: 0.971647, w: 0.79656494}
+  - {x: 0.29242745, y: 0.29164428, z: 0.7009875, w: 0.6278367}
+  - {x: 0.10274776, y: 0.10196457, z: 0.5929199, w: 0.85003173}
+  - {x: 0.3398176, y: 0.3390344, z: 0.3620246, w: 0.6276445}
+  - {x: 0.26436955, y: 0.26358634, z: 0.7141716, w: 0.3979818}
+  - {x: 0.008626444, y: 0.007843925, z: 0.987539, w: 0.20871145}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.42944682}
+  - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.8601076}
+  - {x: 0.025481666, y: 0.024699146, z: 0.97387064, w: 0.17774299}
+  - {x: 0.025481666, y: 0.024699146, z: 0.97343946, w: 0.67882305}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.42944682}
+  - {x: 0.072632454, y: 0.0718496, z: 0.48455688, w: 0.90862}
+  - {x: 0.025481662, y: 0.024699146, z: 0.97343946, w: 0.696313}
+  - {x: 0.007805324, y: 0.0077750357, z: 0.9875435, w: 0.1996875}
+  - {x: 0.36389437, y: 0.36311123, z: -0.0007423994, w: 0.39757815}
+  - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: -0.00050193566}
+  - {x: 0.06216448, y: 0.06138197, z: 0.9137932, w: 0.5223212}
+  - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.7964463}
+  - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.9096123}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: -0.0006018722}
+  - {x: 0.22608389, y: 0.225301, z: 0.65777004, w: 0.7951166}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.6444711}
+  - {x: 0.08121705, y: 0.08043385, z: 0.19378327, w: 0.9445789}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.6444711}
+  - {x: 0.109981015, y: 0.10919816, z: 0.51577634, w: 0.8603876}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.21442248}
+  - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: -0.00050193566}
+  - {x: 0.11490944, y: 0.11412625, z: 0.8532247, w: 0.23731686}
+  - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: -0.00050193566}
+  - {x: 0.10270399, y: 0.101921126, z: 0.51580584, w: 0.93272907}
+  - {x: 0.10270396, y: 0.1019211, z: 0.11095035, w: 0.8604172}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: -0.0006018722}
+  - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.9007607}
+  - {x: 0.10270398, y: 0.10192112, z: 0.00031661533, w: 0.93272907}
+  - {x: 0.3581174, y: 0.35733423, z: -0.0007189694, w: 0.63464785}
+  - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.5964532}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.21442248}
+  - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.79543823}
+  - {x: 0.07267652, y: 0.07189366, z: 0.41095147, w: 0.9086485}
+  - {x: 0.18642513, y: 0.18564229, z: 0.65793085, w: 0.8600776}
+  - {x: 0.07260006, y: 0.07181755, z: 0.91375095, w: 0.24748604}
+  - {x: 0.07934766, y: 0.07856514, z: 0.9137235, w: 0.055160202}
+  - {x: 0.0871008, y: 0.086317934, z: 0.21442415, w: 0.8604804}
+  - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.5964532}
+  - {x: 0.07171288, y: 0.07093036, z: 0.9137545, w: 0.343033}
+  - {x: 0.0871008, y: 0.086317934, z: 0.11101363, w: 0.9280711}
+  - {x: 0.06216451, y: 0.061382, z: 0.9137932, w: 0.39845395}
+  - {x: 0.062164504, y: 0.061381992, z: 0.9137932, w: 0.4810321}
+  - {x: 0.08070105, y: 0.079917856, z: 0.87908274, w: 0.57120323}
+  - {x: 0.072632425, y: 0.07184957, z: 0.55811834, w: 0.90862}
+  - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.8718903}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.21442248}
+  - {x: 0.05889864, y: 0.058116127, z: 0.9138065, w: 0.16011746}
+  - {x: 0.10270399, y: 0.101921126, z: 0.84478277, w: 0.93272907}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: -0.0006018722}
+  - {x: 0.109981015, y: 0.10919816, z: 0.8447532, w: 0.8603876}
+  - {x: 0.082906425, y: 0.0821239, z: 0.9137091, w: 0.00039975627}
+  - {x: 0.061129604, y: 0.06034709, z: 0.91379744, w: 0.6380608}
+  - {x: 0.23016955, y: 0.22938634, z: 0.70124006, w: 0.81876916}
+  - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.75646615}
+  - {x: 0.08066662, y: 0.079883754, z: 0.32938287, w: 0.86050653}
+  - {x: 0.19334255, y: 0.19255938, z: -0.00005068102, w: 0.8686144}
+  - {x: 0.10998105, y: 0.10919818, z: 0.20333605, w: 0.8603876}
+  - {x: 0.18642513, y: 0.18564229, z: 0.32895395, w: 0.8600776}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.6444711}
+  - {x: 0.07039301, y: 0.06961015, z: 0.88823724, w: 0.64552385}
+  - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.19848311}
+  - {x: 0.08121701, y: 0.080433816, z: 0.79699755, w: 0.57120115}
+  - {x: 0.07934766, y: 0.07856514, z: 0.9137235, w: 0.10759737}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: -0.0006018722}
+  - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.94141376}
+  - {x: 0.06216451, y: 0.061382, z: 0.9137932, w: 0.439743}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.21442248}
+  - {x: 0.0043095318, y: 0.0035270122, z: 0.99425423, w: 0.059218474}
+  - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.19848311}
+  - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.6786893}
+  - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.39746812}
+  - {x: 0.061156888, y: 0.060374018, z: 0.41099823, w: 0.9568047}
+  - {x: 0.08121701, y: 0.080433816, z: 0.71491444, w: 0.57120115}
+  - {x: 0.36389437, y: 0.36311123, z: 0.608664, w: -0.000739223}
+  - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.42944682}
+  - {x: 0.072632454, y: 0.0718496, z: 0.55811834, w: 0.86053914}
+  - {x: 0.11490944, y: 0.11412625, z: 0.8532247, w: 0.31282663}
+  - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.39746812}
+  - {x: 0.08066665, y: 0.07988378, z: 0.21445023, w: 0.91797423}
+  - {x: 0.07263246, y: 0.0718496, z: 0.48455688, w: 0.86053914}
+  - {x: 0.10270399, y: 0.101921126, z: 0.20336555, w: 0.93272907}
+  - {x: 0.20308498, y: 0.2023021, z: -0.000090506524, w: 0.86001}
+  - {x: 0.01747838, y: 0.01669586, z: 0.9771447, w: 0.41324538}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.6444711}
+  - {x: 0.029826509, y: 0.029043991, z: 0.96560663, w: 0.5637414}
+  - {x: 0.008084868, y: 0.0073023485, z: 0.9875412, w: 0.21526831}
+  - {x: 0.07260006, y: 0.07181755, z: 0.91375095, w: 0.19942659}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: -0.0006018722}
+  - {x: 0.08066662, y: 0.079883754, z: 0.32938287, w: 0.9137999}
+  - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: -0.0006018722}
+  - {x: 0.00430956, y: 0.0035270408, z: 0.99425423, w: 0.05546454}
+  - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.19848311}
+  - {x: 0.02548169, y: 0.024699176, z: 0.97387064, w: 0.16025299}
+  - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.42944682}
+  - {x: 0.3529853, y: 0.35220215, z: 0.3619712, w: 0.3976224}
+  - {x: 0.07171288, y: 0.07093036, z: 0.9137545, w: 0.29554912}
+  - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.9473343}
   bakedVertexOffset: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
   bakedVertexColorMesh:
   - {fileID: 0}
@@ -14815,7 +15031,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 0000000000000000000000000000000000000000
+  idremap: 0000000001000000020000000300000004000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -14823,11 +15039,11 @@ MonoBehaviour:
   sectors:
   - name: $G
     maps:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 2800000, guid: 9ba9fd732fc24844da9843b1fb885a26, type: 3}
+    - {fileID: 2800000, guid: c57c751c27eb71a45852d97fd9e966ed, type: 3}
+    - {fileID: 2800000, guid: 373790a32e336024ab80c48791868261, type: 3}
+    - {fileID: 2800000, guid: 2d64aa982ad3dbf4f8ce0527e59404d1, type: 3}
+    - {fileID: 2800000, guid: a4196fb74100fda448b15cba3995d154, type: 3}
     masks: []
     dirMaps: []
     rnmMaps0: []
@@ -14964,137 +15180,137 @@ MonoBehaviour:
     - {fileID: 2118779231}
     - {fileID: 2124619387}
     bakedRenderersTerrain: []
-    bakedIDs: 0000000003000000030000000300000004000000040000000200000003000000000000000000000004000000000000000300000004000000030000000100000003000000040000000300000003000000040000000300000004000000040000000200000004000000020000000300000004000000030000000300000002000000040000000300000003000000000000000400000003000000030000000300000003000000040000000300000004000000000000000300000000000000030000000000000003000000000000000300000004000000030000000300000004000000000000000400000004000000030000000400000001000000000000000300000004000000030000000300000003000000000000000400000003000000030000000400000004000000040000000400000002000000040000000300000001000000030000000300000004000000030000000400000004000000040000000300000004000000010000000400000004000000040000000300000001000000040000000400000000000000030000000400000004000000040000000400000004000000030000000000000004000000040000000400000004000000040000000300000003000000030000000000000003000000030000000300000004000000040000000100000003000000030000000300000002000000040000000400000004000000
+    bakedIDs: 0400000002000000040000000300000003000000010000000100000004000000000000000000000004000000030000000300000003000000010000000100000004000000030000000300000003000000040000000100000003000000040000000100000003000000040000000400000004000000040000000300000001000000040000000300000003000000000000000100000003000000030000000400000003000000030000000300000003000000000000000100000000000000040000000000000000000000000000000300000004000000030000000000000001000000000000000400000001000000040000000300000001000000030000000100000000000000030000000300000001000000030000000300000001000000030000000300000004000000010000000300000001000000030000000000000001000000000000000300000003000000040000000300000001000000040000000000000000000000010000000100000003000000040000000300000001000000040000000300000000000000030000000300000003000000030000000100000004000000040000000000000001000000040000000300000001000000010000000000000000000000030000000000000003000000030000000300000000000000010000000100000003000000030000000300000001000000040000000300000003000000
     bakedIDsTerrain: 
     bakedScaleOffset:
-    - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: 0.53956175}
-    - {x: 0.1500938, y: 0.14931163, z: 0.8115821, w: 0.5305086}
-    - {x: 0.15274978, y: 0.15196763, z: 0.24157014, w: 0.79568857}
-    - {x: 0.0679152, y: 0.06713304, z: 0.00045704492, w: 0.95385283}
-    - {x: 0.07609183, y: 0.07530887, z: 0.00042464997, w: 0.9501024}
-    - {x: 0.07283839, y: 0.07205542, z: 0.33185193, w: 0.79684716}
-    - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: -0.001196822}
-    - {x: 0.16188332, y: 0.16110119, z: 0.8115343, w: 0.11491012}
-    - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.7079424}
-    - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.8538929}
-    - {x: 0.076091826, y: 0.07530885, z: 0.8127333, w: 0.5313653}
-    - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: 0.26931405}
-    - {x: 0.028314287, y: 0.02753873, z: 0.20736581, w: 0.9541251}
-    - {x: 0.082046345, y: 0.08126337, z: 0.89698553, w: 0.2658724}
-    - {x: 0.15274976, y: 0.15196761, z: 0.8115713, w: 0.26530698}
-    - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.32561085}
-    - {x: 0.0679152, y: 0.06713304, z: 0.13821259, w: 0.95385283}
-    - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.4270413}
-    - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: 0.2642747}
-    - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: 0.5294655}
-    - {x: 0.040284444, y: 0.03950147, z: 0.9372374, w: 0.23716313}
-    - {x: 0.047915094, y: 0.047132935, z: 0.94723964, w: 0.6292584}
-    - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: -0.00091711554}
-    - {x: 0.05363665, y: 0.052853677, z: 0.94170684, w: 0.00051889854}
-    - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.32561085}
-    - {x: 0.037062835, y: 0.03627986, z: 0.8128916, w: 0.7036297}
-    - {x: 0.44482183, y: 0.4439295, z: 0.49903163, w: 0.6526506}
-    - {x: 0.0679152, y: 0.06713304, z: 0.06933482, w: 0.95385283}
-    - {x: 0.22598757, y: 0.22520462, z: 0.40597105, w: 0.796226}
-    - {x: 0.17551938, y: 0.17473723, z: 0.811479, w: 0.000023799763}
-    - {x: 0.01198858, y: 0.011206423, z: 0.974293, w: 0.13190728}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.65241855}
-    - {x: 0.040284444, y: 0.03950147, z: 0.9588239, w: 0.5315105}
-    - {x: 0.03445183, y: 0.033669673, z: 0.96249956, w: 0.38915452}
-    - {x: 0.03445183, y: 0.033669673, z: 0.96249956, w: 0.41246372}
-    - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.41604152}
-    - {x: 0.04793589, y: 0.047152914, z: 0.9162603, w: 0.5818048}
-    - {x: 0.034451827, y: 0.03366967, z: 0.96249956, w: 0.43577293}
-    - {x: 0.010894435, y: 0.010864161, z: 0.9878342, w: 0.00069005496}
-    - {x: 0.24178079, y: 0.24099864, z: 0.40548107, w: 0.79532754}
-    - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: -0.0009161555}
-    - {x: 0.08342699, y: 0.082644016, z: 0.81270355, w: 0.2658668}
-    - {x: 0.07601218, y: 0.07523003, z: 0.9235093, w: 0.7175414}
-    - {x: 0.07609183, y: 0.07530887, z: 0.15441555, w: 0.9501024}
-    - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.2700911}
-    - {x: 0.1500938, y: 0.14931163, z: 0.8115821, w: 0.36537626}
-    - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.7079424}
-    - {x: 0.05358053, y: 0.052798375, z: 0.9290974, w: 0.2213336}
-    - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.8538929}
-    - {x: 0.07276215, y: 0.07198, z: 0.7213126, w: 0.9513378}
-    - {x: 0.22345729, y: 0.22266023, z: 0.41330612, w: 0.561992}
-    - {x: 0.40727708, y: 0.40649498, z: 0.40480983, w: -0.0009161555}
-    - {x: 0.076091826, y: 0.07530885, z: 0.89210963, w: 0.42549482}
-    - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: 0.2642747}
-    - {x: 0.0679152, y: 0.06713304, z: 0.47506398, w: 0.95385283}
-    - {x: 0.06798634, y: 0.067203365, z: 0.8897616, w: 0.5313981}
-    - {x: 0.22345729, y: 0.22266023, z: -0.00015982971, w: 0.81058645}
-    - {x: 0.040284444, y: 0.03950147, z: 0.9585398, w: 0.61736965}
-    - {x: 0.067986354, y: 0.06720339, z: 0.3318716, w: 0.86021566}
-    - {x: 0.2379346, y: 0.23715247, z: 0.6469538, w: 0.79534316}
-    - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: 0.5300203}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.65241855}
-    - {x: 0.41504335, y: 0.41424632, z: -0.0009368581, w: -0.0009336255}
-    - {x: 0.04791506, y: 0.047132906, z: 0.94723964, w: 0.66130227}
-    - {x: 0.123808235, y: 0.12302526, z: 0.81253976, w: 0.16575673}
-    - {x: 0.09724734, y: 0.096465185, z: 0.88516384, w: 0.93568164}
-    - {x: 0.106239974, y: 0.10545783, z: 0.88512737, w: 0.7958773}
-    - {x: 0.057522517, y: 0.05674036, z: 0.8705195, w: 0.2213176}
-    - {x: 0.41504335, y: 0.41424632, z: 0.41252905, w: -0.0009336255}
-    - {x: 0.096165635, y: 0.09538266, z: 0.23483658, w: 0.8601014}
-    - {x: 0.057522517, y: 0.05674036, z: 0.81195754, w: 0.2213176}
-    - {x: 0.0833397, y: 0.082557544, z: 0.90984577, w: 0.4639824}
-    - {x: 0.08342702, y: 0.082644045, z: 0.3191646, w: 0.92350197}
-    - {x: 0.05329278, y: 0.052509803, z: 0.93718463, w: 0.1205168}
-    - {x: 0.047935873, y: 0.047152895, z: 0.8618953, w: 0.6173386}
-    - {x: 0.07609183, y: 0.07530887, z: 0.0774201, w: 0.9501024}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: -0.001196822}
-    - {x: 0.07906999, y: 0.07828701, z: 0.89562714, w: 0.32096875}
-    - {x: 0.0679152, y: 0.06713304, z: 0.5439418, w: 0.95385283}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.32561085}
-    - {x: 0.07276215, y: 0.07198, z: 0.79500145, w: 0.9513378}
-    - {x: 0.1109828, y: 0.11020064, z: 0.81174076, w: 0.71739954}
-    - {x: 0.082046345, y: 0.08126337, z: 0.8127092, w: 0.3209567}
-    - {x: 0.15274978, y: 0.15196763, z: 0.24157014, w: 0.8957472}
-    - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.47892287}
-    - {x: 0.053292748, y: 0.05250977, z: 0.93718463, w: 0.20157655}
-    - {x: 0.12836555, y: 0.12758258, z: 0.8125213, w: 0.0002158155}
-    - {x: 0.07276218, y: 0.07198002, z: 0.6476237, w: 0.9513378}
-    - {x: 0.123808235, y: 0.12302526, z: 0.81253976, w: 0.08447386}
-    - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: 0.65241855}
-    - {x: 0.046442714, y: 0.04565974, z: 0.9109491, w: 0.6173447}
-    - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: -0.00091711554}
-    - {x: 0.05363665, y: 0.052853677, z: 0.9371832, w: 0.08475846}
-    - {x: 0.106239974, y: 0.10545783, z: 0.88512737, w: 0.8657612}
-    - {x: 0.50204253, y: 0.50115013, z: 0.4987996, w: -0.001196822}
-    - {x: 0.040284444, y: 0.03950147, z: 0.81287855, w: 0.649428}
-    - {x: 0.08342703, y: 0.08264405, z: 0.23488824, w: 0.92350197}
-    - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.2700911}
-    - {x: 0.006235356, y: 0.005453198, z: 0.9878515, w: 0.026008857}
-    - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: 0.2645516}
-    - {x: 0.07849048, y: 0.07770751, z: 0.8127236, w: 0.37515968}
-    - {x: 0.40770385, y: 0.4069209, z: -0.000920291, w: 0.5300203}
-    - {x: 0.040284444, y: 0.03950147, z: 0.81287855, w: 0.6765223}
-    - {x: 0.05363665, y: 0.052853677, z: 0.94170684, w: 0.03627583}
-    - {x: 0.24178079, y: 0.24099864, z: -0.0002481133, w: 0.79532754}
-    - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.561992}
-    - {x: 0.04793589, y: 0.047152914, z: 0.8128475, w: 0.6173386}
-    - {x: 0.076091826, y: 0.07530885, z: 0.89210963, w: 0.47582024}
-    - {x: 0.40770385, y: 0.4069209, z: 0.40523404, w: 0.2645516}
-    - {x: 0.053292762, y: 0.052509785, z: 0.93718463, w: 0.16604272}
-    - {x: 0.047935896, y: 0.047152918, z: 0.86721253, w: 0.5818048}
-    - {x: 0.0679152, y: 0.06713304, z: 0.40618622, w: 0.95385283}
-    - {x: 0.13477512, y: 0.13399296, z: 0.8116442, w: 0.6289061}
-    - {x: 0.02378571, y: 0.023003554, z: 0.9742452, w: 0.11547021}
-    - {x: 0.22345729, y: 0.22266023, z: 0.63660324, w: 0.41604152}
-    - {x: 0.040242277, y: 0.03946012, z: 0.9236544, w: 0.7679591}
-    - {x: 0.011266813, y: 0.010484654, z: 0.98783106, w: 0.012718292}
-    - {x: 0.09724734, y: 0.096465185, z: 0.8117965, w: 0.463926}
-    - {x: 0.21950574, y: 0.21872278, z: 0.6317796, w: 0.7962523}
-    - {x: 0.053292748, y: 0.05250977, z: 0.8128258, w: 0.5817831}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: -0.001196822}
-    - {x: 0.0062353937, y: 0.0054532364, z: 0.9878515, w: 0.021005921}
-    - {x: 0.40727708, y: 0.40649498, z: -0.00091932766, w: 0.5294655}
-    - {x: 0.034451865, y: 0.033669706, z: 0.96249956, w: 0.3658453}
-    - {x: 0.50204253, y: 0.50115013, z: -0.0012004413, w: 0.32561085}
-    - {x: 0.23476352, y: 0.23398055, z: -0.00021888534, w: 0.79619044}
-    - {x: 0.096165635, y: 0.09538266, z: 0.23483658, w: 0.7967525}
-    - {x: 0.07609183, y: 0.07530887, z: 0.89210963, w: 0.37516943}
+    - {x: 0.61247027, y: 0.6116871, z: -0.0017505653, w: -0.001747389}
+    - {x: 1.0041828, y: 1.0024499, z: -0.00244982, w: -0.0024427914}
+    - {x: 0.23016955, y: 0.22938634, z: 0.36246932, w: 0.84951496}
+    - {x: 0.05059079, y: 0.04980828, z: 0.91384023, w: 0.5636572}
+    - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.8341683}
+    - {x: 0.109981015, y: 0.10919816, z: 0.00028710137, w: 0.8603876}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.21442248}
+    - {x: 0.24388815, y: 0.243105, z: 0.60915077, w: 0.23679376}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.21442248}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.42944682}
+    - {x: 0.11490944, y: 0.11412625, z: 0.19364662, w: 0.8689325}
+    - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.79543823}
+    - {x: 0.020879112, y: 0.020103198, z: 0.97721565, w: 0.3987029}
+    - {x: 0.061129604, y: 0.06034709, z: 0.91379744, w: 0.59744316}
+    - {x: 0.23007147, y: 0.22928861, z: 0.6577538, w: 0.64487624}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.42944682}
+    - {x: 0.10274776, y: 0.10196457, z: 0.5929199, w: 0.91765124}
+    - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.7175777}
+    - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.39746812}
+    - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.5964532}
+    - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.8194545}
+    - {x: 0.07267656, y: 0.07189371, z: 0.41095147, w: 0.86053896}
+    - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.79543823}
+    - {x: 0.08121701, y: 0.080433816, z: 0.27586642, w: 0.9445789}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.6444711}
+    - {x: 0.027411714, y: 0.026629196, z: 0.971647, w: 0.79656494}
+    - {x: 0.29242745, y: 0.29164428, z: 0.7009875, w: 0.6278367}
+    - {x: 0.10274776, y: 0.10196457, z: 0.5929199, w: 0.85003173}
+    - {x: 0.3398176, y: 0.3390344, z: 0.3620246, w: 0.6276445}
+    - {x: 0.26436955, y: 0.26358634, z: 0.7141716, w: 0.3979818}
+    - {x: 0.008626444, y: 0.007843925, z: 0.987539, w: 0.20871145}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.42944682}
+    - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.8601076}
+    - {x: 0.025481666, y: 0.024699146, z: 0.97387064, w: 0.17774299}
+    - {x: 0.025481666, y: 0.024699146, z: 0.97343946, w: 0.67882305}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.42944682}
+    - {x: 0.072632454, y: 0.0718496, z: 0.48455688, w: 0.90862}
+    - {x: 0.025481662, y: 0.024699146, z: 0.97343946, w: 0.696313}
+    - {x: 0.007805324, y: 0.0077750357, z: 0.9875435, w: 0.1996875}
+    - {x: 0.36389437, y: 0.36311123, z: -0.0007423994, w: 0.39757815}
+    - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: -0.00050193566}
+    - {x: 0.06216448, y: 0.06138197, z: 0.9137932, w: 0.5223212}
+    - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.7964463}
+    - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.9096123}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: -0.0006018722}
+    - {x: 0.22608389, y: 0.225301, z: 0.65777004, w: 0.7951166}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.6444711}
+    - {x: 0.08121705, y: 0.08043385, z: 0.19378327, w: 0.9445789}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.6444711}
+    - {x: 0.109981015, y: 0.10919816, z: 0.51577634, w: 0.8603876}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.21442248}
+    - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: -0.00050193566}
+    - {x: 0.11490944, y: 0.11412625, z: 0.8532247, w: 0.23731686}
+    - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: -0.00050193566}
+    - {x: 0.10270399, y: 0.101921126, z: 0.51580584, w: 0.93272907}
+    - {x: 0.10270396, y: 0.1019211, z: 0.11095035, w: 0.8604172}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: -0.0006018722}
+    - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.9007607}
+    - {x: 0.10270398, y: 0.10192112, z: 0.00031661533, w: 0.93272907}
+    - {x: 0.3581174, y: 0.35733423, z: -0.0007189694, w: 0.63464785}
+    - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.5964532}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.21442248}
+    - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.79543823}
+    - {x: 0.07267652, y: 0.07189366, z: 0.41095147, w: 0.9086485}
+    - {x: 0.18642513, y: 0.18564229, z: 0.65793085, w: 0.8600776}
+    - {x: 0.07260006, y: 0.07181755, z: 0.91375095, w: 0.24748604}
+    - {x: 0.07934766, y: 0.07856514, z: 0.9137235, w: 0.055160202}
+    - {x: 0.0871008, y: 0.086317934, z: 0.21442415, w: 0.8604804}
+    - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.5964532}
+    - {x: 0.07171288, y: 0.07093036, z: 0.9137545, w: 0.343033}
+    - {x: 0.0871008, y: 0.086317934, z: 0.11101363, w: 0.9280711}
+    - {x: 0.06216451, y: 0.061382, z: 0.9137932, w: 0.39845395}
+    - {x: 0.062164504, y: 0.061381992, z: 0.9137932, w: 0.4810321}
+    - {x: 0.08070105, y: 0.079917856, z: 0.87908274, w: 0.57120323}
+    - {x: 0.072632425, y: 0.07184957, z: 0.55811834, w: 0.90862}
+    - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.8718903}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.21442248}
+    - {x: 0.05889864, y: 0.058116127, z: 0.9138065, w: 0.16011746}
+    - {x: 0.10270399, y: 0.101921126, z: 0.84478277, w: 0.93272907}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: -0.0006018722}
+    - {x: 0.109981015, y: 0.10919816, z: 0.8447532, w: 0.8603876}
+    - {x: 0.082906425, y: 0.0821239, z: 0.9137091, w: 0.00039975627}
+    - {x: 0.061129604, y: 0.06034709, z: 0.91379744, w: 0.6380608}
+    - {x: 0.23016955, y: 0.22938634, z: 0.70124006, w: 0.81876916}
+    - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.75646615}
+    - {x: 0.08066662, y: 0.079883754, z: 0.32938287, w: 0.86050653}
+    - {x: 0.19334255, y: 0.19255938, z: -0.00005068102, w: 0.8686144}
+    - {x: 0.10998105, y: 0.10919818, z: 0.20333605, w: 0.8603876}
+    - {x: 0.18642513, y: 0.18564229, z: 0.32895395, w: 0.8600776}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.6444711}
+    - {x: 0.07039301, y: 0.06961015, z: 0.88823724, w: 0.64552385}
+    - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.19848311}
+    - {x: 0.08121701, y: 0.080433816, z: 0.79699755, w: 0.57120115}
+    - {x: 0.07934766, y: 0.07856514, z: 0.9137235, w: 0.10759737}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: -0.0006018722}
+    - {x: 0.061182953, y: 0.060399752, z: 0.9318592, w: 0.94141376}
+    - {x: 0.06216451, y: 0.061382, z: 0.9137932, w: 0.439743}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.21442248}
+    - {x: 0.0043095318, y: 0.0035270122, z: 0.99425423, w: 0.059218474}
+    - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.19848311}
+    - {x: 0.058464266, y: 0.057681754, z: 0.9138082, w: 0.6786893}
+    - {x: 0.30522984, y: 0.30444735, z: 0.3039324, w: 0.39746812}
+    - {x: 0.061156888, y: 0.060374018, z: 0.41099823, w: 0.9568047}
+    - {x: 0.08121701, y: 0.080433816, z: 0.71491444, w: 0.57120115}
+    - {x: 0.36389437, y: 0.36311123, z: 0.608664, w: -0.000739223}
+    - {x: 0.32995147, y: 0.3291686, z: 0.65734875, w: 0.42944682}
+    - {x: 0.072632454, y: 0.0718496, z: 0.55811834, w: 0.86053914}
+    - {x: 0.11490944, y: 0.11412625, z: 0.8532247, w: 0.31282663}
+    - {x: 0.30522984, y: 0.30444735, z: 0.6083699, w: 0.39746812}
+    - {x: 0.08066665, y: 0.07988378, z: 0.21445023, w: 0.91797423}
+    - {x: 0.07263246, y: 0.0718496, z: 0.48455688, w: 0.86053914}
+    - {x: 0.10270399, y: 0.101921126, z: 0.20336555, w: 0.93272907}
+    - {x: 0.20308498, y: 0.2023021, z: -0.000090506524, w: 0.86001}
+    - {x: 0.01747838, y: 0.01669586, z: 0.9771447, w: 0.41324538}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: 0.6444711}
+    - {x: 0.029826509, y: 0.029043991, z: 0.96560663, w: 0.5637414}
+    - {x: 0.008084868, y: 0.0073023485, z: 0.9875412, w: 0.21526831}
+    - {x: 0.07260006, y: 0.07181755, z: 0.91375095, w: 0.19942659}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: -0.0006018722}
+    - {x: 0.08066662, y: 0.079883754, z: 0.32938287, w: 0.9137999}
+    - {x: 0.32995147, y: 0.3291686, z: -0.00060504733, w: -0.0006018722}
+    - {x: 0.00430956, y: 0.0035270408, z: 0.99425423, w: 0.05546454}
+    - {x: 0.30522984, y: 0.30444735, z: -0.0005051093, w: 0.19848311}
+    - {x: 0.02548169, y: 0.024699176, z: 0.97387064, w: 0.16025299}
+    - {x: 0.32995147, y: 0.3291686, z: 0.32837182, w: 0.42944682}
+    - {x: 0.3529853, y: 0.35220215, z: 0.3619712, w: 0.3976224}
+    - {x: 0.07171288, y: 0.07093036, z: 0.9137545, w: 0.29554912}
+    - {x: 0.056666337, y: 0.05588382, z: 0.9138155, w: 0.9473343}
     bakedScaleOffsetTerrain: []
     bakedVertexColorMesh:
     - {fileID: 0}
@@ -15598,6 +15814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1173239438
 MeshRenderer:
@@ -15764,6 +15981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1184125377
 MeshRenderer:
@@ -15940,6 +16158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1194679908
 MeshRenderer:
@@ -16088,6 +16307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1209877048
 GameObject:
@@ -16401,10 +16621,10 @@ MonoBehaviour:
   m_Script: {fileID: -1988819218, guid: f389002fcd463a4322b6940096404f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMode: sandbox
+  GameMode: 
   IsSpawnLockingEnabled: 1
-  AreHitBoxesEnabled: 0
-  DoesDamageGetRegistered: 0
+  AreHitBoxesEnabled: 1
+  DoesDamageGetRegistered: 1
   MaxPointingDistance: 2
   MaxProjectileRange: 500
   ForcesCasingDespawn: 0
@@ -16426,7 +16646,7 @@ MonoBehaviour:
   PlayerDeathFade: 3
   PlayerRespawnLoadDelay: 3.5
   SceneToLoadOnDeath: 
-  DoesUseHealthBar: 0
+  DoesUseHealthBar: 1
   IsQuickbeltSwappingAllowed: 1
   AreQuickbeltSlotsEnabled: 1
   ConfigQuickbeltOnLoad: 0
@@ -16470,8 +16690,10 @@ MonoBehaviour:
   - {fileID: 1494397185}
   - {fileID: 967138736}
   NumToCheckAFrame: 10
+  hasEnvironmentsToCheck: 0
   CurrentReverbEnvironment: {fileID: 604591906}
   DefaultEnvironment: {fileID: 604591906}
+  m_lowestPriority: 100
 --- !u!1 &1237426077
 GameObject:
   m_ObjectHideFlags: 0
@@ -16517,6 +16739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1237426080
 MeshRenderer:
@@ -16909,6 +17132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1266453535
 MeshRenderer:
@@ -17057,6 +17281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1282766578
 GameObject:
@@ -17103,6 +17328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1282766581
 MeshRenderer:
@@ -17465,46 +17691,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1341373262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: SampleSandbox_LMA3
-  m_EditorClassIdentifier: 
-  resolution: 2048
-  bitmask: 1
-  id: 1
-  sortingID: 4
-  isImplicit: 1
-  area: 0
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  sceneName: 
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!1 &1346493924
 GameObject:
   m_ObjectHideFlags: 0
@@ -17848,6 +18034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1394516450
 MeshRenderer:
@@ -18073,6 +18260,11 @@ Prefab:
       propertyPath: m_Name
       value: Target Close
       objectReference: {fileID: 0}
+    - target: {fileID: 114667595052438646, guid: 5fd65f4e361488b45a8153552ac23dfe,
+        type: 2}
+      propertyPath: Manager
+      value: 
+      objectReference: {fileID: 2080529993}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fd65f4e361488b45a8153552ac23dfe, type: 2}
   m_IsPrefabParent: 0
@@ -18200,6 +18392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1425348163
 GameObject:
@@ -18328,6 +18521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1450942808
 MeshRenderer:
@@ -18425,6 +18619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1453725373
 MeshRenderer:
@@ -18746,6 +18941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1475871575
 MeshRenderer:
@@ -18843,6 +19039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1481523753
 MeshRenderer:
@@ -19042,13 +19239,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxPointingRange: 5
+  PointingHands: []
+  m_isBeingPointedAt: 0
   ColorUnselected: {r: 1, g: 1, b: 1, a: 1}
   ColorSelected: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
   Button: {fileID: 1495982801}
   Image: {fileID: 1495982802}
   Text: {fileID: 0}
   Rend: {fileID: 0}
+  m_usesRend: 0
   ColorName: _Color
+  m_scaleTick: 0
 --- !u!114 &1495982801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19255,6 +19456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1517173401
 MeshRenderer:
@@ -19353,6 +19555,46 @@ MonoBehaviour:
   m_type: 0
   m_densityFixed: {x: 3, y: 2, z: 3}
   m_densityFloat: {x: 4.95, y: 3.5, z: 5.22}
+--- !u!114 &1560144953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: SampleSandbox_LM0
+  m_EditorClassIdentifier: 
+  resolution: 4096
+  bitmask: 1
+  id: 3
+  sortingID: 1
+  isImplicit: 1
+  area: 32241.436
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  sceneName: 
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &1572261202
 GameObject:
   m_ObjectHideFlags: 0
@@ -19560,6 +19802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1596766202
 GameObject:
@@ -19606,6 +19849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1596766205
 MeshRenderer:
@@ -19703,6 +19947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1615117908
 MeshRenderer:
@@ -20109,6 +20354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1627096228
 GameObject:
@@ -20427,6 +20673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &1652677233
 GameObject:
@@ -20473,6 +20720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1652677236
 MeshRenderer:
@@ -20570,6 +20818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1668218371
 MeshRenderer:
@@ -20718,6 +20967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1680750204
 GameObject:
@@ -20764,6 +21014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!23 &1680750207
 MeshRenderer:
@@ -20861,6 +21112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1710720295
 MeshRenderer:
@@ -20954,6 +21206,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
+--- !u!114 &1716421324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: SampleSandbox_LMA2
+  m_EditorClassIdentifier: 
+  resolution: 2048
+  bitmask: 1
+  id: 0
+  sortingID: 3
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  sceneName: 
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &1719429481
 GameObject:
   m_ObjectHideFlags: 0
@@ -21050,6 +21342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1724601724
 GameObject:
@@ -21091,9 +21384,13 @@ MonoBehaviour:
   UseGripRotInterp: 1
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
   UXGeo_Held: {fileID: 0}
@@ -21101,6 +21398,10 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
   ObjectWrapper: {fileID: 0}
   SpawnLockable: 0
   Harnessable: 0
@@ -21115,6 +21416,10 @@ MonoBehaviour:
   ThrowAngMultiplier: 1
   MoveIntensity: 1
   RotIntensity: 1
+  AttachedRotationMultiplier: 60
+  AttachedPositionMultiplier: 9000
+  AttachedRotationFudge: 10000
+  AttachedPositionFudge: 10000
   UsesGravity: 0
   DependantRBs: []
   DistantGrabbable: 0
@@ -21123,8 +21428,18 @@ MonoBehaviour:
   IsKinematicLocked: 1
   DoesQuickbeltSlotFollowHead: 0
   IsInWater: 0
+  m_storedCOMLocal: {x: 0, y: 0, z: 0}
   AttachmentMounts: []
+  AttachmentsList: []
+  m_quickbeltSlot: {fileID: 0}
+  m_timeSinceInQuickbelt: 10
+  m_altGrip: {fileID: 0}
+  savedGrip: {fileID: 0}
   IsAltToAltTransfer: 0
+  m_bipod: {fileID: 0}
+  m_isPivotLocked: 0
+  m_pivotLockedPos: {x: 0, y: 0, z: 0}
+  m_pivotLockedRot: {x: 0, y: 0, z: 0, w: 1}
   CollisionSound:
     Clips: []
     ColSoundCooldown: 0.65
@@ -21132,9 +21447,14 @@ MonoBehaviour:
     m_hasCollisionSound: 0
     m_audioCollision: {fileID: 0}
     m_colSoundTick: 1
+  m_IDSpawnedFrom: {fileID: 0}
   IsPickUpLocked: 0
+  m_doesDirectParent: 1
   OverridesObjectToHand: 0
+  audioImpactController: {fileID: 0}
+  m_hasImpactController: 0
   MP:
+    m_obj: {fileID: 0}
     IsMeleeWeapon: 0
     IgnoreRBs: []
     HandPoint: {fileID: 0}
@@ -21147,8 +21467,11 @@ MonoBehaviour:
     HighDamageVectors: []
     DoesCyclePosePoints: 0
     PosePoints: []
+    m_poseIndex: 0
     IsThrownDisposable: 0
+    m_isCountingDownToDispose: 0
     m_isThrownAutoAim: 0
+    m_countDownToDestroy: 10
     ThrownDetectMask:
       serializedVersion: 2
       m_Bits: 0
@@ -21165,6 +21488,14 @@ MonoBehaviour:
     StabVelocityRequirement: 1
     CanTearOut: 0
     TearOutVelThreshold: 3
+    m_isJointedToObject: 0
+    m_stabJoint: {fileID: 0}
+    m_stabTargetRB: {fileID: 0}
+    m_initialStabPointWorld: {x: 0, y: 0, z: 0}
+    m_initialStabPointLocal: {x: 0, y: 0, z: 0}
+    m_relativeStabDir: {x: 0, y: 0, z: 0}
+    m_stabbedLink: {fileID: 0}
+    m_initialPosOfStabbedThingLocal: {x: 0, y: 0, z: 0}
     CanNewLodge: 0
     LodgeDepth: 0.04
     MassWhileLodged: 10
@@ -21172,6 +21503,10 @@ MonoBehaviour:
     LodgeColliders: []
     LodgeVelocityRequirement: 4
     DeLodgeVelocityRequirement: 1
+    m_isLodgedToObject: 0
+    m_lodgeJoint: {fileID: 0}
+    m_lodgeTargetRB: {fileID: 0}
+    m_initialLodgeNormal: {x: 0, y: 0, z: 0}
     UsesSweepTesting: 0
     UsesSweepDebug: 0
     TestCols: []
@@ -21180,6 +21515,28 @@ MonoBehaviour:
     LM_DamageTest:
       serializedVersion: 2
       m_Bits: 0
+    m_isReadyToAim: 0
+    m_lastHandPoint: {x: 0, y: 0, z: 0}
+    m_lastEndPoint: {x: 0, y: 0, z: 0}
+    handPointVelocity: {x: 0, y: 0, z: 0}
+    endPointVelocity: {x: 0, y: 0, z: 0}
+    m_pointDistance: 0
+    m_lastangFlick: 0
+    m_lastangFlickLinear: 0
+    m_SweepPointStart: {x: 0, y: 0, z: 0}
+    m_SweepPointEnd: {x: 0, y: 0, z: 0}
+    m_lastSweepPointStart: {x: 0, y: 0, z: 0}
+    m_lastSweepPointEnd: {x: 0, y: 0, z: 0}
+    m_timeSinceLastDamageDone: 0
+    timeSinceStateChange: 10
+    stabDistantPoint: {x: 1, y: 1, z: 1}
+    stabInsidePoint: {x: 1, y: 1, z: 1}
+    m_initialMass: 0
+    m_initRot: 0
+  CheckDestroyTick: 1
+  fakeHandPosWorld: {x: 0, y: 0, z: 0}
+  fakeHandVelWorld: {x: 0, y: 0, z: 0}
+  m_timeSinceFakeVelWorldTransfered: 1
   Team: 0
   RespawnDelay: 10
   FloorOffset: {x: 0, y: 0.25, z: 0}
@@ -21488,47 +21845,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
---- !u!114 &1743334060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: SampleSandbox_LMA1
-  m_EditorClassIdentifier: 
-  resolution: 4096
-  bitmask: 1
-  id: 4
-  sortingID: 2
-  isImplicit: 1
-  area: 0
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  sceneName: 
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!1 &1747652003
 GameObject:
   m_ObjectHideFlags: 0
@@ -21574,6 +21892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1747652006
 MeshRenderer:
@@ -21877,6 +22196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &1787689008
 GameObject:
@@ -21951,6 +22271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1794482201
 MeshRenderer:
@@ -22048,6 +22369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1795272262
 MeshRenderer:
@@ -22239,6 +22561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -2101361410
 --- !u!23 &1820033989
 MeshRenderer:
@@ -22510,6 +22833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1827680574
 MeshRenderer:
@@ -22780,6 +23104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1849330208
 MeshRenderer:
@@ -22877,6 +23202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1856982035
 MeshRenderer:
@@ -23025,6 +23351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1001 &1866453729
 Prefab:
@@ -23122,6 +23449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &1883367105
 MeshRenderer:
@@ -23219,6 +23547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1898748489
 MeshRenderer:
@@ -23357,6 +23686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &1914395528
 MeshRenderer:
@@ -23536,6 +23866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!23 &1922518121
 MeshRenderer:
@@ -24036,6 +24367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &1969595042
 GameObject:
@@ -24174,9 +24506,13 @@ MonoBehaviour:
   UseGripRotInterp: 0
   PositionInterpSpeed: 1
   RotationInterpSpeed: 1
+  m_grabPointTransform: {fileID: 0}
+  m_pos_interp_tick: 0
+  m_rot_interp_tick: 0
   EndInteractionIfDistant: 0
   EndInteractionDistance: 0.25
   m_hasTriggeredUpSinceBegin: 0
+  triggerCooldown: 0.5
   m_hand: {fileID: 0}
   UXGeo_Hover: {fileID: 0}
   UXGeo_Held: {fileID: 0}
@@ -24184,9 +24520,17 @@ MonoBehaviour:
   UseFilteredHandPosition: 0
   UseFilteredHandRotation: 0
   UseSecondStepRotationFiltering: 0
+  SecondStepFilteredRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_isHovered: 0
+  m_isHeld: 0
+  m_colliders: []
+  m_lastHandPos: {x: 0, y: 0, z: 0}
   CanSlideOn: 1
   SlidePoint0: {fileID: 1728734904}
   SlidePoint1: {fileID: 2049928523}
+  m_slideSpeed: 0
+  isTowards1: 1
+  m_isSliding: 0
   ConnectedGrabPoint_Base: {fileID: 0}
   ConnectedGrabPoint_End: {fileID: 0}
 --- !u!23 &1978934389
@@ -24340,6 +24684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &1991676237
 MeshRenderer:
@@ -24692,6 +25037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &2019817975
 GameObject:
@@ -24738,6 +25084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &2019817978
 MeshRenderer:
@@ -24971,6 +25318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!1 &2049928522
 GameObject:
@@ -25196,6 +25544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1487240928
 --- !u!1 &2080507749
 GameObject:
@@ -25344,6 +25693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &2085969878
 MeshRenderer:
@@ -25535,6 +25885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &2110866028
 MeshRenderer:
@@ -25726,6 +26077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 892418936
 --- !u!23 &2112378084
 MeshRenderer:
@@ -25823,6 +26175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: 1454812933
 --- !u!23 &2118779231
 MeshRenderer:
@@ -25875,46 +26228,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2118779228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2120948587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: SampleSandbox_LMA2
-  m_EditorClassIdentifier: 
-  resolution: 4096
-  bitmask: 1
-  id: 0
-  sortingID: 3
-  isImplicit: 1
-  area: 0
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  sceneName: 
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!1 &2124619384
 GameObject:
   m_ObjectHideFlags: 0
@@ -25960,6 +26273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 0}
+  m_condition: 1
   AtlasMatDef: -1898909600
 --- !u!23 &2124619387
 MeshRenderer:
@@ -26120,3 +26434,7 @@ MonoBehaviour:
   m_radius: 0
   m_length: 0
   m_hasSpecularHightlight: 1
+  m_light: {fileID: 2142587435}
+  m_lastColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 0.000011111111}
+  m_lastIntensity: 0.9
+  m_lastRange: 10

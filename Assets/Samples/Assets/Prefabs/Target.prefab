@@ -136,5 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Manager: {fileID: 0}
   Range: 1
-  Pivot: {fileID: 0}
-  SetRotation: {x: 0, y: 0, z: 0}
+  Pivot: {fileID: 4924203563972016}
+  SetRotation: {x: -90, y: 0, z: 0}

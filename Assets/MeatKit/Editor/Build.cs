@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -41,6 +41,8 @@ namespace MeatKit
             BuildProfile profile = BuildWindow.SelectedProfile;
             if (!profile) return;
 
+            string bundleOutputPath = profile.ExportPath;
+
             // Start a stopwatch to time the build
             Stopwatch sw = Stopwatch.StartNew();
 
@@ -48,21 +50,21 @@ namespace MeatKit
             if (!profile.EnsureValidForEditor()) return;
 
             // Clean the output folder
-            CleanBuild();
+            CleanBuild(profile);
 
-            // And export the assembly to the folder
-            ExportEditorAssembly(BundleOutputPath);
-
+            // Make a copy of the editor assembly because when we build an asset bundle, Unity will delete it
+            string editorAssembly = EditorAssemblyPath + AssemblyName + ".dll";
+            string tempAssemblyFile = Path.GetTempFileName();
+            File.Copy(editorAssembly, tempAssemblyFile, true);
+            
             // Then get their asset bundle configurations
             var bundles = profile.BuildItems.SelectMany(x => x.ConfigureBuild()).ToArray();
-
-            BuildPipeline.BuildAssetBundles(BundleOutputPath, bundles, BuildAssetBundleOptions.None,
+            BuildPipeline.BuildAssetBundles(bundleOutputPath, bundles, BuildAssetBundleOptions.None,
                 BuildTarget.StandaloneWindows64);
-
             // Cleanup the unused files created with building the bundles
-            foreach (var file in Directory.GetFiles(BundleOutputPath, "*.manifest"))
+            foreach (var file in Directory.GetFiles(bundleOutputPath, "*.manifest"))
                 File.Delete(file);
-            File.Delete(Path.Combine(BundleOutputPath, "AssetBundles"));
+            File.Delete(Path.Combine(bundleOutputPath, profile.Version));
 
             // With the bundles done building we can process them
             var replaceMap = new Dictionary<string, string>
@@ -73,14 +75,18 @@ namespace MeatKit
                 {"H3VRCode-CSharp-firstpass.dll", "Assembly-CSharp-firstpass.dll"}
             };
 
+            Dictionary<string, List<string>> requiredScripts = new Dictionary<string, List<string>>();
             foreach (var bundle in bundles)
             {
-                var path = Path.Combine(BundleOutputPath, bundle.assetBundleName);
-                ProcessBundle(path, path, replaceMap, profile.BundleCompressionType);
+                var path = Path.Combine(bundleOutputPath, bundle.assetBundleName);
+                ProcessBundle(path, path, replaceMap, profile.BundleCompressionType, requiredScripts);
             }
 
+            // And export the assembly to the folder
+            ExportEditorAssembly(bundleOutputPath, tempAssemblyFile, requiredScripts);
+            
             // Now we can write the Thunderstore stuff to the folder
-            profile.WriteThunderstoreManifest(BundleOutputPath + "manifest.json");
+            profile.WriteThunderstoreManifest(bundleOutputPath + "manifest.json");
 
             // Check if the icon is already 256x256
             Texture2D icon = profile.Icon;
@@ -102,10 +108,10 @@ namespace MeatKit
             }
 
             // Write the texture to file
-            File.WriteAllBytes(BundleOutputPath + "icon.png", icon.EncodeToPNG());
+            File.WriteAllBytes(bundleOutputPath + "icon.png", icon.EncodeToPNG());
 
             // Copy the readme
-            File.Copy(AssetDatabase.GetAssetPath(profile.ReadMe), BundleOutputPath + "README.md");
+            File.Copy(AssetDatabase.GetAssetPath(profile.ReadMe), bundleOutputPath + "README.md");
 
             string packageName = profile.Author + "-" + profile.PackageName;
             if (profile.BuildAction == BuildAction.CopyToProfile)
@@ -113,14 +119,14 @@ namespace MeatKit
                 string pluginFolder = Path.Combine(profile.OutputProfile, "BepInEx/plugins/" + packageName);
                 if (Directory.Exists(pluginFolder)) Directory.Delete(pluginFolder, true);
                 Directory.CreateDirectory(pluginFolder);
-                Extensions.CopyFilesRecursively(BundleOutputPath, pluginFolder);
+                Extensions.CopyFilesRecursively(bundleOutputPath, pluginFolder);
             }
             else if (profile.BuildAction == BuildAction.CreateThunderstorePackage)
             {
                 using (var zip = new ZipFile())
                 {
-                    zip.AddDirectory(BundleOutputPath, "");
-                    zip.Save(Path.Combine(BundleOutputPath, packageName + ".zip"));
+                    zip.AddDirectory(bundleOutputPath, "");
+                    zip.Save(Path.Combine(bundleOutputPath, packageName + "-" + profile.Version + ".zip"));
                 }
             }
 
@@ -129,10 +135,11 @@ namespace MeatKit
             MeatKitCache.LastBuildTime = DateTime.Now;
         }
 
-        public static void CleanBuild()
+        public static void CleanBuild(BuildProfile profile)
         {
-            if (Directory.Exists(BundleOutputPath)) Directory.Delete(BundleOutputPath, true);
-            Directory.CreateDirectory(BundleOutputPath);
+            string outputPath = profile.ExportPath;
+            if (Directory.Exists(outputPath)) Directory.Delete(outputPath, true);
+            Directory.CreateDirectory(outputPath);
         }
     }
 }
