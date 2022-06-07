@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1918BAR
   m_EditorClassIdentifier: 
+  DisplayName: M1918 BAR
   Description: 
   DefaultSpawners:
   - M1918BAR
   - MagazineM1918BAR
   UpgradedWeapon: {fileID: 11400000, guid: b24e749535983434c9b315cc3a425573, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 3
+  Price: 3200
   AmmoBuyCost: 700

@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1Carbine
   m_EditorClassIdentifier: 
+  DisplayName: M1 Carbine
   Description: 
   DefaultSpawners:
   - M1Carbine
   - MagazineM1Carbine
   UpgradedWeapon: {fileID: 11400000, guid: cf5110d178666dd49bbc1cfc6a2df15a, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4
+  Price: 600
   AmmoBuyCost: 500

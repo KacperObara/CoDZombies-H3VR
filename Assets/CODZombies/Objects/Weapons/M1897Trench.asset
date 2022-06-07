@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1897Trench
   m_EditorClassIdentifier: 
+  DisplayName: M1897 Trench
   Description: 
   DefaultSpawners:
   - M1897Trench
   - 12GaugeShell00Buckshot
   UpgradedWeapon: {fileID: 11400000, guid: 9e8d5fa6dd2c61342a86b1d894fc1d0d, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 18
+  Price: 1500
   AmmoBuyCost: 800

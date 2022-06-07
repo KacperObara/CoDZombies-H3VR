@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: LeeEnfieldNo4Mk1
   m_EditorClassIdentifier: 
+  DisplayName: Lee Enfield
   Description: 
   DefaultSpawners:
   - LeeEnfieldNo4Mk1
   - MagazineLeeEnfield
   UpgradedWeapon: {fileID: 11400000, guid: 337ca1a76ca72864799c3c6bacf3b18e, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4
   AmmoBuyCost: 0

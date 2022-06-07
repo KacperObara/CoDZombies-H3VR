@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 75c450dde98853749b104cae484585aa
+timeCreated: 1633445612
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: //RootNode
+    100004: Light
+    100006: mc_mtl_p7_zm_vending_doubletap2_back
+    100008: mc_mtl_p7_zm_vending_doubletap2_front_bottom
+    100010: mc_mtl_p7_zm_vending_doubletap2_front_top
+    100012: mc_mtl_p7_zm_vending_doubletap2_side_bottom
+    100014: mc_mtl_p7_zm_vending_doubletap2_side_top
+    100016: mc_mtl_p7_zm_vending_doubletap2_sign
+    400000: Camera
+    400002: //RootNode
+    400004: Light
+    400006: mc_mtl_p7_zm_vending_doubletap2_back
+    400008: mc_mtl_p7_zm_vending_doubletap2_front_bottom
+    400010: mc_mtl_p7_zm_vending_doubletap2_front_top
+    400012: mc_mtl_p7_zm_vending_doubletap2_side_bottom
+    400014: mc_mtl_p7_zm_vending_doubletap2_side_top
+    400016: mc_mtl_p7_zm_vending_doubletap2_sign
+    2300000: mc_mtl_p7_zm_vending_doubletap2_back
+    2300002: mc_mtl_p7_zm_vending_doubletap2_front_bottom
+    2300004: mc_mtl_p7_zm_vending_doubletap2_front_top
+    2300006: mc_mtl_p7_zm_vending_doubletap2_side_bottom
+    2300008: mc_mtl_p7_zm_vending_doubletap2_side_top
+    2300010: mc_mtl_p7_zm_vending_doubletap2_sign
+    3300000: mc_mtl_p7_zm_vending_doubletap2_back
+    3300002: mc_mtl_p7_zm_vending_doubletap2_front_bottom
+    3300004: mc_mtl_p7_zm_vending_doubletap2_front_top
+    3300006: mc_mtl_p7_zm_vending_doubletap2_side_bottom
+    3300008: mc_mtl_p7_zm_vending_doubletap2_side_top
+    3300010: mc_mtl_p7_zm_vending_doubletap2_sign
+    4300000: mc_mtl_p7_zm_vending_doubletap2_side_bottom
+    4300002: mc_mtl_p7_zm_vending_doubletap2_front_top
+    4300004: mc_mtl_p7_zm_vending_doubletap2_front_bottom
+    4300006: mc_mtl_p7_zm_vending_doubletap2_back
+    4300008: mc_mtl_p7_zm_vending_doubletap2_side_top
+    4300010: mc_mtl_p7_zm_vending_doubletap2_sign
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

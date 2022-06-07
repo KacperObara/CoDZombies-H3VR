@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9ca90819b143909ef3b06721bb54cc, type: 3}
   m_Name: CODZombiesBuildSettings
   m_EditorClassIdentifier: 
-  SceneFile: {fileID: 102900000, guid: ef30ae312930ee24bb8757523a4e9657, type: 3}
-  SceneName: Sample Sandbox
+  SceneFile: {fileID: 102900000, guid: f1da1eba2d1ca934a94109157024aa0c, type: 3}
+  SceneName: CODZombies
   GameMode: sandbox
   DisplayMode: sandbox
-  Thumbnail: {fileID: 2800000, guid: bc8e2aa22ae86414da9a9146b749e1c5, type: 3}
-  Author: Nathan Gill
-  Description: Explore what Atlas has to offer in this sample sandbox scene with example
-    areas and two minigames!
+  Thumbnail: {fileID: 2800000, guid: 3bf2e05c80b5b724ba9490e9805a0349, type: 3}
+  Author: Kodeman
+  Description: Perk info and the changelog are available on the Thunderstore page\n\nCreated
+    with the help of Arpy, Frityet and Sora101Ven\r\nSpecial thanks to devyndamonster
+    and nrgill28 \nfor making the tools that made this mod possible

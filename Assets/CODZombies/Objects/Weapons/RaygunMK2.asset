@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: RaygunMK2
   m_EditorClassIdentifier: 
+  DisplayName: Raygun Mk2
   Description: 
   DefaultSpawners:
   - aftr_raygunmk2

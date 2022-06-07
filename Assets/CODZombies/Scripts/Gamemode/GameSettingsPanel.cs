@@ -1,5 +1,6 @@
 #if H3VR_IMPORTED
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -61,6 +62,11 @@ namespace CustomScripts
 
             WeakerZombiesEnabledText.color = GameSettings.WeakerEnemiesEnabled ? EnabledColor : DisabledColor;
             WeakerZombiesDisabledText.color = GameSettings.WeakerEnemiesEnabled ? DisabledColor : EnabledColor;
+
+            foreach (var lootPool in GameSettings.Instance.LootPoolChoices)
+            {
+                lootPool.LootChoiceText.color = lootPool.IsEnabled ? EnabledColor : DisabledColor;
+            }
         }
     }
 }

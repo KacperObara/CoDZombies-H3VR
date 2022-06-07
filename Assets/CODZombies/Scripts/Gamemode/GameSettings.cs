@@ -1,5 +1,6 @@
 #if H3VR_IMPORTED
 using System;
+using System.Collections.Generic;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,9 @@ namespace CustomScripts
     {
         public static Action OnSettingsChanged;
         public static Action OnMusicSettingChanged;
+
+        public LootPool CurrentLootPool;
+        public List<LootPoolChoice> LootPoolChoices;
 
         public static bool HardMode;
         public static bool UseCustomEnemies;
@@ -171,6 +175,20 @@ namespace CustomScripts
 
             if (OnMusicSettingChanged != null)
                 OnMusicSettingChanged.Invoke();
+
+            if (OnSettingsChanged != null)
+                OnSettingsChanged.Invoke();
+        }
+
+        public void ChangeLootPool(LootPoolChoice newLootPool)
+        {
+            foreach (var lootPool in LootPoolChoices)
+            {
+                lootPool.IsEnabled = false;
+            }
+
+            newLootPool.IsEnabled = true;
+            CurrentLootPool = newLootPool.LootPool;
 
             if (OnSettingsChanged != null)
                 OnSettingsChanged.Invoke();

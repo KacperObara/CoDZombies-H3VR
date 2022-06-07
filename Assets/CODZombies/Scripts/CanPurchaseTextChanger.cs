@@ -74,5 +74,6 @@ namespace CustomScripts
             GameManager.OnPointsChanged -= UpdateTexts;
             GameManager.OnPowerEnabled -= UpdateTexts;
         }
+
     }
 }

@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: Stielhandgranate (LimitedAmmo)
   m_EditorClassIdentifier: 
+  DisplayName: Grenade
   Description: 
   DefaultSpawners:
   - Stielhandgranate
   UpgradedWeapon: {fileID: 11400000, guid: 0dab44436b357c140a83b8b06d61f431, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 0
+  Price: 1000
   AmmoBuyCost: 100

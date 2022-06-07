@@ -7,4 +7,5 @@ public class Location : MonoBehaviour
 {
 	public List<Transform> ZombieSpawnPoints;
 	public List<Transform> SpecialZombieSpawnPoints;
+
 }

@@ -12,12 +12,15 @@ namespace CustomScripts.Objects
 {
     public class WallShop : MonoBehaviour, IPurchasable
     {
+        [Header("LootPool asset defines which weapon can be purchased")]
+
+        public int ID;
+
         private const int AMMO_SPAWNER_ID = 1;
         public bool ExistsInLimitedAmmo = true;
         public bool ExistsInSpawnlock = true;
 
-        public string Name;
-        public int Cost;
+        [HideInInspector] public int Cost;
 
         public int PurchaseCost { get { return Cost; } }
         [SerializeField] private bool _isOneTimeOnly;
@@ -31,7 +34,7 @@ namespace CustomScripts.Objects
 
         public List<ObjectSpawnPoint> ItemSpawners;
 
-        public WeaponData Weapon;
+        [HideInInspector] public WeaponData Weapon;
 
         public bool SameRebuy = false;
 
@@ -47,9 +50,18 @@ namespace CustomScripts.Objects
             RoundManager.OnGameStarted -= OnRoundStarted;
         }
 
-        private void OnValidate()
+        private void LoadWeapon()
         {
-            NameText.text = Name;
+            if (ID >= GameSettings.Instance.CurrentLootPool.WallShopsPool.Count)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            Weapon = GameSettings.Instance.CurrentLootPool.WallShopsPool[ID];
+            Cost = Weapon.Price;
+
+            NameText.text = Weapon.DisplayName;
             CostText.text = Cost.ToString();
         }
 
@@ -60,6 +72,8 @@ namespace CustomScripts.Objects
 
             if (!GameSettings.LimitedAmmo && !ExistsInSpawnlock)
                 gameObject.SetActive(false);
+
+            LoadWeapon();
         }
 
         public void TryBuying()

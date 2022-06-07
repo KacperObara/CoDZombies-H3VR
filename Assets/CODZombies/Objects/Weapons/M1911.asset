@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: M1911
   m_EditorClassIdentifier: 
+  DisplayName: M1911
   Description: 
   DefaultSpawners:
   - M1911
   - MagazineM1911
   UpgradedWeapon: {fileID: 11400000, guid: 0d7bf7a285882c340a666689e752de80, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 3
+  Price: 200
   AmmoBuyCost: 250

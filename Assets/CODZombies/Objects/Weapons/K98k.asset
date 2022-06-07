@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
   m_Name: K98k
   m_EditorClassIdentifier: 
+  DisplayName: K98k
   Description: 
   DefaultSpawners:
   - K98k
   - 792x57mmStripperClip
   UpgradedWeapon: {fileID: 11400000, guid: 3404acf665671c4428141b6152d479b9, type: 2}
-  UpgradedAmmo: 
   LimitedAmmoMagazineCount: 4
+  Price: 200
   AmmoBuyCost: 300
