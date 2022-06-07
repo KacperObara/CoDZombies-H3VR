@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LeverBlack
+  m_Name: _Pale Brown_
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
   m_ShaderKeywords: EFFECT_BUMP
   m_LightmapFlags: 4
@@ -132,7 +132,7 @@ Material:
     - _MainTexUV: 0
     - _MainTextures: 0
     - _MaxSamples: 20
-    - _Metal: 0.571
+    - _Metal: 0.4
     - _Metallic: 0
     - _MinSamples: 4
     - _Mode: 0
@@ -150,7 +150,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
-    - _Specularity: 1
+    - _Specularity: 0
     - _SrcBlend: 1
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0
@@ -165,7 +165,7 @@ Material:
     - _WetnessProperties: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.11764706, g: 0.11764705, b: 0.11764706, a: 1}
+    - _Color: {r: 0.47794116, g: 0.29604328, b: 0.13354239, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
