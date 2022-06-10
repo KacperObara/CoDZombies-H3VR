@@ -68,19 +68,18 @@ namespace CustomScripts
 
             GameManager.Instance.GameStarted = true;
 
-            if (GameManager.Instance.FirstShop)
-            {
-                GameManager.Instance.FirstShop.IsFree = true;
-                GameManager.Instance.FirstShop.TryBuying();
-            }
-
-
             RoundNumber = 0;
 
             AdvanceRound();
 
             if (OnGameStarted != null)
                 OnGameStarted.Invoke();
+
+            if (GameManager.Instance.FirstShop)
+            {
+                GameManager.Instance.FirstShop.IsFree = true;
+                GameManager.Instance.FirstShop.TryBuying();
+            }
         }
 
         public void AdvanceRound()

@@ -30,5 +30,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d720bb5de0286042ae34e79dd940e2c, type: 2}
   - {fileID: 11400000, guid: 0d2f62ebe2fad074d850490949e14184, type: 2}
   BundleCompressionType: 2
-  BuildAction: 0
+  BuildAction: 2
   OutputProfile: 

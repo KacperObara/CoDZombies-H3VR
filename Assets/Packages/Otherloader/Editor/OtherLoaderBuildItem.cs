@@ -123,12 +123,11 @@ namespace MeatKit
 
         private void ExportVideos()
         {
-            Debug.LogError("This part of code was commented because it threw errors and Kodeman thought that nobody would use it anyway.");
-            // foreach (Object videoFile in TutorialVideos)
-            // {
-            //     string assetPath = AssetDatabase.GetAssetPath(videoFile);
-            //     File.Copy(assetPath, MeatKit.BundleOutputPath + Path.GetFileName(assetPath));
-            // }
+            foreach (Object videoFile in TutorialVideos)
+            {
+                string assetPath = AssetDatabase.GetAssetPath(videoFile);
+                File.Copy(assetPath, BuildWindow.SelectedProfile.ExportPath + Path.GetFileName(assetPath));
+            }
         }
 
 
