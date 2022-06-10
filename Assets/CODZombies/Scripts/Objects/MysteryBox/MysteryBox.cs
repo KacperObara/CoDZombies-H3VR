@@ -38,6 +38,14 @@ namespace CustomScripts
         private void Awake()
         {
             _mysteryBoxMover = GetComponent<MysteryBoxMover>();
+
+            RoundManager.OnGameStarted += LoadWeaponPool;
+        }
+
+        private void LoadWeaponPool()
+        {
+            LootId = GameSettings.Instance.CurrentLootPool.MysteryBoxPool;
+            LimitedAmmoLootId = GameSettings.Instance.CurrentLootPool.LimitedAmmoMysteryBoxPool;
         }
 
         public void SpawnWeapon()
@@ -101,6 +109,11 @@ namespace CustomScripts
 
                 _mysteryBoxMover.CurrentRoll++;
             }
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnGameStarted -= LoadWeaponPool;
         }
     }
 }

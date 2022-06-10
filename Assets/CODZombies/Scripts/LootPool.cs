@@ -21,23 +21,27 @@ public class LootPool : ScriptableObject
 	public List<WeaponData> MysteryBoxPool;
 	public List<WeaponData> LimitedAmmoMysteryBoxPool;
 
-	public HashSet<WeaponData> PackAPunchPool = new HashSet<WeaponData>();
+	public HashSet<WeaponData> PackAPunchPool { get {return GetPackAPunchPool();}}
 
-	private void Awake()
+	public HashSet<WeaponData> GetPackAPunchPool()
 	{
+		HashSet<WeaponData> pool = new HashSet<WeaponData>();
+
 		foreach (var weapon in WallShopsPool)
 		{
-			PackAPunchPool.Add(weapon);
+			pool.Add(weapon);
 		}
 
 		foreach (var weapon in MysteryBoxPool)
 		{
-			PackAPunchPool.Add(weapon);
+			pool.Add(weapon);
 		}
 
 		foreach (var weapon in LimitedAmmoMysteryBoxPool)
 		{
-			PackAPunchPool.Add(weapon);
+			pool.Add(weapon);
 		}
+
+		return pool;
 	}
 }

@@ -18,4 +18,5 @@ MonoBehaviour:
   - MagazineP08Luger
   UpgradedWeapon: {fileID: 11400000, guid: ce7e6c8d44c444f44a93f387226bdcda, type: 2}
   LimitedAmmoMagazineCount: 4
+  Price: 200
   AmmoBuyCost: 0

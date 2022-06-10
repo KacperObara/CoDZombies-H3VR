@@ -1,6 +1,7 @@
 #if H3VR_IMPORTED
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ namespace CustomScripts
 
         private void Start()
         {
+            LootPoolChoices = FindObjectsOfType<LootPoolChoice>().ToList();
+
             OptionDescriptionText.text = "Call of Duty\nZOMBIES";
             if (Random.Range(0, 900) == 0)
             {

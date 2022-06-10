@@ -11,20 +11,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41cfbcbf9695ae46ad1f931e627ec03, type: 3}
   m_Name: TestingLootPool
   m_EditorClassIdentifier: 
-  LootPoolTitle: Sora101Ven weapons
-  WeaponAtStart: {fileID: 11400000, guid: 0d087165281c46446bf80ca613944b76, type: 2}
+  LootPoolTitle: Alternative weapons
   WallShopsPool:
-  - {fileID: 11400000, guid: 3bf79022e9d16ed4193ef93c6fc1a8f7, type: 2}
-  - {fileID: 11400000, guid: e96a62cc0edaf1841a7e6abfdc20ca89, type: 2}
-  - {fileID: 11400000, guid: e3d34a5cf8ad4b647893ec1319816b23, type: 2}
+  - {fileID: 11400000, guid: d58d45a8faf62fd4298815718e96ab09, type: 2}
+  - {fileID: 11400000, guid: ef32c037796589143ae8f1101768a12e, type: 2}
+  - {fileID: 11400000, guid: a661b3130fb154e44bc08cb48d3f13a8, type: 2}
   - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
-  - {fileID: 11400000, guid: b24e749535983434c9b315cc3a425573, type: 2}
-  - {fileID: 11400000, guid: 9bbbd9f491755c54591db534374ead33, type: 2}
+  - {fileID: 11400000, guid: 85403497987ece745b16e7d642f0c013, type: 2}
+  - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
   - {fileID: 11400000, guid: 3930d5ba0ccaf37488210ab38d4c3232, type: 2}
-  - {fileID: 11400000, guid: fbdbacbdf43382a45b66bae0c7be4410, type: 2}
   MysteryBoxPool:
   - {fileID: 11400000, guid: df8a99cb67546ec4482be780b80c177e, type: 2}
   - {fileID: 11400000, guid: cbc735ecb645e0d4fa63a2d49049da7e, type: 2}
+  - {fileID: 11400000, guid: ce79b114a0d073f4ab884bebb737efe4, type: 2}
+  - {fileID: 11400000, guid: 790c67ab6d8ab9e4489e7814e25b13db, type: 2}
+  - {fileID: 11400000, guid: 3b70de336a084cf43b8911f32917986c, type: 2}
+  - {fileID: 11400000, guid: fe202d3495eeda546a3ee2664e1bb09c, type: 2}
+  - {fileID: 11400000, guid: e8216a8d8a81c7f41a6e6a9ff06ef4ed, type: 2}
+  - {fileID: 11400000, guid: 89099798ab6c0b846affe12a43a32ede, type: 2}
+  - {fileID: 11400000, guid: d58d45a8faf62fd4298815718e96ab09, type: 2}
+  - {fileID: 11400000, guid: a1577d5e7199b3c48b6fc498a47e805e, type: 2}
+  - {fileID: 11400000, guid: f8c5931c5f2821741ac8d60bfdde7540, type: 2}
+  - {fileID: 11400000, guid: a7813cf75fd4ac1418de2547571491d8, type: 2}
+  - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
+  - {fileID: 11400000, guid: 45b126c1e5af83d45820dac9773325b5, type: 2}
+  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
+  - {fileID: 11400000, guid: ba84e72c7ce284f47ac2b89695edc846, type: 2}
   LimitedAmmoMysteryBoxPool:
   - {fileID: 11400000, guid: df8a99cb67546ec4482be780b80c177e, type: 2}
   - {fileID: 11400000, guid: cbc735ecb645e0d4fa63a2d49049da7e, type: 2}
+  - {fileID: 11400000, guid: ce79b114a0d073f4ab884bebb737efe4, type: 2}
+  - {fileID: 11400000, guid: 3b70de336a084cf43b8911f32917986c, type: 2}
+  - {fileID: 11400000, guid: fe202d3495eeda546a3ee2664e1bb09c, type: 2}
+  - {fileID: 11400000, guid: e8216a8d8a81c7f41a6e6a9ff06ef4ed, type: 2}
+  - {fileID: 11400000, guid: 89099798ab6c0b846affe12a43a32ede, type: 2}
+  - {fileID: 11400000, guid: d58d45a8faf62fd4298815718e96ab09, type: 2}
+  - {fileID: 11400000, guid: a1577d5e7199b3c48b6fc498a47e805e, type: 2}
+  - {fileID: 11400000, guid: f8c5931c5f2821741ac8d60bfdde7540, type: 2}
+  - {fileID: 11400000, guid: a7813cf75fd4ac1418de2547571491d8, type: 2}
+  - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
+  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}

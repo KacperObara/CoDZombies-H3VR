@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
+  m_Name: Dynamite
+  m_EditorClassIdentifier: 
+  DisplayName: Dynamite
+  Description: 
+  DefaultSpawners:
+  - FlipzoLighter
+  - Dynamite
+  UpgradedWeapon: {fileID: 11400000, guid: 642098b831df66c4289177f31c1c05dd, type: 2}
+  LimitedAmmoMagazineCount: 4
+  Price: 0
+  AmmoBuyCost: 0

@@ -18,4 +18,5 @@ MonoBehaviour:
   - MagazineLeeEnfield
   UpgradedWeapon: {fileID: 11400000, guid: 337ca1a76ca72864799c3c6bacf3b18e, type: 2}
   LimitedAmmoMagazineCount: 4
-  AmmoBuyCost: 0
+  Price: 200
+  AmmoBuyCost: 300

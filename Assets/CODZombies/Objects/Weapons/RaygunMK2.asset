@@ -18,4 +18,5 @@ MonoBehaviour:
   - aftr_raygunmk2battery
   UpgradedWeapon: {fileID: 11400000, guid: cbc735ecb645e0d4fa63a2d49049da7e, type: 2}
   LimitedAmmoMagazineCount: 4
-  AmmoBuyCost: 0
+  Price: 7500
+  AmmoBuyCost: 2000

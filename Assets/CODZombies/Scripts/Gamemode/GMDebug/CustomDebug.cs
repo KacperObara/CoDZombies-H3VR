@@ -27,6 +27,8 @@ namespace CustomScripts.Gamemode.GMDebug
 
         public DeadShotPerkBottle DeadShotPerkBottle;
 
+        public LootPoolChoice newLootPool;
+
         ZombieBodyPart part;
         private void Update()
         {
@@ -112,6 +114,13 @@ namespace CustomScripts.Gamemode.GMDebug
             {
                 GameSettings.Instance.ToggleBackgroundMusic();
             }
+
+
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                GameSettings.Instance.ChangeLootPool(newLootPool);
+            }
+
             // // if (Input.GetKeyDown(KeyCode.LeftBracket))
             // {
             //     GameSettings.Instance.DifficultyNormalClicked();

@@ -18,4 +18,5 @@ MonoBehaviour:
   - MagazinePPSH41
   UpgradedWeapon: {fileID: 11400000, guid: 4f1efd52113788c4f9d412fb821aaf8d, type: 2}
   LimitedAmmoMagazineCount: 4
-  AmmoBuyCost: 0
+  Price: 1300
+  AmmoBuyCost: 500

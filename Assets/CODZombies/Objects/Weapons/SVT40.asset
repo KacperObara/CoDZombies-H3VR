@@ -18,4 +18,5 @@ MonoBehaviour:
   - MagazineSVT40
   UpgradedWeapon: {fileID: 11400000, guid: 9bee14c7b39487c4da4b91533893e39f, type: 2}
   LimitedAmmoMagazineCount: 4
-  AmmoBuyCost: 0
+  Price: 750
+  AmmoBuyCost: 500

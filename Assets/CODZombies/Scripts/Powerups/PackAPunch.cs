@@ -32,6 +32,16 @@ namespace CustomScripts.Powerups
         public AudioClip UpgradeSound;
         [HideInInspector] public bool InUse = false;
 
+        private void Awake()
+        {
+            RoundManager.OnGameStarted += LoadWeaponPool;
+        }
+
+        private void LoadWeaponPool()
+        {
+            WeaponsData = GameSettings.Instance.CurrentLootPool.PackAPunchPool.ToList();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<FVRPhysicalObject>()) // This is not actually expensive, since it's rarely called
@@ -63,10 +73,12 @@ namespace CustomScripts.Powerups
 
             WeaponData weapon = WeaponsData.FirstOrDefault(x => x.Id == fvrPhysicalObject.ObjectWrapper.ItemID);
 
+            if (weapon && !weapon.UpgradedWeapon)
+                Debug.LogWarning("Weapon recognized by the PaP, but there is no Upgraded weapon specified, applying basic upgrade");
 
             if (weapon) // Normal behavior with gun changes
             {
-                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
+                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost) && weapon.UpgradedWeapon != null)
                 {
                     if (InUse)
                         return;
@@ -252,6 +264,11 @@ namespace CustomScripts.Powerups
             }
 
             InUse = false;
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.OnGameStarted -= LoadWeaponPool;
         }
     }
 }
