@@ -2489,6 +2489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114115586121976036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2515,6 +2516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114161412788010654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2528,6 +2530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114205703874013068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2567,6 +2570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114298731719732968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2580,6 +2584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114309792187035148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2619,6 +2624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: 1dbae5343e5e7c64f8d3049db4df2e10, type: 2}
+  m_condition: 1
 --- !u!114 &114546767720079964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2632,6 +2638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114567567417418862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2658,6 +2665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114642927080739348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2697,6 +2705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114717037093341574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2710,6 +2719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114721021640024632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2743,6 +2753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!114 &114761610814622128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2794,6 +2805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Def: {fileID: 0}
   MatDef: {fileID: 11400000, guid: ba5566c78860b414c96227a03a281eef, type: 2}
+  m_condition: 1
 --- !u!137 &137148081075436160
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3005,5 +3017,5 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 8
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 1

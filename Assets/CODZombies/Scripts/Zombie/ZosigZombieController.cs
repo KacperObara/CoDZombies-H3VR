@@ -108,8 +108,6 @@ namespace CustomScripts.Zombie
 
             //_sosig.Agent.agentTypeID = 1; // Changing zombies agent type to crawlers(Hellhounds)
 
-            _sosig.Agent.areaMask = NavMesh.GetAreaFromName("Obstructed");
-
             CanInteractWithWindows = false;
 
             yield return new WaitForSeconds(2);
