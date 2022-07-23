@@ -23,8 +23,8 @@ namespace CustomScripts
         private bool _alreadyBought;
         public bool AlreadyBought { get { return _alreadyBought; } }
 
-        public List<WeaponData> LootId;
-        public List<WeaponData> LimitedAmmoLootId;
+        [HideInInspector] public List<WeaponData> LootId;
+        [HideInInspector] public List<WeaponData> LimitedAmmoLootId;
 
         public ObjectSpawnPoint WeaponSpawner;
         public ObjectSpawnPoint AmmoSpawner;

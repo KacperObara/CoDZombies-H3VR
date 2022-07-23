@@ -39,7 +39,7 @@ namespace CustomScripts.Powerups
 
         private void LoadWeaponPool()
         {
-            WeaponsData = GameSettings.Instance.CurrentLootPool.PackAPunchPool.ToList();
+            WeaponsData.AddRange(GameSettings.Instance.CurrentLootPool.PackAPunchPool.ToList());
         }
 
         private void OnTriggerEnter(Collider other)

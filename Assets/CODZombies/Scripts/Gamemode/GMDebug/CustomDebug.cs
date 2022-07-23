@@ -6,6 +6,8 @@ using CustomScripts.Player;
 using CustomScripts.Powerups;
 using FistVR;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace CustomScripts.Gamemode.GMDebug
 {
     public class CustomDebug : MonoBehaviour
@@ -116,20 +118,27 @@ namespace CustomScripts.Gamemode.GMDebug
             }
 
 
-            if (Input.GetKeyDown(KeyCode.LeftBracket))
-            {
-                GameSettings.Instance.ChangeLootPool(newLootPool);
-            }
+            // if (Input.GetKeyDown(KeyCode.LeftBracket))
+            // {
+            //     GameSettings.Instance.ChangeLootPool(newLootPool);
+            // }
 
             // // if (Input.GetKeyDown(KeyCode.LeftBracket))
             // {
             //     GameSettings.Instance.DifficultyNormalClicked();
             // }
-            // if (Input.GetKeyDown(KeyCode.RightBracket))
-            // {
-            //     GameSettings.Instance.DifficultyHardClicked();
-            // }
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                Choice1.ChangePoolToThis();
+            }
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                Choice2.ChangePoolToThis();
+            }
         }
+
+        public LootPoolChoice Choice1;
+        public LootPoolChoice Choice2;
 
         public void SpawnCarpenter()
         {

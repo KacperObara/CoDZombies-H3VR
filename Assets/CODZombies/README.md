@@ -52,6 +52,11 @@ Let me know of any problems, I'd be glad to help.
 
 ## Changelog
 
+### 1.1.0
+- Max ammo power up fixed, it should refill ammo properly.
+- Max ammo got updated too, now it will also refill ammo in the weapons in hand and in quickbelt slots.
+- Purged the dependency for MMHOOK, because it's pain for map making, I finally switched to Harmony.
+
 ### 1.0.4
 - Weapon pools support. Player can now choose between 2 sets of weapons that will spawn in shops and in the mystery box  
 

@@ -14,8 +14,9 @@ namespace CustomScripts
         public static Action OnSettingsChanged;
         public static Action OnMusicSettingChanged;
 
-        public LootPool CurrentLootPool;
-        public List<LootPoolChoice> LootPoolChoices;
+        public LootPool DefaultLootPool;
+        [HideInInspector] public LootPool CurrentLootPool;
+        [HideInInspector] public List<LootPoolChoice> LootPoolChoices;
 
         public static bool HardMode;
         public static bool UseCustomEnemies;
@@ -32,8 +33,31 @@ namespace CustomScripts
         {
             LootPoolChoices = FindObjectsOfType<LootPoolChoice>().ToList();
 
+            if (LootPoolChoices.Count == 0)
+            {
+                Debug.LogError("No LootPoolChoices in the scene, At least one component has to be present");
+            }
+
+            if (DefaultLootPool)
+            {
+                CurrentLootPool = DefaultLootPool;
+            }
+            else
+            {
+                CurrentLootPool = LootPoolChoices[0].LootPool;
+            }
+
+            if (CurrentLootPool) // Highlight default loot pool option
+            {
+                foreach (var choice in LootPoolChoices)
+                {
+                    if (choice.LootPool == CurrentLootPool)
+                        choice.IsEnabled = true;
+                }
+            }
+
             OptionDescriptionText.text = "Call of Duty\nZOMBIES";
-            if (Random.Range(0, 900) == 0)
+            if (Random.Range(0, 500) == 0)
             {
                 int random = Random.Range(0, 7);
                 switch (random)

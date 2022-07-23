@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomScripts.Gamemode;
+using CustomScripts.Player;
 using FistVR;
 using UnityEngine;
 
@@ -27,7 +28,34 @@ namespace CustomScripts.Powerups
 
         public override void ApplyModifier()
         {
-            foreach (FVRQuickBeltSlot slot in GM.CurrentPlayerBody.QuickbeltSlots)
+            TryToLoadAmmoInQuickbelt();
+            TryToLoadAmmoInHand(PlayerData.Instance.LeftHand);
+            TryToLoadAmmoInHand(PlayerData.Instance.RightHand);
+
+            AudioManager.Instance.Play(ApplyAudio, .5f);
+            Despawn();
+        }
+
+        private void TryToLoadAmmoInHand(FVRViveHand hand)
+        {
+            FVRInteractiveObject heldObject = hand.CurrentInteractable;
+            if (heldObject && heldObject as FVRFireArm)
+            {
+                FVRFireArmMagazine mag = heldObject.GetComponentInChildren<FVRFireArmMagazine>();
+                if (mag)
+                {
+                    MagazineWrapper magazineWrapper = mag.GetComponent<MagazineWrapper>();
+                    if (magazineWrapper)
+                        mag.ReloadMagWithType(magazineWrapper.RoundClass);
+                    else
+                        mag.ReloadMagWithType(mag.DefaultLoadingPattern.Classes[0]);
+                }
+            }
+        }
+
+        private void TryToLoadAmmoInQuickbelt()
+        {
+            foreach (FVRQuickBeltSlot slot in GM.CurrentPlayerBody.QBSlots_Internal)
             {
                 MagazineWrapper magazineWrapper = null;
                 FVRFireArmMagazine magazine = slot.CurObject as FVRFireArmMagazine;
@@ -72,11 +100,22 @@ namespace CustomScripts.Powerups
                         }
                     }
                 }
+
+                // Reload magazines inside the weapons (Internal mags included, like in tube-fed shotgun)
+                FVRFireArm weapon = slot.CurObject as FVRFireArm;
+                if (weapon)
+                {
+                    FVRFireArmMagazine mag = weapon.GetComponentInChildren<FVRFireArmMagazine>();
+                    if (mag)
+                    {
+                        magazineWrapper = mag.GetComponent<MagazineWrapper>();
+                        if (magazineWrapper)
+                            mag.ReloadMagWithType(magazineWrapper.RoundClass);
+                        else
+                            mag.ReloadMagWithType(magazine.DefaultLoadingPattern.Classes[0]);
+                    }
+                }
             }
-
-            AudioManager.Instance.Play(ApplyAudio, .5f);
-
-            Despawn();
         }
 
         private void Despawn()

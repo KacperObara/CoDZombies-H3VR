@@ -14,7 +14,6 @@ public class LootPool : ScriptableObject
 	public string LootPoolTitle;
 
 	[Header("Elements in the list corresponds to the ID of the Wallshops.")]
-	[Header("The first shop will spawn the weapon for free at the start of the game")]
 
 	public List<WeaponData> WallShopsPool;
 
