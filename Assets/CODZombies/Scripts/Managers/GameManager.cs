@@ -1,10 +1,13 @@
 #if H3VR_IMPORTED
 using System;
 using System.Collections;
+using CustomScripts.Gamemode;
+using CustomScripts.Managers;
 using CustomScripts.Objects;
 using CustomScripts.Player;
 using CustomScripts.Zombie;
 using FistVR;
+using HarmonyLib;
 using UnityEngine;
 
 namespace CustomScripts
@@ -27,6 +30,17 @@ namespace CustomScripts
         public bool PowerEnabled;
 
         [HideInInspector]public int Kills;
+
+        private Harmony _harmony;
+
+        public override void Awake()
+        {
+            base.Awake();
+
+            _harmony = Harmony.CreateAndPatchAll(typeof (PlayerData), (string) null);
+            _harmony.PatchAll(typeof (PlayerSpawner));
+            _harmony.PatchAll(typeof (ZombieManager));
+        }
 
         public void TurnOnPower()
         {
@@ -89,6 +103,11 @@ namespace CustomScripts
 
             if (!GameSettings.ItemSpawnerEnabled)
                 SaveSystem.Instance.SaveHighscore(TotalPoints);
+        }
+
+        private void OnDestroy()
+        {
+            _harmony.UnpatchSelf();
         }
     }
 }

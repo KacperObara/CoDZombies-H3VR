@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CustomScripts;
 using CustomScripts.Player;
-using On.FistVR;
 using UnityEngine;
 
 public class ElectricCherryPerkBottle : MonoBehaviour, IModifier
