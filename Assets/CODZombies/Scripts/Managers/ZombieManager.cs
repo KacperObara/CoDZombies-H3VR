@@ -263,12 +263,12 @@ namespace CustomScripts.Managers
 
         [HarmonyPatch(typeof (Sosig), "SosigDies")]
         [HarmonyPostfix]
-        private static void OnSosigDied(Damage.DamageClass damClass, Sosig.SosigDeathType deathType)
+        private static void OnSosigDied(Sosig __instance, Damage.DamageClass damClass, Sosig.SosigDeathType deathType)
         {
-            Instance.GetComponent<ZosigZombieController>().OnKill();
+            __instance.GetComponent<ZosigZombieController>().OnKill();
         }
 
-        [HarmonyPatch(typeof(Sosig), "ProcessDamage")]
+        [HarmonyPatch(typeof(Sosig), "ProcessDamage", new Type[] { typeof(Damage), typeof(SosigLink) })]
         [HarmonyPrefix]
         private static void BeforeZombieHit(Damage d, SosigLink link)
         {
@@ -288,11 +288,11 @@ namespace CustomScripts.Managers
             }
         }
 
-        [HarmonyPatch(typeof(Sosig), "ProcessDamage")]
+        [HarmonyPatch(typeof(Sosig), "ProcessDamage", new Type[] { typeof(Damage), typeof(SosigLink) })]
         [HarmonyPostfix]
-        private static void AfterZombieHit(Damage d, SosigLink link)
+        private static void AfterZombieHit(Sosig __instance, Damage d, SosigLink link)
         {
-            Instance.GetComponent<ZosigZombieController>().OnHit(d);
+            __instance.GetComponent<ZosigZombieController>().OnHit(d);
         }
     }
 }

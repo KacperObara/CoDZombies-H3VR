@@ -65,7 +65,7 @@ namespace CustomScripts.Player
             GM.CurrentPlayerBody.HealPercent(1f);
         }
 
-        [HarmonyPatch(typeof(Damage), "ProcessDamage")]
+        [HarmonyPatch(typeof(FVRPlayerHitbox), "Damage", new Type[] { typeof(Damage) })]
         [HarmonyPrefix]
         private static void OnBeforePlayerHit(Damage d)
         {
