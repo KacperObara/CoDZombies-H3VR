@@ -52,7 +52,7 @@ Let me know of any problems, I'd be glad to help.
 
 ## Changelog
 
-### 1.1.0
+### 1.0.5
 - Max ammo power up fixed, it should refill ammo properly.
 - Max ammo got updated too, now it will also refill magazines in the weapons in hand and in quickbelt slots if it can.
 - Purged the dependency for MMHOOK, because it's pain for map making, I finally switched to Harmony.
