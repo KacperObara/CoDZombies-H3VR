@@ -16,7 +16,7 @@ MonoBehaviour:
   DefaultSpawners:
   - L85A2
   - MagazineStanagDrum
-  UpgradedWeapon: {fileID: 11400000, guid: 2a54addb0abb3c248b1b78512daae45c, type: 2}
+  UpgradedWeapon: {fileID: 0}
   LimitedAmmoMagazineCount: 2
   Price: 0
   AmmoBuyCost: 0

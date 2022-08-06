@@ -2,6 +2,7 @@
 using System.Collections;
 using CustomScripts.Player;
 using FistVR;
+using HarmonyLib;
 using UnityEngine;
 
 namespace CustomScripts.Gamemode
@@ -15,8 +16,6 @@ namespace CustomScripts.Gamemode
         public override void Awake()
         {
             base.Awake();
-
-            On.FistVR.GM.BringBackPlayer += OnPlayerRespawn;
 
             RoundManager.OnGameStarted += OnGameStarted;
         }
@@ -55,18 +54,22 @@ namespace CustomScripts.Gamemode
             }
         }
 
-        private void OnPlayerRespawn(On.FistVR.GM.orig_BringBackPlayer orig, GM self)
+        [HarmonyPatch(typeof(GM), "BringBackPlayer")]
+        [HarmonyPrefix]
+        private static void BeforePlayerDeath()
         {
-            OnPlayerDeath();
+            Instance.OnPlayerDeath();
+        }
 
-            orig.Invoke(self);
-
-            transform.position = EndGameSpawnerPos.position;
+        [HarmonyPatch(typeof(GM), "BringBackPlayer")]
+        [HarmonyPostfix]
+        private static void AfterPlayerDeath()
+        {
+            Instance.transform.position = Instance.EndGameSpawnerPos.position;
         }
 
         private void OnDestroy()
         {
-            On.FistVR.GM.BringBackPlayer -= OnPlayerRespawn;
             RoundManager.OnGameStarted -= OnGameStarted;
         }
 

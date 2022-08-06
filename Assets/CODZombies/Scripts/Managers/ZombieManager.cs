@@ -6,6 +6,7 @@ using Atlas.MappingComponents.Sandbox;
 using CustomScripts.Gamemode.GMDebug;
 using CustomScripts.Zombie;
 using FistVR;
+using HarmonyLib;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -55,13 +56,6 @@ namespace CustomScripts.Managers
 
         private Coroutine _spawningCoroutine;
 
-        public override void Awake()
-        {
-            base.Awake();
-
-            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink += OnGetHit;
-            On.FistVR.Sosig.SosigDies += OnSosigDied;
-        }
 
 #region Spawning
 
@@ -267,15 +261,16 @@ namespace CustomScripts.Managers
             }
         }
 
-        private void OnSosigDied(On.FistVR.Sosig.orig_SosigDies orig, Sosig self, Damage.DamageClass damclass,
-            Sosig.SosigDeathType deathtype)
+        [HarmonyPatch(typeof (Sosig), "SosigDies")]
+        [HarmonyPostfix]
+        private static void OnSosigDied(Sosig __instance, Damage.DamageClass damClass, Sosig.SosigDeathType deathType)
         {
-            orig.Invoke(self, damclass, deathtype);
-            self.GetComponent<ZosigZombieController>().OnKill();
+            __instance.GetComponent<ZosigZombieController>().OnKill();
         }
 
-        private void OnGetHit(On.FistVR.Sosig.orig_ProcessDamage_Damage_SosigLink orig, Sosig self, Damage d,
-            SosigLink link)
+        [HarmonyPatch(typeof(Sosig), "ProcessDamage", new Type[] { typeof(Damage), typeof(SosigLink) })]
+        [HarmonyPrefix]
+        private static void BeforeZombieHit(Damage d, SosigLink link)
         {
             if (d.Class == Damage.DamageClass.Melee &&
                 d.Source_IFF != GM.CurrentSceneSettings.DefaultPlayerIFF)
@@ -291,15 +286,13 @@ namespace CustomScripts.Managers
                 d.Dam_Piercing = 0;
                 d.Dam_Stunning = 0;
             }
-
-            orig.Invoke(self, d, link);
-            self.GetComponent<ZosigZombieController>().OnHit(d);
         }
 
-        private void OnDestroy()
+        [HarmonyPatch(typeof(Sosig), "ProcessDamage", new Type[] { typeof(Damage), typeof(SosigLink) })]
+        [HarmonyPostfix]
+        private static void AfterZombieHit(Sosig __instance, Damage d, SosigLink link)
         {
-            On.FistVR.Sosig.SosigDies -= OnSosigDied;
-            On.FistVR.Sosig.ProcessDamage_Damage_SosigLink -= OnGetHit;
+            __instance.GetComponent<ZosigZombieController>().OnHit(d);
         }
     }
 }

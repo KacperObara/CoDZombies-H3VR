@@ -6,6 +6,7 @@ using CustomScripts.Gamemode;
 using CustomScripts.Managers;
 using CustomScripts.Zombie;
 using FistVR;
+using HarmonyLib;
 using UnityEngine;
 
 namespace CustomScripts.Player
@@ -52,14 +53,6 @@ namespace CustomScripts.Player
 
             RoundManager.OnRoundChanged += OnRoundAdvance;
 
-            On.FistVR.FVRPhysicalObject.BeginInteraction += OnPhysicalObjectStartInteraction;
-            //On.FistVR.FVRPhysicalObject.EndInteraction += OnPhysicalObjectEndInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot +=
-                OnPhysicalObjectEndInteractionIntoInventorySlot;
-            On.FistVR.FVRPlayerHitbox.Damage_Damage += OnPlayerHit;
-
-            On.FistVR.FVRFireArmMagazine.Release += OnMagRelease;
-
             DeadShotPerkActivated = false;
             DoubleTapPerkActivated = false;
             SpeedColaPerkActivated = false;
@@ -72,10 +65,11 @@ namespace CustomScripts.Player
             GM.CurrentPlayerBody.HealPercent(1f);
         }
 
-        private void OnPlayerHit(On.FistVR.FVRPlayerHitbox.orig_Damage_Damage orig, FistVR.FVRPlayerHitbox self,
-            Damage d)
+        [HarmonyPatch(typeof(FVRPlayerHitbox), "Damage", new Type[] { typeof(Damage) })]
+        [HarmonyPrefix]
+        private static void OnBeforePlayerHit(Damage d)
         {
-            if (PHDFlopperPerkActivated && d.Class == Damage.DamageClass.Explosive)
+            if (Instance.PHDFlopperPerkActivated && d.Class == Damage.DamageClass.Explosive)
             {
                 d.Dam_TotalKinetic *= .3f;
                 d.Dam_TotalEnergetic *= .3f;
@@ -83,122 +77,47 @@ namespace CustomScripts.Player
 
             if (d.Source_IFF != GM.CurrentSceneSettings.DefaultPlayerIFF && GettingHitEvent != null)
                 GettingHitEvent.Invoke();
-
-            orig.Invoke(self, d);
         }
+
 
         /// <summary>
         /// Place in which weapon or magazine wrapper classes are added to the objects
         /// </summary>
-        private void OnPhysicalObjectStartInteraction(On.FistVR.FVRPhysicalObject.orig_BeginInteraction orig,
-            FVRPhysicalObject self, FVRViveHand hand)
+        [HarmonyPatch(typeof(FVRPhysicalObject), "BeginInteraction")]
+        [HarmonyPostfix]
+        private static void OnPhysicalObjectStartInteraction(FVRPhysicalObject __instance, FVRViveHand hand)
         {
-            orig.Invoke(self, hand);
-
-            //OnItemHeldChange();
-            if (self as FVRFireArm)
+            if (__instance as FVRFireArm)
             {
-                WeaponWrapper wrapper = self.GetComponent<WeaponWrapper>();
+                WeaponWrapper wrapper = __instance.GetComponent<WeaponWrapper>();
                 if (wrapper == null)
                 {
-                    wrapper = self.gameObject.AddComponent<WeaponWrapper>();
-                    wrapper.Initialize((FVRFireArm) self);
+                    wrapper = __instance.gameObject.AddComponent<WeaponWrapper>();
+                    wrapper.Initialize((FVRFireArm) __instance);
                 }
 
                 wrapper.OnWeaponGrabbed();
             }
-            else if (self as FVRFireArmMagazine)
+            else if (__instance as FVRFireArmMagazine)
             {
-                MagazineWrapper wrapper = self.GetComponent<MagazineWrapper>();
+                MagazineWrapper wrapper = __instance.GetComponent<MagazineWrapper>();
                 if (wrapper == null)
                 {
-                    wrapper = self.gameObject.AddComponent<MagazineWrapper>();
-                    wrapper.Initialize((FVRFireArmMagazine) self);
+                    wrapper = __instance.gameObject.AddComponent<MagazineWrapper>();
+                    wrapper.Initialize((FVRFireArmMagazine) __instance);
                 }
             }
         }
 
-
-        // Broke in 105 experimental
-        // private void OnPhysicalObjectEndInteraction(On.FistVR.FVRPhysicalObject.orig_EndInteraction orig,
-        //     FVRPhysicalObject self, FVRViveHand hand)
-        // {
-        //     orig.Invoke(self, hand);
-        //     StartCoroutine(DelayedItemChange());
-        // }
-
-        private void OnPhysicalObjectEndInteractionIntoInventorySlot(
-            On.FistVR.FVRPhysicalObject.orig_EndInteractionIntoInventorySlot orig, FVRPhysicalObject self,
-            FVRViveHand hand, FVRQuickBeltSlot slot)
+        [HarmonyPatch(typeof(FVRFireArmMagazine), "Release")]
+        [HarmonyPostfix]
+        private static void OnMagRelease(FVRFireArmMagazine __instance, bool PhysicalRelease = false)
         {
-            orig.Invoke(self, hand, slot);
-            StartCoroutine(DelayedItemChange());
-        }
-
-        private IEnumerator DelayedItemChange()
-        {
-            yield return new WaitForSeconds(.1f);
-
-            //OnItemHeldChange();
-        }
-
-        // Broke in 105 experimental
-        // Called on FVRFireArm grabbed or released
-        // private void OnItemHeldChange()
-        // {
-        //     if (!StaminUpPerkActivated)
-        //     {
-        //         FVRPhysicalObject.FVRPhysicalObjectSize heaviestItem = FVRPhysicalObject.FVRPhysicalObjectSize.Small;
-        //
-        //         if (LeftHand.CurrentInteractable != null && LeftHand.CurrentInteractable as FVRPhysicalObject != null)
-        //         {
-        //             if (((FVRPhysicalObject) LeftHand.CurrentInteractable).Size > heaviestItem)
-        //                 heaviestItem = ((FVRPhysicalObject) LeftHand.CurrentInteractable).Size;
-        //         }
-        //
-        //         if (RightHand.CurrentInteractable != null && RightHand.CurrentInteractable as FVRPhysicalObject != null)
-        //         {
-        //             if (((FVRPhysicalObject) RightHand.CurrentInteractable).Size > heaviestItem)
-        //                 heaviestItem = ((FVRPhysicalObject) RightHand.CurrentInteractable).Size;
-        //         }
-        //
-        //         switch (heaviestItem)
-        //         {
-        //             case FVRPhysicalObject.FVRPhysicalObjectSize.Large:
-        //                 _currentSpeedMult = LargeItemSpeedMult;
-        //                 break;
-        //             case FVRPhysicalObject.FVRPhysicalObjectSize.Massive:
-        //                 _currentSpeedMult = MassiveItemSpeedMult;
-        //                 break;
-        //             default:
-        //                 _currentSpeedMult = 1f;
-        //                 break;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         _currentSpeedMult = 1.1f;
-        //     }
-        //
-        //     for (int i = 0; i < GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes.Length; i++)
-        //     {
-        //         GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes[i] = .75f * _currentSpeedMult;
-        //     }
-        //
-        //     GM.CurrentSceneSettings.UsesMaxSpeedClamp = true;
-        //     GM.CurrentSceneSettings.MaxSpeedClamp = 5.5f * _currentSpeedMult;
-        // }
-
-        private void OnMagRelease(On.FistVR.FVRFireArmMagazine.orig_Release orig, FVRFireArmMagazine self,
-            bool physicalrelease)
-        {
-            orig.Invoke(self, physicalrelease);
-
             //////// Electric cherry
-            if (ElectricCherryPerkActivated && self.m_numRounds == 0)
+            if (Instance.ElectricCherryPerkActivated && __instance.m_numRounds == 0)
             {
-                if (!stunThrottle)
-                    StartCoroutine(ActivateStun());
+                if (!Instance.stunThrottle)
+                    Instance.StartCoroutine(Instance.ActivateStun());
             }
         }
 
@@ -239,15 +158,6 @@ namespace CustomScripts.Player
         private void OnDestroy()
         {
             RoundManager.OnRoundChanged -= OnRoundAdvance;
-
-            On.FistVR.FVRPhysicalObject.BeginInteraction -= OnPhysicalObjectStartInteraction;
-            //On.FistVR.FVRPhysicalObject.EndInteraction -= OnPhysicalObjectEndInteraction;
-            On.FistVR.FVRPhysicalObject.EndInteractionIntoInventorySlot -=
-                OnPhysicalObjectEndInteractionIntoInventorySlot;
-
-            On.FistVR.FVRPlayerHitbox.Damage_Damage -= OnPlayerHit;
-
-            On.FistVR.FVRFireArmMagazine.Release -= OnMagRelease;
 
             GM.Options.MovementOptions.ArmSwingerBaseSpeeMagnitudes = new float[6]
             {
