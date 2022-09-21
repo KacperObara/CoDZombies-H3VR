@@ -20,6 +20,12 @@ public class LootPool : ScriptableObject
 	public List<WeaponData> MysteryBoxPool;
 	public List<WeaponData> LimitedAmmoMysteryBoxPool;
 
+	public List<WeaponData> MysteryBoxRareWeapons;
+	public List<WeaponData> LimitedAmmoMysteryBoxRareWeapons;
+
+	public int RareWeaponChance;
+	public int LimitedAmmoRareWeaponChance;
+
 	public HashSet<WeaponData> PackAPunchPool { get {return GetPackAPunchPool();}}
 
 	public HashSet<WeaponData> GetPackAPunchPool()
@@ -37,6 +43,16 @@ public class LootPool : ScriptableObject
 		}
 
 		foreach (var weapon in LimitedAmmoMysteryBoxPool)
+		{
+			pool.Add(weapon);
+		}
+
+		foreach (var weapon in MysteryBoxRareWeapons)
+		{
+			pool.Add(weapon);
+		}
+
+		foreach (var weapon in LimitedAmmoMysteryBoxRareWeapons)
 		{
 			pool.Add(weapon);
 		}

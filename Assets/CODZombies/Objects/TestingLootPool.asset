@@ -21,8 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
   - {fileID: 11400000, guid: 3930d5ba0ccaf37488210ab38d4c3232, type: 2}
   MysteryBoxPool:
-  - {fileID: 11400000, guid: df8a99cb67546ec4482be780b80c177e, type: 2}
-  - {fileID: 11400000, guid: cbc735ecb645e0d4fa63a2d49049da7e, type: 2}
+  - {fileID: 11400000, guid: ba84e72c7ce284f47ac2b89695edc846, type: 2}
+  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
   - {fileID: 11400000, guid: ce79b114a0d073f4ab884bebb737efe4, type: 2}
   - {fileID: 11400000, guid: 790c67ab6d8ab9e4489e7814e25b13db, type: 2}
   - {fileID: 11400000, guid: 3b70de336a084cf43b8911f32917986c, type: 2}
@@ -35,11 +35,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7813cf75fd4ac1418de2547571491d8, type: 2}
   - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
   - {fileID: 11400000, guid: 45b126c1e5af83d45820dac9773325b5, type: 2}
-  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
-  - {fileID: 11400000, guid: ba84e72c7ce284f47ac2b89695edc846, type: 2}
   LimitedAmmoMysteryBoxPool:
-  - {fileID: 11400000, guid: df8a99cb67546ec4482be780b80c177e, type: 2}
-  - {fileID: 11400000, guid: cbc735ecb645e0d4fa63a2d49049da7e, type: 2}
+  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
+  - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
   - {fileID: 11400000, guid: ce79b114a0d073f4ab884bebb737efe4, type: 2}
   - {fileID: 11400000, guid: 3b70de336a084cf43b8911f32917986c, type: 2}
   - {fileID: 11400000, guid: fe202d3495eeda546a3ee2664e1bb09c, type: 2}
@@ -49,5 +47,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1577d5e7199b3c48b6fc498a47e805e, type: 2}
   - {fileID: 11400000, guid: f8c5931c5f2821741ac8d60bfdde7540, type: 2}
   - {fileID: 11400000, guid: a7813cf75fd4ac1418de2547571491d8, type: 2}
-  - {fileID: 11400000, guid: 2963c30d71d9d794491898f10707eb30, type: 2}
-  - {fileID: 11400000, guid: 1fb1e3efe435b3c4e8f12d5675e0e5ce, type: 2}
+  MysteryBoxRareWeapons:
+  - {fileID: 11400000, guid: 85403497987ece745b16e7d642f0c013, type: 2}
+  - {fileID: 11400000, guid: 3ec3e32611a4fbe4f8cfccf20d350878, type: 2}
+  - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
+  LimitedAmmoMysteryBoxRareWeapons:
+  - {fileID: 11400000, guid: 85403497987ece745b16e7d642f0c013, type: 2}
+  - {fileID: 11400000, guid: 3ec3e32611a4fbe4f8cfccf20d350878, type: 2}
+  - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
+  RareWeaponChance: 5
+  LimitedAmmoRareWeaponChance: 7

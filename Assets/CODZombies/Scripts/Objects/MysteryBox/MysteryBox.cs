@@ -23,8 +23,12 @@ namespace CustomScripts
         private bool _alreadyBought;
         public bool AlreadyBought { get { return _alreadyBought; } }
 
-        [HideInInspector] public List<WeaponData> LootId;
-        [HideInInspector] public List<WeaponData> LimitedAmmoLootId;
+        private List<WeaponData> _lootId = new List<WeaponData>();
+        private List<WeaponData> _limitedAmmoLootId = new List<WeaponData>();
+        private List<WeaponData> _rareWeaponsLootId = new List<WeaponData>();
+        private List<WeaponData> _limitedAmmoRareWeaponsLootId = new List<WeaponData>();
+        private int _rareWeaponChance;
+        private int _limitedAmmoRareWeaponChance;
 
         public ObjectSpawnPoint WeaponSpawner;
         public ObjectSpawnPoint AmmoSpawner;
@@ -44,8 +48,14 @@ namespace CustomScripts
 
         private void LoadWeaponPool()
         {
-            LootId = GameSettings.Instance.CurrentLootPool.MysteryBoxPool;
-            LimitedAmmoLootId = GameSettings.Instance.CurrentLootPool.LimitedAmmoMysteryBoxPool;
+            _lootId = GameSettings.Instance.CurrentLootPool.MysteryBoxPool;
+            _limitedAmmoLootId = GameSettings.Instance.CurrentLootPool.LimitedAmmoMysteryBoxPool;
+
+            _rareWeaponsLootId = GameSettings.Instance.CurrentLootPool.MysteryBoxRareWeapons;
+            _limitedAmmoRareWeaponsLootId = GameSettings.Instance.CurrentLootPool.LimitedAmmoMysteryBoxRareWeapons;
+
+            _rareWeaponChance = GameSettings.Instance.CurrentLootPool.RareWeaponChance;
+            _limitedAmmoRareWeaponChance = GameSettings.Instance.CurrentLootPool.LimitedAmmoRareWeaponChance;
         }
 
         public void SpawnWeapon()
@@ -75,8 +85,18 @@ namespace CustomScripts
             {
                 if (GameSettings.LimitedAmmo)
                 {
-                    int random = Random.Range(0, LimitedAmmoLootId.Count);
-                    WeaponData rolledWeapon = LimitedAmmoLootId[random];
+                    WeaponData rolledWeapon = null;
+                    if (Random.Range(0, 100) <= _limitedAmmoRareWeaponChance)
+                    {
+                        int random = Random.Range(0, _limitedAmmoRareWeaponsLootId.Count);
+                        rolledWeapon = _limitedAmmoRareWeaponsLootId[random];
+                    }
+                    else
+                    {
+                        int random = Random.Range(0, _limitedAmmoLootId.Count);
+                        rolledWeapon = _limitedAmmoLootId[random];
+                    }
+
 
                     WeaponSpawner.ObjectId = rolledWeapon.DefaultSpawners[0];
                     WeaponSpawner.Spawn();
@@ -92,8 +112,17 @@ namespace CustomScripts
                 }
                 else
                 {
-                    int random = Random.Range(0, LootId.Count);
-                    WeaponData rolledWeapon = LootId[random];
+                    WeaponData rolledWeapon = null;
+                    if (Random.Range(0, 100) <= _rareWeaponChance)
+                    {
+                        int random = Random.Range(0, _rareWeaponsLootId.Count);
+                        rolledWeapon = _rareWeaponsLootId[random];
+                    }
+                    else
+                    {
+                        int random = Random.Range(0, _lootId.Count);
+                        rolledWeapon = _lootId[random];
+                    }
 
                     WeaponSpawner.ObjectId = rolledWeapon.DefaultSpawners[0];
                     AmmoSpawner.ObjectId = rolledWeapon.DefaultSpawners[1];
@@ -106,7 +135,6 @@ namespace CustomScripts
                 }
 
                 InUse = false;
-
                 _mysteryBoxMover.CurrentRoll++;
             }
         }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afed54a239594b8abd631a8047a54987, type: 3}
+  m_Name: CODZombiesExampleBuildProfile
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:MeatKit:BuildProfile
+  PackageName: ZombiesExampleMap
+  Author: Kodeman
+  Version: 1.0.0
+  Icon: {fileID: 2800000, guid: 0148ce2cb3a59434fb095ed1aa374ee0, type: 3}
+  ReadMe: {fileID: 102900000, guid: 0ef972042aeb3144a87158168db7cdbc, type: 3}
+  WebsiteURL: https://github.com/KacperObara/CoDZombies-H3VR
+  Description: Custom game mode based on Call of Duty Zombies
+  AdditionalDependencies:
+  - nrgill28-HookGenPatcher_H3VR-1.2.3
+  - devyndamonster-MagazinePatcher-0.1.9
+  - Nuigo_Ftrmarket-CDZ_Raygun_Mk1-1.2.3
+  - Nuigo_Ftrmarket-CDZ_Raygun_Mk2-1.0.2
+  - Nuigo_Ftrmarket-Rai_K_84-1.0.0
+  - 'Nuigo_Ftrmarket-CDZ_Thundergun-1.0.1 '
+  StripNamespaces: 1
+  AdditionalNamespaces:
+  - CustomScripts
+  BuildItems:
+  - {fileID: 11400000, guid: d36018e276782194795ea7d96e506f55, type: 2}
+  - {fileID: 11400000, guid: 0d2f62ebe2fad074d850490949e14184, type: 2}
+  BundleCompressionType: 2
+  BuildAction: 2
+  OutputProfile: 
