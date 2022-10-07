@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
-using CustomScripts.Gamemode;
-using CustomScripts.Objects.Weapons;
-using CustomScripts.Player;
-using CustomScripts.Powerups;
-using CustomScripts.Powerups.Perks;
+﻿using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.MysteryBox;
+using CODZombies.Scripts.Objects.Weapons;
+using CODZombies.Scripts.Objects.Window;
+using CODZombies.Scripts.Perks;
+using CODZombies.Scripts.Player;
+using CODZombies.Scripts.Powerups;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Common
 {
     public class Speech : MonoBehaviour
     {

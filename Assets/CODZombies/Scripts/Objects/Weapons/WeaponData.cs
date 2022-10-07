@@ -1,9 +1,9 @@
 #if H3VR_IMPORTED
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace CustomScripts.Objects.Weapons
+
+namespace CODZombies.Scripts.Objects.Weapons
 {
     [CreateAssetMenu(fileName = "WeaponData")]
     public class WeaponData : ScriptableObject

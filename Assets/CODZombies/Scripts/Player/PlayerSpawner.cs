@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
-using CustomScripts.Player;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CustomScripts.Gamemode
+namespace CODZombies.Scripts.Player
 {
     public class PlayerSpawner : MonoBehaviourSingleton<PlayerSpawner>
     {

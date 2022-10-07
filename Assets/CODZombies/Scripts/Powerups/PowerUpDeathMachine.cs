@@ -1,10 +1,12 @@
 #if H3VR_IMPORTED
 using System.Collections;
-using CustomScripts.Gamemode.GMDebug;
-using CustomScripts.Player;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using FistVR;
 using UnityEngine;
-namespace CustomScripts.Powerups
+
+namespace CODZombies.Scripts.Powerups
 {
     public class PowerUpDeathMachine : PowerUp
     {

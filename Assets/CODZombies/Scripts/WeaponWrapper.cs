@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using CustomScripts.Player;
+using CODZombies.Scripts.Player;
 using FistVR;
 using UnityEngine;
 
-namespace CustomScripts.Gamemode
+namespace CODZombies.Scripts
 {
     /// <summary>
     /// Weapon script that gets added to every weapon grabbed by the player

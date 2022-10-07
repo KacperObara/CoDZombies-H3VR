@@ -1,9 +1,11 @@
 #if H3VR_IMPORTED
 using Atlas.MappingComponents.Sandbox;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
 
-namespace CustomScripts.Powerups.Perks
+namespace CODZombies.Scripts.Perks
 {
     public class MuleKickPerkBottle : MonoBehaviour, IModifier
     {

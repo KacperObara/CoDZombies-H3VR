@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using CODZombies.Scripts.Common;
 using UnityEngine.UI;
 
-namespace CustomScripts.Gamemode.GMDebug
+namespace CODZombies.Scripts
 {
     public class ErrorShower : MonoBehaviourSingleton<ErrorShower>
     {

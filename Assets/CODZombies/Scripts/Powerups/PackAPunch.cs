@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using CustomScripts.Gamemode;
-using CustomScripts.Gamemode.GMDebug;
-using CustomScripts.Objects.Weapons;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.Weapons;
 using FistVR;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts.Powerups
+namespace CODZombies.Scripts.Powerups
 {
     public class PackAPunch : MonoBehaviour, IPurchasable, IRequiresPower
     {

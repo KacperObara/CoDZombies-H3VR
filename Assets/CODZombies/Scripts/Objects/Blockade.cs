@@ -2,13 +2,13 @@
 
 using System;
 using System.Collections.Generic;
-using Atlas.MappingComponents.Sandbox;
-using CustomScripts.Gamemode.GMDebug;
-using CustomScripts.Managers;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Objects
 {
     /// <summary>
     /// Blocks both player and zombies, when it's removed, it checks and enables unlockable spawn points for zombies.

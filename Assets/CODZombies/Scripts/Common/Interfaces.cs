@@ -1,10 +1,9 @@
 #if H3VR_IMPORTED
 
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Zombie;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Common
 {
     // Juggernog, DoubleTap etc.
     public interface IModifier

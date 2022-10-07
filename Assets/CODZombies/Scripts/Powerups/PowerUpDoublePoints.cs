@@ -1,9 +1,12 @@
 #if H3VR_IMPORTED
 using System;
 using System.Collections;
-using CustomScripts.Player;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Powerups
 {
     public class PowerUpDoublePoints : PowerUp
     {

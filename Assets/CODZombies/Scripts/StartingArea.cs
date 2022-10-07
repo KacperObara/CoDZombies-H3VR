@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
+﻿using CODZombies.Scripts.Managers;
 using UnityEngine;
 
-public class StartingArea : MonoBehaviour
+namespace CODZombies.Scripts
 {
-	public AudioSource StartingMusic;
-
-	private void Awake()
+	public class StartingArea : MonoBehaviour
 	{
-		RoundManager.OnGameStarted += OnGameStart;
-	}
+		public AudioSource StartingMusic;
 
-	public void OnGameStart()
-	{
-		StartingMusic.Stop();
-		Destroy(gameObject);
-	}
+		private void Awake()
+		{
+			RoundManager.OnGameStarted += OnGameStart;
+		}
 
-	private void OnDestroy()
-	{
-		RoundManager.OnGameStarted -= OnGameStart;
+		public void OnGameStart()
+		{
+			StartingMusic.Stop();
+			Destroy(gameObject);
+		}
+
+		private void OnDestroy()
+		{
+			RoundManager.OnGameStarted -= OnGameStart;
+		}
 	}
 }

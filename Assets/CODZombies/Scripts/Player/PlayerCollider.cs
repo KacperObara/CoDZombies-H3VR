@@ -1,11 +1,11 @@
 #if H3VR_IMPORTED
 
-using System.Collections;
 using System.Collections.Generic;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Zombie;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Player
 {
     public class PlayerCollider : MonoBehaviour
     {

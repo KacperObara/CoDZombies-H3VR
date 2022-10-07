@@ -27,10 +27,10 @@ MonoBehaviour:
   - 'Nuigo_Ftrmarket-CDZ_Thundergun-1.0.1 '
   StripNamespaces: 1
   AdditionalNamespaces:
-  - CustomScripts
+  - CODZombies
+  ApplyHarmonyPatches: 1
   BuildItems:
   - {fileID: 11400000, guid: d36018e276782194795ea7d96e506f55, type: 2}
   - {fileID: 11400000, guid: 0d2f62ebe2fad074d850490949e14184, type: 2}
-  BundleCompressionType: 2
   BuildAction: 2
   OutputProfile: 

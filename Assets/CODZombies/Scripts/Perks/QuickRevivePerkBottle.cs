@@ -1,8 +1,9 @@
-using CustomScripts.Player;
-using FistVR;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using UnityEngine;
 
-namespace CustomScripts.Powerups.Perks
+namespace CODZombies.Scripts.Perks
 {
     public class QuickRevivePerkBottle : MonoBehaviour, IModifier
     {

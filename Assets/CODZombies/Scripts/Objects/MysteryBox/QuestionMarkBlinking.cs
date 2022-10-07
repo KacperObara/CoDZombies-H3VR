@@ -1,7 +1,8 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Objects.MysteryBox
 {
     // My spider sense tells me, there is a easier way to do this
     public class QuestionMarkBlinking : MonoBehaviour

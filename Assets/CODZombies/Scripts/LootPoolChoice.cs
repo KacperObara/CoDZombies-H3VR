@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
+﻿using CODZombies.Scripts.Gamemode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LootPoolChoice : MonoBehaviour
+namespace CODZombies.Scripts
 {
-	public LootPool LootPool;
-	public Text LootChoiceText;
-	[HideInInspector] public bool IsEnabled;
-
-	private void Awake()
+	public class LootPoolChoice : MonoBehaviour
 	{
-		LootChoiceText.text = LootPool.LootPoolTitle;
-	}
+		public LootPool LootPool;
+		public Text LootChoiceText;
+		[HideInInspector] public bool IsEnabled;
 
-	// Used by button
-	public void ChangePoolToThis()
-	{
-		GameSettings.Instance.ChangeLootPool(this);
-		IsEnabled = true;
+		private void Awake()
+		{
+			LootChoiceText.text = LootPool.LootPoolTitle;
+		}
+
+		// Used by button
+		public void ChangePoolToThis()
+		{
+			GameSettings.Instance.ChangeLootPool(this);
+			IsEnabled = true;
+		}
 	}
 }

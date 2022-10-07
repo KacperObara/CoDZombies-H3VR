@@ -1,9 +1,12 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using System.Collections.Generic;
-using CustomScripts.Powerups;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Powerups;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Managers
 {
     public class PowerUpManager : MonoBehaviourSingleton<PowerUpManager>
     {
@@ -80,7 +83,7 @@ namespace CustomScripts
                 _randomIndexes.Add(i);
             }
 
-            _randomIndexes.Shuffle();
+            Extensions.Shuffle(_randomIndexes);
         }
 
         public void SpawnPowerUp(PowerUp powerUp, Vector3 pos)

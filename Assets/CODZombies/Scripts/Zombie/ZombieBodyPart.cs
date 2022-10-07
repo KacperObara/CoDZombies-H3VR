@@ -1,10 +1,11 @@
 #if H3VR_IMPORTED
 using System.Collections;
-using CustomScripts.Player;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Player;
 using FistVR;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Zombie
 {
     public class ZombieBodyPart : MonoBehaviour, IFVRDamageable
     {

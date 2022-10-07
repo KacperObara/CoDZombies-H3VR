@@ -18,4 +18,4 @@ MonoBehaviour:
   UpgradedWeapon: {fileID: 11400000, guid: 0dab44436b357c140a83b8b06d61f431, type: 2}
   LimitedAmmoMagazineCount: 0
   Price: 1000
-  AmmoBuyCost: 100
+  AmmoBuyCost: 300

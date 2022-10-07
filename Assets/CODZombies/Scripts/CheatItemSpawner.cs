@@ -1,13 +1,13 @@
 #if H3VR_IMPORTED
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CustomScripts.Gamemode.GMDebug
+namespace CODZombies.Scripts
 {
     public class CheatItemSpawner : MonoBehaviour
     {

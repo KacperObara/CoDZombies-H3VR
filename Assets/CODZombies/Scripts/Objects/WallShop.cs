@@ -2,17 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Atlas.MappingComponents.Sandbox;
-using CustomScripts.Objects.Weapons;
-using FistVR;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-namespace CustomScripts.Objects
+namespace CODZombies.Scripts.Objects
 {
     public class WallShop : MonoBehaviour, IPurchasable
     {
-        [Header("LootPool asset defines which weapon can be purchased")]
+        [Header("LootPool asset defines which weapon can be purchased here")]
 
         public int ID;
 

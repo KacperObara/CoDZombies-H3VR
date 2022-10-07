@@ -1,13 +1,15 @@
 #if H3VR_IMPORTED
-using System;
 using System.Collections;
-using CustomScripts.Managers;
-using CustomScripts.Player;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.Window;
+using CODZombies.Scripts.Player;
 using FistVR;
 using UnityEngine;
-using UnityEngine.AI;
 
-namespace CustomScripts.Zombie
+namespace CODZombies.Scripts.Zombie
 {
     public class ZosigZombieController : ZombieController
     {

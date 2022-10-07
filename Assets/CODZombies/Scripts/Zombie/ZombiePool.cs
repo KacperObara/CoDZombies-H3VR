@@ -1,11 +1,10 @@
 #if H3VR_IMPORTED
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using CustomScripts.Managers;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Zombie
 {
     public class ZombiePool : MonoBehaviour
     {

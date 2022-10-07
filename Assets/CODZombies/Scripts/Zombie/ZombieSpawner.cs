@@ -1,6 +1,8 @@
 #if H3VR_IMPORTED
+using CODZombies.Scripts.Objects.Window;
 using UnityEngine;
-namespace CustomScripts.Zombie
+
+namespace CODZombies.Scripts.Zombie
 {
     public class ZombieSpawner : MonoBehaviour
     {

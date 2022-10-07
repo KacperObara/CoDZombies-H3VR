@@ -1,8 +1,10 @@
 using System;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Perks
 {
     public class JuggerNogPerkBottle: MonoBehaviour, IModifier
     {

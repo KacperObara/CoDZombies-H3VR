@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742743991c64e4cdf9b46eea0bd485c2, type: 3}
+  m_Name: WeaponData Rai-K 84
+  m_EditorClassIdentifier: 
+  DisplayName: Rai-K 84
+  Description: 
+  DefaultSpawners:
+  - cdz.Rai-K
+  - cdz.Rai-K Mag
+  - Cartridge_40mmCaseless_HEF
+  - Cartridge_40mmCaseless_HEF
+  UpgradedWeapon: {fileID: 11400000, guid: 01bd3414d9867d742a009f0b6674a6f8, type: 2}
+  LimitedAmmoMagazineCount: 4
+  Price: 0
+  AmmoBuyCost: 0

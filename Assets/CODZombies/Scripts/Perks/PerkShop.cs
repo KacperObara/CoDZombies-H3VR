@@ -1,8 +1,8 @@
-using FistVR;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Perks
 {
     public class PerkShop : MonoBehaviour, IPurchasable, IRequiresPower
     {

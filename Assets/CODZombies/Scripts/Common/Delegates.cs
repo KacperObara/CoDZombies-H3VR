@@ -1,6 +1,6 @@
 #if H3VR_IMPORTED
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Common
 {
     public static class Delegates
     {

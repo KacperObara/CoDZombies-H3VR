@@ -1,7 +1,8 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using UnityEngine;
-namespace CustomScripts.Zombie
+
+namespace CODZombies.Scripts.Zombie
 {
     public class Ragdoll : MonoBehaviour
     {

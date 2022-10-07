@@ -1,9 +1,11 @@
 using System;
-using CustomScripts.Player;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using FistVR;
 using UnityEngine;
 
-namespace CustomScripts.Powerups.Perks
+namespace CODZombies.Scripts.Perks
 {
     public class StaminUpPerkBottle : MonoBehaviour, IModifier
     {

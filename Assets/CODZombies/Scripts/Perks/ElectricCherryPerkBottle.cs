@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
-using CustomScripts.Player;
+﻿using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using UnityEngine;
 
-public class ElectricCherryPerkBottle : MonoBehaviour, IModifier
+namespace CODZombies.Scripts.Perks
 {
-	public void ApplyModifier()
+	public class ElectricCherryPerkBottle : MonoBehaviour, IModifier
 	{
-		PlayerData.Instance.ElectricCherryPerkActivated = true;
-		AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
-		Destroy(gameObject);
+		public void ApplyModifier()
+		{
+			PlayerData.Instance.ElectricCherryPerkActivated = true;
+			AudioManager.Instance.Play(AudioManager.Instance.DrinkSound);
+			Destroy(gameObject);
+		}
 	}
 }

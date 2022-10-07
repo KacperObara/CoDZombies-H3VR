@@ -1,9 +1,10 @@
 #if H3VR_IMPORTED
 
-using System;
-using UnityEngine;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers;
 using UnityEngine.UI;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Gamemode
 {
     public class EndPanel : MonoBehaviourSingleton<EndPanel>
     {

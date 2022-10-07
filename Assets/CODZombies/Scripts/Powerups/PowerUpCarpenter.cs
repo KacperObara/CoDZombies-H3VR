@@ -1,7 +1,11 @@
 #if H3VR_IMPORTED
 using System.Collections;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers.Sound;
 using UnityEngine;
-namespace CustomScripts.Powerups
+
+namespace CODZombies.Scripts.Powerups
 {
     public class PowerUpCarpenter : PowerUp
     {

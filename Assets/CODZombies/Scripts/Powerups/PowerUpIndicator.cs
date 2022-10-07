@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+
 #if H3VR_IMPORTED
-namespace CustomScripts
+namespace CODZombies.Scripts.Powerups
 {
     public class PowerUpIndicator : MonoBehaviour
     {

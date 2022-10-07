@@ -1,16 +1,15 @@
 #if H3VR_IMPORTED
 using System;
-using System.Collections;
-using CustomScripts.Gamemode;
-using CustomScripts.Managers;
-using CustomScripts.Objects;
-using CustomScripts.Player;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects;
+using CODZombies.Scripts.Player;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Managers
 {
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {

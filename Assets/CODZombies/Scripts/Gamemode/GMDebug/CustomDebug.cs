@@ -1,14 +1,15 @@
 #if H3VR_IMPORTED
 
-using CustomScripts.Managers;
-using CustomScripts.Objects;
-using CustomScripts.Player;
-using CustomScripts.Powerups;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Objects;
+using CODZombies.Scripts.Perks;
+using CODZombies.Scripts.Player;
+using CODZombies.Scripts.Powerups;
+using CODZombies.Scripts.Zombie;
 using FistVR;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace CustomScripts.Gamemode.GMDebug
+namespace CODZombies.Scripts.Gamemode.GMDebug
 {
     public class CustomDebug : MonoBehaviour
     {

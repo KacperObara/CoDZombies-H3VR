@@ -1,8 +1,7 @@
 #if H3VR_IMPORTED
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace CustomScripts.Managers.Sound
+using CODZombies.Scripts.Common;
+
+namespace CODZombies.Scripts.Managers.Sound
 {
     public class MusicManager : MonoBehaviourSingleton<MusicManager>
     {

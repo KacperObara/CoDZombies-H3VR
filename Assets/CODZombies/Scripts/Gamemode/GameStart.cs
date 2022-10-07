@@ -1,6 +1,8 @@
 #if H3VR_IMPORTED
+using CODZombies.Scripts.Common;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Gamemode
 {
     public class GameStart : MonoBehaviourSingleton<GameStart>
     {

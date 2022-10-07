@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DisableOnAwake : MonoBehaviour {
-	private void Awake()
-	{
-		gameObject.SetActive(false);
+namespace CODZombies.Scripts
+{
+	public class DisableOnAwake : MonoBehaviour {
+		private void Awake()
+		{
+			gameObject.SetActive(false);
+		}
 	}
 }

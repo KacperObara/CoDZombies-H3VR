@@ -1,7 +1,8 @@
 #if H3VR_IMPORTED
 using System.Collections;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Managers.Sound
 {
     public class SoundPoolableObject : MonoBehaviour
     {

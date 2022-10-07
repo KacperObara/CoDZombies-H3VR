@@ -57,9 +57,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ec3e32611a4fbe4f8cfccf20d350878, type: 2}
   - {fileID: 11400000, guid: 85403497987ece745b16e7d642f0c013, type: 2}
   - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
+  - {fileID: 11400000, guid: cef078fbe864ce849adf8eea3099cf2f, type: 2}
   LimitedAmmoMysteryBoxRareWeapons:
   - {fileID: 11400000, guid: 3ec3e32611a4fbe4f8cfccf20d350878, type: 2}
   - {fileID: 11400000, guid: 85403497987ece745b16e7d642f0c013, type: 2}
   - {fileID: 11400000, guid: 766d000061c00a642970c7267d5fd9b5, type: 2}
+  - {fileID: 11400000, guid: cef078fbe864ce849adf8eea3099cf2f, type: 2}
   RareWeaponChance: 5
   LimitedAmmoRareWeaponChance: 7

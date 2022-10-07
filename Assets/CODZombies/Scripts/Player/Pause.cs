@@ -1,70 +1,69 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
+﻿using CODZombies.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Pause : MonoBehaviour
+namespace CODZombies.Scripts.Player
 {
-    [SerializeField] private GameObject _pauseWrapper;
-    [SerializeField] private GameObject _playerBlocker;
-
-    [SerializeField] private Text _isPausedText;
-
-    private bool _isPaused;
-
-    private void Awake()
+    public class Pause : MonoBehaviour
     {
-        if (_playerBlocker)
-            _playerBlocker.SetActive(false);
+        [SerializeField] private GameObject _pauseWrapper;
+        [SerializeField] private GameObject _playerBlocker;
 
-        RoundManager.RoundEnded += Show;
-        RoundManager.RoundStarted += Hide;
+        [SerializeField] private Text _isPausedText;
 
-        _isPausedText.text = "Disabled";
+        private bool _isPaused;
 
-        Hide();
-    }
-
-    private void Show()
-    {
-        _pauseWrapper.SetActive(true);
-    }
-
-    private void Hide()
-    {
-        _pauseWrapper.SetActive(false);
-    }
-
-    public void OnLeverPull()
-    {
-        if (_isPaused)
+        private void Awake()
         {
-            RoundManager.Instance.ResumeGame();
-            _isPaused = false;
-
             if (_playerBlocker)
                 _playerBlocker.SetActive(false);
 
+            RoundManager.RoundEnded += Show;
+            RoundManager.RoundStarted += Hide;
+
             _isPausedText.text = "Disabled";
+
+            Hide();
         }
-        else
+
+        private void Show()
         {
-            RoundManager.Instance.PauseGame();
-            _isPaused = true;
-
-            if (_playerBlocker)
-                _playerBlocker.SetActive(true);
-
-            _isPausedText.text = "Enabled";
+            _pauseWrapper.SetActive(true);
         }
-    }
 
-    private void OnDestroy()
-    {
-        RoundManager.RoundEnded -= Show;
-        RoundManager.RoundStarted -= Hide;
+        private void Hide()
+        {
+            _pauseWrapper.SetActive(false);
+        }
+
+        public void OnLeverPull()
+        {
+            if (_isPaused)
+            {
+                RoundManager.Instance.ResumeGame();
+                _isPaused = false;
+
+                if (_playerBlocker)
+                    _playerBlocker.SetActive(false);
+
+                _isPausedText.text = "Disabled";
+            }
+            else
+            {
+                RoundManager.Instance.PauseGame();
+                _isPaused = true;
+
+                if (_playerBlocker)
+                    _playerBlocker.SetActive(true);
+
+                _isPausedText.text = "Enabled";
+            }
+        }
+
+        private void OnDestroy()
+        {
+            RoundManager.RoundEnded -= Show;
+            RoundManager.RoundStarted -= Hide;
+        }
     }
 }

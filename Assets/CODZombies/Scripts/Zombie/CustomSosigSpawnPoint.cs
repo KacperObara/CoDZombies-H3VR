@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
-using CustomScripts.Gamemode.GMDebug;
-using CustomScripts.Managers;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using Sodalite.Api;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Zombie
 {
     public class CustomSosigSpawnPoint : MonoBehaviour
     {

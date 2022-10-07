@@ -1,7 +1,8 @@
 #if H3VR_IMPORTED
 using UnityEngine;
 using UnityEngine.UI;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Gamemode
 {
     public class HighscoreShower : MonoBehaviour
     {

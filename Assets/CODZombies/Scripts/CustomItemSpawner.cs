@@ -2,7 +2,8 @@
 
 using FistVR;
 using UnityEngine;
-namespace CustomScripts.Gamemode.GMDebug
+
+namespace CODZombies.Scripts
 {
     public class CustomItemSpawner : MonoBehaviour
     {

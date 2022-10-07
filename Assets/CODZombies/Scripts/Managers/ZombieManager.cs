@@ -2,16 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Atlas.MappingComponents.Sandbox;
-using CustomScripts.Gamemode.GMDebug;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.Window;
+using CODZombies.Scripts.Zombie;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts.Managers
+namespace CODZombies.Scripts.Managers
 {
     //TODO Need to refactor AI classes, it became quite a monster from having to support 4 types of enemies in 2 modes
     public class ZombieManager : MonoBehaviourSingleton<ZombieManager>

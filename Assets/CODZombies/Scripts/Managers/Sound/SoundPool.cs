@@ -1,9 +1,8 @@
 #if H3VR_IMPORTED
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Managers.Sound
 {
     /// <summary>
     /// There was an error when trying to play sounds on moving objects, so I created sound pool,

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects;
+using CODZombies.Scripts.Zombie;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CustomScripts.Objects
+namespace CODZombies.Scripts.Player
 {
     public class ElectroTrap : MonoBehaviour, IPurchasable, IRequiresPower, ITrap
     {

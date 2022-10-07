@@ -16,6 +16,7 @@ MonoBehaviour:
   DefaultSpawners:
   - MG42
   - Magazine_Mg42
-  UpgradedWeapon: {fileID: 11400000, guid: 59a0fea0de934664daab8f89c8f24e96, type: 2}
+  UpgradedWeapon: {fileID: 11400000, guid: 834fc86952052a840a5d7063c52f8441, type: 2}
   LimitedAmmoMagazineCount: 4
+  Price: 0
   AmmoBuyCost: 0

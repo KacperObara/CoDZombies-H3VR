@@ -1,11 +1,9 @@
 #if H3VR_IMPORTED
-using System;
-using System.Collections;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Gamemode
 {
     public class LeverWrapper : MonoBehaviour
     {

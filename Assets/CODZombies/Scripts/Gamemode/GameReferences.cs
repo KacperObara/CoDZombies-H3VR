@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Atlas;
-using Atlas.MappingComponents.Sandbox;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Objects.Window;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Gamemode
 {
     public class GameReferences : MonoBehaviourSingleton<GameReferences>
     {

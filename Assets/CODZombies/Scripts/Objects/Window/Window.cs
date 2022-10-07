@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CustomScripts.Player;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
 using FistVR;
-using CustomScripts.Objects.Windows;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Objects.Window
 {
     public class Window : MonoBehaviour
     {

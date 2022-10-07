@@ -1,9 +1,11 @@
 #if H3VR_IMPORTED
 
 using System.Collections;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Objects.Window
 {
     public class Plank : MonoBehaviour
     {

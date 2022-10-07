@@ -1,136 +1,136 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
-using Valve.VR.InteractionSystem;
 
-public class MagazineBox : FVRPhysicalObject
+namespace CODZombies.Scripts.Player
 {
-	public Sprite EmptySprite;
+	public class MagazineBox : FVRPhysicalObject
+	{
+		public Sprite EmptySprite;
 
-	[SerializeField] private Text _magazineNameText;
-	[SerializeField] private Text _magazineCountText;
-	[SerializeField] private Image _magazineImage;
+		[SerializeField] private Text _magazineNameText;
+		[SerializeField] private Text _magazineCountText;
+		[SerializeField] private Image _magazineImage;
 
 	
-	private Stack<FVRFireArmMagazine> _magazines = new Stack<FVRFireArmMagazine>();
-	private bool IsEmpty { get { return _magazines.Count == 0; } }
-	private FVRFireArmMagazine CurrentMagazine { get { return _magazines.Peek(); } }
+		private Stack<FVRFireArmMagazine> _magazines = new Stack<FVRFireArmMagazine>();
+		private bool IsEmpty { get { return _magazines.Count == 0; } }
+		private FVRFireArmMagazine CurrentMagazine { get { return _magazines.Peek(); } }
 
 
-	public override void BeginInteraction(FVRViveHand hand)
-	{
-		if (hand.Input.TriggerFloat > 0.5)
+		public override void BeginInteraction(FVRViveHand hand)
 		{
-			RetrieveMagazine(hand);
-		}
-		else
-		{
-			base.BeginInteraction(hand);
-		}
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.GetComponent<FVRViveHand>())
-		{
-			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (hand.IsThisTheRightHand)
+			if (hand.Input.TriggerFloat > 0.5)
 			{
-				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
-				hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
+				RetrieveMagazine(hand);
 			}
 			else
 			{
-				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
-				hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
+				base.BeginInteraction(hand);
 			}
 		}
-	}
 
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.GetComponent<FVRViveHand>())
+		private void OnTriggerEnter(Collider other)
 		{
-			FVRViveHand hand = other.GetComponent<FVRViveHand>();
-			if (hand.IsThisTheRightHand)
+			if (other.GetComponent<FVRViveHand>())
 			{
-				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
+				FVRViveHand hand = other.GetComponent<FVRViveHand>();
+				if (hand.IsThisTheRightHand)
+				{
+					hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
+					hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
+				}
+				else
+				{
+					hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
+					hand.Trigger_Button.AddOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
+				}
+			}
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			if (other.GetComponent<FVRViveHand>())
+			{
+				FVRViveHand hand = other.GetComponent<FVRViveHand>();
+				if (hand.IsThisTheRightHand)
+				{
+					hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.RightHand);
+				}
+				else
+				{
+					hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
+				}
+			}
+		}
+
+		private void TryPlacing(SteamVR_Action_Boolean fromaction, SteamVR_Input_Sources fromsource)
+		{
+			FVRViveHand hand;
+			if (fromsource != SteamVR_Input_Sources.RightHand)
+			{
+				hand = GM.CurrentMovementManager.Hands[0];
 			}
 			else
 			{
-				hand.Trigger_Button.RemoveOnStateUpListener(TryPlacing, SteamVR_Input_Sources.LeftHand);
+				hand = GM.CurrentMovementManager.Hands[1];
 			}
-		}
-	}
 
-	private void TryPlacing(SteamVR_Action_Boolean fromaction, SteamVR_Input_Sources fromsource)
-	{
-		FVRViveHand hand;
-		if (fromsource != SteamVR_Input_Sources.RightHand)
-		{
-			hand = GM.CurrentMovementManager.Hands[0];
-		}
-		else
-		{
-			hand = GM.CurrentMovementManager.Hands[1];
-		}
+			if (hand.CurrentInteractable == null)
+				return;
 
-		if (hand.CurrentInteractable == null)
-			return;
+			FVRFireArmMagazine magazine = hand.CurrentInteractable.GetComponent<FVRFireArmMagazine>();
 
-		FVRFireArmMagazine magazine = hand.CurrentInteractable.GetComponent<FVRFireArmMagazine>();
-
-		if (magazine == null)
-			return;
+			if (magazine == null)
+				return;
 		
-		if (IsEmpty || !IsEmpty && IsMagazineCompatible(magazine))
-		{
-			AddMagazine(magazine);
+			if (IsEmpty || !IsEmpty && IsMagazineCompatible(magazine))
+			{
+				AddMagazine(magazine);
+			}
 		}
-	}
 
-	private void RetrieveMagazine(FVRViveHand hand)
-	{
-		if (IsEmpty)
-			return;
-
-		FVRFireArmMagazine magazine = _magazines.Pop();
-		magazine.gameObject.SetActive(true);
-
-		hand.RetrieveObject(magazine);
-
-		UpdateUI();
-	}
-
-	public void AddMagazine(FVRFireArmMagazine magazine)
-	{
-		_magazines.Push(magazine);
-		magazine.gameObject.SetActive(false);
-		UpdateUI();
-	}
-
-	private bool IsMagazineCompatible(FVRFireArmMagazine magazine)
-	{
-		return CurrentMagazine.ObjectWrapper.SpawnedFromId == magazine.ObjectWrapper.SpawnedFromId;
-	}
-
-	private void UpdateUI()
-	{
-		if (IsEmpty)
+		private void RetrieveMagazine(FVRViveHand hand)
 		{
-			_magazineNameText.text = "None";
-			_magazineCountText.text = "0";
-			_magazineImage.sprite = EmptySprite;
+			if (IsEmpty)
+				return;
+
+			FVRFireArmMagazine magazine = _magazines.Pop();
+			magazine.gameObject.SetActive(true);
+
+			hand.RetrieveObject(magazine);
+
+			UpdateUI();
 		}
-		else
+
+		public void AddMagazine(FVRFireArmMagazine magazine)
 		{
-			_magazineNameText.text = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName;
-			_magazineCountText.text = _magazines.Count.ToString();
-			_magazineImage.sprite = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).Sprite;
+			_magazines.Push(magazine);
+			magazine.gameObject.SetActive(false);
+			UpdateUI();
+		}
+
+		private bool IsMagazineCompatible(FVRFireArmMagazine magazine)
+		{
+			return CurrentMagazine.ObjectWrapper.SpawnedFromId == magazine.ObjectWrapper.SpawnedFromId;
+		}
+
+		private void UpdateUI()
+		{
+			if (IsEmpty)
+			{
+				_magazineNameText.text = "None";
+				_magazineCountText.text = "0";
+				_magazineImage.sprite = EmptySprite;
+			}
+			else
+			{
+				_magazineNameText.text = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).DisplayName;
+				_magazineCountText.text = _magazines.Count.ToString();
+				_magazineImage.sprite = IM.GetSpawnerID(CurrentMagazine.ObjectWrapper.SpawnedFromId).Sprite;
+			}
 		}
 	}
 }

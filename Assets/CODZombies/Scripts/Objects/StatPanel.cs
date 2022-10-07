@@ -1,8 +1,9 @@
 #if H3VR_IMPORTED
-using CustomScripts.Managers;
+using CODZombies.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Objects
 {
     public class StatPanel : MonoBehaviour
     {

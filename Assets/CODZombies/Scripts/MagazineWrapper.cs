@@ -1,8 +1,7 @@
-﻿using System;
-using FistVR;
+﻿using FistVR;
 using UnityEngine;
 
-namespace CustomScripts.Gamemode
+namespace CODZombies.Scripts
 {
     public class MagazineWrapper : MonoBehaviour
     {

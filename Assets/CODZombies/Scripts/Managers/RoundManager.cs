@@ -1,12 +1,13 @@
 #if H3VR_IMPORTED
 using System;
 using System.Collections;
-using CustomScripts.Managers;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Managers
 {
     public class RoundManager : MonoBehaviourSingleton<RoundManager>
     {

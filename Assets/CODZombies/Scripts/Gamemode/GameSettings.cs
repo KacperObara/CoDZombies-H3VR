@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FistVR;
+using CODZombies.Scripts.Common;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Gamemode
 {
     public class GameSettings : MonoBehaviourSingleton<GameSettings>
     {

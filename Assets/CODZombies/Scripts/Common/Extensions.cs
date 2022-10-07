@@ -2,7 +2,8 @@
 
 using System;
 using System.Collections.Generic;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Common
 {
     public static class Extensions
     {

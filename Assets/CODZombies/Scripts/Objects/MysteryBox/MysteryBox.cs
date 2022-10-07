@@ -3,12 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Atlas.MappingComponents.Sandbox;
-using CustomScripts.Objects.Weapons;
-using FistVR;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Objects.Weapons;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Objects.MysteryBox
 {
     public class MysteryBox : MonoBehaviour, IPurchasable
     {

@@ -1,44 +1,44 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
+﻿using CODZombies.Scripts.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DoorBanging : MonoBehaviour
+namespace CODZombies.Scripts
 {
-    public AudioSource BangingSound;
-    private float _timer;
-    private bool _activated;
-
-    private void Awake()
+    public class DoorBanging : MonoBehaviour
     {
-        if (Random.Range(0, 20) != 0)
+        public AudioSource BangingSound;
+        private float _timer;
+        private bool _activated;
+
+        private void Awake()
+        {
+            if (Random.Range(0, 20) != 0)
+            {
+                Destroy(this);
+                return;
+            }
+
+            RoundManager.OnGameStarted += OnGameStart;
+            _timer = Time.time;
+        }
+
+        private void Update()
+        {
+            if (!_activated && _timer + 120 <= Time.time)
+            {
+                BangingSound.Play();
+                _activated = true;
+            }
+        }
+
+        public void OnGameStart()
         {
             Destroy(this);
-            return;
         }
 
-        RoundManager.OnGameStarted += OnGameStart;
-        _timer = Time.time;
-    }
-
-    private void Update()
-    {
-        if (!_activated && _timer + 120 <= Time.time)
+        private void OnDestroy()
         {
-            BangingSound.Play();
-            _activated = true;
+            RoundManager.OnGameStarted -= OnGameStart;
         }
-    }
-
-    public void OnGameStart()
-    {
-        Destroy(this);
-    }
-
-    private void OnDestroy()
-    {
-        RoundManager.OnGameStarted -= OnGameStart;
     }
 }

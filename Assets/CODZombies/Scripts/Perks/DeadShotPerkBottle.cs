@@ -1,9 +1,12 @@
-using CustomScripts.Managers;
-using CustomScripts.Player;
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
+using CODZombies.Scripts.Player;
+using CODZombies.Scripts.Zombie;
 using UnityEngine;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Perks
 {
     public class DeadShotPerkBottle : MonoBehaviour, IModifier
     {

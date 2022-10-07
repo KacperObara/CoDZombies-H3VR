@@ -1,7 +1,10 @@
 #if H3VR_IMPORTED
-using CustomScripts.Zombie;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
+using CODZombies.Scripts.Managers.Sound;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Zombie
 {
     public class RandomZombieSound : MonoBehaviour
     {

@@ -1,8 +1,9 @@
 #if H3VR_IMPORTED
 
+using CODZombies.Scripts.Common;
 using UnityEngine;
 
-namespace CustomScripts.Player
+namespace CODZombies.Scripts.Player
 {
     public class PlayerColliderSmall : MonoBehaviour
     {

@@ -1,7 +1,9 @@
 #if H3VR_IMPORTED
+using CODZombies.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
-namespace CustomScripts.Gamemode
+
+namespace CODZombies.Scripts.Gamemode
 {
     public class PointsView : MonoBehaviour
     {

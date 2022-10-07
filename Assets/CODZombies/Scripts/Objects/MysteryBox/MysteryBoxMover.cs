@@ -1,12 +1,12 @@
 #if H3VR_IMPORTED
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using CODZombies.Scripts.Managers.Sound;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Objects.MysteryBox
 {
     public class MysteryBoxMover : MonoBehaviour
     {

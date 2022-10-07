@@ -1,11 +1,12 @@
 #if H3VR_IMPORTED
 
-using System;
 using System.Collections;
-using CustomScripts.Managers.Sound;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers.Sound;
 using FistVR;
 using UnityEngine;
-namespace CustomScripts.Objects
+
+namespace CODZombies.Scripts.Objects
 {
     public class Radio : MonoBehaviour, IFVRDamageable
     {

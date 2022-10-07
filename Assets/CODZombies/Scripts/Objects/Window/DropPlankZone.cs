@@ -1,7 +1,8 @@
 #if H3VR_IMPORTED
 
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Objects.Window
 {
     // Drop plank if player leaves from window
     public class DropPlankZone : MonoBehaviour

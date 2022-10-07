@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using CustomScripts;
+﻿using System.Collections.Generic;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
+using CODZombies.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CustomScripts
+namespace CODZombies.Scripts
 {
     [RequireComponent(typeof(IPurchasable))]
     public class CanPurchaseTextChanger : MonoBehaviour

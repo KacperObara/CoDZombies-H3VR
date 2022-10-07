@@ -1,8 +1,10 @@
 #if H3VR_IMPORTED
 
+using CODZombies.Scripts.Gamemode;
 using FistVR;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Common
 {
     public class StartSpawner : MonoBehaviour
     {

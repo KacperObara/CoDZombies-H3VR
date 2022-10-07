@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CustomScripts;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace CustomScripts
+namespace CODZombies.Scripts.Player
 {
     public class PlayerTrigger : MonoBehaviour
     {

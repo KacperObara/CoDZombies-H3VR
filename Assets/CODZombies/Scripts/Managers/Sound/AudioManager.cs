@@ -1,9 +1,11 @@
 #if H3VR_IMPORTED
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using CODZombies.Scripts.Common;
+using CODZombies.Scripts.Gamemode;
 using UnityEngine;
-namespace CustomScripts
+
+namespace CODZombies.Scripts.Managers.Sound
 {
     public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {

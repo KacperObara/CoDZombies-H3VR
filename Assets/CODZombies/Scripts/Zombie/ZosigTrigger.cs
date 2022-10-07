@@ -1,6 +1,7 @@
 #if H3VR_IMPORTED
 using UnityEngine;
-namespace CustomScripts.Zombie
+
+namespace CODZombies.Scripts.Zombie
 {
     public class ZosigTrigger : MonoBehaviour
     {
