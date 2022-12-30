@@ -1,9 +1,11 @@
 #if H3VR_IMPORTED
+using System;
+using System.Collections;
 using FistVR;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CODZombies.Scripts.Gamemode
+namespace CODZombies.Scripts
 {
     public class LeverWrapper : MonoBehaviour
     {
@@ -21,7 +23,7 @@ namespace CODZombies.Scripts.Gamemode
 
         private void Awake()
         {
-            _lever = GetComponent<TrapLever>();
+            _lever = GetComponentInChildren<TrapLever>();
             _lever.MessageTargets.Add(gameObject);
         }
 
@@ -52,6 +54,7 @@ namespace CODZombies.Scripts.Gamemode
                 LeverHoldEndEvent.Invoke();
         }
 
+        // Called by TrapLever message system
         public void ON()
         {
             if (_isOn)

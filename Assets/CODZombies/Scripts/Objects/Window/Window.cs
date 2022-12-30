@@ -16,6 +16,8 @@ namespace CODZombies.Scripts.Objects.Window
 
         public Transform ZombieWaypoint;
 
+        public Collider ZosigBlockerCollider;
+
         public List<WindowPlank> PlankSlots;
 
         public List<Plank> AllPlanks;
@@ -54,6 +56,8 @@ namespace CODZombies.Scripts.Objects.Window
                 AllPlanks[i].PhysicalObject.IsPickUpLocked = true;
             }
 
+            if (ZosigBlockerCollider)
+                ZosigBlockerCollider.gameObject.SetActive(true);
             PlanksRemain = PlankSlots.Count;
 
             if (playSound)
@@ -64,6 +68,8 @@ namespace CODZombies.Scripts.Objects.Window
         {
             if (BarricadedEvent != null && GameManager.Instance.GameStarted)
                 BarricadedEvent.Invoke();
+            if (ZosigBlockerCollider)
+                ZosigBlockerCollider.gameObject.SetActive(true);
 
             if (PlayerData.Instance.SpeedColaPerkActivated)
             {
@@ -94,7 +100,6 @@ namespace CODZombies.Scripts.Objects.Window
             if (!windowPlank)
                 return;
 
-
             Plank plank = windowPlank.Plank;
             plank.ReturnToRest();
 
@@ -105,6 +110,12 @@ namespace CODZombies.Scripts.Objects.Window
 
             _tearPlankAudio.Play();
             PlanksRemain--;
+
+            if (PlanksRemain == 0)
+            {
+                if (ZosigBlockerCollider)
+                    ZosigBlockerCollider.gameObject.SetActive(false);
+            }
         }
     }
 }

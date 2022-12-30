@@ -15,7 +15,7 @@ MonoBehaviour:
   Description: 
   DefaultSpawners:
   - AKS74UTactical
-  - MagazineAKMDrum
+  - MagazineAK74Drum
   UpgradedWeapon: {fileID: 0}
   LimitedAmmoMagazineCount: 3
   Price: 0

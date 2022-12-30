@@ -18,5 +18,5 @@ MonoBehaviour:
   - 12GaugeShellNo4Buckshot
   UpgradedWeapon: {fileID: 11400000, guid: 0b295d3f9c387c44d9870d2d432caeea, type: 2}
   LimitedAmmoMagazineCount: 12
-  Price: 0
-  AmmoBuyCost: 0
+  Price: 600
+  AmmoBuyCost: 400

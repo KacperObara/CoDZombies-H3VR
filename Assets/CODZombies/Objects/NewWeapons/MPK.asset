@@ -18,5 +18,5 @@ MonoBehaviour:
   - MagazineMPK
   UpgradedWeapon: {fileID: 11400000, guid: 3404acf665671c4428141b6152d479b9, type: 2}
   LimitedAmmoMagazineCount: 4
-  Price: 0
-  AmmoBuyCost: 0
+  Price: 1200
+  AmmoBuyCost: 600

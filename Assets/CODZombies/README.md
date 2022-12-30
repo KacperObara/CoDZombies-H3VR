@@ -19,8 +19,6 @@ Important:
 - Buying stuff, changing settings etc. are done by pulling the levers
 - Remember to spawn lock ammunition
 
-This map works as a proving grounds. It contains prototype features that don't exist on the original map, like the teleporter.
-
 ### How to play?
 When you launch the game, turn 180 degrees to see and select the custom map. Then load it like any other scene.
 If you can't see it, or it loads proving grounds, then 90% chances are, you've done something wrong, or there is a problem with other mods.
@@ -51,6 +49,13 @@ Let me know of any problems, I'd be glad to help.
 
 
 ## Changelog
+
+### 1.0.6
+- Added the Thundergun and Rai K 84 wonder weapons by Sora101Ven
+- Changed chances for getting wonder weapons from the mystery box
+- Removed the teleporter.
+- Zosigs AI changes to fix behavior problems
+- Minor improvements
 
 ### 1.0.5
 - Max ammo power up fixed, it should refill ammo properly.

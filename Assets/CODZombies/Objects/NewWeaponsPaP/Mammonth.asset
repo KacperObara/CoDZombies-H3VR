@@ -15,7 +15,7 @@ MonoBehaviour:
   Description: 
   DefaultSpawners:
   - Mammonth
-  - Speedloader6666Shot
+  - SpeedloaderMammonth
   UpgradedWeapon: {fileID: 0}
   LimitedAmmoMagazineCount: 4
   Price: 0

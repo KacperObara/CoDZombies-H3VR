@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace CODZombies.Scripts
 {
+    // Just an easter egg, nothing special
     public class DoorBanging : MonoBehaviour
     {
         public AudioSource BangingSound;

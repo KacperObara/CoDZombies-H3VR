@@ -2,6 +2,7 @@
 
 using CODZombies.Scripts.Managers;
 using CODZombies.Scripts.Objects;
+using CODZombies.Scripts.Objects.Window;
 using CODZombies.Scripts.Perks;
 using CODZombies.Scripts.Player;
 using CODZombies.Scripts.Powerups;
@@ -30,7 +31,7 @@ namespace CODZombies.Scripts.Gamemode.GMDebug
 
         public DeadShotPerkBottle DeadShotPerkBottle;
 
-        public LootPoolChoice newLootPool;
+        public Window Window;
 
         ZombieBodyPart part;
         private void Update()
@@ -110,12 +111,16 @@ namespace CODZombies.Scripts.Gamemode.GMDebug
             }
 
 
-
+            
 
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GameSettings.Instance.ToggleBackgroundMusic();
+                Window.OnPlankRipped();
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Window.RepairAll();
             }
 
 

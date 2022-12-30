@@ -195,7 +195,7 @@ namespace CODZombies.Scripts.Zombie
                     return;
                 if (window.IsOpen)
                 {
-                    ChangeTarget(GameReferences.Instance.Player);
+                    ChangeTarget(GameReferences.Instance.PlayerHead);
                     return;
                 }
 
@@ -387,7 +387,7 @@ namespace CODZombies.Scripts.Zombie
                 _agent.speed = 0.1f;
 
                 StartMovementAnimation();
-                ChangeTarget(GameReferences.Instance.Player);
+                ChangeTarget(GameReferences.Instance.PlayerHead);
             }
             else
             {

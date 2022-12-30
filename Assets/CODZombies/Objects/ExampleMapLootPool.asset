@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4eb9673e1619f234aaa7d2b7a2a6eace, type: 2}
   - {fileID: 11400000, guid: 20c7bd148c3f6a947994168782c226ab, type: 2}
   - {fileID: 11400000, guid: 94be6cc4de7682a4ca0c3c197894c205, type: 2}
-  - {fileID: 11400000, guid: 8123e749062783d49a1d3872876634bc, type: 2}
+  - {fileID: 11400000, guid: 45bd9b370c31d5d44a1066adc43530c0, type: 2}
   MysteryBoxPool:
   - {fileID: 11400000, guid: bd638e64d1293ce439f7878ab6a90a8a, type: 2}
   - {fileID: 11400000, guid: 68a7c6a9f35c2604f84613718e9d9db6, type: 2}

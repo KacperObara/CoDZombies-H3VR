@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CODZombies.Scripts.Common;
 using CODZombies.Scripts.Gamemode;
 using CODZombies.Scripts.Managers.Sound;
@@ -34,7 +35,7 @@ namespace CODZombies.Scripts.Managers
         public int PointsOnHit = 10;
         public int PointsOnKill = 100;
 
-        public List<ZombieController> AllCustomZombies;
+        [HideInInspector] public List<ZombieController> AllCustomZombies;
         [HideInInspector] public List<ZombieController> ExistingZombies;
 
         private Transform _zombieTarget;
@@ -43,6 +44,13 @@ namespace CODZombies.Scripts.Managers
 
         public int ZombieAtOnceLimit = 20;
         [HideInInspector] public int ZombiesRemaining;
+
+        public override void Awake()
+        {
+            base.Awake();
+
+            AllCustomZombies = FindObjectsOfType<ZombieController>().ToList();
+        }
 
         private int ZombiesToSpawnThisRound
         {
@@ -76,8 +84,6 @@ namespace CODZombies.Scripts.Managers
 
                 AudioManager.Instance.Play(AudioManager.Instance.RoundStartSound, 0.2f, 1f);
             }
-
-
         }
 
         public void StartSpawningZombies(float initialDelay)
@@ -102,7 +108,7 @@ namespace CODZombies.Scripts.Managers
                     continue;
                 }
 
-                _zombieTarget = GameReferences.Instance.Player;
+                _zombieTarget = GameReferences.Instance.PlayerHead;
 
                 if (!GameSettings.UseCustomEnemies)
                 {
@@ -148,7 +154,7 @@ namespace CODZombies.Scripts.Managers
                 spawnPoint.GetComponent<CustomSosigSpawnPoint>().SpawnPS.Play(true);
 
                 if (RoundManager.Instance.IsRoundSpecial)
-                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.4f, delay:.25f);
+                    AudioManager.Instance.Play(AudioManager.Instance.HellHoundSpawnSound, volume:.2f, delay:.25f);
 
                 yield return new WaitForSeconds(2f);
             }

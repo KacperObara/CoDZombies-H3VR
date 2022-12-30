@@ -18,5 +18,5 @@ MonoBehaviour:
   - MagazineStanag20rnd
   UpgradedWeapon: {fileID: 11400000, guid: 48f01dffe9d53f743af233af1eec1779, type: 2}
   LimitedAmmoMagazineCount: 4
-  Price: 0
-  AmmoBuyCost: 0
+  Price: 2500
+  AmmoBuyCost: 1300

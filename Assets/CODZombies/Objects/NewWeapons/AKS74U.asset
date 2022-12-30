@@ -18,5 +18,5 @@ MonoBehaviour:
   - MagazineAK74_20rnd
   UpgradedWeapon: {fileID: 11400000, guid: d8883e3c87ff5374485a174eb6e6feaf, type: 2}
   LimitedAmmoMagazineCount: 4
-  Price: 0
-  AmmoBuyCost: 0
+  Price: 2000
+  AmmoBuyCost: 1000

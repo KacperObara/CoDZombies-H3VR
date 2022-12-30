@@ -15,7 +15,7 @@ namespace CODZombies.Scripts.Zombie
     {
         public bool CanInteractWithWindows = true;
 
-        private const float agentUpdateInterval = .5f;
+        private const float agentUpdateInterval = 1.5f;//.5f;
         private int _hitsGivingMoney = 6;
 
         private float _agentUpdateTimer;
@@ -29,7 +29,7 @@ namespace CODZombies.Scripts.Zombie
 
         public override void Initialize(Transform newTarget)
         {
-            Target = newTarget;
+            ChangeTarget(newTarget);
 
             _sosig = GetComponent<Sosig>();
 
@@ -69,8 +69,6 @@ namespace CODZombies.Scripts.Zombie
                 }
             }
 
-
-
             _sosig.Speed_Walk = _sosig.Speed_Run;
             _sosig.Speed_Turning = _sosig.Speed_Run;
             _sosig.Speed_Sneak = _sosig.Speed_Run;
@@ -101,14 +99,12 @@ namespace CODZombies.Scripts.Zombie
 
         private IEnumerator SpawnSpecialEnemy()
         {
-            _cachedSpeed = 5f;
+            //_cachedSpeed = 5f;
             _sosig.Speed_Run = 5f;
             _sosig.Speed_Walk = 5f;
             _sosig.Speed_Turning = 5f;
             _sosig.Speed_Sneak = 5f;
             _sosig.Speed_Crawl = 5f;
-
-            //_sosig.Agent.agentTypeID = 1; // Changing zombies agent type to crawlers(Hellhounds)
 
             CanInteractWithWindows = false;
 
@@ -120,28 +116,22 @@ namespace CODZombies.Scripts.Zombie
             if (_sosig == null)
                 return;
 
-            if (_isAttackingWindow)
-            {
-                _sosig.Speed_Run = 0;
-                _sosig.Speed_Walk = 0;
-                _sosig.Speed_Turning = 0;
-                _sosig.Speed_Crawl = 0;
-                _sosig.Speed_Sneak = 0;
-            }
-            else
-            {
-                _sosig.Speed_Run = _cachedSpeed;
-                _sosig.Speed_Walk = _cachedSpeed;
-                _sosig.Speed_Turning = _cachedSpeed;
-                _sosig.Speed_Crawl = _cachedSpeed;
-                _sosig.Speed_Sneak = _cachedSpeed;
-            }
-        }
-
-        private void LateUpdate()
-        {
-            if (_sosig == null)
-                return;
+            // if (_isAttackingWindow)
+            // {
+            //     _sosig.Speed_Run = 0;
+            //     _sosig.Speed_Walk = 0;
+            //     _sosig.Speed_Turning = 0;
+            //     _sosig.Speed_Crawl = 0;
+            //     _sosig.Speed_Sneak = 0;
+            // }
+            // else
+            // {
+            //     _sosig.Speed_Run = _cachedSpeed;
+            //     _sosig.Speed_Walk = _cachedSpeed;
+            //     _sosig.Speed_Turning = _cachedSpeed;
+            //     _sosig.Speed_Crawl = _cachedSpeed;
+            //     _sosig.Speed_Sneak = _cachedSpeed;
+            // }
 
             _agentUpdateTimer += Time.deltaTime;
             if (_agentUpdateTimer >= agentUpdateInterval)
@@ -149,6 +139,17 @@ namespace CODZombies.Scripts.Zombie
                 _agentUpdateTimer -= agentUpdateInterval;
 
                 _sosig.CommandAssaultPoint(Target.position);
+                //_sosig.TryToGetTo(Target.position);
+
+                if (LastInteractedWindow && LastInteractedWindow.IsOpen && Target != GameReferences.Instance.Player)
+                {
+                    ChangeTarget(GameReferences.Instance.Player);
+                    _sosig.Speed_Run = _cachedSpeed;
+                    _sosig.Speed_Walk = _cachedSpeed;
+                    _sosig.Speed_Turning = _cachedSpeed;
+                    _sosig.Speed_Crawl = _cachedSpeed;
+                    _sosig.Speed_Sneak = _cachedSpeed;
+                }
             }
         }
 
@@ -241,59 +242,59 @@ namespace CODZombies.Scripts.Zombie
             {
                 other.GetComponent<ITrap>().OnEnemyEntered(this);
             }
-
-            if (_isAttackingWindow)
+        }
+        
+        public void OnTriggerStayed(Collider other)
+        {
+            if (_isDead)
                 return;
-
-            if (CanInteractWithWindows && other.GetComponent<WindowTrigger>())
+            
+            WindowTrigger windowTrigger = other.GetComponent<WindowTrigger>();
+            if (windowTrigger && CanInteractWithWindows)
             {
                 Window window = other.GetComponent<WindowTrigger>().Window;
                 if (window.IsOpen)
                 {
+                    _sosig.Speed_Run = _cachedSpeed;
+                    _sosig.Speed_Walk = _cachedSpeed;
+                    _sosig.Speed_Turning = _cachedSpeed;
+                    _sosig.Speed_Crawl = _cachedSpeed;
+                    _sosig.Speed_Sneak = _cachedSpeed;
                     ChangeTarget(GameReferences.Instance.Player);
                     return;
                 }
 
                 _isAttackingWindow = true;
-
-                _cachedSpeed = _sosig.Speed_Run;
+                
                 _sosig.Speed_Run = 0;
                 _sosig.Speed_Walk = 0;
                 _sosig.Speed_Turning = 0;
                 _sosig.Speed_Crawl = 0;
                 _sosig.Speed_Sneak = 0;
 
+                ChangeTarget(window.transform);
                 LastInteractedWindow = window;
                 OnTouchingWindow();
             }
         }
-
-        // TODO In next version, create two colliders, one for entering, second larger for exiting to avoid looping
-        // Be mindful that sosig can sometimes get stuck on the edge and enter and exit constantly,
-        // which means it will take longer to tear down planks
-        // public void OnTriggerExited(Collider other)
-        // {
-        //     if (_isDead)
-        //         return;
-        //
-        //     if (other.GetComponent<WindowTrigger>())
-        //     {
-        //         _isAttackingWindow = false;
-        //         _sosig.Speed_Run = _cachedSpeed;
-        //         _sosig.Speed_Walk = _cachedSpeed;
-        //         _sosig.Speed_Turning = _cachedSpeed;
-        //         _sosig.Speed_Crawl = _cachedSpeed;
-        //         _sosig.Speed_Sneak = _cachedSpeed;
-        //
-        //         ChangeTarget(GameReferences.Instance.Player);
-        //
-        //         if (_tearingPlanksCoroutine != null)
-        //             StopCoroutine(_tearingPlanksCoroutine);
-        //     }
-        // }
-
-        public void OnTriggerExited(Collider other)
+        
+        public void OnTiggerExited(Collider other)
         {
+            if (_isDead)
+                return;
+            
+            if (other.GetComponent<WindowTrigger>())
+            {
+                _sosig.Speed_Run = _cachedSpeed;
+                _sosig.Speed_Walk = _cachedSpeed;
+                _sosig.Speed_Turning = _cachedSpeed;
+                _sosig.Speed_Crawl = _cachedSpeed;
+                _sosig.Speed_Sneak = _cachedSpeed;
+
+                if (_tearingPlanksCoroutine != null)
+                    StopCoroutine(_tearingPlanksCoroutine);
+                _tearingPlanksCoroutine = null;
+            }
         }
 
         public void OnTouchingWindow()
@@ -318,6 +319,15 @@ namespace CODZombies.Scripts.Zombie
             {
                 yield return new WaitForSeconds(2.5f);
 
+                if (Vector3.Distance(_sosig.transform.position, LastInteractedWindow.transform.position) > 4f)
+                {
+                    _isAttackingWindow = false;
+                    _tearingPlanksCoroutine = null;
+                    yield break;
+                }
+
+                ChangeTarget(LastInteractedWindow.transform);
+
                 if (!_isDead && _sosig.BodyState == Sosig.SosigBodyState.InControl)
                     OnHitWindow();
             }
@@ -330,6 +340,7 @@ namespace CODZombies.Scripts.Zombie
             _sosig.Speed_Sneak = _cachedSpeed;
 
             _tearingPlanksCoroutine = null;
+            ChangeTarget(GameReferences.Instance.Player);
         }
 
         private IEnumerator DelayedDespawn()

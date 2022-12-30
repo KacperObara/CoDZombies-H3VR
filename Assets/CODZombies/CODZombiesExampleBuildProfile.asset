@@ -19,12 +19,11 @@ MonoBehaviour:
   WebsiteURL: https://github.com/KacperObara/CoDZombies-H3VR
   Description: Custom game mode based on Call of Duty Zombies
   AdditionalDependencies:
-  - nrgill28-HookGenPatcher_H3VR-1.2.3
   - devyndamonster-MagazinePatcher-0.1.9
+  - 'Nuigo_Ftrmarket-CDZ_Thundergun-1.0.1 '
   - Nuigo_Ftrmarket-CDZ_Raygun_Mk1-1.2.3
   - Nuigo_Ftrmarket-CDZ_Raygun_Mk2-1.0.2
   - Nuigo_Ftrmarket-Rai_K_84-1.0.0
-  - 'Nuigo_Ftrmarket-CDZ_Thundergun-1.0.1 '
   StripNamespaces: 1
   AdditionalNamespaces:
   - CODZombies

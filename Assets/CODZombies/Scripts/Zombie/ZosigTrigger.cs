@@ -1,4 +1,5 @@
 #if H3VR_IMPORTED
+using System;
 using UnityEngine;
 
 namespace CODZombies.Scripts.Zombie
@@ -12,14 +13,19 @@ namespace CODZombies.Scripts.Zombie
             _zosigController.OnTriggerEntered(other);
         }
 
-        public void Initialize(ZosigZombieController controller)
+        private void OnTriggerStay(Collider other)
         {
-            _zosigController = controller;
+            _zosigController.OnTriggerStayed(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            _zosigController.OnTriggerExited(other);
+            _zosigController.OnTiggerExited(other);
+        }
+
+        public void Initialize(ZosigZombieController controller)
+        {
+            _zosigController = controller;
         }
     }
 }

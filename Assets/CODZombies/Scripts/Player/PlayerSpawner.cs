@@ -15,6 +15,9 @@ namespace CODZombies.Scripts.Player
 
         public Transform EndGameSpawnerPos;
 
+        private bool _quickReviveJustUsed = false;
+        private Vector3 _playerPosOnDeath;
+
         public override void Awake()
         {
             base.Awake();
@@ -35,12 +38,13 @@ namespace CODZombies.Scripts.Player
             GM.CurrentSceneSettings.DeathResetPoint = transform;
             GM.CurrentMovementManager.TeleportToPoint(transform.position, true, transform.position + transform.forward);
         }
-
+        
         private void OnPlayerDeath()
         {
             if (PlayerData.Instance.QuickRevivePerkActivated)
             {
                 PlayerData.Instance.QuickRevivePerkActivated = false;
+                _quickReviveJustUsed = true;
 
                 transform.position = GameReferences.Instance.Player.position;
 
@@ -54,12 +58,17 @@ namespace CODZombies.Scripts.Player
                 if (BeingRevivedEvent != null)
                     BeingRevivedEvent.Invoke();
             }
+            else
+            {
+                Instance.transform.position = Instance.EndGameSpawnerPos.position;
+            }
         }
 
         [HarmonyPatch(typeof(GM), "BringBackPlayer")]
         [HarmonyPrefix]
         private static void BeforePlayerDeath()
         {
+            Instance._playerPosOnDeath = GameReferences.Instance.Player.position;
             Instance.OnPlayerDeath();
         }
 
@@ -67,7 +76,15 @@ namespace CODZombies.Scripts.Player
         [HarmonyPostfix]
         private static void AfterPlayerDeath()
         {
-            Instance.transform.position = Instance.EndGameSpawnerPos.position;
+            GM.CurrentMovementManager.TeleportToPoint(Instance.EndGameSpawnerPos.position, true, Instance.transform.position + Instance.transform.forward);
+            GM.CurrentPlayerBody.transform.position = Instance.EndGameSpawnerPos.position;
+
+            if (Instance._quickReviveJustUsed == true)
+            {
+                Instance._quickReviveJustUsed = false;
+                GM.CurrentMovementManager.TeleportToPoint(Instance._playerPosOnDeath, true, Instance._playerPosOnDeath + Instance.transform.forward);
+                GM.CurrentPlayerBody.transform.position = Instance._playerPosOnDeath;
+            }
         }
 
         private void OnDestroy()

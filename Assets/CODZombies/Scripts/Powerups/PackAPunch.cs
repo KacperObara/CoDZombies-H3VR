@@ -45,7 +45,7 @@ namespace CODZombies.Scripts.Powerups
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<FVRPhysicalObject>()) // This is not actually expensive, since it's rarely called
+            if (other.GetComponent<FVRPhysicalObject>())
             {
                 FVRPhysicalObject fvrPhysicalObject = other.GetComponent<FVRPhysicalObject>();
 
@@ -58,10 +58,10 @@ namespace CODZombies.Scripts.Powerups
 
         public void TryBuying(FVRPhysicalObject fvrPhysicalObject)
         {
-            WeaponWrapper weaponWrapper = fvrPhysicalObject.GetComponent<WeaponWrapper>();
-
             if (fvrPhysicalObject as FVRFireArm == null)
                 return;
+
+            WeaponWrapper weaponWrapper = fvrPhysicalObject.GetComponent<WeaponWrapper>();
 
             // Disabling minigun since it could break the DeathMachine
             if (fvrPhysicalObject.ObjectWrapper.ItemID == "M134Minigun")

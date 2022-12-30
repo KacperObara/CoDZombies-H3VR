@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a1d00d4b41c9f4499068404207acdf, type: 3}
   m_Name: ZosigWeapons
   m_EditorClassIdentifier: 
-  BundleName: zosig_weapons_bundle
+  BundleName: zosig_weapons_example_map_bundle
   Prefabs:
   - {fileID: 1220908097602212, guid: c8b784b6bc2ff654ebe68a3e5470f294, type: 2}
   - {fileID: 1018587147938732, guid: f743183af46d1e442a8443a536a6c9dd, type: 2}

@@ -83,7 +83,7 @@ namespace CODZombies.Scripts.Objects.MysteryBox
             {
                 teddy = TeddyBear.GetChild(1).gameObject;
 
-                AudioManager.Instance.Play(SecretTeddyBearSound);
+                AudioManager.Instance.Play(SecretTeddyBearSound, .5f);
             }
             else
             {

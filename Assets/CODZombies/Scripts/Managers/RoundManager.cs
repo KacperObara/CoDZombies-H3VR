@@ -66,16 +66,16 @@ namespace CODZombies.Scripts.Managers
                 GM.CurrentMovementManager.TeleportToPoint(GameManager.Instance.StartGameWaypoint.position, true);
                 GM.CurrentSceneSettings.IsSpawnLockingEnabled = !GameSettings.LimitedAmmo;
             }
-
+            
             GameManager.Instance.GameStarted = true;
-
+            
             RoundNumber = 0;
-
+            
             AdvanceRound();
 
             if (OnGameStarted != null)
                 OnGameStarted.Invoke();
-
+            
             if (GameManager.Instance.FirstShop)
             {
                 GameManager.Instance.FirstShop.IsFree = true;

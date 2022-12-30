@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using CODZombies.Scripts.Gamemode;
 using CODZombies.Scripts.Managers;
+using FistVR;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,9 +40,7 @@ namespace CODZombies.Scripts
         {
             yield return null;
 
-            GameObject[] rootGameObjects = SceneManager.GetSceneByName("ModBlank_Simple").GetRootGameObjects();
-            GameObject itemSpawner = rootGameObjects.First(x => x.name == "ItemSpawner");
-
+            GameObject itemSpawner = IM.Prefab_ItemSpawner;
             Instantiate(itemSpawner, transform.position, transform.rotation).SetActive(true);
 
             Destroy(this);

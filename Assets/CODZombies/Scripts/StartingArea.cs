@@ -15,7 +15,7 @@ namespace CODZombies.Scripts
 		public void OnGameStart()
 		{
 			StartingMusic.Stop();
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 
 		private void OnDestroy()
