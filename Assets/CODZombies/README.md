@@ -50,6 +50,9 @@ Let me know of any problems, I'd be glad to help.
 
 ## Changelog
 
+### 1.0.7   
+- Fixed being unable to pack a punch a weapon  
+
 ### 1.0.6
 - Added the Thundergun and Rai K 84 wonder weapons by Sora101Ven
 - Changed chances for getting wonder weapons from the mystery box

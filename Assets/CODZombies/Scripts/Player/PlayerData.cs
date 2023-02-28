@@ -66,61 +66,61 @@ namespace CODZombies.Scripts.Player
             GM.CurrentPlayerBody.HealPercent(1f);
         }
 
-        // [HarmonyPatch(typeof(FVRPlayerHitbox), "Damage", new Type[] { typeof(Damage) })]
-        // [HarmonyPrefix]
-        // private static void OnBeforePlayerHit(Damage d)
-        // {
-        //     if (Instance.PHDFlopperPerkActivated && d.Class == Damage.DamageClass.Explosive)
-        //     {
-        //         d.Dam_TotalKinetic *= .3f;
-        //         d.Dam_TotalEnergetic *= .3f;
-        //     }
-        //
-        //     if (d.Source_IFF != GM.CurrentSceneSettings.DefaultPlayerIFF && GettingHitEvent != null)
-        //         GettingHitEvent.Invoke();
-        // }
+        [HarmonyPatch(typeof(FVRPlayerHitbox), "Damage", new Type[] { typeof(Damage) })]
+        [HarmonyPrefix]
+        private static void OnBeforePlayerHit(Damage d)
+        {
+            if (Instance.PHDFlopperPerkActivated && d.Class == Damage.DamageClass.Explosive)
+            {
+                d.Dam_TotalKinetic *= .3f;
+                d.Dam_TotalEnergetic *= .3f;
+            }
+        
+            if (d.Source_IFF != GM.CurrentSceneSettings.DefaultPlayerIFF && GettingHitEvent != null)
+                GettingHitEvent.Invoke();
+        }
 
 
-        // /// <summary>
-        // /// Place in which weapon or magazine wrapper classes are added to the objects
-        // /// </summary>
-        // [HarmonyPatch(typeof(FVRPhysicalObject), "BeginInteraction")]
-        // [HarmonyPostfix]
-        // private static void OnPhysicalObjectStartInteraction(FVRPhysicalObject __instance, FVRViveHand hand)
-        // {
-        //     if (__instance as FVRFireArm)
-        //     {
-        //         WeaponWrapper wrapper = __instance.GetComponent<WeaponWrapper>();
-        //         if (wrapper == null)
-        //         {
-        //             wrapper = __instance.gameObject.AddComponent<WeaponWrapper>();
-        //             wrapper.Initialize((FVRFireArm) __instance);
-        //         }
-        //
-        //         wrapper.OnWeaponGrabbed();
-        //     }
-        //     else if (__instance as FVRFireArmMagazine)
-        //     {
-        //         MagazineWrapper wrapper = __instance.GetComponent<MagazineWrapper>();
-        //         if (wrapper == null)
-        //         {
-        //             wrapper = __instance.gameObject.AddComponent<MagazineWrapper>();
-        //             wrapper.Initialize((FVRFireArmMagazine) __instance);
-        //         }
-        //     }
-        // }
-        //
-        // [HarmonyPatch(typeof(FVRFireArmMagazine), "Release")]
-        // [HarmonyPostfix]
-        // private static void OnMagRelease(FVRFireArmMagazine __instance, bool PhysicalRelease = false)
-        // {
-        //     //////// Electric cherry
-        //     if (Instance.ElectricCherryPerkActivated && __instance.m_numRounds == 0)
-        //     {
-        //         if (!Instance.stunThrottle)
-        //             Instance.StartCoroutine(Instance.ActivateStun());
-        //     }
-        // }
+        /// <summary>
+        /// Place in which weapon or magazine wrapper classes are added to the objects
+        /// </summary>
+        [HarmonyPatch(typeof(FVRPhysicalObject), "BeginInteraction")]
+        [HarmonyPostfix]
+        private static void OnPhysicalObjectStartInteraction(FVRPhysicalObject __instance, FVRViveHand hand)
+        {
+            if (__instance as FVRFireArm)
+            {
+                WeaponWrapper wrapper = __instance.GetComponent<WeaponWrapper>();
+                if (wrapper == null)
+                {
+                    wrapper = __instance.gameObject.AddComponent<WeaponWrapper>();
+                    wrapper.Initialize((FVRFireArm) __instance);
+                }
+        
+                wrapper.OnWeaponGrabbed();
+            }
+            else if (__instance as FVRFireArmMagazine)
+            {
+                MagazineWrapper wrapper = __instance.GetComponent<MagazineWrapper>();
+                if (wrapper == null)
+                {
+                    wrapper = __instance.gameObject.AddComponent<MagazineWrapper>();
+                    wrapper.Initialize((FVRFireArmMagazine) __instance);
+                }
+            }
+        }
+        
+        [HarmonyPatch(typeof(FVRFireArmMagazine), "Release")]
+        [HarmonyPostfix]
+        private static void OnMagRelease(FVRFireArmMagazine __instance, bool PhysicalRelease = false)
+        {
+            //////// Electric cherry
+            if (Instance.ElectricCherryPerkActivated && __instance.m_numRounds == 0)
+            {
+                if (!Instance.stunThrottle)
+                    Instance.StartCoroutine(Instance.ActivateStun());
+            }
+        }
 
         private bool stunThrottle = false;
 

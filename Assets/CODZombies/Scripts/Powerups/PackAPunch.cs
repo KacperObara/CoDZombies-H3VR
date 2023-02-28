@@ -79,10 +79,8 @@ namespace CODZombies.Scripts.Powerups
 
             if (weapon) // Normal behavior with gun changes
             {
-                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost) && weapon.UpgradedWeapon != null)
+                if (!InUse && IsPowered && GameManager.Instance.TryRemovePoints(Cost) && weapon.UpgradedWeapon != null)
                 {
-                    if (InUse)
-                        return;
                     InUse = true;
 
                     _alreadyBought = true;
@@ -101,10 +99,8 @@ namespace CODZombies.Scripts.Powerups
             }
             else // Alternative behavior for unforeseen guns and subsequent Re pack a punching
             {
-                if (IsPowered && GameManager.Instance.TryRemovePoints(Cost))
+                if (!InUse && IsPowered && GameManager.Instance.TryRemovePoints(Cost))
                 {
-                    if (InUse)
-                        return;
                     InUse = true;
 
                     _alreadyBought = true;
